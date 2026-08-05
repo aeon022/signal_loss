@@ -1,25 +1,25 @@
 # Sci-Fi Text Adventure Game - Story
 
-You are a lone space explorer who has crash landed on an unknown planet. Your ship is damaged and you have limited resources. Your mission is to survive long enough to repair the ship and escape the planet.
+Du bist ein einsamer Raumfahrer, der auf einem unbekannten Planeten abgestürzt ist. Dein Schiff ist beschädigt und du hast begrenzte Ressourcen. Deine Mission besteht darin, lange genug zu überleben, um das Schiff zu reparieren und den Planeten zu verlassen.
 
-## The Crash
+## Der Absturz
 
-Your ship, the "Aegis", was on a routine exploration mission when it encountered a strange anomaly in space. As you approached, the ship's systems began to fail. You managed to eject from your pod just before the ship exploded.
+Dein Schiff, die "Aegis", war auf einer routinemäßigen Erkundungsmission, als es eine seltsame Anomalie im Weltraum begegnete. Als du dich näherte, begannen die Systeme des Schiffs zu versagen. Du schafftest es gerade noch rechtzeitig aus deiner Kapsel auszusteigen, bevor das Schiff explodierte.
 
-You wake up on the planet's surface, disoriented and injured. Your lifeline device is still functioning, but using it consumes valuable resources and puts you at risk of being detected by hostile forces.
+Du erwachst auf der Oberfläche des Planeten, orientierungslos und verletzt. Dein Lebensrettungsgerät ist immer noch funktionsfähig, aber seine Verwendung verbraucht wertvolle Ressourcen und setzt dich einem Risiko aus, von feindlichen Kräften entdeckt zu werden.
 
-## The Planet
+## Der Planet
 
-The planet is a harsh and unforgiving place. It is inhabited by several alien factions, each with its own agenda and relationship with the player. Some factions are friendly and willing to trade resources for information, while others are hostile and attack on sight. Players must navigate these relationships carefully to survive.
+Der Planet ist eine harte und unbarmherzige Welt. Er wird von mehreren außerirdischen Fraktionen bevölkert, die jeweils ihr eigenes Agenda und Verhältnis zum Spieler haben. Einige Fraktionen sind freundlich und bereit, Ressourcen gegen Informationen einzutauschen, während andere feindselig sind und auf Sicht angreifen. Der Spieler muss diese Beziehungen vorsichtig navigieren, um zu überleben.
 
-The planet is filled with dangerous environments such as radiation zones, acid lakes, and sandstorms. Players must navigate these hazards carefully to avoid taking damage or becoming lost.
+Der Planet ist von gefährlichen Umgebungen wie Strahlungszonen, Säureseen und Sandstürmen durchsetzt. Der Spieler muss diese Gefahren vorsichtig navigieren, um Schaden zu vermeiden oder sich nicht zu verlaufen.
 
-## The Gameplay
+## Die Spielmechanik
 
-Throughout the game, you will encounter various challenges such as hostile alien creatures, scarce resources, and dangerous terrain. To overcome these challenges, you must make strategic decisions about how to allocate your limited resources. For example, should you spend resources on repairing the ship or stockpiling food?
+Im Laufe des Spiels begegnest du verschiedenen Herausforderungen wie feindlichen außerirdischen Kreaturen, knappen Ressourcen und gefährlichem Terrain. Um diese Herausforderungen zu bewältigen, musst du strategische Entscheidungen darüber treffen, wie du deine begrenzten Ressourcen allozierst. Solltest du zum Beispiel die Ressourcen für die Reparatur des Schiffs oder den Ankauf von Nahrungsmitteln ausgeben?
 
-The game has a day/night cycle that affects visibility, energy levels, and enemy behavior. During the night, players will be more vulnerable to enemies and must use their flashlight sparingly to conserve battery life.
+Das Spiel hat einen Tag/Nacht-Zyklus, der die Sichtweite, Energieniveaus und das Verhalten der Feinde beeinflusst. Während der Nacht sind Spieler anfälliger für Feinde und müssen ihre Taschenlampe sparsam einsetzen, um den Batterieverbrauch zu minimieren.
 
-## The Goal
+## Das Ziel
 
-Your ultimate goal is to repair your ship and escape the planet. To do this, you will need to gather resources, navigate the alien factions, and survive the dangers of the planet. But be careful - every decision you make could mean the difference between life and death.
+Dein endgültiges Ziel ist es, dein Schiff zu reparieren und den Planeten zu verlassen. Dazu musst du Ressourcen sammeln, die außerirdischen Fraktionen navigieren und die Gefahren des Planeten überstehen. Aber sei vorsichtig - jede Entscheidung, die du triffst, könnte das Leben oder den Tod bedeuten.
