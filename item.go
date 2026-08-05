@@ -4,6 +4,12 @@ type Item struct {
 	name string
 	description string
 	position Point
+	resourceType string
+	resourceAmount int
 }
 
-// Methods for item interactions go here...
+func (i *Item) Use() {
+	if i.resourceType != "" {
+		game.player.resources[i.resourceType] += i.resourceAmount
+	}
+}

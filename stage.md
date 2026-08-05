@@ -7,10 +7,14 @@ You are a lone space explorer who has crash landed on an unknown planet. The pla
 
 Throughout the game, you will encounter various challenges such as hostile alien creatures, dangerous terrain, and scarce resources. To overcome these challenges, you must make strategic decisions about how to allocate your limited resources. For example, should you spend resources on repairing the ship or stockpiling food?
 
-The game has a day/night cycle that affects your visibility, energy levels, and the behavior of certain enemies. You must manage your energy levels carefully to avoid exhaustion, which can lead to death if not treated.
+The planet is inhabited by several alien factions, each with its own agenda and relationship with the player. Some factions may be friendly and willing to trade resources for information, while others may be hostile and attack on sight. Players must navigate these relationships carefully to survive.
+
+The game has a day/night cycle that affects visibility, energy levels, and enemy behavior. During the night, players will be more vulnerable to enemies and must use their flashlight sparingly to conserve battery life.
 
 ## Controls
 - Use `w`, `a`, `s`, and `d` to move around.
 - Interact with items by moving into their position.
 - Avoid enemies! They will damage you if they catch up to you.
 - Use your lifeline device sparingly to communicate with your team back home.
+- Manage your resources carefully to survive.
+- Navigate the planet's alien factions and environments to discover new areas and resources.
