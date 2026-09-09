@@ -9,6 +9,7 @@ node_modules/
 public/game/game.wasm
 public/game/wasm_exec.js
 public/game/story.json
+public/game/story_de.json
 
 # editor/OS
 .DS_Store

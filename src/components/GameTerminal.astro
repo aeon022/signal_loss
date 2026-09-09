@@ -29,6 +29,14 @@ const base = import.meta.env.BASE_URL;
 
       <div class="w-full max-w-sm space-y-5">
         <div>
+          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">LANGUAGE</div>
+          <div class="grid grid-cols-2 gap-2" data-group="lang">
+            <button type="button" data-value="en" class="config-btn" aria-pressed="true">ENGLISH</button>
+            <button type="button" data-value="de" class="config-btn">DEUTSCH</button>
+          </div>
+        </div>
+
+        <div>
           <div class="mb-2 text-left text-[11px] tracking-widest text-dim">TEXT SPEED</div>
           <div class="grid grid-cols-2 gap-2" data-group="speed">
             <button type="button" data-value="normal" class="config-btn" aria-pressed="true">NORMAL</button>
@@ -224,6 +232,7 @@ const base = import.meta.env.BASE_URL;
         savedJSON: string,
         fast: boolean,
         realtime: boolean,
+        lang: string,
         onOutput: (out: string) => void,
         onSave: (json: string) => void,
         onExit: () => void,
@@ -234,7 +243,7 @@ const base = import.meta.env.BASE_URL;
 
   // --- launch panel wiring -------------------------------------------
 
-  const selection: Record<string, string> = { speed: "normal", mode: "compressed" };
+  const selection: Record<string, string> = { lang: "en", speed: "normal", mode: "compressed" };
 
   document.querySelectorAll<HTMLElement>("#launch-panel [data-group]").forEach((group) => {
     const key = group.dataset.group!;
@@ -254,12 +263,12 @@ const base = import.meta.env.BASE_URL;
 
   launchBtn.addEventListener("click", () => {
     launchPanel.remove();
-    boot(selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
+    boot(selection.lang, selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
   });
 
   // ---------------------------------------------------------------------
 
-  async function boot(fast: boolean, realtime: boolean) {
+  async function boot(lang: string, fast: boolean, realtime: boolean) {
     statusEl.textContent = "CONNECTING…";
 
     const go = new window.Go();
@@ -268,8 +277,13 @@ const base = import.meta.env.BASE_URL;
     const { instance } = await WebAssembly.instantiate(await wasmResp.arrayBuffer(), go.importObject);
     go.run(instance);
 
-    const storyText = await (await fetch(`${BASE}game/story.json`)).text();
-    const saved = localStorage.getItem(SAVE_KEY) || "";
+    const storyFile = lang === "de" ? "story_de.json" : "story.json";
+    const storyText = await (await fetch(`${BASE}game/${storyFile}`)).text();
+    // Namespaced per language: a German-run save's item names ("Hyperkondensator")
+    // wouldn't match English story data's items_removed lookups ("Hyper-Capacitor"),
+    // so switching languages starts a fresh run instead of corrupting inventory state.
+    const saveKey = `${SAVE_KEY}_${lang}`;
+    const saved = localStorage.getItem(saveKey) || "";
 
     term.onData((data) => window.slInput(data));
 
@@ -278,8 +292,9 @@ const base = import.meta.env.BASE_URL;
       saved,
       fast,
       realtime,
+      lang,
       (out) => term.write(out),
-      (json) => localStorage.setItem(SAVE_KEY, json),
+      (json) => localStorage.setItem(saveKey, json),
       onExit,
     );
 

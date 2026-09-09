@@ -20,5 +20,6 @@ echo "Building game.wasm from $GAME_DIR ..."
 
 cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" "$OUT_DIR/wasm_exec.js"
 cp "$GAME_DIR/story.json" "$OUT_DIR/story.json"
+cp "$GAME_DIR/story_de.json" "$OUT_DIR/story_de.json"
 
-echo "Done: $OUT_DIR/{game.wasm,wasm_exec.js,story.json}"
+echo "Done: $OUT_DIR/{game.wasm,wasm_exec.js,story.json,story_de.json}"
