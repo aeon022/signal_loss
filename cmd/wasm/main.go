@@ -52,15 +52,19 @@ func (w *bridgeWriter) Write(p []byte) (int, error) {
 func main() {
 	inputCh := make(chan []byte, 64)
 
-	// slStart(storyJSON, savedStateJSON, fast, realtime, onOutput, onSave, onExit)
+	// slStart(storyJSON, savedStateJSON, fast, realtime, lang, onOutput, onSave, onExit)
+	// lang only picks the UI chrome (headings, hints, boot log) — storyJSON
+	// already carries whichever language's narrative content JS fetched,
+	// so the two need to be kept in sync by the caller.
 	js.Global().Set("slStart", js.FuncOf(func(_ js.Value, args []js.Value) any {
 		storyJSON := args[0].String()
 		savedJSON := args[1].String()
 		fast := args[2].Bool()
 		realtime := args[3].Bool()
-		onOutput := args[4]
-		onSave := args[5]
-		onExit := args[6]
+		lang := args[4].String()
+		onOutput := args[5]
+		onSave := args[6]
+		onExit := args[7]
 
 		storyData, err := story.ParseStory([]byte(storyJSON))
 		if err != nil {
@@ -79,7 +83,7 @@ func main() {
 			return nil
 		}
 
-		model := tui.New(storyData, state, save, fast, realtime)
+		model := tui.New(storyData, state, save, fast, realtime, lang)
 		prog := tea.NewProgram(model,
 			tea.WithAltScreen(),
 			tea.WithInput(&bridgeReader{ch: inputCh}),

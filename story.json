@@ -6,6 +6,10 @@
     "current_chapter": "chapter_1",
     "inventory": []
   },
+  "system_messages": {
+    "hull_breach": "HULL BREACH. Decompression is instant. Sector Schrödinger claims another cargo engineer.",
+    "battery_depleted": "BAT depleted. S.T.E.V.E. shuts down. Life support fails in the dark."
+  },
   "invalid_input_responses": [
     "S.T.E.V.E.: That input made even less sense than your survival odds.",
     "S.T.E.V.E.: Please pick a number that exists. I have anxiety, not telepathy.",

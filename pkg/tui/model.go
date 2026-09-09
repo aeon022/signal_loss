@@ -45,14 +45,6 @@ const (
 	realLockTick = 1 * time.Second
 )
 
-var bootLines = []string{
-	"> INITIALIZING S.T.E.V.E. CORE......... OK",
-	"> LIFE SUPPORT DIAGNOSTIC............... OK",
-	"> HULL INTEGRITY SENSORS................ OK",
-	"> BATTERY TELEMETRY..................... OK",
-	"> HOME SIGNAL............................ LOST",
-}
-
 type tickMsg struct{}
 
 func tick(d time.Duration) tea.Cmd {
@@ -66,6 +58,7 @@ type Model struct {
 	save     func(*game.GameState) error
 	fastMode bool
 	realTime bool
+	labels   Labels
 
 	phase       phase
 	overlay     string // "", "codex", "map"
@@ -103,13 +96,14 @@ type Model struct {
 // New builds the initial model. Pass an already-loaded state (fresh or
 // resumed), story data, and a save func — file-backed on the native CLI,
 // localStorage-backed in the WASM build, the model doesn't care which.
-func New(st *story.StoryData, state *game.GameState, save func(*game.GameState) error, fastMode, realTime bool) Model {
+func New(st *story.StoryData, state *game.GameState, save func(*game.GameState) error, fastMode, realTime bool, lang string) Model {
 	m := Model{
 		story:    st,
 		state:    state,
 		save:     save,
 		fastMode: fastMode,
 		realTime: realTime,
+		labels:   labelsFor(lang),
 		phase:    phaseBoot,
 	}
 
@@ -219,7 +213,7 @@ func (m Model) handleKey(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 
 func (m Model) handleBootKey() (tea.Model, tea.Cmd) {
 	if !m.awaitingUplink {
-		m.bootIdx = len(bootLines)
+		m.bootIdx = len(m.labels.BootLines)
 		m.awaitingUplink = true
 		return m, nil
 	}
@@ -318,7 +312,7 @@ func (m Model) selectChoice(idx int) (tea.Model, tea.Cmd) {
 	}
 	choice := ch.Choices[idx]
 	m.outcomeTitle = ch.Title
-	m.resolution = game.ResolveChoice(m.state, choice)
+	m.resolution = game.ResolveChoice(m.state, choice, m.story)
 	m.save(m.state)
 
 	m.step = stepOutcome
@@ -339,7 +333,7 @@ func (m Model) finishOutcome() (tea.Model, tea.Cmd) {
 	switch {
 	case r.Fatal || r.GameOver:
 		m.phase = phaseGameOver
-		m.endTitle = "💀 GAME OVER"
+		m.endTitle = m.labels.GameOverTitle
 		m.endMessage = r.DeathMessage
 
 		return m, nil
@@ -413,9 +407,9 @@ func (m Model) finishGlitch() (tea.Model, tea.Cmd) {
 func (m Model) handleTick() (tea.Model, tea.Cmd) {
 	switch m.phase {
 	case phaseBoot:
-		if m.bootIdx < len(bootLines) {
+		if m.bootIdx < len(m.labels.BootLines) {
 			m.bootIdx++
-			if m.bootIdx >= len(bootLines) {
+			if m.bootIdx >= len(m.labels.BootLines) {
 				m.awaitingUplink = true
 				return m, nil
 			}

@@ -65,15 +65,15 @@ func (m Model) View() string {
 func (m Model) viewBoot() string {
 	lines := []string{
 		heading("S I G N A L   L O S S", colorCyan),
-		"// SECTOR SCHRÖDINGER //",
-		"CSS RUST-404 — EMERGENCY TERMINAL LINK",
+		m.labels.BootSubtitle,
+		m.labels.BootLink,
 		"",
 	}
 	for i := 0; i < m.bootIdx; i++ {
-		lines = append(lines, dimStyle.Render(bootLines[i]))
+		lines = append(lines, dimStyle.Render(m.labels.BootLines[i]))
 	}
 	if m.awaitingUplink {
-		lines = append(lines, "", dimStyle.Render("Press any key to establish uplink..."))
+		lines = append(lines, "", dimStyle.Render(m.labels.PressUplink))
 	}
 	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), "")
 }
@@ -86,7 +86,7 @@ func (m Model) viewBoot() string {
 func (m Model) viewChapter() string {
 	ch, ok := m.currentChapter()
 	if !ok {
-		return chrome(frameStyle(colorRed).Render("ERROR: unknown chapter"), "")
+		return chrome(frameStyle(colorRed).Render(m.labels.ErrUnknownChap), "")
 	}
 	if m.overlay == "codex" {
 		return m.viewCodex()
@@ -107,7 +107,7 @@ func (m Model) viewChapter() string {
 	switch {
 	case m.step == stepOutcome:
 		if m.awaitingContinue {
-			bottom = []string{"", dimStyle.Render("Press any key to continue...")}
+			bottom = []string{"", dimStyle.Render(m.labels.PressContinue)}
 		}
 	case !m.revealDone():
 		// still typing the narrative — choices appear once it's done.
@@ -117,8 +117,7 @@ func (m Model) viewChapter() string {
 		if m.hint != "" {
 			bottom = append(bottom, "", dimStyle.Render(m.hint))
 		}
-		bottom = append(bottom, "", dimStyle.Render(fmt.Sprintf(
-			"[1-%d] choose   ↑↓ + enter   [c]odex   [m]ap   [q]uit", len(ch.Choices))))
+		bottom = append(bottom, "", dimStyle.Render(fmt.Sprintf(m.labels.ChoiceFooterFmt, len(ch.Choices))))
 	}
 
 	lines := anchorBottom(top, bottom)
@@ -179,7 +178,7 @@ func (m Model) viewCodex() string {
 		body = append(body, "")
 	}
 	if len(terms) == 0 {
-		body = []string{dimStyle.Render("No data on file yet. Keep moving.")}
+		body = []string{dimStyle.Render(m.labels.CodexEmpty)}
 	}
 
 	visibleRows := FixedHeight - codexOverhead
@@ -201,12 +200,12 @@ func (m Model) viewCodex() string {
 		visible = append(visible, "")
 	}
 
-	footer := fmt.Sprintf("%d known — [c/esc] back to chapter", len(terms))
+	footer := fmt.Sprintf(m.labels.CodexFooterFmt, len(terms))
 	if maxScroll > 0 {
-		footer = fmt.Sprintf("[↑↓ scroll %d/%d]  %s", scroll+1, maxScroll+1, footer)
+		footer = fmt.Sprintf(m.labels.CodexScrollFmt, scroll+1, maxScroll+1, footer)
 	}
 
-	lines := append([]string{heading("S.T.E.V.E. DATABASE — CODEX", colorAmber), ""}, visible...)
+	lines := append([]string{heading(m.labels.CodexHeading, colorAmber), ""}, visible...)
 	lines = append(lines, dimStyle.Render(footer))
 	return chrome(frameStyle(colorAmber).Render(strings.Join(lines, "\n")), m.hudLine())
 }
@@ -220,7 +219,7 @@ func (m Model) viewMap() string {
 		}
 	}
 
-	lines := []string{heading("NAVIGATION — SECTOR SCHRÖDINGER", colorCyan), ""}
+	lines := []string{heading(m.labels.MapHeading, colorCyan), ""}
 	for i, id := range game.ChapterOrder {
 		ch, ok := m.story.Chapters[id]
 		if !ok {
@@ -242,7 +241,7 @@ func (m Model) viewMap() string {
 		}
 		lines = append(lines, fmt.Sprintf("%s %2d. %s", mark, i+1, name))
 	}
-	lines = append(lines, "", dimStyle.Render("[m/esc] back to chapter"))
+	lines = append(lines, "", dimStyle.Render(m.labels.MapFooter))
 	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), m.hudLine())
 }
 
@@ -252,11 +251,11 @@ func (m Model) viewTimelock() string {
 		pct = 100 - int(m.timelockRemaining*100/m.timelockTotal)
 	}
 	lines := []string{
-		dimStyle.Render("SIGNAL LOST — standing by..."),
+		dimStyle.Render(m.labels.TimelockStandby),
 		"",
 		bar(pct, TextWidth-8),
 		"",
-		dimStyle.Render("[any key] skip wait"),
+		dimStyle.Render(m.labels.TimelockSkip),
 	}
 	return chrome(frameStyle(colorDim).Render(strings.Join(lines, "\n")), m.hudLine())
 }
@@ -272,16 +271,15 @@ func (m Model) viewRealLock() string {
 	}
 	unlockAt := time.Unix(m.state.TimeLockUntil, 0).Local().Format("Mon 15:04")
 
-	lines := []string{heading("SIGNAL LOST — TRANSMISSION PAUSED", colorDim), ""}
-	lines = append(lines, wrap("S.T.E.V.E. has gone into standby to conserve what's left of the "+
-		"battery. Reconnect in "+formatDuration(remaining)+".", TextWidth)...)
+	lines := []string{heading(m.labels.RealLockHeading, colorDim), ""}
+	lines = append(lines, wrap(m.labels.RealLockBodyPre+formatDuration(remaining)+".", TextWidth)...)
 	lines = append(lines,
 		"",
-		dimStyle.Render("Back online: "+unlockAt),
+		dimStyle.Render(m.labels.RealLockBackOnlinePre+unlockAt),
 		"",
-		dimStyle.Render("Your run is saved — safe to close this window and come back."),
+		dimStyle.Render(m.labels.RealLockSaved),
 		"",
-		dimStyle.Render("[q]uit"),
+		dimStyle.Render(m.labels.RealLockQuit),
 	)
 	return chrome(frameStyle(colorDim).Render(strings.Join(lines, "\n")), m.hudLine())
 }
@@ -306,6 +304,6 @@ func (m Model) viewEnd(c lipgloss.Color) string {
 		lines = append(lines, heading(m.endTitle, c), "")
 	}
 	lines = append(lines, wrap(m.endMessage, TextWidth)...)
-	lines = append(lines, "", dimStyle.Render("[any key] quit"))
+	lines = append(lines, "", dimStyle.Render(m.labels.EndQuit))
 	return chrome(frameStyle(c).Render(strings.Join(lines, "\n")), m.hudLine())
 }

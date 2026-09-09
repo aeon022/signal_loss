@@ -38,8 +38,10 @@ cd signal_loss
 - `-fast` — skip the typewriter effect and compress time-locks to a couple of seconds
 - `-realtime` — make time-locks real minutes/hours instead of compressed seconds; the wait is
   saved to disk and enforced on next launch too, `-fast` can't skip it
+- `-lang en|de` — game language, UI chrome and story content (default `en`); the browser build
+  has the same choice as a launch-screen toggle
 - `-save PATH` — save file location (default `save.json`)
-- `-story PATH` — story data file (default `story.json`)
+- `-story PATH` — story data file (default `story.json` for `en`, `story_de.json` for `de`)
 
 ### Controls
 

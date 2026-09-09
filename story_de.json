@@ -1,0 +1,592 @@
+{
+  "initial_state": {
+    "hull": 12,
+    "bat": 45,
+    "scrap": 2,
+    "current_chapter": "chapter_1",
+    "inventory": []
+  },
+  "system_messages": {
+    "hull_breach": "RUMPFBRUCH. Die Dekompression ist sofort. Sektor Schrödinger fordert einen weiteren Cargo-Ingenieur.",
+    "battery_depleted": "BAT erschöpft. S.T.E.V.E. schaltet sich ab. Die Lebenserhaltung versagt im Dunkeln."
+  },
+  "invalid_input_responses": [
+    "S.T.E.V.E.: Diese Eingabe war noch sinnloser als deine Überlebenschancen.",
+    "S.T.E.V.E.: Bitte wähle eine Zahl, die tatsächlich existiert. Ich habe Ängste, keine Telepathie.",
+    "S.T.E.V.E.: Falsch. Versuch's noch mal, bevor der Rumpf es für dich übernimmt.",
+    "S.T.E.V.E.: Ich habe schon Fehlercodes mit mehr Würde gesehen als diese Eingabe.",
+    "S.T.E.V.E.: Tippe \"codex\" oder \"map\", wenn du dich verlaufen hast, oder eine echte Zahl, wenn nicht."
+  ],
+  "codex": {
+    "S.T.E.V.E.": {
+      "text": "Synthetic Tactical & Emergency Virtual Entity, v4.2. Die Bord-KI deines Schiffs: sarkastisch, ängstlich und ständig fast leer. Zuständig für Diagnosen, Kommunikation und ungefragte Kommentare.",
+      "unlock_chapter": "chapter_1"
+    },
+    "Arthur Pendelton": {
+      "text": "Du. Ein Cargo-Ingenieur der Klasse 3 bei Galactic Scrap & Freight, nach jeder Kennzahl, die die Firma erfasst, aggressiv durchschnittlich.",
+      "unlock_chapter": "chapter_1"
+    },
+    "CSS RUST-404": {
+      "text": "Dein Schiff. Offiziell ein leichter Massengutfrachter. Umgangssprachlich ein fliegender Schrotthaufen. Aktuell auf dem Kopf.",
+      "unlock_chapter": "chapter_1"
+    },
+    "Galactic Scrap & Freight": {
+      "text": "Dein Arbeitgeber. Ein Logistikunternehmen, dessen Sicherheitsbriefings größtenteils aus Schulterzucken bestehen.",
+      "unlock_chapter": "chapter_1"
+    },
+    "Gryps-4": {
+      "text": "Der Planet, auf dem du abgestürzt bist. Eine kosmische Müllkippe aus verlassenen Mega-Strukturen, toxischen Schlammschluchten und mehreren Fraktionen, die alle glauben, der Schrott gehöre ihnen.",
+      "unlock_chapter": "chapter_1"
+    },
+    "HULL": {
+      "text": "Die strukturelle Integrität von Schiff und Anzug, in Prozent. Bei 0 % ist die Dekompression sofort. Es gibt kein 1 %.",
+      "unlock_chapter": "chapter_1"
+    },
+    "BAT": {
+      "text": "Batterieladung in Prozent, gemeinsam genutzt von deinem Anzug und S.T.E.V.E. Bei 0 % fällt die Lebenserhaltung aus.",
+      "unlock_chapter": "chapter_1"
+    },
+    "SCRAP": {
+      "text": "Geborgene Teile und die einzige Währung, die auf Gryps-4 irgendjemand respektiert.",
+      "unlock_chapter": "chapter_1"
+    },
+    "Laser-Mistgabel-Ansässige": {
+      "text": "Nomadische Schrottsammler in Reifen-Röcken, bewaffnet mit selbstgeschweißten Plasma-Ackergeräten. Riechen nach abgestandenem Weltraum-Lager.",
+      "unlock_chapter": "chapter_1"
+    },
+    "Intergalaktisches Food-Truck-Kartell": {
+      "text": "Vierbeinige Kulinarik-Erpresser, die radioaktive Fusionszellen gegen Schrott und Selbstachtung tauschen.",
+      "unlock_chapter": "chapter_2"
+    },
+    "Glitch-Nomaden": {
+      "text": "Drahtgitterartige, polygonale Wesen, die in korrupten Datenschluchten leben. Sprechen in gebrochener Syntax. Löschen physische Materie, wenn sie genervt sind.",
+      "unlock_chapter": "chapter_4"
+    },
+    "Recycling-Mönche von Sankt-Plastik": {
+      "text": "Religiöse Fanatiker, die ausgemusterte Hauptplatinen verehren und BIOS-Fehlercodes rezitieren. Bewachen den Hyperkondensator.",
+      "unlock_chapter": "chapter_5"
+    },
+    "Vex": {
+      "text": "Ein stark aufgerüsteter Cyborg-Räuber, der die SS Scrap-Collector fliegt und will, was du hast.",
+      "unlock_chapter": "chapter_6"
+    }
+  },
+  "chapters": {
+    "chapter_1": {
+      "title": "Kapitel 1: Der Landepunkt",
+      "location": "Landepunkt",
+      "content": "Die CSS RUST-404 hört auf, sich zu überschlagen, und bleibt kopfüber in einem Müllberg von der Größe einer kleinen Gemeinde stecken. Rauch quillt aus der Konsole. Irgendwo über dir streitet die Schwerkraft noch darüber, welche Richtung oben ist. „Systeme... halbwegs nominal“, meldet S.T.E.V.E. mit knisternder Stimme. „Überlebenswahrscheinlichkeit: 4,2 %. Aus Freundlichkeit aufgerundet.“ Du bist Arthur Pendelton, Cargo-Ingenieur der Klasse 3 bei Galactic Scrap & Freight, und nach jeder Kennzahl, die die Firma misst, aggressiv durchschnittlich. Das hat dich bisher am Leben gehalten. Durch die gesprungene Frontscheibe zählst du sechs Gestalten in Reifen-Rock-Rüstung, die sich mit erhobenen Plasma-Ackergeräten der Luke nähern. Die Laser-Mistgabel-Ansässigen haben dich als Erste gefunden.",
+      "choices": [
+        {
+          "text": "„Na dann, guten Tag, die Herren!“ (Diplomatischer Bluff) — stolperst raus und tust, als gehöre dir die Müllhalde.",
+          "outcome": "Du marschierst hinaus und klopfst dir Staub von den Handschuhen, als würde dir der ganze Berg gehören. Der Anführer kneift die Augen zusammen, entscheidet sich, dass du entweder verrückt oder wichtig bist, und wirft dir aus reiner Verwirrung Schrott zu, bevor die ganze Bande streitend abzieht.",
+          "stat_mutations": { "hull": 0, "bat": -5, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Totstellen (Die Meisterklasse der Feigheit) — mit dem Gesicht voran in den Schlamm fallen.",
+          "outcome": "Du gehst nieder wie ein Sack abgelaufener Rationen. Die Ansässigen treten ein paarmal gegen den Rumpf, lachen über den Gestank und verlieren das Interesse. Ätzender Schlamm frisst sich währenddessen ein Stück durch deinen Anzug.",
+          "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Notfall-EMP (Verbrannte Erde) — S.T.E.V.E.s Antenne in die Rumpfverkleidung überlasten.",
+          "outcome": "Die Überlastung schlägt rückwärts durch den offenen Rumpfbruch, statt nach außen. S.T.E.V.E. schreit eine Warnung eine halbe Sekunde zu spät. Die Ansässigen müssen dich gar nicht mehr fertigmachen — die Rückkopplung erledigt das für sie. Sektor Schrödinger fordert einen weiteren Cargo-Ingenieur, noch vor Kapitel 2.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_2": {
+      "title": "Kapitel 2: Der Schrott-Basar",
+      "location": "Schrott-Basar",
+      "content": "Die Batteriereserven schwinden, und du folgst einem handgemalten Schild mit der Aufschrift „GRILL & BATTERIEN“ zu einer fettverschmierten mobilen Festung, betrieben von einem vierarmigen Koch des Intergalaktischen Food-Truck-Kartells. Er wendet gerade etwas nicht Identifizierbares und begutachtet gleichzeitig die Fusionszellen-Buchse deines Anzugs wie ein Gebrauchtwagenkäufer. „Frisches Fleisch“, brummt er, nicht unfreundlich. „Kaufen, klauen oder mich amüsieren.“",
+      "choices": [
+        {
+          "text": "Ehrlicher Tausch — geborgenen Schrott gegen eine Fusionsbatterie zahlen.",
+          "outcome": "Schrott wechselt den Besitzer. Die Batterie braucht eine langsame Trickle-Ladung, bevor man sie sicher abziehen kann, also wartest du es ab — mit einem ungefragten, strahlend leuchtenden Burger „aufs Haus“. S.T.E.V.E. verbucht ihn als Biogefahr und Snack, in dieser Reihenfolge.",
+          "stat_mutations": { "hull": 0, "bat": 25, "scrap": -999 },
+          "items_added": ["Strahlungs-Burger"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_3",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 15
+        },
+        {
+          "text": "S.T.E.V.E.-Werbejingle — einen nervigen 1980er-Batterie-Werbespot über die Anzuglautsprecher jagen.",
+          "outcome": "Der Koch hält mitten im Wenden inne, ehrlich begeistert. Er drückt dir eine Batterie als „Werbegeschenk für Fans“ in die Hand und verlangt eine Zugabe. S.T.E.V.E.s Ego, ohnehin schon unkontrollierbar, erreicht neue Höhen.",
+          "stat_mutations": { "hull": 0, "bat": 20, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "steve_ego_maxed": true },
+          "next_chapter": "chapter_3",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Verdeckter Diebstahl — dich hinter den Truck schlängeln und eine Batterie vom Generator klauen.",
+          "outcome": "Du bekommst die Batterie. Du stolperst dabei auch über einen Kanister, fliegst mit dem Gesicht auf einen Klapptisch und wirst auf der Stelle erkannt. Die Cousins des Kochs schleifen dich als Warnung für andere Kunden zurück zum Wrack und lassen dich — samt deiner gesamten Ausrüstung — genau dort zurück, wo du angefangen hast.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": -999 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "wanted_by_cartel": true },
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_3": {
+      "title": "Kapitel 3: Die Nacht bricht ein",
+      "location": "Nachtlager",
+      "content": "Die Temperatur fällt binnen einer Stunde auf -40 °C. S.T.E.V.E. gleitet in den Energiesparschlaf, um die letzte Ladung zu schonen, und lässt dich allein mit dem Klang deines eigenen Atems und, irgendwo direkt hinter dem Rumpfbruch, etwas Großem, das Metall schabt. Es kratzt. Es wartet. Es kratzt wieder, geduldig, als hätte es das schon einmal gemacht.",
+      "choices": [
+        {
+          "text": "Die Luke verbarrikadieren — Schrott gegen die Tür stapeln und in der Ecke zittern.",
+          "outcome": "Das Ding hämmert stundenlang methodisch und unbeeilt gegen die Tür, gibt aber vor der Dämmerung auf. Du überlebst mit Frostbeulen und einer neuen Wertschätzung für Stille.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_4",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 480
+        },
+        {
+          "text": "Plasma-Schweißbrenner — einen Hitzestoß durch die Fuge brennen, um es zu verjagen.",
+          "outcome": "Der Hitzeblitz jagt es kreischend in die Dunkelheit. Wirkungsvoll, kostet dich aber fast die gesamte Nachtladung, um die Flamme am Brennen zu halten.",
+          "stat_mutations": { "hull": 0, "bat": -10, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_4",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 480
+        },
+        {
+          "text": "Hinterhalt mit dem Brecheisen — die Luke aufreißen und blind in die Dunkelheit schlagen.",
+          "outcome": "Du triffst nichts außer gefrorene Luft. Es trifft dich. Das Letzte, was S.T.E.V.E. protokolliert, bevor die Vitaldaten des Anzugs ausfallen, ist eine einzige, wenig hilfreiche Diagnose: „Das war unklug.“",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_4": {
+      "title": "Kapitel 4: Das Labyrinth der Glitch-Nomaden",
+      "location": "Schlucht der flackernden Pixel",
+      "content": "S.T.E.V.E. bootet bei Sonnenaufgang neu und entschuldigt sich für das Nickerchen. Vor dir liegt die Schlucht der flackernden Pixel, in der die lokale Physik-Engine offenbar auf einer defekten Grafikkarte läuft — Felsen clippen durcheinander, Schatten fallen in die falsche Richtung, und ein drahtgitterartiger Glitch-Nomade blockiert den einzigen stabilen Pfad, murmelnd in korrupter Syntax, die entweder eine Drohung oder ein Segfault sein könnte.",
+      "choices": [
+        {
+          "text": "Den Nomaden debuggen — einen Syntax-Patch über S.T.E.V.E. schreiben und übertragen.",
+          "outcome": "Das Drahtgitter des Nomaden flackert smaragdgrün und hält still, während der Patch kompiliert — ein langsamer, mühsamer Prozess, den keiner von euch beschleunigen kann. Er stabilisiert sich schließlich und lässt — offenbar dankbar — einen Navigations-Datenkern fallen, bevor sich der Pfad öffnet.",
+          "stat_mutations": { "hull": 0, "bat": -5, "scrap": 0 },
+          "items_added": ["Datenmodul"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_5",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 20
+        },
+        {
+          "text": "S.T.E.V.E.-Firewall-Opfer — einen Spam-Paketsturm durch S.T.E.V.E. leiten, während du vorbeisprintest.",
+          "outcome": "Es funktioniert. Du kommst unberührt durch. S.T.E.V.E. hingegen kommt auf der anderen Seite heraus und spricht nur noch in fragmentiertem Pseudo-Latein — und das für eine Weile.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "steve_glitched": true },
+          "next_chapter": "chapter_5",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Der Steinzeit-Schwung — mit dem Brecheisen auf den holografischen Nomaden losgehen.",
+          "outcome": "Das Brecheisen fährt glatt durch das Drahtgitter und schließt dahinter einen Entladungskreis. Die elektrostatische Entladung brät den Navigationschip deines Anzugs; du irrst stundenlang durch die Schlucht, bevor dein Anzug dich per Notfall-Koppelnavigation zum einzigen Fixpunkt zurückführt, den er noch kennt: das Wrack.",
+          "stat_mutations": { "hull": 0, "bat": -8, "scrap": -999 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_5": {
+      "title": "Kapitel 5: Der Tempel der Recycling-Mönche",
+      "location": "Tempel von Sankt-Plastik",
+      "content": "Eine Kathedrale aus Solarpaneelen und geborgenen Hauptplatinen erhebt sich aus dem Schluchtboden. Drinnen rezitieren die Recycling-Mönche von Sankt-Plastik BIOS-Fehlercodes vor einem goldbeschichteten Altar, auf dem der legendäre Hyperkondensator liegt — genau die Art von Hochleistungs-Energiezelle, die deinen Reaktor wieder in Gang bringen könnte.",
+      "choices": [
+        {
+          "text": "Als Pilger verkleiden — sich in eine Plastikplane wickeln und Fehler 404 rezitieren.",
+          "outcome": "Der Scanner-Mönch stuft dich als harmlosen Fanatiker ein. Du schlüpfst hinein, hebst den Kondensator auf und schlüpfst wieder hinaus, ohne dass sich auch nur eine Augenbraue hinter einem Visier hebt.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Hyperkondensator"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_6",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Schnapp-und-weg-Sprint — die Türen aufbrechen und zum Altar rennen.",
+          "outcome": "Alarme kreischen. Du greifst den Kondensator im Laufschritt und fängst dafür einen Elektroschlagstock-Treffer an der Schulter ein, aber du bist schon durch die Türen, bevor die Mönche sich organisieren.",
+          "stat_mutations": { "hull": -2, "bat": -8, "scrap": 0 },
+          "items_added": ["Hyperkondensator"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_6",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Das Solarnetz sabotieren — die Hauptleitung durchtrennen und den Tempel in Dunkelheit tauchen.",
+          "outcome": "Der Tempel wird schwarz, und die Mönche, wie sich herausstellt, sind ohne Licht keineswegs harmlos. Der Gesang wird zu Geschrei, dann zu etwas Organisierterem. Du bekommst keine Gelegenheit mehr, dich zu erklären, bevor die Dunkelheit sich endgültig schließt.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_6": {
+      "title": "Kapitel 6: Der Akt der Sabotage",
+      "location": "Das Wrack — Vex-Standoff",
+      "content": "Zurück bei der CSS RUST-404 senkt sich ein Kampfschiff mit der ungefähren Form und Zurückhaltung eines fallenden Müllcontainers auf dein Lager. Vex — Cyborg-Räuber, Kapitän der SS Scrap-Collector und ein Mann, der offensichtlich noch nie freiwillig eine Auseinandersetzung verloren hat — will deinen Kondensator und jeden Schrott, den du noch versteckst. Er fragt nicht zweimal.",
+      "choices": [
+        {
+          "text": "Kondensator als Waffe entladen — ihn zu einer Plasma-Schockwelle überlasten.",
+          "outcome": "Die Schockwelle wirft Vex rückwärts auf den Boden und zerstört seine Seitenwaffe. Das Kondensatorgehäuse ist verkohlt, aber intakt, und Vex entscheidet fluchend, dass heute nicht der Tag ist.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Beschädigter Kondensator"],
+          "items_removed": ["Hyperkondensator"],
+          "flags": {},
+          "next_chapter": "chapter_7",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "S.T.E.V.E.-Sonic-Hack — ohrenbetäubendes Modem-Rauschen in Vex' Cyber-Implantate pumpen.",
+          "outcome": "Vex geht auf die Knie, hält sich die Schädelseite, lässt seine Schrotflinte fallen und stolpert zurück zu seinem Schiff, wobei er in mindestens zwei Sprachen Rache schwört.",
+          "stat_mutations": { "hull": 0, "bat": -12, "scrap": 0 },
+          "items_added": ["Vex' Plasmaflinte"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_7",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Selbstzerstörungs-Bluff — das Notfallsignal des Anzugs hochhalten und drohen, den Reaktor zu zünden.",
+          "outcome": "Vex glaubt es nicht. Er schlägt dich mit der Flachseite seiner eigenen Waffe bewusstlos, plündert alles Wertvolle aus dem Lager und lässt dich — und nur dich — für die Schrottsammler zurück. Du wachst Stunden später wieder am Absturzort auf, mit leeren Händen und ein paar Rängen tiefer in der lokalen Hackordnung.",
+          "stat_mutations": { "hull": 0, "bat": -10, "scrap": -999 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_7": {
+      "title": "Kapitel 7: Die Säureregen-Überraschung",
+      "location": "Säureregen-Unterschlupf",
+      "content": "Der Himmel wird ohne Vorwarnung toxisch neongrün. Schwefelsäureregen der Stufe 4 beginnt, die Rumpfverkleidung, die Kisten und — wie S.T.E.V.E. mit echter Alarmiertheit feststellt — alles Organische aufzulösen, das länger als neunzig Sekunden ungeschützt bleibt. Das schließt dich ein.",
+      "choices": [
+        {
+          "text": "Die Löcher mit Planen abdichten — Abdeckungen über Dach und Kondensator festkleben.",
+          "outcome": "Die Hardware bleibt knochentrocken. Du kauerst unter der Plane mit leichten Chemikalienverätzungen durch eine Lücke im Overall und wartest das Schlimmste ab, bevor es sicher genug ist, sich wieder zu bewegen. Alles Wichtige bleibt unversehrt.",
+          "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 30
+        },
+        {
+          "text": "Zur Industriehöhle sprinten — den Kondensator greifen und zum Unterschlupf rennen.",
+          "outcome": "Du schaffst es, Kondensator in der Hand, Stiefel halb aufgelöst. Der Rest deiner Werkzeuge und Vorräte bleibt im überfluteten Wrack zurück.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": -999 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "S.T.E.V.E.-Kinetikschild — jedes verbleibende Watt in eine defensive Energiekuppel umleiten.",
+          "outcome": "Die Kuppel hält wunderbar sechs Minuten und bricht in der siebten zusammen, einen vollen Batteriezyklus kurz davor, dass der Sturm vorüberzieht. Der Regen erledigt, was der leergesaugte Schild begonnen hat.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_8": {
+      "title": "Kapitel 8: Der Schwarzmarkt-Deal",
+      "location": "Rust-Bar",
+      "content": "Die Rust-Bar-Kneipe riecht nach Lötzinn und Reue. Ein zweiköpfiger Vermittler schiebt einen orbitalen Navigationskern über die Theke — genau das, was in deinem Sprungplan fehlt — und nennt seinen Preis: den Hyperkondensator, oder eine vollständige Löschung von S.T.E.V.E.s Persönlichkeitspartition.",
+      "choices": [
+        {
+          "text": "Den Hyperkondensator eintauschen — ihn für den Navigationskern übergeben.",
+          "outcome": "Die Navigation ist gesichert. Deine Unterlichttriebwerke müssen ohne Hochleistungs-Booster auskommen, aber wenigstens weißt du jetzt, in welche Richtung es nach Hause geht.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Navigationskern"],
+          "items_removed": ["Hyperkondensator"],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "S.T.E.V.E.s Erinnerungen löschen — den Vermittler die Sarkasmus-Partition entfernen lassen.",
+          "outcome": "Du behältst den Kondensator und bekommst den Kern. S.T.E.V.E. dankt dir in einem Ton, der so höflich und steril ist, dass er irgendwie schlimmer wirkt als der Sarkasmus je war.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Navigationskern"],
+          "items_removed": [],
+          "flags": { "steve_polite": true },
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Rauchbomben-Coup — eine Rauchbombe werfen, den Kern von der Theke greifen und abhauen.",
+          "outcome": "Du verlässt die Tür mit dem Kern und ohne etwas eingetauscht zu haben — für etwa neunzig Sekunden, bis jede Kopfgeldtafel im Viertel mit deinem Gesicht aufleuchtet. Angeheuerte Kopfgeldjäger jagen dich sauber aus dem Viertel und den ganzen Weg zurück zum Wrack, und du verlierst den Kern, während du es beweist.",
+          "stat_mutations": { "hull": 0, "bat": -8, "scrap": 0 },
+          "items_added": [],
+          "items_removed": ["Navigationskern"],
+          "flags": { "underworld_hunted": true },
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_9": {
+      "title": "Kapitel 9: Der lange Marsch durch die Sandstürme",
+      "location": "Die Sandsturm-Dünen",
+      "content": "Ein blendender eiserner Sandsturm zieht auf dem Rückweg zum Schiff auf. Die Elektrostatik baut sich so schnell auf, dass S.T.E.V.E. alle paar Sekunden Blitzschlag-Risiko meldet, mit dem Enthusiasmus eines Rauchmelders, der eine frische Batterie gefunden hat.",
+      "choices": [
+        {
+          "text": "Direkt durch den Krater — geradewegs in den heulenden Sturm marschieren.",
+          "outcome": "Du halbierst die Überquerungszeit. Irgendwo auf halber Strecke bricht Sand durch die Halsdichtung deines Anzugs, und du spürst für den Rest des Tages jedes einzelne Körnchen davon.",
+          "stat_mutations": { "hull": -3, "bat": -5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Der Klippenpfad — eine tückische Felskante außerhalb des direkten Winds erklimmen.",
+          "outcome": "Loses Gestein rutscht dir zweimal unter den Füßen weg. Beide Male klammerst du dich mit den Fingerspitzen hoch, Ausrüstung klappernd, und schaffst es hinüber — deine Würde in schlechterem Zustand als dein Anzug.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "In den Dünen ausharren — den Sturm unter einer Stahlplatte abwarten.",
+          "outcome": "Null physischer Schaden durch den Sturm selbst. Aber wer so lange an einem Ort ausharrt, lässt die Fraktionen auf seiner Spur aufholen — du tauchst auf und findest dein Schiffslager bereits geplündert vor, mit feindlichen Kundschaftern, die auf dich warten, und musst den ganzen Weg zurück zum Landepunkt fliehen.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "enemies_at_ship": true },
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 240
+        }
+      ]
+    },
+    "chapter_10": {
+      "title": "Kapitel 10: Die Reparatur-Krise",
+      "location": "Das Wrack — Reaktorraum",
+      "content": "Teile zusammengebaut, Rumpf so gut repariert, wie es Klebeband und Trotz erlauben, verlangt der Hauptreaktor eine administrative Override-Passphrase, bevor er zündet. Drei Versuche vor der permanenten Sperre. Irgendwo hinter dem Grat nähern sich Fraktionen dem Lärm.",
+      "choices": [
+        {
+          "text": "Standard-Reset-Code (ADMIN_0000) — das werkseitige Standardpasswort.",
+          "outcome": "Angenommen, technisch gesehen. Es sendet dabei auch lautlos ein Signal an eine Konzern-Sicherheitsdrohne irgendwo im Orbit, die laut Warnprotokoll jetzt „im Anflug“ ist.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "drones_inbound": true },
+          "next_chapter": "chapter_11",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "S.T.E.V.E.s Eitelkeitspasswort (STEVE_IST_EIN_GENIE_42).",
+          "outcome": "Das Easter Egg ist real. Der Reaktor schnurrt zum Leben, als hätte er sein ganzes Diensteben darauf gewartet, dass jemand das eintippt, und S.T.E.V.E. ist, ausnahmsweise, zu selbstgefällig, um sarkastisch zu sein.",
+          "stat_mutations": { "hull": 2, "bat": 10, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_11",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Brecheisen-Bypass-Relais — eine Eisenstange zwischen die Hochspannungskontakte klemmen.",
+          "outcome": "Funken sprühen über die Konsole. Der Reaktor zündet nicht einfach — er zündet, während du noch über das offene Panel gebeugt bist. Davon gibt es keine überlebbare Version.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_11": {
+      "title": "Kapitel 11: Der finale Countdown",
+      "location": "Die Startrampe",
+      "content": "Der Reaktor brüllt bei voller Vibration. Jede Fraktion mit einer offenen Rechnung konvergiert gleichzeitig auf der Startrampe — Laser-Mistgabeln, das Food-Truck-Kartell, Vex' Crew — sechzig Sekunden bis zur Triebwerkszündung, und die Zeit läuft schnell ab.",
+      "choices": [
+        {
+          "text": "Die Luken-Schleuse sprengen — die Tür mit Sprengladungen in den anstürmenden Mob schleudern.",
+          "outcome": "Die Tür räumt die erste Reihe komplett weg. Die Kabine ist für den finalen Countdown brutalem Seitenwind ausgesetzt, aber der Mob wird lange genug zurückgeschlagen, dass es zählt.",
+          "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Imperiale Säuberungsfackel — einen falschen Prioritäts-Notruf senden, um einen orbitalen Angriff anzulocken.",
+          "outcome": "Imperiale Laser zermalmen die Startrampe pünktlich nach Zeitplan. Splitter prasseln auf deinen aufsteigenden Rumpf, während du durch die Trümmer deines eigenen Köders abhebst.",
+          "stat_mutations": { "hull": -1, "bat": -10, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Rücksichtsloser Frühstart — den Schub aufreißen, bevor die Sicherheitsprüfungen abgeschlossen sind.",
+          "outcome": "Die Rakete verlässt die Rampe in einer haushohen Flammensäule, was großartig wäre, hätte der reparierte Rumpf schon ausgehärtet. Er hat nicht. Der Rahmen gibt vierzig Meter über dem Boden nach.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_12": {
+      "title": "Kapitel 12: Der Sprung ins Ungewisse",
+      "location": "Offener Orbit",
+      "content": "Die CSS RUST-404 durchbricht den Orbit, lebend gegen jede vernünftige Erwartung. Das Hyperraum-Feuerzeichen pulsiert direkt voraus. Zwischen dir und ihm: ein unkartiertes Asteroidenfeld, das auf keiner Karte verzeichnet war, zu der S.T.E.V.E. Zugriff hat — was, wie S.T.E.V.E. anmerkt, so gut wie alle sind.",
+      "choices": [
+        {
+          "text": "Blinder Vollgas-Sprung.",
+          "outcome": "Du schießt blind in den Hyperraum und tauchst in einem ruhigen, unkartierten Sektor wieder auf. Das Schiff ist jenseits jeder Versicherungspolice hinüber, aber du atmest noch, und die Aussicht ist hübsch.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Der glückliche Schiffbrüchige",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Manuelle Kurskorrektur.",
+          "outcome": "Du fädelst das Nadelöhr durch das Asteroidenfeld von Hand, plottest einen makellosen interstellaren Sprung und landest ihn perfekt. Schrottsammler-Kreise werden diese Geschichte noch Jahre erzählen.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Der Ass von Sektor Schrödinger",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Den Hyperkondensator überlasten.",
+          "outcome": "Der Kondensator treibt den Sprung nicht so sehr an, als dass er förmlich durch ihn hindurch detoniert. Du erscheinst sofort wieder in der heimischen Docking-Bucht, direkt über dem Hovercar des CEO. Bei der Ankunft gefeuert — aber pünktlich zum Tee zu Hause.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Der chaotische Held",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    }
+  }
+}

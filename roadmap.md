@@ -271,3 +271,30 @@ chapters.
   a "view source" / download link. `~/Sites/signal-loss` (the Astro site) is *not* a separate
   GitHub repo — it keeps its own local git history but pushes to this same repo's `deploy/landing`
   branch, so `main` is the game and `deploy/landing` is the deployable site.
+
+---
+
+## Phase 12: German Localization (2026-09-09)
+- [x] **Full `-lang de` mode**: a second complete story dataset (`story_de.json`, all 12
+  chapters/36 choices/13 codex entries/endings translated, mechanically identical — same
+  `next_chapter`/`flags`/`stat_mutations`/item names cross-referenced consistently within the
+  file) plus a `pkg/tui/labels.go` catalog for every UI-chrome string (boot log, codex/map
+  headings, hints, death/quit lines) that isn't story content. `HULL`/`BAT`/`SCRAP`/`INV` stay
+  English acronyms in both languages — the status bar's fixed-width bar math is tuned to their
+  exact lengths, and it's common practice even in fully localized games.
+- [x] `pkg/game.CheckGameOver`/`ResolveChoice` now take the story data too, so the two
+  stats-triggered death messages (hull breach, battery depleted) come from the story file's own
+  `system_messages` section instead of being hardcoded English in a UI-agnostic package — with an
+  English fallback if a story file omits that section, so old/custom story files don't break.
+- [x] Native CLI: `-lang en|de` picks both the UI labels and (unless `-story` is passed
+  explicitly) the default story file. Browser build: the launch panel gets a LANGUAGE toggle next
+  to speed/mode; picking German fetches `story_de.json` instead of `story.json` and passes
+  `lang` through to `slStart` (which grew an 8th param). Saves are namespaced per language
+  (`signal_loss_save_en`/`_de`) since a German run's translated item names wouldn't match against
+  English `items_removed` lookups if a save crossed languages.
+- [x] Verified end-to-end via a pty test harness answering Bubble Tea's terminal-capability
+  queries (OSC 11 background-color probe, cursor-position report) that a bare `pty.fork()`
+  otherwise leaves hanging: full chapter progression with correct stat mutations, codex/map
+  overlays, a fatal-choice death, and the chapter 12 finale — in German, cross-checked against
+  identical English behavior to rule out regressions. Browser side verified via Puppeteer against
+  a locally served `/signal_loss/` subpath build, both languages.

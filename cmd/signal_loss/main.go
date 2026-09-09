@@ -16,10 +16,20 @@ func main() {
 	fast := flag.Bool("fast", false, "skip typewriter effect and time-lock waits")
 	realTime := flag.Bool("realtime", false, "make story time-locks real minutes/hours instead of a compressed few seconds — come back later, can't be skipped with -fast")
 	savePath := flag.String("save", "save.json", "path to the save file")
-	storyPath := flag.String("story", "story.json", "path to the story data file")
+	lang := flag.String("lang", "en", "game language: en or de")
+	storyPath := flag.String("story", "", "path to the story data file (default: story.json for en, story_de.json for de)")
 	flag.Parse()
 
-	storyData, err := story.LoadStory(*storyPath)
+	path := *storyPath
+	if path == "" {
+		if *lang == "de" {
+			path = "story_de.json"
+		} else {
+			path = "story.json"
+		}
+	}
+
+	storyData, err := story.LoadStory(path)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to load story: %v\n", err)
 		os.Exit(1)
@@ -38,7 +48,7 @@ func main() {
 	// current unconfirmed input, not run progress. No separate signal
 	// handler needed on top of what Bubble Tea already restores.
 	save := func(s *game.GameState) error { return game.SaveState(*savePath, s) }
-	model := tui.New(storyData, state, save, *fast, *realTime)
+	model := tui.New(storyData, state, save, *fast, *realTime, *lang)
 	if _, err := tea.NewProgram(model, tea.WithAltScreen()).Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "\ngame error: %v\n", err)
 		os.Exit(1)

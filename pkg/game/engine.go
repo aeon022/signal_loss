@@ -49,8 +49,9 @@ type Resolution struct {
 }
 
 // ResolveChoice mutates state per the choice and reports what happens next.
-// State.CurrentChapter is already updated by the time this returns.
-func ResolveChoice(state *GameState, choice story.Choice) Resolution {
+// State.CurrentChapter is already updated by the time this returns. st is
+// only needed for CheckGameOver's localized death messages.
+func ResolveChoice(state *GameState, choice story.Choice, st *story.StoryData) Resolution {
 	state.ApplyMutations(
 		choice.StatMutations.Hull,
 		choice.StatMutations.Bat,
@@ -72,7 +73,7 @@ func ResolveChoice(state *GameState, choice story.Choice) Resolution {
 		}
 	}
 
-	if over, msg := CheckGameOver(state); over {
+	if over, msg := CheckGameOver(state, st); over {
 		return Resolution{GameOver: true, DeathMessage: msg}
 	}
 
@@ -84,12 +85,20 @@ func ResolveChoice(state *GameState, choice story.Choice) Resolution {
 }
 
 // CheckGameOver reports whether the run has ended in death from the stats
-// alone (as opposed to a choice explicitly marked Fatal).
-func CheckGameOver(s *GameState) (bool, string) {
+// alone (as opposed to a choice explicitly marked Fatal). Messages come
+// from st.SystemMessages so they follow the story file's own language;
+// the fallback here only fires for a story file that omits that section.
+func CheckGameOver(s *GameState, st *story.StoryData) (bool, string) {
 	switch {
 	case s.Hull <= 0:
+		if msg := st.SystemMessages.HullBreach; msg != "" {
+			return true, msg
+		}
 		return true, "HULL BREACH. Decompression is instant. Sector Schrödinger claims another cargo engineer."
 	case s.Bat <= 0:
+		if msg := st.SystemMessages.BatteryDepleted; msg != "" {
+			return true, msg
+		}
 		return true, "BAT depleted. S.T.E.V.E. shuts down. Life support fails in the dark."
 	default:
 		return false, ""

@@ -12,6 +12,16 @@ type StoryData struct {
 	Chapters              map[string]Chapter    `json:"chapters"`
 	InvalidInputResponses []string              `json:"invalid_input_responses"`
 	Codex                 map[string]CodexEntry `json:"codex"`
+	SystemMessages        SystemMessages        `json:"system_messages"`
+}
+
+// SystemMessages are death lines triggered by stats alone (as opposed to a
+// choice's own Outcome text) — localized here rather than hardcoded in
+// pkg/game, since that package stays UI/language-agnostic. Empty fields
+// fall back to an English default in pkg/game.CheckGameOver.
+type SystemMessages struct {
+	HullBreach      string `json:"hull_breach"`
+	BatteryDepleted string `json:"battery_depleted"`
 }
 
 // CodexEntry is one lexicon term. UnlockChapter is the chapter id (e.g.
