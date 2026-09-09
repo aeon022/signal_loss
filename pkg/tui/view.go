@@ -9,8 +9,8 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 
-	"signal_loss/pkg/game"
-	"signal_loss/pkg/story"
+	"github.com/aeon022/signal_loss/pkg/game"
+	"github.com/aeon022/signal_loss/pkg/story"
 )
 
 const glitchChars = "▓▒░#%&$"

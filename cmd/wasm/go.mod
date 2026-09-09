@@ -1,10 +1,10 @@
-module signal_loss/cmd/wasm
+module github.com/aeon022/signal_loss/cmd/wasm
 
 go 1.27.1
 
 require (
+	github.com/aeon022/signal_loss v0.0.0
 	github.com/charmbracelet/bubbletea v1.3.10
-	signal_loss v0.0.0
 )
 
 require (
@@ -29,6 +29,6 @@ require (
 	golang.org/x/text v0.3.8 // indirect
 )
 
-replace signal_loss => ../..
+replace github.com/aeon022/signal_loss => ../..
 
 replace github.com/charmbracelet/bubbletea => github.com/tmc/bubbletea v1.3.5-0.20250405003401-9d1b85bc4c2d

@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"signal_loss/pkg/story"
+	"github.com/aeon022/signal_loss/pkg/story"
 )
 
 // ChapterOrder is the main spine, used to draw the map. Story branches can

@@ -7,9 +7,9 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
-	"signal_loss/pkg/game"
-	"signal_loss/pkg/story"
-	"signal_loss/pkg/tui"
+	"github.com/aeon022/signal_loss/pkg/game"
+	"github.com/aeon022/signal_loss/pkg/story"
+	"github.com/aeon022/signal_loss/pkg/tui"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-module signal_loss
+module github.com/aeon022/signal_loss
 
 go 1.27.1
 
