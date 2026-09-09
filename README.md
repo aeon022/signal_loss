@@ -57,6 +57,13 @@ already speaks the same ANSI/VT100 that a real terminal does. Save state round-t
 reference in the codebase goes through `import.meta.env.BASE_URL` rather than a root-relative
 path so this isn't hardcoded in more than one place.
 
+## Branding & support
+
+`src/components/FooterSignature.astro` is copied verbatim from the shared abteilung83 signature
+used across all `~/Sites` projects (see `~/Sites/# assets/astro-components/`) — don't fork it,
+copy the shared one forward if it changes. The footer also links a Polar checkout for project
+support (`buy.polar.sh`, org shared with the rest of the missionctl/postctl suite).
+
 ## Content
 
 `public/game/story.json` is a build-time copy of the game's story data, fetched at runtime by

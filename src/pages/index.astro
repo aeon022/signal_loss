@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import GameTerminal from "../components/GameTerminal.astro";
+import FooterSignature from "../components/FooterSignature.astro";
 
 const base = import.meta.env.BASE_URL;
 const starfield = `${base}starfield.svg`;
@@ -77,6 +78,10 @@ const starfield = `${base}starfield.svg`;
         <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Source on GitHub</a>
         · prefer a real terminal? <code class="text-slate-400">go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0</code>
       </p>
+      <p class="mt-2">
+        <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-amber">Support this project ↗</a>
+      </p>
     </footer>
+    <FooterSignature />
   </main>
 </Layout>
