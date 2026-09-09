@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/postcss';
 // moved to a host that serves from the true root.
 export default defineConfig({
   site: 'https://aeon022.github.io',
-  base: '/signal_loss',
+  base: '/signal_loss/',
   output: 'static',
   devToolbar: {
     enabled: false,
