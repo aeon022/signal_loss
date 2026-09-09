@@ -245,3 +245,29 @@ chapters.
   worth either shrinking `FixedHeight` to fit more comfortably inside a typical terminal window,
   or detecting a too-small terminal at startup and failing with a clear message instead of
   silently corrupting the display.
+
+---
+
+## Phase 11: Launch Config, Quit Screen, and Going Public (2026-09-09)
+- [x] **Scroll-triggers-input bug** — xterm.js turns mouse-wheel scrolling over a focused
+  alt-screen terminal into arrow-key escape sequences (standard emulator behavior, for curses
+  apps that want to handle their own scrolling) — Bubble Tea read those as real keypresses, so
+  scrolling past the terminal on the page silently advanced the boot prompt. Fixed on the site
+  side (capture-phase wheel listener that intercepts before xterm sees it, scrolls the page
+  itself instead) — nothing to fix here in the engine, `cmd/wasm`/`pkg/tui` untouched.
+- [x] **`-realtime` now has a UI**, not just a CLI flag: the site's pre-launch panel lets players
+  pick text speed and compressed-vs-real-time locks before `slStart` is even called. Required
+  extending `slStart`'s JS signature (adds a 7th `onExit` callback, see below) — no Go-side
+  change beyond that, `fast`/`realtime` were already plain bool params.
+- [x] **`[q]uit` had no graceful ending in a browser** — the CLI's Bubble Tea exit (return to a
+  shell prompt) doesn't exist on a web page, so the terminal just went blank. `cmd/wasm/main.go`
+  now invokes a JS `onExit` callback once `prog.Run()` returns; the site shows a "SIGNAL LOST"
+  panel with a random S.T.E.V.E. one-liner, a Reconnect button (page reload — simplest reliable
+  way to get a clean re-init given the existing double-boot guard), and a link to the repo.
+- [x] **First real commits, and it's public now.** Both repos had been sitting as uncommitted
+  working-tree changes all session. `signal_loss` (this repo) pushed to
+  `github.com/aeon022/signal_loss` — **public**, a deliberate departure from every sibling repo
+  in `~/Sites`/`~/Developing/Projects` being private, because the site explicitly links to it as
+  a "view source" / download link. `~/Sites/signal-loss` (the Astro site) is *not* a separate
+  GitHub repo — it keeps its own local git history but pushes to this same repo's `deploy/landing`
+  branch, so `main` is the game and `deploy/landing` is the deployable site.
