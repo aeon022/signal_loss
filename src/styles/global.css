@@ -21,9 +21,12 @@ html {
 
 /* Safety net: the terminal is a fixed 84-column widget (see GameTerminal's
    own overflow-x-auto wrapper) and must never force the whole *page* wider
-   than the viewport — that's what was causing scroll jank below ~768px. */
+   than the viewport — that's what was causing scroll jank below ~768px.
+   `clip`, not `hidden` — `hidden` turns html/body into a scroll container,
+   which silently breaks `position: sticky` on the header (a real bug this
+   caused). `clip` clips the same overflow without that side effect. */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 
@@ -162,4 +165,65 @@ body {
   right: -1px;
   border-bottom: 1px solid;
   border-right: 1px solid;
+}
+
+/* Rivets on the two corners the brackets above don't cover — pulp-sci-fi
+   paneling, like the hull plating on a Perry Rhodan cover. */
+.corner-frame .rivet-tr,
+.corner-frame .rivet-bl {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.5;
+}
+.corner-frame .rivet-tr {
+  top: 3px;
+  right: 3px;
+}
+.corner-frame .rivet-bl {
+  bottom: 3px;
+  left: 3px;
+}
+
+/* Chromatic-misregistration title glow — like a cheaply-printed pulp cover
+   with the color plates a hair out of alignment. Static, not a hover
+   effect: it's a print-error look, not an interaction. */
+.glow-chromatic {
+  text-shadow:
+    2px 0 0 rgba(232, 121, 249, 0.5),
+    -2px 0 0 rgba(74, 222, 128, 0.4),
+    0 0 24px rgba(34, 211, 238, 0.55),
+    0 0 4px rgba(165, 243, 252, 0.9);
+}
+
+/* Diagonal hazard stripe — airlock/warning-panel divider instead of a
+   plain line. */
+.hazard-stripe {
+  height: 4px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-amber) 0px,
+    var(--color-amber) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  opacity: 0.35;
+}
+
+/* Ship-diagnostics ticker: a slow one-line marquee of flavor readouts,
+   like a bridge status display. Pure CSS scroll, duplicated content so
+   the loop has no visible seam. */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }

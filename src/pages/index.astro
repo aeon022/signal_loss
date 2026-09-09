@@ -24,6 +24,13 @@ const starfield = `${base}starfield.svg`;
     </div>
   </header>
 
+  <div class="overflow-hidden border-b border-white/5 bg-black/40 py-1.5 text-[10px] tracking-[0.15em] text-amber/70">
+    <div class="ticker-track">
+      <span class="px-4">HULL INTEGRITY: 61% · O2 RESERVE: 340 CYCLES · S.T.E.V.E. MOOD: RESIGNED · SECTOR: SCHRÖDINGER · SIGNAL: LOST · COORDINATES: UNKNOWN · BATTERY: 12% AND FALLING ·</span>
+      <span class="px-4">HULL INTEGRITY: 61% · O2 RESERVE: 340 CYCLES · S.T.E.V.E. MOOD: RESIGNED · SECTOR: SCHRÖDINGER · SIGNAL: LOST · COORDINATES: UNKNOWN · BATTERY: 12% AND FALLING ·</span>
+    </div>
+  </div>
+
   <main class="relative">
     <div class="grid-backdrop" style={`background-image: url("${starfield}"), url("${starfield}");`}></div>
 
@@ -33,7 +40,7 @@ const starfield = `${base}starfield.svg`;
         <span class="pulse-glow text-green">●</span>
         SECTOR SCHRÖDINGER · GRYPS-4
       </p>
-      <h1 class="glow-cyan relative z-10 text-6xl font-bold tracking-tight text-cyan-bright sm:text-8xl">
+      <h1 class="glow-chromatic relative z-10 text-6xl font-bold tracking-tight text-cyan-bright sm:text-8xl">
         SIGNAL LOSS
       </h1>
       <p class="relative z-10 mt-6 max-w-xl text-balance text-base text-slate-300">
@@ -56,11 +63,12 @@ const starfield = `${base}starfield.svg`;
       <GameTerminal />
     </section>
 
-    <div class="mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-cyan/30 to-transparent"></div>
+    <div class="hazard-stripe mx-auto max-w-3xl"></div>
 
     <section class="relative mx-auto max-w-4xl px-6 py-20 text-sm text-slate-300">
       <div class="grid gap-6 sm:grid-cols-3">
         <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-amber">
+          <span class="rivet-tr"></span><span class="rivet-bl"></span>
           <h2 class="glow-amber mb-2 text-xs tracking-widest">REAL BRANCHING</h2>
           <p class="text-slate-300">
             Every chapter but the finale has a choice that's a genuine dead end — instant death,
@@ -68,6 +76,7 @@ const starfield = `${base}starfield.svg`;
           </p>
         </div>
         <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-magenta">
+          <span class="rivet-tr"></span><span class="rivet-bl"></span>
           <h2 class="glow-magenta mb-2 text-xs tracking-widest">LIVING CODEX</h2>
           <p class="text-slate-300">
             Press <kbd class="rounded border border-white/10 bg-white/10 px-1.5 py-0.5 text-xs text-slate-200">c</kbd>
@@ -75,6 +84,7 @@ const starfield = `${base}starfield.svg`;
           </p>
         </div>
         <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-green">
+          <span class="rivet-tr"></span><span class="rivet-bl"></span>
           <h2 class="glow-green mb-2 text-xs tracking-widest">RUNS IN YOUR BROWSER</h2>
           <p class="text-slate-300">
             The exact same Go engine as the terminal version, compiled to WebAssembly. No install,
@@ -110,9 +120,44 @@ const starfield = `${base}starfield.svg`;
         · <a href="https://abteilung83.at/cookies" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Cookies</a>
         · <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Kontakt</a>
       </p>
+      <p class="mt-6 text-[10px] tracking-widest text-dim/40">
+        S.T.E.V.E.: this terminal still answers to a few old arcade protocols, for whoever still remembers them.
+      </p>
     </footer>
     <FooterSignature />
   </main>
+
+  <div
+    id="cookie-notice"
+    class="fixed inset-x-4 bottom-4 z-[70] mx-auto flex max-w-lg flex-col gap-3 rounded-sm border border-cyan/40 bg-black/95 px-5 py-4 text-xs text-slate-300 shadow-[0_0_30px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p class="leading-relaxed">
+      <span class="text-cyan-bright">◉ SYSTEM NOTICE —</span>
+      this terminal stores your save file in this browser's <code class="text-slate-400">localStorage</code>.
+      No cookies, no tracking, no third parties.
+      <a href="https://abteilung83.at/cookies" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Details</a>
+    </p>
+    <button
+      id="cookie-ack"
+      type="button"
+      class="shrink-0 rounded-sm border border-cyan/50 px-4 py-2 text-xs tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10"
+    >
+      ACKNOWLEDGE
+    </button>
+  </div>
+
+  <script>
+    const COOKIE_KEY = "sl_cookie_ack";
+    const notice = document.getElementById("cookie-notice")!;
+    if (localStorage.getItem(COOKIE_KEY) === "1") {
+      notice.remove();
+    } else {
+      document.getElementById("cookie-ack")!.addEventListener("click", () => {
+        localStorage.setItem(COOKIE_KEY, "1");
+        notice.remove();
+      });
+    }
+  </script>
 
   <div
     id="konami-toast"
@@ -124,6 +169,7 @@ const starfield = `${base}starfield.svg`;
   <script>
     // Konami code easter egg — up up down down left right left right b a.
     // No mechanic behind it, same spirit as the exit-screen quotes.
+    console.log("%cS.T.E.V.E.: Some old arcade protocols still work on this terminal. ↑↑↓↓←→←→ba, if you remember them.", "color: #4ade80; font-family: monospace;");
     const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
     let progress = 0;
     document.addEventListener("keydown", (e) => {
