@@ -15,13 +15,40 @@ const starfield = `${base}starfield.svg`;
         SIGNAL LOSS
         <span id="header-tagline" class="hidden font-normal tracking-normal text-dim sm:inline">// terminal distress beacon</span>
       </a>
-      <nav class="flex items-center gap-3 text-xs tracking-widest text-dim sm:gap-5">
+      <nav class="hidden items-center gap-5 text-xs tracking-widest text-dim sm:flex">
         <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">GITHUB</a>
         <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="hover:text-amber">SUPPORT</a>
-        <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="hidden hover:text-cyan sm:inline">IMPRESSUM</a>
-        <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="hidden hover:text-cyan sm:inline">KONTAKT</a>
+        <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">IMPRESSUM</a>
+        <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">KONTAKT</a>
       </nav>
+
+      <button
+        id="burger-btn"
+        type="button"
+        aria-label="Menu"
+        aria-expanded="false"
+        class="flex h-8 w-8 items-center justify-center text-dim sm:hidden"
+      >
+        <svg id="burger-icon-open" width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <path d="M0 1H18" stroke="currentColor" stroke-width="1.5" />
+          <path d="M0 7H18" stroke="currentColor" stroke-width="1.5" />
+          <path d="M0 13H18" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <svg id="burger-icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" class="hidden">
+          <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
     </div>
+
+    <nav
+      id="mobile-nav"
+      class="hidden flex-col gap-4 border-t border-white/10 px-4 py-4 text-xs tracking-widest text-dim sm:hidden"
+    >
+      <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">GITHUB</a>
+      <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="hover:text-amber">SUPPORT</a>
+      <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">IMPRESSUM</a>
+      <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">KONTAKT</a>
+    </nav>
   </header>
 
   <script>
@@ -37,6 +64,23 @@ const starfield = `${base}starfield.svg`;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
+    // Mobile burger menu — IMPRESSUM/KONTAKT used to just vanish below the
+    // sm breakpoint; now everything's reachable, just tucked behind a toggle.
+    const burgerBtn = document.getElementById("burger-btn")!;
+    const burgerOpen = document.getElementById("burger-icon-open")!;
+    const burgerClose = document.getElementById("burger-icon-close")!;
+    const mobileNav = document.getElementById("mobile-nav")!;
+    burgerBtn.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("flex");
+      mobileNav.classList.toggle("hidden", !isOpen);
+      burgerOpen.classList.toggle("hidden", isOpen);
+      burgerClose.classList.toggle("hidden", !isOpen);
+      burgerBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+    mobileNav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => burgerBtn.click())
+    );
   </script>
 
   <div class="overflow-hidden border-b border-white/5 bg-black/40 py-1.5 text-[10px] tracking-[0.15em] text-amber/70">
