@@ -3,9 +3,10 @@
 // terminal — the exact same Bubble Tea engine as the CLI, bridged to the
 // browser. Fixed size to match the game's own fixed-viewport design (it
 // deliberately doesn't reflow — see signal_loss/pkg/tui).
+const base = import.meta.env.BASE_URL;
 ---
 
-<div class="mx-auto w-fit max-w-full">
+<div id="game-widget" class="mx-auto w-fit max-w-full" data-base={base}>
   <div class="mb-2 flex items-center justify-between px-1 text-xs tracking-widest text-dim">
     <span>CSS RUST-404 // EMERGENCY TERMINAL LINK</span>
     <span id="game-status" class="text-amber">STANDBY</span>
@@ -87,6 +88,13 @@
   <p class="mt-2 px-1 text-xs text-dim">
     Click the terminal to focus it, then type. Your run saves to this browser automatically.
   </p>
+  <p class="mt-1 px-1 text-xs text-dim">
+    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">1</kbd>–<kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">9</kbd> choose ·
+    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">↑↓</kbd>+<kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">⏎</kbd> navigate ·
+    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">c</kbd> codex ·
+    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">m</kbd> map ·
+    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">q</kbd> quit
+  </p>
 </div>
 
 <style>
@@ -114,7 +122,7 @@
 <!-- Classic (non-module) script: runs immediately at parse time, so window.Go
      exists before the deferred module script below needs it. It's a plain
      public/ asset (Go's own wasm_exec.js glue), not something to bundle. -->
-<script src="/game/wasm_exec.js" is:inline></script>
+<script src={`${base}game/wasm_exec.js`} is:inline></script>
 
 <script>
   import { Terminal } from "@xterm/xterm";
@@ -130,6 +138,11 @@
   const COLS = 84;
   const ROWS = 37;
   const SAVE_KEY = "signal_loss_save";
+
+  // Matches astro.config.mjs's `base` — read off the DOM instead of
+  // hardcoding it here, since this script has no access to Astro's
+  // frontmatter/build-time env directly.
+  const BASE = document.getElementById("game-widget")!.dataset.base || "/";
 
   const statusEl = document.getElementById("game-status")!;
   const terminalEl = document.getElementById("terminal")!;
@@ -251,11 +264,11 @@
 
     const go = new window.Go();
 
-    const wasmResp = await fetch("/game/game.wasm");
+    const wasmResp = await fetch(`${BASE}game/game.wasm`);
     const { instance } = await WebAssembly.instantiate(await wasmResp.arrayBuffer(), go.importObject);
     go.run(instance);
 
-    const storyText = await (await fetch("/game/story.json")).text();
+    const storyText = await (await fetch(`${BASE}game/story.json`)).text();
     const saved = localStorage.getItem(SAVE_KEY) || "";
 
     term.onData((data) => window.slInput(data));

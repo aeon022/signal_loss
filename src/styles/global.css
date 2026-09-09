@@ -30,25 +30,58 @@ html, body {
 body {
   font-family: var(--font-mono);
   background:
-    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(34, 211, 238, 0.12), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 85% 30%, rgba(232, 121, 249, 0.06), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 10% 60%, rgba(74, 222, 128, 0.05), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(34, 211, 238, 0.10), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 85% 30%, rgba(232, 121, 249, 0.05), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 10% 60%, rgba(74, 222, 128, 0.04), transparent 60%),
     var(--color-void);
   background-attachment: fixed;
 }
 
-/* Faint drafting-table grid for texture in the large dark areas — a
-   futuristic-HUD cue, kept subtle so it reads as ambience, not noise. */
+/* Debris field, not a SaaS-template grid: a seeded starfield (public/starfield.svg,
+   ~140 dots, tiled) — you crashed on a cosmic dumping ground, the sky should look
+   like one. Two tiled layers at different scroll speeds/sizes for cheap parallax
+   depth without any JS. */
 .grid-backdrop {
   pointer-events: none;
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image:
-    linear-gradient(rgba(94, 234, 212, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(94, 234, 212, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 20%, black, transparent);
+  /* background-image is set inline in index.astro — needs BASE_URL, which
+     a plain CSS file has no access to. */
+  background-size: 900px 900px, 1400px 1400px;
+  background-position: 0 0, 300px 150px;
+  opacity: 0.55;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 15%, black, transparent 90%);
+}
+
+/* A radar-style signal ping behind the hero title — ties the background
+   motif directly to "SIGNAL LOSS" instead of being generic decoration. */
+.radar-ping {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+}
+.radar-ping::before,
+.radar-ping::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  border-radius: 50%;
+  animation: radar-expand 4s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+.radar-ping::after {
+  animation-delay: 2s;
+}
+@keyframes radar-expand {
+  0% { width: 40px; height: 40px; margin: -20px 0 0 -20px; opacity: 0.7; }
+  100% { width: 560px; height: 560px; margin: -280px 0 0 -280px; opacity: 0; }
 }
 
 /* Subtle CRT scanline overlay — fixed, non-interactive, low opacity so it

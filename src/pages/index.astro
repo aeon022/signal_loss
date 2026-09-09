@@ -1,28 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import GameTerminal from "../components/GameTerminal.astro";
+
+const base = import.meta.env.BASE_URL;
+const starfield = `${base}starfield.svg`;
 ---
 
 <Layout title="Signal Loss — Sector Schrödinger">
   <main class="relative">
-    <div class="grid-backdrop"></div>
+    <div class="grid-backdrop" style={`background-image: url("${starfield}"), url("${starfield}");`}></div>
 
     <section class="relative mx-auto flex min-h-[75vh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center">
-      <p class="mb-4 flex items-center gap-2 text-sm tracking-[0.3em] text-cyan crt-flicker">
+      <div class="radar-ping"></div>
+      <p class="relative z-10 mb-4 flex items-center gap-2 text-sm tracking-[0.3em] text-cyan crt-flicker">
         <span class="pulse-glow text-green">●</span>
         SECTOR SCHRÖDINGER · GRYPS-4
       </p>
-      <h1 class="glow-cyan text-6xl font-bold tracking-tight text-cyan-bright sm:text-8xl">
+      <h1 class="glow-cyan relative z-10 text-6xl font-bold tracking-tight text-cyan-bright sm:text-8xl">
         SIGNAL LOSS
       </h1>
-      <p class="mt-6 max-w-xl text-balance text-base text-slate-300">
+      <p class="relative z-10 mt-6 max-w-xl text-balance text-base text-slate-300">
         Your freighter just crash-landed on a cosmic dumping ground. Your ship's AI is sarcastic,
         anxious, and perpetually low on battery. Twelve chapters. Three endings. Most of your
         choices are worse than they sound.
       </p>
       <a
         href="#play"
-        class="group mt-10 flex items-center gap-2 rounded-sm border border-cyan/50 px-6 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+        class="group relative z-10 mt-10 flex items-center gap-2 rounded-sm border border-cyan/50 px-6 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
       >
         &gt; ESTABLISH UPLINK
         <span class="transition group-hover:translate-x-1">↓</span>
@@ -63,8 +67,16 @@ import GameTerminal from "../components/GameTerminal.astro";
       </div>
     </section>
 
-    <footer class="relative border-t border-white/10 px-6 py-8 text-center text-xs text-dim">
-      SIGNAL LOSS: SECTOR SCHRÖDINGER — built with Go, Bubble Tea, and Astro.
+    <footer class="relative border-t border-white/10 px-6 py-10 text-center text-xs text-dim">
+      <p>
+        SIGNAL LOSS: SECTOR SCHRÖDINGER — built with Go,
+        <a href="https://github.com/charmbracelet/bubbletea" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Bubble Tea</a>,
+        and Astro.
+      </p>
+      <p class="mt-2">
+        <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Source on GitHub</a>
+        · prefer a real terminal? <code class="text-slate-400">go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0</code>
+      </p>
     </footer>
   </main>
 </Layout>
