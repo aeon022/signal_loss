@@ -87,6 +87,18 @@ body {
   100% { width: 560px; height: 560px; margin: -280px 0 0 -280px; opacity: 0; }
 }
 
+/* Header shrinks once you've scrolled past it (see #site-header script in
+   index.astro) — floats as a compact bar instead of holding full height. */
+#site-header {
+  transition: padding 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+#site-header.is-scrolled {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(10, 14, 22, 0.92);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
 /* Subtle CRT scanline overlay — fixed, non-interactive, low opacity so it
    reads as texture rather than fighting readability. */
 .crt-overlay {

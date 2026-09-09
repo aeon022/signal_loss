@@ -8,12 +8,12 @@ const starfield = `${base}starfield.svg`;
 ---
 
 <Layout title="Signal Loss — Sector Schrödinger">
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-void/80 px-4 py-3 backdrop-blur sm:px-6">
+  <header id="site-header" class="sticky top-0 z-50 border-b border-white/10 bg-void/80 px-4 py-3 backdrop-blur sm:px-6">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4">
       <a href={base} id="header-logo" class="flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-cyan-bright sm:text-sm">
         <span class="pulse-glow text-green">●</span>
         SIGNAL LOSS
-        <span class="hidden font-normal tracking-normal text-dim sm:inline">// terminal distress beacon</span>
+        <span id="header-tagline" class="hidden font-normal tracking-normal text-dim sm:inline">// terminal distress beacon</span>
       </a>
       <nav class="flex items-center gap-3 text-xs tracking-widest text-dim sm:gap-5">
         <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">GITHUB</a>
@@ -23,6 +23,21 @@ const starfield = `${base}starfield.svg`;
       </nav>
     </div>
   </header>
+
+  <script>
+    // Shrinks the sticky header once you've scrolled past it, so it reads
+    // as a compact floating bar instead of taking full hero-height space
+    // for the whole page.
+    const siteHeader = document.getElementById("site-header")!;
+    const tagline = document.getElementById("header-tagline")!;
+    const onScroll = () => {
+      const scrolled = window.scrollY > 24;
+      siteHeader.classList.toggle("is-scrolled", scrolled);
+      tagline.style.display = scrolled ? "none" : "";
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  </script>
 
   <div class="overflow-hidden border-b border-white/5 bg-black/40 py-1.5 text-[10px] tracking-[0.15em] text-amber/70">
     <div class="ticker-track">
