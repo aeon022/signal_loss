@@ -1,5 +1,7 @@
 # SIGNAL LOSS: SECTOR SCHRÖDINGER
 
+[![Created by abteilung83](https://img.shields.io/badge/Crafted%20by-abteilung83-black.svg)](https://github.com/aeon022)
+
 A retro-futuristic sci-fi text adventure for the terminal. You crash-land on Gryps-4 — a cosmic
 dumping ground — with a sarcastic, anxious, perpetually-low-on-battery ship AI and twelve
 chapters' worth of ways to make things worse. Real branching: every chapter but the finale has a
@@ -55,6 +57,15 @@ Tea that adds the couple of platform hooks (`tty_js.go`, `signals_js.go`) needed
 `GOOS=js`, which isn't supported upstream. The native CLI here is unaffected; it uses real,
 unmodified Bubble Tea.
 
+## Support
+
+If you enjoyed getting stranded on Gryps-4: [support the project on Polar](https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0).
+
 ## License
 
 MIT — see `LICENSE`.
+
+## 🏢 About abteilung83
+
+Engineered and maintained by **abteilung83** — developer tools, terminal UIs, and the occasional
+sci-fi text adventure. [github.com/aeon022](https://github.com/aeon022)
