@@ -1,0 +1,55 @@
+# SIGNAL LOSS: SECTOR SCHRÖDINGER
+
+A retro-futuristic sci-fi text adventure for the terminal. You crash-land on Gryps-4 — a cosmic
+dumping ground — with a sarcastic, anxious, perpetually-low-on-battery ship AI and twelve
+chapters' worth of ways to make things worse. Real branching: every chapter but the finale has a
+choice that's a genuine dead end (instant death, or a setback that sends you back to the start
+with something lost). Three possible endings.
+
+Built with Go and [Bubble Tea](https://github.com/charmbracelet/bubbletea)/[Lipgloss](https://github.com/charmbracelet/lipgloss).
+Also runs in a browser — the exact same engine, compiled to WebAssembly, no reimplementation.
+See `roadmap.md` for how that works and everything else that went into this.
+
+## Play
+
+```sh
+go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0
+signal_loss
+```
+
+Or clone and build:
+
+```sh
+git clone https://github.com/aeon022/signal_loss.git
+cd signal_loss
+./install.sh
+./signal_loss
+```
+
+### Flags
+
+- `-fast` — skip the typewriter effect and compress time-locks to a couple of seconds
+- `-realtime` — make time-locks real minutes/hours instead of compressed seconds; the wait is
+  saved to disk and enforced on next launch too, `-fast` can't skip it
+- `-save PATH` — save file location (default `save.json`)
+- `-story PATH` — story data file (default `story.json`)
+
+### Controls
+
+`1`–`9` choose · `↑↓` + `Enter` navigate · `c` codex · `m` map · `q` quit
+
+## Development
+
+```sh
+go build ./...
+go vet ./...
+```
+
+`cmd/wasm/` is a separate Go module (its own `go.mod`) — it pins a small, audited fork of Bubble
+Tea that adds the couple of platform hooks (`tty_js.go`, `signals_js.go`) needed to compile for
+`GOOS=js`, which isn't supported upstream. The native CLI here is unaffected; it uses real,
+unmodified Bubble Tea.
+
+## License
+
+MIT — see `LICENSE`.
