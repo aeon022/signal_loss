@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A retro-futuristic sci-fi text adventure. Crash-land on Gryps-4, survive S.T.E.V.E.'s sarcasm, and get off the planet." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body class="bg-void text-slate-200 antialiased">
+    <div class="crt-overlay"></div>
+    <slot />
+  </body>
+</html>

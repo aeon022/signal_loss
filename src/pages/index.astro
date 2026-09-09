@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GameTerminal from "../components/GameTerminal.astro";
+---
+
+<Layout title="Signal Loss — Sector Schrödinger">
+  <main class="relative">
+    <div class="grid-backdrop"></div>
+
+    <section class="relative mx-auto flex min-h-[75vh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center">
+      <p class="mb-4 flex items-center gap-2 text-sm tracking-[0.3em] text-cyan crt-flicker">
+        <span class="pulse-glow text-green">●</span>
+        SECTOR SCHRÖDINGER · GRYPS-4
+      </p>
+      <h1 class="glow-cyan text-6xl font-bold tracking-tight text-cyan-bright sm:text-8xl">
+        SIGNAL LOSS
+      </h1>
+      <p class="mt-6 max-w-xl text-balance text-base text-slate-300">
+        Your freighter just crash-landed on a cosmic dumping ground. Your ship's AI is sarcastic,
+        anxious, and perpetually low on battery. Twelve chapters. Three endings. Most of your
+        choices are worse than they sound.
+      </p>
+      <a
+        href="#play"
+        class="group mt-10 flex items-center gap-2 rounded-sm border border-cyan/50 px-6 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+      >
+        &gt; ESTABLISH UPLINK
+        <span class="transition group-hover:translate-x-1">↓</span>
+      </a>
+    </section>
+
+    <div class="mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-cyan/30 to-transparent"></div>
+
+    <section id="play" class="relative px-4 py-20">
+      <GameTerminal />
+    </section>
+
+    <div class="mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-cyan/30 to-transparent"></div>
+
+    <section class="relative mx-auto max-w-4xl px-6 py-20 text-sm text-slate-300">
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-amber">
+          <h2 class="glow-amber mb-2 text-xs tracking-widest">REAL BRANCHING</h2>
+          <p class="text-slate-300">
+            Every chapter but the finale has a choice that's a genuine dead end — instant death,
+            or a setback that sends you back to the start with something lost.
+          </p>
+        </div>
+        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-magenta">
+          <h2 class="glow-magenta mb-2 text-xs tracking-widest">LIVING CODEX</h2>
+          <p class="text-slate-300">
+            Press <kbd class="rounded border border-white/10 bg-white/10 px-1.5 py-0.5 text-xs text-slate-200">c</kbd>
+            in-game for a lexicon of terms — but it only knows what the story has actually told you so far.
+          </p>
+        </div>
+        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-green">
+          <h2 class="glow-green mb-2 text-xs tracking-widest">RUNS IN YOUR BROWSER</h2>
+          <p class="text-slate-300">
+            The exact same Go engine as the terminal version, compiled to WebAssembly. No install,
+            no server round-trips — it's playing locally, right here.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative border-t border-white/10 px-6 py-8 text-center text-xs text-dim">
+      SIGNAL LOSS: SECTOR SCHRÖDINGER — built with Go, Bubble Tea, and Astro.
+    </footer>
+  </main>
+</Layout>

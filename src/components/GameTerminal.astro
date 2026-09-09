@@ -1,0 +1,299 @@
+---
+// Boots the WASM build of the Go game (see /public/game/) into an xterm.js
+// terminal — the exact same Bubble Tea engine as the CLI, bridged to the
+// browser. Fixed size to match the game's own fixed-viewport design (it
+// deliberately doesn't reflow — see signal_loss/pkg/tui).
+---
+
+<div class="mx-auto w-fit max-w-full">
+  <div class="mb-2 flex items-center justify-between px-1 text-xs tracking-widest text-dim">
+    <span>CSS RUST-404 // EMERGENCY TERMINAL LINK</span>
+    <span id="game-status" class="text-amber">STANDBY</span>
+  </div>
+
+  <!-- The terminal itself is a fixed 84-column widget (matches the game's
+       own "monitor, doesn't reflow" design) — on screens narrower than
+       that, it scrolls horizontally within this box instead of forcing
+       the whole page wider than the viewport. -->
+  <div class="relative max-w-full overflow-x-auto rounded-sm border border-cyan/40 bg-black p-3 shadow-[0_0_50px_rgba(94,234,212,0.14)]">
+    <div id="terminal" class="w-fit"></div>
+
+    <!-- Pre-launch config panel, overlaid on top of the (still empty)
+         terminal. Removed once ESTABLISH UPLINK is pressed. -->
+    <div
+      id="launch-panel"
+      class="absolute inset-3 flex flex-col items-center justify-center gap-6 bg-black/95 px-6 text-center"
+    >
+      <div class="glow-cyan text-sm tracking-[0.25em] text-cyan-bright">LAUNCH CONFIGURATION</div>
+
+      <div class="w-full max-w-sm space-y-5">
+        <div>
+          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">TEXT SPEED</div>
+          <div class="grid grid-cols-2 gap-2" data-group="speed">
+            <button type="button" data-value="normal" class="config-btn" aria-pressed="true">NORMAL</button>
+            <button type="button" data-value="fast" class="config-btn">FAST</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">TIME-LOCKS</div>
+          <div class="grid grid-cols-2 gap-2" data-group="mode">
+            <button type="button" data-value="compressed" class="config-btn" aria-pressed="true">COMPRESSED</button>
+            <button type="button" data-value="realtime" class="config-btn">REAL-TIME</button>
+          </div>
+          <p class="mt-2 text-left text-[11px] leading-relaxed text-dim" id="mode-hint">
+            A couple of story beats make you wait. Compressed turns that into a few seconds.
+          </p>
+        </div>
+      </div>
+
+      <button
+        id="launch-btn"
+        type="button"
+        class="mt-2 rounded-sm border border-cyan/50 px-8 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(94,234,212,0.3)]"
+      >
+        &gt; ESTABLISH UPLINK
+      </button>
+    </div>
+
+    <!-- Shown when the player quits in-game ([q]) or the WASM program exits
+         for any other reason. Hidden until then. -->
+    <div
+      id="exit-panel"
+      class="absolute inset-3 hidden flex-col items-center justify-center gap-5 bg-black/95 px-6 text-center"
+    >
+      <div class="glow-cyan text-sm tracking-[0.25em] text-red">SIGNAL LOST</div>
+      <p id="exit-quote" class="max-w-sm text-sm italic text-slate-400"></p>
+      <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
+        <button
+          id="reconnect-btn"
+          type="button"
+          class="rounded-sm border border-cyan/50 px-6 py-2.5 text-xs tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(94,234,212,0.3)]"
+        >
+          &gt; RECONNECT
+        </button>
+        <a
+          href="https://github.com/aeon022/signal_loss"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-sm border border-white/20 px-6 py-2.5 text-xs tracking-widest text-slate-300 transition hover:border-white/40 hover:text-white"
+        >
+          VIEW SOURCE ON GITHUB ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p class="mt-2 px-1 text-xs text-dim">
+    Click the terminal to focus it, then type. Your run saves to this browser automatically.
+  </p>
+</div>
+
+<style>
+  .config-btn {
+    border: 1px solid var(--color-dim);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #cbd5e1;
+    background: transparent;
+    transition: all 0.15s ease;
+  }
+  .config-btn:hover {
+    border-color: var(--color-cyan);
+    color: var(--color-cyan-bright);
+  }
+  .config-btn[aria-pressed="true"] {
+    border-color: var(--color-cyan);
+    color: var(--color-cyan-bright);
+    background: color-mix(in oklab, var(--color-cyan) 14%, transparent);
+    box-shadow: 0 0 14px color-mix(in oklab, var(--color-cyan) 40%, transparent);
+  }
+</style>
+
+<!-- Classic (non-module) script: runs immediately at parse time, so window.Go
+     exists before the deferred module script below needs it. It's a plain
+     public/ asset (Go's own wasm_exec.js glue), not something to bundle. -->
+<script src="/game/wasm_exec.js" is:inline></script>
+
+<script>
+  import { Terminal } from "@xterm/xterm";
+  import "@xterm/xterm/css/xterm.css";
+
+  // Must be >= the game's true rendered frame height or Bubble Tea's
+  // relative-cursor redraw math desyncs against xterm.js's own scrolling —
+  // each frame then lands one row lower than the last instead of
+  // overwriting in place (confirmed via a real VT100 emulator, not
+  // guessed). Frame height = FixedHeight(30) + 2 border + 3 status block +
+  // 2 bezel edges = 37 (see signal_loss/pkg/tui/styles.go). Keep in sync
+  // if that ever changes.
+  const COLS = 84;
+  const ROWS = 37;
+  const SAVE_KEY = "signal_loss_save";
+
+  const statusEl = document.getElementById("game-status")!;
+  const terminalEl = document.getElementById("terminal")!;
+  const termBox = terminalEl.parentElement!; // the bordered/overflow box
+  const launchPanel = document.getElementById("launch-panel")!;
+  const launchBtn = document.getElementById("launch-btn")!;
+  const modeHint = document.getElementById("mode-hint")!;
+  const exitPanel = document.getElementById("exit-panel")!;
+  const exitQuote = document.getElementById("exit-quote")!;
+  const reconnectBtn = document.getElementById("reconnect-btn")!;
+
+  // S.T.E.V.E. gets the last word when you quit — small nod, no real
+  // mechanic behind it, just flavor for what would otherwise be a dead end.
+  const EXIT_QUOTES = [
+    "S.T.E.V.E.: Connection terminated. Rude, but understandable.",
+    "S.T.E.V.E.: Going dark. Try not to miss me too much.",
+    "S.T.E.V.E.: Uplink severed. Gryps-4 will still be here later. Unfortunately.",
+    "S.T.E.V.E.: Powering down non-essential sarcasm subroutines. Bye.",
+    "S.T.E.V.E.: Signal lost. Your run is saved, my dignity is not.",
+  ];
+
+  reconnectBtn.addEventListener("click", () => window.location.reload());
+
+  // Guards against booting a second game engine into the same DOM node —
+  // e.g. a dev-mode HMR update re-running this module without a full page
+  // reload would otherwise spin up a second Bubble Tea program racing the
+  // first one to write into the same terminal, which looks like the whole
+  // screen "doubling up".
+  if (terminalEl.dataset.booted === "true") {
+    throw new Error("signal_loss terminal already booted for this element — skipping re-init");
+  }
+  terminalEl.dataset.booted = "true";
+
+  // xterm.js translates mouse-wheel scrolling into arrow-key escape
+  // sequences whenever a focused terminal is on the alt-screen buffer
+  // (standard terminal emulator behavior, for curses-style apps that want
+  // to handle scrolling themselves) — Bubble Tea then reads those as real
+  // keypresses, which advanced the boot prompt just from scrolling past
+  // it. We don't want that: capture wheel events before xterm sees them
+  // and just scroll the page instead.
+  termBox.addEventListener(
+    "wheel",
+    (e) => {
+      if (Math.abs(e.deltaY) >= Math.abs(e.deltaX)) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.scrollBy(0, e.deltaY);
+      }
+      // otherwise: mostly-horizontal gesture, let the box's own
+      // overflow-x-auto scroll natively (narrow-screen terminal panning).
+    },
+    { passive: false, capture: true },
+  );
+
+  const term = new Terminal({
+    cols: COLS,
+    rows: ROWS,
+    // convertEol must stay OFF: it force-rewrites every \n to \r\n, which
+    // corrupts Bubble Tea's own cursor math (it manages \r/\n itself, the
+    // same way it would over a real raw-mode pty — no implicit LF-to-CRLF
+    // translation there either). With it on, each typewriter-reveal frame
+    // landed one row below the last instead of overwriting it in place.
+    disableStdin: false,
+    cursorBlink: true,
+    fontFamily: "ui-monospace, SF Mono, Cascadia Code, JetBrains Mono, Menlo, Consolas, monospace",
+    fontSize: 14,
+    theme: {
+      background: "#000000",
+      foreground: "#d1d5db",
+    },
+  });
+  term.open(terminalEl);
+
+  declare global {
+    interface Window {
+      Go: any;
+      slStart: (
+        storyJSON: string,
+        savedJSON: string,
+        fast: boolean,
+        realtime: boolean,
+        onOutput: (out: string) => void,
+        onSave: (json: string) => void,
+        onExit: () => void,
+      ) => void;
+      slInput: (data: string) => void;
+    }
+  }
+
+  // --- launch panel wiring -------------------------------------------
+
+  const selection: Record<string, string> = { speed: "normal", mode: "compressed" };
+
+  document.querySelectorAll<HTMLElement>("#launch-panel [data-group]").forEach((group) => {
+    const key = group.dataset.group!;
+    group.querySelectorAll<HTMLButtonElement>(".config-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        selection[key] = btn.dataset.value!;
+        group.querySelectorAll(".config-btn").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+        if (key === "mode") {
+          modeHint.textContent =
+            btn.dataset.value === "realtime"
+              ? "A couple of story beats will lock you out for real minutes/hours. Your run saves — close the tab and come back."
+              : "A couple of story beats make you wait. Compressed turns that into a few seconds.";
+        }
+      });
+    });
+  });
+
+  launchBtn.addEventListener("click", () => {
+    launchPanel.remove();
+    boot(selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
+  });
+
+  // ---------------------------------------------------------------------
+
+  async function boot(fast: boolean, realtime: boolean) {
+    statusEl.textContent = "CONNECTING…";
+
+    const go = new window.Go();
+
+    const wasmResp = await fetch("/game/game.wasm");
+    const { instance } = await WebAssembly.instantiate(await wasmResp.arrayBuffer(), go.importObject);
+    go.run(instance);
+
+    const storyText = await (await fetch("/game/story.json")).text();
+    const saved = localStorage.getItem(SAVE_KEY) || "";
+
+    term.onData((data) => window.slInput(data));
+
+    window.slStart(
+      storyText,
+      saved,
+      fast,
+      realtime,
+      (out) => term.write(out),
+      (json) => localStorage.setItem(SAVE_KEY, json),
+      onExit,
+    );
+
+    statusEl.textContent = "LIVE";
+    statusEl.classList.remove("text-amber");
+    statusEl.classList.add("text-green");
+    term.focus();
+  }
+
+  // Fires when the Bubble Tea program itself exits — currently only via
+  // [q]uit in-game, but covers any other exit path too. The terminal is
+  // left as-is behind the panel (Bubble Tea already restores the main
+  // screen on its way out, so there's nothing worth showing there).
+  function onExit() {
+    statusEl.textContent = "OFFLINE";
+    statusEl.classList.remove("text-green");
+    statusEl.classList.add("text-dim");
+    exitQuote.textContent = EXIT_QUOTES[Math.floor(Math.random() * EXIT_QUOTES.length)];
+    exitPanel.classList.remove("hidden");
+    exitPanel.classList.add("flex");
+  }
+
+  function onBootError(err: unknown) {
+    statusEl.textContent = "SIGNAL LOST";
+    statusEl.classList.remove("text-amber");
+    statusEl.classList.add("text-red");
+    console.error(err);
+    term.write("\r\nFailed to establish uplink. See console for details.\r\n");
+  }
+</script>

@@ -1,0 +1,15 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# generated game assets (rebuild via `npm run build:wasm`)
+public/game/game.wasm
+public/game/wasm_exec.js
+public/game/story.json
+
+# editor/OS
+.DS_Store
+.vscode/
