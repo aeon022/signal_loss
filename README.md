@@ -1,5 +1,7 @@
 # signal-loss
 
+**Live: https://aeon022.github.io/signal_loss/**
+
 Landing page + browser-playable build of [SIGNAL LOSS: SECTOR SCHRÖDINGER](https://github.com/aeon022/signal_loss),
 a retro-futuristic sci-fi text adventure. The game itself is the real Go/Bubble Tea engine from
 that repo, compiled to WebAssembly — not a JS reimplementation. See that repo's `roadmap.md`
@@ -45,6 +47,15 @@ keystrokes go into Bubble Tea's own input parser exactly like a real tty would s
 Bubble Tea's ANSI output goes straight into `xterm.write()` — no translation layer, xterm.js
 already speaks the same ANSI/VT100 that a real terminal does. Save state round-trips through
 `localStorage` via a JS callback the Go side calls after every resolved choice.
+
+## Deployment
+
+`.github/workflows/deploy-pages.yml` builds and deploys to GitHub Pages on every push to
+`deploy/landing`: it checks out this branch plus `signal_loss`'s `main` as a sibling directory
+(so `build:wasm` has Go source to compile), then `astro build` → Pages. `base`/`site` in
+`astro.config.mjs` are set for Pages' project-site subpath (`/signal_loss/`) — every asset
+reference in the codebase goes through `import.meta.env.BASE_URL` rather than a root-relative
+path so this isn't hardcoded in more than one place.
 
 ## Content
 
