@@ -8,6 +8,22 @@ const starfield = `${base}starfield.svg`;
 ---
 
 <Layout title="Signal Loss — Sector Schrödinger">
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-void/80 px-4 py-3 backdrop-blur sm:px-6">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4">
+      <a href={base} id="header-logo" class="flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-cyan-bright sm:text-sm">
+        <span class="pulse-glow text-green">●</span>
+        SIGNAL LOSS
+        <span class="hidden font-normal tracking-normal text-dim sm:inline">// terminal distress beacon</span>
+      </a>
+      <nav class="flex items-center gap-3 text-xs tracking-widest text-dim sm:gap-5">
+        <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">GITHUB</a>
+        <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="hover:text-amber">SUPPORT</a>
+        <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="hidden hover:text-cyan sm:inline">IMPRESSUM</a>
+        <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="hidden hover:text-cyan sm:inline">KONTAKT</a>
+      </nav>
+    </div>
+  </header>
+
   <main class="relative">
     <div class="grid-backdrop" style={`background-image: url("${starfield}"), url("${starfield}");`}></div>
 
@@ -78,13 +94,50 @@ const starfield = `${base}starfield.svg`;
         <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Source on GitHub</a>
         · prefer a real terminal?
       </p>
-      <p class="mt-1 overflow-x-auto whitespace-nowrap px-6">
-        <code class="text-slate-400">go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0</code>
+      <p class="mt-1 px-6">
+        <code class="break-all text-slate-400">go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0</code>
       </p>
       <p class="mt-2">
         <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-amber">Support this project ↗</a>
       </p>
+      <p class="mt-6 text-dim/70">
+        No tracking cookies, no analytics — your save file lives in this browser's localStorage
+        and nothing else leaves your machine.
+      </p>
+      <p class="mt-2 text-dim/70">
+        <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Impressum</a>
+        · <a href="https://abteilung83.at/privacy" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Datenschutz</a>
+        · <a href="https://abteilung83.at/cookies" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Cookies</a>
+        · <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Kontakt</a>
+      </p>
     </footer>
     <FooterSignature />
   </main>
+
+  <div
+    id="konami-toast"
+    class="pointer-events-none fixed inset-x-4 bottom-6 z-[60] mx-auto max-w-sm -translate-y-2 rounded-sm border border-green/50 bg-black/95 px-4 py-3 text-center text-xs tracking-widest text-green opacity-0 shadow-[0_0_25px_rgba(74,222,128,0.25)] transition-all duration-300"
+  >
+    S.T.E.V.E.: Nice. Doesn't do anything, but nice.
+  </div>
+
+  <script>
+    // Konami code easter egg — up up down down left right left right b a.
+    // No mechanic behind it, same spirit as the exit-screen quotes.
+    const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+    let progress = 0;
+    document.addEventListener("keydown", (e) => {
+      progress = e.key === KONAMI[progress] ? progress + 1 : (e.key === KONAMI[0] ? 1 : 0);
+      if (progress === KONAMI.length) {
+        progress = 0;
+        const toast = document.getElementById("konami-toast")!;
+        toast.style.opacity = "1";
+        toast.style.transform = "translateY(0)";
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(-0.5rem)";
+        }, 3000);
+      }
+    });
+  </script>
 </Layout>
