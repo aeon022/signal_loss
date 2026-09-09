@@ -1,6 +1,60 @@
 # ROADMAP: SIGNAL LOSS ENGINE DEVELOPMENT
 
 This roadmap outlines the phased implementation plan for the Go Terminal Game Engine.
+Phases below are the build log (all done, most recent first section). **What's Next** is the
+open backlog — nothing here is started, this is ideas + rough priority, not a commitment.
+
+---
+
+## What's Next (backlog, 2026-09-09)
+
+Roughly ordered by "cheap and clearly worth it" → "bigger, needs a real decision first."
+
+### Site
+- [ ] **Localize the marketing page itself.** The game fully speaks German now
+  (`-lang de`/the launch-panel toggle); the page around it — hero copy, feature cards, footer —
+  is still English-only. Asymmetric on its face: someone who picks Deutsch in the launch panel
+  arrived via an English pitch. Smallest real gap left from this session's localization work.
+- [ ] **Custom 404 page.** Currently falls through to GitHub's default. A one-pager in the same
+  retro-terminal style ("SIGNAL LOST — this transmission never arrived") is a few minutes of
+  work and it's the one page every visitor who mistypes a link actually sees.
+- [ ] **A short devlog / "how it's built" page**, adapted from this repo's own `roadmap.md` —
+  the WASM port (Phase 10) and its `WindowSizeMsg` duplication bug in particular is a genuinely
+  interesting war story for a dev audience (HN/Reddit/Lobsters material), and it's free content
+  that already exists, just needs editing down from build-log voice to reader-facing.
+- [ ] **Analytics, privacy-respecting.** Right now there's zero visibility into whether anyone's
+  actually playing — no pageviews, no launch-panel usage, nothing. A no-cookie option (Plausible,
+  or even a simple server-side hit counter) would answer that without contradicting the
+  cookie-notice/no-tracking stance already on the page.
+- [ ] **itch.io listing.** The WASM build already runs standalone in a browser; itch.io accepts
+  that packaging natively. Second discovery channel for near-zero extra work, since the artifact
+  is already built.
+- [ ] **Custom domain** (e.g. a `signal-loss.abteilung83.at` subdomain) instead of the
+  `aeon022.github.io/signal_loss/` GitHub Pages path — ties the project visibly to the
+  abteilung83 brand the footer/Impressum already point at. Needs a DNS decision, not just code.
+
+### Game
+- [ ] **Terminal SFX.** A few Web Audio beeps/clicks on keypress and the typewriter reveal would
+  sell the CRT-terminal aesthetic further — cheap in the browser build; the native CLI has no
+  good equivalent (no audio API for a real terminal) so this would likely stay browser-only,
+  which is fine, it's already the more polished-feeling build of the two.
+- [ ] **Cross-run stats, not just per-save codex gating.** Right now the codex only tracks the
+  current run's `MaxChapterIndex`. A persisted (localStorage/save-file) tally across *all* runs —
+  endings seen, causes of death, chapters visited — would give replay value a reason beyond "try
+  a different first choice," and it's a small, self-contained addition on top of what's already
+  there (no engine redesign, just a second small struct + a view).
+- [ ] **More languages.** French/Spanish would be mechanical repeats of the German work
+  (`labelsFor`/`story_<lang>.json` already generalize past just en/de) — only worth it if there's
+  actual demand, not speculatively.
+- [ ] **Orbiter-backed chapters** (noted since the site was first built): let chapters/story
+  content live in Orbiter's CMS instead of a committed JSON file, so new content doesn't require
+  a Go rebuild+redeploy. Real infrastructure work — a content API, a fetch path in `pkg/story`
+  that isn't "read this exact file" — worth doing only once there's actually more content to add,
+  not before.
+- [ ] **Homebrew formula** via the existing `aeon022/homebrew-tap` repo. Needs `goreleaser`
+  installed and a release pipeline set up (not just a static formula file) — bigger follow-up,
+  flagged before but not started. `go install ...@v0.1.0` covers CLI installs adequately in the
+  meantime.
 
 ---
 
