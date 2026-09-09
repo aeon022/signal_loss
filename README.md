@@ -12,6 +12,11 @@ See `roadmap.md` for how that works and everything else that went into this.
 
 ## Play
 
+**In your browser: https://aeon022.github.io/signal_loss/** — no install, same Go engine
+compiled to WebAssembly.
+
+Or on the command line:
+
 ```sh
 go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0
 signal_loss
