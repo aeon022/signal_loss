@@ -3,6 +3,10 @@ name: Deploy landing page to GitHub Pages
 on:
   push:
     branches: [deploy/landing]
+  # Lets a game-only change (no site diff) trigger a redeploy without an
+  # empty commit here — the workflow always pulls signal_loss's current
+  # main regardless of what triggered it.
+  workflow_dispatch:
 
 permissions:
   contents: read
