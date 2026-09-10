@@ -257,7 +257,7 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 
 	if m.step == stepOutcome {
 		if m.awaitingContinue {
-			return m.advanceChapter()
+			return m.applyResolution()
 		}
 		return m, nil
 	}
@@ -327,8 +327,18 @@ func (m Model) selectChoice(idx int) (tea.Model, tea.Cmd) {
 }
 
 // finishOutcome is called once the outcome text is fully revealed (or
-// immediately, in fast mode) to move to whatever comes next.
+// immediately, in fast mode). It never changes phase itself — whatever
+// happens next (death, a time-lock, an ending, or just the next chapter)
+// always waits for an explicit keypress first, so the screen never gets
+// yanked away the instant the last character of an outcome lands.
 func (m Model) finishOutcome() (tea.Model, tea.Cmd) {
+	m.awaitingContinue = true
+	return m, nil
+}
+
+// applyResolution acts on the choice's already-computed Resolution once
+// the player confirms they've read the outcome (see finishOutcome above).
+func (m Model) applyResolution() (tea.Model, tea.Cmd) {
 	r := m.resolution
 	switch {
 	case r.Fatal || r.GameOver:
@@ -353,8 +363,7 @@ func (m Model) finishOutcome() (tea.Model, tea.Cmd) {
 
 		return m, nil
 	default:
-		m.awaitingContinue = true
-		return m, nil
+		return m.advanceChapter()
 	}
 }
 
