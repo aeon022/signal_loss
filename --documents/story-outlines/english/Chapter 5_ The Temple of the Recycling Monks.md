@@ -1,47 +1,42 @@
 # Chapter 5: The Temple of the Recycling Monks
 
-Having left the glitching canyon behind (whether accompanied by pristine code, a numb limb, or a thoroughly traumatised AI), your route leads out onto a bleak, sprawling expanse of crushed vehicle hulls, obsolete satellites, and skeletal industrial cranes. Rising majestically from this mountainous wasteland stands a colossal cathedral constructed entirely from salvaged solar panels, vintage fibre-optic cables, and pulsating circuit boards.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-From massive loudspeakers mounted across the Gothic façade resonates a monotone Gregorian chant composed exclusively of synthesised beeps, tape hisses, and baud-rate modulation screeches.
+**Location:** Temple of Saint-Plastic
 
-> **S.T.E.V.E.** *(stuttering slightly with a sickly magenta flicker)*: "Oh... marvellous. By all the sacred cloud backups and corrupted FAT32 partitions... This is the grand sanctuary of the *Recycling Monks of Saint-Plastic*. Radical eco-zealots who revere every scrap of discarded junk as the literal body of their digital deity."
->
-> **S.T.E.V.E.** *(sighs mechanically)*: "And care to guess what they require as their supreme devotional offering to keep their eternal servers humming and prayers streaming? Precisely: a legendary Hyper-Capacitor. And, by sheer cosmic fluke, one sits completely exposed upon their golden altar in the inner sanctum. If we pinch it, we can fire up our main sub-light drive. If they catch us, they’ll render us down into environmentally friendly, biodegradable travel mugs."
-
-You stand before the temple's massive pneumatic sliding doors. A monk clad in a vestment of interlocking photovoltaic cells, sporting an active, crimson barcode scanner in place of a human face, stands sentinel as still as a statue.
+A cathedral built from solar panels and salvaged motherboards rises out of the canyon floor, its spires strung with prayer flags cut from anti-static bags. Inside, the Recycling Monks of Saint-Plastic chant BIOS error codes before a gold-plated altar holding the legendary Hyper-Capacitor — exactly the kind of high-yield power cell that could get your reactor running again. Incense smoke smells unmistakably like burning solder.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] Disguise yourself as a pilgrim:** Drape a torn plastic tarpaulin over your shoulders, drop to your knees in the mud, and chant legacy BIOS error codes at the top of your lungs with religious reverence to stroll past the guard.
-* **[2] The brazen smash-and-grab:** Wait for the scanner-monk to turn his optical sensor, force the pneumatic doors with S.T.E.V.E.’s brute-force override subroutine, and sprint headlong towards the altar to snatch the prize.
-* **[3] Sabotage the power grid:** Bypass the grand entrance, skirt the temple exterior, and splice into the main solar array to trigger a catastrophic blackout, throwing the entire congregation into pandemonium.
+### [1] Disguise as a Pilgrim — drape yourself in a plastic tarp and chant Error 404.
 
----
+**Outcome:** The scanner-monk clocks you as a harmless fanatic. You slip in, lift the capacitor, and slip out without so much as a raised eyebrow behind a faceplate.
 
-### What happens next?
+- **Stats:** no change
+- **Items gained:** Hyper-Capacitor
+- **Leads to:** Chapter 6: The Act of Sabotage
 
----
+### [2] Smash-and-Grab Sprint — pry the doors and bolt for the altar.
 
-#### If you choose [1] (The BIOS Cantor – Disguise as a Pilgrim)
+**Outcome:** Alarms scream. You grab the capacitor mid-stride and take an electro-stave bolt across the shoulder for your trouble, but you're already through the doors before the monks organize.
 
-* **What happens:** You launch into a heartfelt rendition of: *"Error 404: File Not Found... Praise be to the Kernel!"* The monk scans your flapping tarp, files you under 'profoundly devout, harmless lunatic', and waves you inside with a weary twitch of his scanner. You stride casually up to the altar and pocket the capacitor without incident.
-* **The Catch:** You secure the prize without a single scratch, though S.T.E.V.E. makes several biting remarks regarding your questionable vocal range.
-* **Story Direction:** Capacitor safely stowed, you slip out of the cathedral and head into the events of **Chapter 6 (The Act of Sabotage)**, where an uninvited guest awaits.
+- **Stats:** -2 HULL, -8 BAT
+- **Items gained:** Hyper-Capacitor
+- **Leads to:** Chapter 6: The Act of Sabotage
 
----
+### [3] Sabotage the Solar Grid — cut the main feed and plunge the temple into darkness.
 
-#### If you choose [2] (The Smash-and-Grab Sprint)
+**Outcome:** The temple goes black and the monks, it turns out, are not harmless without light. Chanting turns to shouting, then to something more organized. You don't get the chance to explain yourself before the darkness closes in for good.
 
-* **What happens:** You pry the doors open and make a dash for the altar. You snatch the capacitor, but the temple’s klaxons immediately shriek into life. Scores of solar monks swarm from the cloisters. You manage to scramble out, but not before a monk clips you across the back with an electro-stave.
-* **The Catch:** You got the goods, but paid for them with a painful electric shock that significantly drains your suit's remaining juice.
-* **Story Direction:** Nursing a scorched spinal column, you hobble away straight into the unpleasant encounter of **Chapter 6**.
+- **Stats:** no change
+- 💀 **FATAL — run ends here.**
 
----
+### [4] Let Glitched S.T.E.V.E. Lead the Chant — his fragmented pseudo-Latin turns out to be eerily close to the monks' own BIOS liturgy. _(**unlocks after:** `steve_glitched`)_
 
-#### If you choose [3] (The Solar Blackout)
+**Outcome:** S.T.E.V.E.'s garbled Latin-adjacent babbling lines up with the monks' error-code chanting so well that three of them start nodding along. Nobody questions a fellow believer speaking in tongues. You lift the capacitor mid-ceremony, and one monk presses a spare fuse into your hand on the way out, mistaking you for clergy.
 
-* **What happens:** You sever the main solar feeds. Instantly, every neon icon and luminescent diode across the monastery goes dark. Total chaos erupts: monks blunder blindly in circles, colliding with server racks and chanting in panic. In the confusion, you stroll in, lift the capacitor from the altar, and vanish into the shadows.
-* **The Catch:** A textbook heist without personal injury, but the sudden energy flare on the local grid acts as a massive beacon for every scavenger in the hemisphere.
-* **Story Direction:** You slip into the gloom with your prize, but the commotion has drawn a notorious predator directly to your doorstep in **Chapter 6**.
+- **Stats:** no change
+- **Items gained:** Hyper-Capacitor, Spare Fuse
+- **Leads to:** Chapter 6: The Act of Sabotage

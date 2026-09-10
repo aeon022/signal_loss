@@ -1,40 +1,42 @@
-# Kapitel 3: Die Einbruch-Nacht (Das Wartezeit-Kapitel)
+# Kapitel 3: Die Nacht bricht ein
 
-Die grelle Neonreklame des Food-Trucks ist in der Ferne zu einem schwachen, pinken Flackern geschrumpft. Mit dem plötzlichen Untergang der zwillingsartigen Sonnen von Gryps-4 stürzt die Aussentemperatur augenblicklich in den absoluten Keller. Ein eisiger, schneidender Wind pfeift durch die offenen Metallspalten des Wracks, während draußen in der pechschwarzen Dunkelheit radioaktive Leuchtkäfer anfangen, hasserfüllte, elektronische Melodien zu summen.
+> Diese Datei spiegelt den aktuell live geschalteten Inhalt von `story_de.json` Stand 2026-09-10 (49 Entscheidungen über 12 Kapitel, Flag-gesteuerte Callbacks, dichtere Einleitungen) — neu generiert, ersetzt den früheren Entwurf von vor der eigentlichen Spielmechanik. Hier oder direkt in `story_de.json` weiterbearbeiten — danach synchronisiert sich nichts mehr automatisch.
 
-Du sitzt im stockfinsteren Inneren der *CSS RUST-404*. Jedes metallische Knacken des abkühlenden Rumpfs klingt wie das schleichende Geräusch eines hungrigen, sechsbeinigen Raubtiers, das die Witterung aufgenommen hat.
+**Ort:** Nachtlager
 
-> **S.T.E.V.E.:** "Achtung, Boss. Die Nacht bricht hier voll und ganz herein. Meine externen Sensoren melden massive Temperaturstürze von minus vierzig Grad, und die lokale Fauna fängt an, nach frischem Kohlenstoff in Form von uns zu riechen."
-> **S.T.E.V.E.:** "Das bedeutet: Ich muss jetzt sofort in den tiefen Energiesparmodus gehen, um unsere frisch erworbene Batterie nicht komplett zu grillen. Das Gehäuse schaltet auf rote Notbeleuchtung. Ich bin für die nächsten Stunden offline. Du musst dich hier im eisigen Wrack verkriechen, die verklemmte Luke mit deinem Körpergewicht bewachen und aufpassen, dass niemand reinkommt. Viel Glück beim Wachbleiben im Dunkeln..."
-
-Der Bildschirm von S.T.E.V.E. erlischt mit einem leisen, traurigen Piepsen. Du bist komplett auf dich allein gestellt. Draußen im Sturm kratzt etwas Großes, Schweres und Ungeduldiges an der Außenhülle.
+Die Temperatur fällt binnen einer Stunde auf -40 °C. S.T.E.V.E. gleitet in den Energiesparschlaf, um die letzte Ladung zu schonen, und lässt dich allein mit dem Klang deines eigenen Atems, Kondenswasser, das zu Frost auf der Innenseite deines Visiers knistert, und, irgendwo direkt hinter dem Rumpfbruch, etwas Großem, das Metall schabt. Es kratzt. Es wartet. Es kratzt wieder, geduldig, als hätte es das schon einmal gemacht — als wüsste es genau, wie dünn der Rumpf an dieser Stelle ist.
 
 ---
 
-### Was tust du?
+## Entscheidungen
 
-* **[1] Die Luke verbarrikadieren:** Du schleppst schwere Metallteile und Schrott vor den Eingang, kauerst dich in die eiskalte Ecke und wartest stundenlang zitternd ab, bis die Sonne wieder aufgeht.
-* **[2] Mit dem Reststrom leuchten:** Du riskierst einen Teil der Batterie, um einen improvisierten Schweißbrenner zu betreiben und dem Vieh draußen durch die Wand hindurch ein heisses Willkommen zu bereiten.
-* **[3] Den Angreifer jagen:** Du öffnest die Luke einen Spaltbreit, um das unbekannte Wesen im Dunkeln mit einer Eisenstange im Nahkampf zu überraschen, bevor es sich durchfrisst.
+### [1] Die Luke verbarrikadieren — Schrott gegen die Tür stapeln und in der Ecke zittern.
 
----
+**Ergebnis:** Das Ding hämmert stundenlang methodisch und unbeeilt gegen die Tür, gibt aber vor der Dämmerung auf. Du überlebst mit Frostbeulen und einer neuen Wertschätzung für Stille.
 
-### Was passiert bei den Antworten in Kapitel 3? Wohin geht die Story dann?
+- **Werte:** -1 HULL
+- **Zeitsperre:** 480 Minuten
+- **Führt zu:** Kapitel 4: Das Labyrinth der Glitch-Nomaden
 
-#### Wenn du [1] wählst (Die Luke verbarrikadieren)
+### [2] Plasma-Schweißbrenner — einen Hitzestoß durch die Fuge brennen, um es zu verjagen.
 
-* **Was passiert:** Du schuftest wie ein Irrer bei Eiseskälte und stapelst tonnenweise Müll vor die Luke. Draußen rüttelt und schlägt ein unbekanntes Alpha-Tier stundenlang gegen die Barrikade, bricht aber letztlich durch den harten Schrott ab. Du frierst zwar erbärmlich, überstehst die Nacht aber unversehrt.
-* **Der Clou:** Du sparst deine Energie und unversehrte Hülle, bezahlst das Ganze aber mit Frostbeulen an den Fingern und einer schlaflosen, angstzitternden Nacht.
-* **Wohin die Story geht:** Mit den ersten Sonnenstrahlen erwacht S.T.E.V.E. aus dem Standby, und ihr macht euch auf den Weg durch die verstrahlte Einöde direkt zu **Kapitel 4 (Das Labyrinth der Glitch-Nomaden)**.
+**Ergebnis:** Der Hitzeblitz jagt es kreischend in die Dunkelheit. Wirkungsvoll, kostet dich aber fast die gesamte Nachtladung, um die Flamme am Brennen zu halten.
 
-#### Wenn du [2] wählst (Mit dem Reststrom leuchten und feuern)
+- **Werte:** -10 BAT
+- **Zeitsperre:** 480 Minuten
+- **Führt zu:** Kapitel 4: Das Labyrinth der Glitch-Nomaden
 
-* **Was passiert:** Du zündest den Schweißbrenner und brennst ein glühendes Loch in die Wand, genau als ein schleimiges, riesiges Alien-Insekt hineinspähen will. Das Vieh kreischt wie eine Turbine und flieht in den Sturm.
-* **Der Clou:** Du hast dem Biest ordentlich Angst eingejagt, aber der Adrenalinausschnitt hat massiv Energie gekostet, und S.T.E.V.E.s Akku warnt beim Hochfahren am Morgen vor dem roten Bereich.
-* **Wohin die Story geht:** Die Nacht ist überstanden, aber ihr startet mit tiefem Batteriestand in den Tag und müsst in **Kapitel 4** extrem vorsichtig haushalten.
+### [3] Hinterhalt mit dem Brecheisen — die Luke aufreißen und blind in die Dunkelheit schlagen.
 
-#### Wenn du [3] wählst (Den Angreifer im Nahkampf jagen)
+**Ergebnis:** Du triffst nichts außer gefrorene Luft. Es trifft dich. Das Letzte, was S.T.E.V.E. protokolliert, bevor die Vitaldaten des Anzugs ausfallen, ist eine einzige, wenig hilfreiche Diagnose: „Das war unklug.“
 
-* **Was passiert:** Du reißt die Luke auf und schlägst blind mit der Eisenstange zu. Du triffst das Wesen – leider stellt es sich als ein schwerer, abstürzender Frachtcontainer heraus, der vom Sturm gegen die Wand gedrückt wurde, und nicht als Monster. Du stolperst, fällst aus dem Wrack heraus und ziehst dir eine tiefe Schnittwunde am Bein zu.
-* **Der Clou:** Kein Feind besiegt, aber dafür wertvolle Gesundheit verloren. S.T.E.V.E. muss dich am Morgen mühsam verarzten.
-* **Wohin die Story geht:** Du hinkst dem Zeitplan hinterher, musst die Wunde versorgen und stolperst angeschlagen in die Gefahren von **Kapitel 4**.
+- **Werte:** keine Änderung
+- 💀 **TÖDLICH — Lauf endet hier.**
+
+### [4] Schrott durch die Lücke werfen — ein Stück loses Metall anbieten und hoffen, dass es daran mehr interessiert ist als an dir.
+
+**Ergebnis:** Etwas Dünnes, Metallisches wird mit einem zufrieden klingenden Schaben in die Dunkelheit gezogen. Ob es Schrott frisst oder nur sammelt, willst du nicht wissen. Es kommt vor der Dämmerung nicht zurück.
+
+- **Werte:** -1 SCRAP
+- **Zeitsperre:** 480 Minuten
+- **Führt zu:** Kapitel 4: Das Labyrinth der Glitch-Nomaden

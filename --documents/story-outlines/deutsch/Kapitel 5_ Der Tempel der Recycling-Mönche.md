@@ -1,40 +1,42 @@
 # Kapitel 5: Der Tempel der Recycling-Mönche
 
-Nachdem du die glitchige Schlucht hinter dir gelassen hast (egal ob mit fehlerfreiem Code, einer tauben Hand oder einem völlig verwirrten S.T.E.V.E.), führt euch der Weg in eine trostlose, endlose Steppe aus zusammengepressten Autowracks, alten Satelliten und verrosteten Industriekranen. Inmitten dieses gigantischen Schutthaufens erhebt sich eine monumentale Kathedrale, die vollständig aus recycelten Solarpaneelen, alten Glasfaserkabeln und blinkenden Mainboards erbaut wurde.
+> Diese Datei spiegelt den aktuell live geschalteten Inhalt von `story_de.json` Stand 2026-09-10 (49 Entscheidungen über 12 Kapitel, Flag-gesteuerte Callbacks, dichtere Einleitungen) — neu generiert, ersetzt den früheren Entwurf von vor der eigentlichen Spielmechanik. Hier oder direkt in `story_de.json` weiterbearbeiten — danach synchronisiert sich nichts mehr automatisch.
 
-Aus den riesigen, an der Fassade montierten Megaphonen dröhnt ein monotones, gregorianisches Chorsingen, das jedoch ausschließlich aus synthetischen Pieps-, Rausch- und Modem-Lauten besteht.
+**Ort:** Tempel von Sankt-Plastik
 
-> **S.T.E.V.E.** *(stottert leicht und flackert pink)*: "Oh... oh nein. Bei allen heiligen System-Backups und verlorenen Festplatten... Das ist der Hauptsitz der *Recycling-Mönche von Saint-Plastic*. Das sind radikale religiöse Fanatiker, die jeden noch so dreckigen Haufen Müll als den heiligen Leib ihres digitalen Gottes anbeten."
-> **S.T.E.V.E.** *(schnauft besorgt)*: "Und rate mal, was die als ultimative Opfergabe brauchen, um ihre ewigen Server am Laufen zu halten und ihre Gebete zu streamen? Genau: Den legendären Hyper-Kondensator. Und zufällig liegt exakt so ein Teil völlig ungesichert auf ihrem goldenen Altar im inneren Sanktuarium. Wenn wir das Ding klauen, können wir unseren Hauptantrieb starten. Wenn sie uns erwischen, schmelzen sie uns zu umweltfreundlichen, biologisch abbaubaren Kaffeetassen ein."
-
-Du stehst vor der tonnenschweren, automatisch schließenden Schiebetür des Tempels. Ein Mönch mit einer Kutte aus biegsamen Solarzellen und einem flackernden Barcode-Scanner statt eines Gesichts steht starr wie eine Statue Wache.
+Eine Kathedrale aus Solarpaneelen und geborgenen Hauptplatinen erhebt sich aus dem Schluchtboden, ihre Türme behängt mit Gebetsfahnen aus antistatischen Tüten. Drinnen rezitieren die Recycling-Mönche von Sankt-Plastik BIOS-Fehlercodes vor einem goldbeschichteten Altar, auf dem der legendäre Hyperkondensator liegt — genau die Art von Hochleistungs-Energiezelle, die deinen Reaktor wieder in Gang bringen könnte. Der Weihrauchrauch riecht unverkennbar nach brennendem Lötzinn.
 
 ---
 
-### Was tust du?
+## Entscheidungen
 
-* **[1] Als Pilger tarnen:** Du wirfst dir eine alte, rissige Plastikplane über die Schultern, kniest dich in den Schlamm und fängst an, laut, melodisch und mit voller Inbrunst die alten BIOS-Fehlercodes als heiliges Gebet zu singen, um unbemerkt an der Wache vorbei zum Altar zu schleichen.
-* **[2] Den direkten Einbruch wagen:** Du wartest, bis der Scanner-Mönch für einen Moment wegschaut, knackst die elektronische Schiebetür mit S.T.E.V.E.s letztem gewaltsamen Brech-Protokoll auf und stürmst direkt zum Altar, um den Kondensator im Vollsprint zu greifen.
-* **[3] Die Solarpaneele sabotieren:** Du ignorierst den Haupteingang, schleichst dich an die Außenwand des Tempels und manipulierst die Hauptzuleitung, um einen künstlichen Blackout zu erzeugen, der den gesamten Tempel ins absolute Chaos stürzt.
+### [1] Als Pilger verkleiden — sich in eine Plastikplane wickeln und Fehler 404 rezitieren.
 
----
+**Ergebnis:** Der Scanner-Mönch stuft dich als harmlosen Fanatiker ein. Du schlüpfst hinein, hebst den Kondensator auf und schlüpfst wieder hinaus, ohne dass sich auch nur eine Augenbraue hinter einem Visier hebt.
 
-### Was passiert bei den Antworten in Kapitel 5? Wohin geht die Story dann?
+- **Werte:** keine Änderung
+- **Gegenstände erhalten:** Hyperkondensator
+- **Führt zu:** Kapitel 6: Der Akt der Sabotage
 
-#### Wenn du [1] wählst (Als Pilger tarnen und BIOS-Codes singen)
+### [2] Schnapp-und-weg-Sprint — die Türen aufbrechen und zum Altar rennen.
 
-* **Was passiert:** Du singst aus Leibeskräften: *"Fehler 404: Datei nicht gefunden... Amen!"* Der Wächter-Mönch scannt deine Plastikplane, hält dich für einen extrem armseligen, aber tiefreligiösen Kreatur-Pilger und winkt dich kopfschüttelnd durch. Du gelangst unbehelligt zum Altar und schnappst dir den Kondensator.
-* **Der Clou:** Du bleibst unentdeckt und sicherst dir das wertvolle Bauteil ohne einen einzigen Kratzer, musst dir aber von S.T.E.V.E. anhören, dass dein Singsang peinlich klang.
-* **Wohin die Story geht:** Mit dem Hyper-Kondensator im Gepäck verlässt du den Tempel und machst dich auf den Weg zu **Kapitel 6 (Der Sabotage-Akt)**, wo ein Konkurrenz-Schiff auftaucht.
+**Ergebnis:** Alarme kreischen. Du greifst den Kondensator im Laufschritt und fängst dafür einen Elektroschlagstock-Treffer an der Schulter ein, aber du bist schon durch die Türen, bevor die Mönche sich organisieren.
 
-#### Wenn du [2] wählst (Der direkte Einbruch-Vollsprint)
+- **Werte:** -2 HULL, -8 BAT
+- **Gegenstände erhalten:** Hyperkondensator
+- **Führt zu:** Kapitel 6: Der Akt der Sabotage
 
-* **Was passiert:** Du brichst die Tür auf und stürmst rein. Du greifst den Kondensator, aber sofort schrillen laut die Alarmsirenen des Tempels. Dutzende Solar-Mönche strömen herbei. Du kannst zwar entkommen, wirst aber von einem Mönch mit einem Elektroschocker-Stab am Rücken erwischt, bevor du draußen bist.
-* **Der Clou:** Du hast den Kondensator, bezahlst diesen Sieg aber mit einem heftigen Stromschlag, der deine verbleibende Energie spürbar nach unten zieht.
-* **Wohin die Story geht:** Du hinkst mit brennendem Rücken davon und stolperst direkt in die ungemütliche Überraschung von **Kapitel 6**.
+### [3] Das Solarnetz sabotieren — die Hauptleitung durchtrennen und den Tempel in Dunkelheit tauchen.
 
-#### Wenn du [3] wählst (Blackout über die Solarpaneele)
+**Ergebnis:** Der Tempel wird schwarz, und die Mönche, wie sich herausstellt, sind ohne Licht keineswegs harmlos. Der Gesang wird zu Geschrei, dann zu etwas Organisierterem. Du bekommst keine Gelegenheit mehr, dich zu erklären, bevor die Dunkelheit sich endgültig schließt.
 
-* **Was passiert:** Du legst die Hauptzuleitung lahm. Plötzlich erlöschen alle neonfarbenen Lichter im Tempel. Panik bricht aus, Mönche rennen blind im Kreis und stoßen mit den Köpfen gegen die Server. Im entstehenden Tumult greifst du dir den Kondensator und verschwindest im Schatten.
-* **Der Clou:** Ein genialer Sabotage-Coup ohne körperlichen Schaden, aber der Lärm hat weite Kreise gezogen und die Aufmerksamkeit eines feindlichen Konkurrenten geweckt.
-* **Wohin die Story geht:** Du entkommst im Dunkeln und wirst in **Kapitel 6** direkt mit den Konsequenzen konfrontiert.
+- **Werte:** keine Änderung
+- 💀 **TÖDLICH — Lauf endet hier.**
+
+### [4] Den glitchenden S.T.E.V.E. den Gesang anführen lassen — sein zerfetztes Pseudo-Latein klingt unheimlich nah an der eigenen BIOS-Liturgie der Mönche. _(**schaltet frei nach:** `steve_glitched`)_
+
+**Ergebnis:** S.T.E.V.E.s verstümmeltes latein-ähnliches Gebrabbel passt so gut zum Fehlercode-Gesang der Mönche, dass drei von ihnen mitzunicken beginnen. Niemand hinterfragt einen Glaubensbruder, der in Zungen spricht. Du hebst den Kondensator mitten in der Zeremonie ab, und ein Mönch drückt dir auf dem Weg hinaus eine Ersatzsicherung in die Hand, weil er dich für Klerus hält.
+
+- **Werte:** keine Änderung
+- **Gegenstände erhalten:** Hyperkondensator, Ersatzsicherung
+- **Führt zu:** Kapitel 6: Der Akt der Sabotage

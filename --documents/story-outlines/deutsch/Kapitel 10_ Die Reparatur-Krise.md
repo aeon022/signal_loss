@@ -1,40 +1,48 @@
 # Kapitel 10: Die Reparatur-Krise
 
-Du hast es zurück zum Wrack der *CSS RUST-404* geschafft – egal ob durch den harten Sandsturm gekämpft, über die Klippen geklettert oder im Biwak ausgesessen. Alle wesentlichen Teile (je nach euren vorherigen Entscheidungen) liegen nun bereit vor euch im roten Staub: das Navigations-Modul, der (oder kein) Hyper-Kondensator und ein Haufen recycelter Schrott.
+> Diese Datei spiegelt den aktuell live geschalteten Inhalt von `story_de.json` Stand 2026-09-10 (49 Entscheidungen über 12 Kapitel, Flag-gesteuerte Callbacks, dichtere Einleitungen) — neu generiert, ersetzt den früheren Entwurf von vor der eigentlichen Spielmechanik. Hier oder direkt in `story_de.json` weiterbearbeiten — danach synchronisiert sich nichts mehr automatisch.
 
-Du wirfst dich in den Dreck, schnappst dir den Schweißbrenner und fängst an, die zentralen Kabel des Hauptantriebs zu verbinden. S.T.E.V.E. hängt halb aus der Konsole, die Kabel funkeln bedrohlich.
+**Ort:** Das Wrack — Reaktorraum
 
-> **S.T.E.V.E.** *(lässt ein lautes, metallisches Klicken hören)*: "Systeme verknüpft... Hauptantrieb bereit zum Hochfahren. Aber warte mal kurz, Boss. Das Zentralsystem verlangt vor dem finalen Zünden ein digitales Administrator-Passwort, um den Hauptreaktor freizugeben."
-> **S.T.E.V.E.** *(sucht hektisch in seinen Registern)*: "Mein Puffer-Speicher greift ins Leere! Entweder hat der Schwarzmarkt-Händler das gelöscht, oder mein Backup ist beim Absturz auf dem Kopf gelandet. Wir haben genau drei Versuche, den Override-Code einzugeben, sonst verriegelt sich der Reaktor für immer dauerhaft!"
-
-Draußen vor dem Wrack hörst du plötzlich schwere, mechanische Schritte. Die Fraktionen – die Laser-Mistgabel-Aliens und das Food-Truck-Kartell – haben gemerkt, dass du hier unten startklar wirst, und marschieren im Gänsemarsch auf das Schiff zu. Du brauchst sofort den richtigen Code!
+Teile zusammengebaut, Rumpf so gut repariert, wie es Klebeband und Trotz erlauben, verlangt der Hauptreaktor eine administrative Override-Passphrase, bevor er zündet. Drei Versuche vor der permanenten Sperre. Irgendwo hinter dem Grat nähern sich Fraktionen dem Lärm, und der Cursor der Konsole blinkt mit etwas, das sich wie persönliches Urteil anfühlt.
 
 ---
 
-### Was tust du?
+## Entscheidungen
 
-* **[1] Den Standard-Reset-Code eingeben:** Du tippst den universellen Standard-Code ein, der auf jeder billigen Frachtkiste der Firma steht (`ADMIN_0000`).
-* **[2] Den Notfall-Bypass per Hand erzwingen:** Du ignorierst das Passwortfeld komplett, reißst die Hauptsicherung heraus und verbindest die Kabel manuell mit einer rohen Eisenstange.
-* **[3] Auf S.T.E.V.E.s Humor vertrauen:** Du tippst den absurdesten, sarkastischsten Befehl ein, den S.T.E.V.E. dir jemals an den Kopf geworfen hat (etwa: `STEVE_IS_A_GENIUS_42`).
+### [1] Standard-Reset-Code (ADMIN_0000) — das werkseitige Standardpasswort.
 
----
+**Ergebnis:** Angenommen, technisch gesehen. Es sendet dabei auch lautlos ein Signal an eine Konzern-Sicherheitsdrohne irgendwo im Orbit, die laut Warnprotokoll jetzt „im Anflug“ ist.
 
-### Was passiert bei den Antworten in Kapitel 10? Wohin geht die Story dann?
+- **Werte:** keine Änderung
+- **Flags gesetzt:** `drones_inbound`
+- **Führt zu:** Kapitel 11: Der finale Countdown
 
-#### Wenn du [1] wählst (Der Standard-Reset-Code)
+### [2] S.T.E.V.E.s Eitelkeitspasswort (STEVE_IST_EIN_GENIE_42).
 
-* **Was passiert:** Du tippst `ADMIN_0000` ein. Ein grünes Licht leuchtet auf! Das System akzeptiert den Werks-Code und gibt den Reaktor frei. Allerdings schlägt sofort der Alarm an, weil die Fabrik-Sicherheit merkt, dass hier ein fremder Benutzer am Werk ist.
-* **Der Clou:** Der Reaktor läuft, aber du musst dich extrem beeilen, bevor die automatischen Verteidigungsdrohnen anspringen.
-* **Wohin die Story geht:** Die Systeme schnurren, und du stehst am direkten Abprung zu **Kapitel 11 (Der finale Countdown)**.
+**Ergebnis:** Das Easter Egg ist real. Der Reaktor schnurrt zum Leben, als hätte er sein ganzes Diensteben darauf gewartet, dass jemand das eintippt, und S.T.E.V.E. ist, ausnahmsweise, zu selbstgefällig, um sarkastisch zu sein.
 
-#### Wenn du [2] wählst (Manueller Bypass mit Eisenstange)
+- **Werte:** +2 HULL, +10 BAT
+- **Führt zu:** Kapitel 11: Der finale Countdown
 
-* **Was passiert:** Du reißst die Abdeckung ab und drückst die Kontakte mit der Eisenstange zusammen. Ein riesiger Funkenregen schießt dir entgegen, deine Haare stehen zu Berge und der Reaktor springt mit einem ohrenbetäubenden Brüllen an – allerdings fängt die Konsole sofort an, unkontrolliert zu rauchen.
-* **Der Clou:** Der Reaktor ist an, aber du hast dir Verbrennungen zugezogen und das Schiff brennt an einer neuen Ecke.
-* **Wohin die Story geht:** Du hast keine Zeit zum Durchatmen, denn der Lärm zieht die feindlichen Fraktionen sofort an. Auf zu **Kapitel 11**.
+### [3] Brecheisen-Bypass-Relais — eine Eisenstange zwischen die Hochspannungskontakte klemmen.
 
-#### Wenn du [3] wählst (S.T.E.V.E.s sarkastischer Code)
+**Ergebnis:** Funken sprühen über die Konsole. Der Reaktor zündet nicht einfach — er zündet, während du noch über das offene Panel gebeugt bist. Davon gibt es keine überlebbare Version.
 
-* **Was passiert:** Du tippst den verrückten Code ein. S.T.E.V.E. fängt plötzlich an zu kichern: *"Code akzeptiert? Ernsthaft? Das war nur ein Witz!"* Doch das System schluckt es tatsächlich als Easter-Egg-Admin-Bypass! Der Reaktor fährt butterweich hoch, und S.T.E.V.E. ist stolz wie Oskar.
-* **Der Clou:** Ein genialer Glücksgriff ohne Schaden, der die Moral auf das Maximum treibt.
-* **Wohin die Story geht:** Mit einem perfekt laufenden Reaktor bereitest du dich auf das große Finale in **Kapitel 11** vor.
+- **Werte:** keine Änderung
+- 💀 **TÖDLICH — Lauf endet hier.**
+
+### [4] Formaler Override-Antrag — den neu höflichen S.T.E.V.E. den Zugriff über offizielle Firmenkanäle beantragen lassen, statt ein Passwort zu raten. _(**schaltet frei nach:** `steve_polite`)_
+
+**Ergebnis:** S.T.E.V.E.s unerbittlich höfliche neue Stimme trägt einen makellosen, öde formellen Zugriffsantrag vor — genau die Art, der Firmen-Sicherheitssysteme eingebaut vertrauen. Der Reaktor gewährt den Override sauber, keine roten Flaggen, keine Drohne entsendet. Höflichkeit ist ausnahmsweise der Exploit.
+
+- **Werte:** +1 HULL, +5 BAT
+- **Führt zu:** Kapitel 11: Der finale Countdown
+
+### [5] Override unter Beschuss — die Kopfgeldjäger auf deiner Spur holen dich mitten in der Passphrase ein; den Standardcode durchjagen und das Firmensignal als kleineres Risiko akzeptieren. _(**schaltet frei nach:** `underworld_hunted`)_
+
+**Ergebnis:** Die Jäger kommen zwei Sekunden nach ADMIN_0000 durch die Tür. Du bist schon in Bewegung, als sie die Schwelle erreichen, der Reaktor summt hinter dir. Das Signal an die Firmensicherheit ist jetzt offensichtlich dein geringstes Problem.
+
+- **Werte:** -2 HULL
+- **Flags gesetzt:** `drones_inbound`
+- **Führt zu:** Kapitel 11: Der finale Countdown

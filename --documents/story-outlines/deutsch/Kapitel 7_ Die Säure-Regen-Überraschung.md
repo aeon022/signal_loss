@@ -1,40 +1,40 @@
-# Kapitel 7: Die Säure-Regen-Überraschung
+# Kapitel 7: Die Säureregen-Überraschung
 
-Kaum hat sich die Staubwolke des flüchtenden Piratenfrachters verzogen, fängt der Himmel über Gryps-4 an, seine Farbe drastisch zu verändern. Das vertraute, blasse Violett kippt in ein ungesundes, giftiges Neongrün. Ein schwerer, stechender Geruch nach verbranntem Ammoniak zieht durch die Schlucht.
+> Diese Datei spiegelt den aktuell live geschalteten Inhalt von `story_de.json` Stand 2026-09-10 (49 Entscheidungen über 12 Kapitel, Flag-gesteuerte Callbacks, dichtere Einleitungen) — neu generiert, ersetzt den früheren Entwurf von vor der eigentlichen Spielmechanik. Hier oder direkt in `story_de.json` weiterbearbeiten — danach synchronisiert sich nichts mehr automatisch.
 
-Plötzlich prallt ein erster, schwerer Tropfen mit einem lauten *Zisch!* auf das Metalldach eures Wracks. Im Bruchteil einer Sekunde frisst sich ein rauchendes Loch durch die Verkleidung.
+**Ort:** Säureregen-Unterschlupf
 
-> **S.T.E.V.E.** *(flackert hektisch in panischem Orange)*: "Wetter-Alarm! Akute Schlechtwetterwarnung! Das ist kein normaler Regen, Boss! Das ist konzentrierter, hochkorrosiver Säure-Regen der Stufe 4, frisch aus den Industrie-Wolken der oberen Schichten!"
-> **S.T.E.V.E.** *(schreit fast)*: "Wenn der Säure-Regen unsere verbleibenden Rumpfplatten und vor allem den frisch erbeuteten Hyper-Kondensator trifft, war's das! Unsere Bauteile lösen sich schneller in Luft auf als ein billiges Eis in der Wüste!"
-
-Draußen beginnt es sintflutartig zu gießen. Überall zischen und dampfen die Schrotthaufen, während sich dichte, giftige Dämpfe ausbreiten. Der Regen drückt bereits durch die undichten Deckenfugen des Wracks. Du hast nur Sekunden, um zu reagieren.
+Der Himmel wird ohne Vorwarnung toxisch neongrün. Schwefelsäureregen der Stufe 4 beginnt, die Rumpfverkleidung, die Kisten und — wie S.T.E.V.E. mit echter Alarmiertheit feststellt — alles Organische aufzulösen, das länger als neunzig Sekunden ungeschützt bleibt. Das schließt dich ein. Der Regen zischt, wo er landet, und die Luft füllt sich mit einem Geruch wie eine brennende Batteriefabrik.
 
 ---
 
-### Was tust du?
+## Entscheidungen
 
-* **[1] Das Wrack abdichten:** Du reißst alle verbleibenden Plastikplanen, Decken und schmutzigen Raumanzüge zusammen und versuchst in panischer Eile, die Deckenlecks und den Kondensator physisch abzudichten.
-* **[2] Den Kondensator unter den Arm klemmen und flüchten:** Du pfeifst auf das Wrack, greifst den Kondensator und sprintest durch den ätzenden Regenguss los, um in einer nahegelegenen, verlassenen Industriehöhle Schutz zu suchen.
-* **[3] S.T.E.V.E.s Notfall-Schild aktivieren:** Du zwingst S.T.E.V.E., die allerletzten Notreserven der Batterie in ein temporäres, elektromagnetisches Schutzschild zu stecken, das den Regen vom Wrack ablenken soll.
+### [1] Die Löcher mit Planen abdichten — Abdeckungen über Dach und Kondensator festkleben.
 
----
+**Ergebnis:** Die Hardware bleibt knochentrocken. Du kauerst unter der Plane mit leichten Chemikalienverätzungen durch eine Lücke im Overall und wartest das Schlimmste ab, bevor es sicher genug ist, sich wieder zu bewegen. Alles Wichtige bleibt unversehrt.
 
-### Was passiert bei den Antworten in Kapitel 7? Wohin geht die Story dann?
+- **Werte:** -2 HULL
+- **Zeitsperre:** 30 Minuten
+- **Führt zu:** Kapitel 8: Der Schwarzmarkt-Deal
 
-#### Wenn du [1] wählst (Das Wrack hektisch abdichten)
+### [2] Zur Industriehöhle sprinten — den Kondensator greifen und zum Unterschlupf rennen.
 
-* **Was passiert:** Du klebst, stopfst und ziehst Planen fest, während dir der Schweiß von der Stirn tropft. Der Säure-Regen frisst sich zwar durch die äußerste Schicht, aber der innere Kern und der Kondensator bleiben trocken und sicher.
-* **Der Clou:** Du rettest eure Basis und die Beute, bezahlst das Ganze aber mit ätzenden Spritzern auf deiner Kleidung und stechendem Husten.
-* **Wohin die Story geht:** Nach einer schweißtreibenden Stunde zieht die Giftwolke ab, und ihr macht euch mit intakter Ausrüstung auf den Weg zu **Kapitel 8 (Der Schwarzmarkt-Deal)**.
+**Ergebnis:** Du schaffst es, Kondensator in der Hand, Stiefel halb aufgelöst. Der Rest deiner Werkzeuge und Vorräte bleibt im überfluteten Wrack zurück.
 
-#### Wenn du [2] wählst (Flucht in die Industriehöhle)
+- **Werte:** -1 HULL, GESAMTER SCRAP VERLOREN
+- **Führt zu:** Kapitel 8: Der Schwarzmarkt-Deal
 
-* **Was passiert:** Du schnappst den Kondensator und rennst los. Der Regen brennt auf deinen Schultern, aber du erreichst keuchend und stolpernd das trockene Innere einer alten Fabrikhöhle. Blöderweise hast du im Stress das halbe Werkzeug im Wrack zurückgelassen.
-* **Der Clou:** Der Kondensator ist gerettet, aber du bist jetzt obdachlos, durchnässt und hast Ausrüstung verloren.
-* **Wohin die Story geht:** Du musst in der dunklen Höhle ausharren, bis das Unwetter vorbeizieht, und stolperst danach in **Kapitel 8**.
+### [3] S.T.E.V.E.-Kinetikschild — jedes verbleibende Watt in eine defensive Energiekuppel umleiten.
 
-#### Wenn du [3] wählst (S.T.E.V.E.s Notfall-Schutzschild)
+**Ergebnis:** Die Kuppel hält wunderbar sechs Minuten und bricht in der siebten zusammen, einen vollen Batteriezyklus kurz davor, dass der Sturm vorüberzieht. Der Regen erledigt, was der leergesaugte Schild begonnen hat.
 
-* **Was passiert:** S.T.E.V.E. feuert das Notfall-Schild an. Eine glitzernde, bläuliche Kuppel legt sich über das Wrack, und der Säure-Regen zerschellt wirkungslos daran. Perfekter Schutz! Allerdings saugt diese Aktion die Batterie komplett leer.
-* **Der Clou:** Das Wrack ist wie neu geschützt, aber S.T.E.V.E. fällt nach der Aktion in einen tiefen, unplanmäßigen Blackout.
-* **Wohin die Story geht:** Du musst den nächsten Schritt komplett ohne die Hilfe deiner KI wagen und tappst im Dunkeln in **Kapitel 8**.
+- **Werte:** keine Änderung
+- 💀 **TÖDLICH — Lauf endet hier.**
+
+### [4] Kühlmittel als Notdichtung umleiten — die Kühlmittelleitungen des Anzugs improvisiert nutzen, um die schlimmsten Lücken abzudichten.
+
+**Ergebnis:** Hässlich, gegen mehrere Sicherheitsvorschriften und es funktioniert. Das Kühlmittel geliert beim Kontakt mit dem Säureregen und dichtet die Lücken gerade genug ab. Dein Anzug riecht für den Rest des Laufs wie ein Chemieunfall, aber alles Wichtige bleibt trocken.
+
+- **Werte:** -1 HULL, -4 BAT
+- **Führt zu:** Kapitel 8: Der Schwarzmarkt-Deal

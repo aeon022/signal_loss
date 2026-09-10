@@ -1,47 +1,41 @@
 # Chapter 9: The Long March Through the Sandstorms
 
-Following your dramatic departure from the black market (whether you bartered your capacitor, gave S.T.E.V.E. a personality lobotomy, or pulled off a smoke-screened robbery), there is no luxury of a tea break. You must navigate your way out of the manifold alley and trudge across the open wasteland back to the *CSS RUST-404* to prep for the final launch.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-Naturally, the weather gods of Gryps-4 have decided to double down on their hostility. No sooner have you left the shelter of the wreckage canyon than a vicious squall sweeps across the flats. The planet’s fine, red-hot iron dust whips up into an impenetrable, blinding sandstorm.
+**Location:** The Sandstorm Dunes
 
-> **S.T.E.V.E.** *(emitting dry static—or sounding unnervingly cordial)*: "Alert. Visibility has dropped below eighteen inches. The kinetic friction of iron particles is building up a considerable electrostatic charge across our hull. If we are not remarkably careful, we shall be struck by lightning, which I am told is rather fatal."
->
-> **S.T.E.V.E.**: "Sensors outline two possible routes through this meteorological insult: either the direct path across the *Crater of the Humming Hulks*, where the gale hits us square in the face but cuts travel time in half—or the steep detour along the *Cliffside Trail*, where there is marginally less wind, but every footing is a fatal drop into the abyss."
-
-The iron sand peppers your suit like a thousand angry needles. A decision is required immediately before the storm strips the paint—and the flesh—off your bones.
+A blinding iron sandstorm rolls in on the trek back to the ship, grit scouring paint off every exposed surface. Static builds fast enough that S.T.E.V.E. starts flagging lightning risk every few seconds, with the enthusiasm of a smoke detector that's found a fresh battery. Visibility drops to arm's length; the dunes ahead are just suggestion and noise.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] March straight through the crater:** Steel your nerves, lower your head, and soldier doggedly through the tempest across the crater floor to save valuable time.
-* **[2] Scale the cliff path:** Edge cautiously along the narrow rock ledges to escape the worst of the howling wind, accepting the high risk of a blind tumble into the gorge.
-* **[3] Hunker down and wait it out:** Dig yourself into the sand beneath a heavy sheet of scrap metal and wait out the storm, regardless of how much time it costs you.
+### [1] Straight through the Crater — march directly into the howling gale.
 
----
+**Outcome:** You cut the crossing time in half. Grit breaches the neck seal of your suit somewhere around the halfway mark and you feel every grain of it for the rest of the day.
 
-### What happens next?
+- **Stats:** -3 HULL, -5 BAT
+- **Leads to:** Chapter 10: The Repair Crisis
 
----
+### [2] Cliffside Trail — scale a treacherous ledge out of the direct wind.
 
-#### If you choose [1] (Straight through the Crater)
+**Outcome:** Loose rock slides out from under you twice. You claw your way up by your fingertips both times, gear rattling, and make it over with your dignity in worse shape than your suit.
 
-* **What happens:** You battle forward step by punishing step against the shrieking gale of iron dust. The storm buffets you mercilessly, but you cut the travel distance dramatically. Unfortunately, the grit abrades a critical neck seal on your suit, leaving you gasping for air.
-* **The Catch:** You reach your destination in record time, but pay with severe physical fatigue and a compromised environmental seal.
-* **Story Direction:** Caked in red grime and wheezing heavily, you reach the ship and blunder right into the technical catastrophe of **Chapter 10 (The Repair Crisis)**.
+- **Stats:** -2 BAT
+- **Leads to:** Chapter 10: The Repair Crisis
 
----
+### [3] Hunker in the Dunes — wait out the storm under a steel plate.
 
-#### If you choose [2] (The Treacherous Cliff Path)
+**Outcome:** Zero physical damage from the storm itself. But sheltering in one place long enough lets factions on your trail catch up — you emerge to find your ship's camp already ransacked and hostile scouts waiting, forcing a retreat all the way back to the landing site.
 
-* **What happens:** You practically crawl along the precarious cliff ledge. The wind is slightly tamer here, but you place a boot on a loose piece of aluminium sheeting and slip! At the last possible second, you grab a protruding girder and haul yourself up with pure adrenaline.
-* **The Catch:** You bypassed the sandblasting gale, but nearly lost your newly acquired components to the bottom of the canyon.
-* **Story Direction:** With trembling knees and frayed nerves, you drag your boots back to the landing pad for **Chapter 10**.
+- **Stats:** no change
+- **Flags set:** `enemies_at_ship`
+- **Time-lock:** 240 minutes
+- **Leads to:** Chapter 1: The Landing Site
 
----
+### [4] Cut Through Cartel Supply Lines — you're already a marked face; use it to bluff past a checkpoint hidden in the dunes. _(**unlocks after:** `wanted_by_cartel`)_
 
-#### If you choose [3] (Hunker in the Dunes)
+**Outcome:** Turns out being known to the cartel cuts both ways — you talk your way past their checkpoint by claiming you're delivering yourself for a bounty collection elsewhere. Bad idea in general, works exactly once. You're through the storm's worst stretch in half the time, adrenaline doing what shelter couldn't.
 
-* **What happens:** You wedge yourself under a curved bulkhead and sit motionless in the dark for hours until the storm subsides. You emerge completely buried in red sand, but physically untouched.
-* **The Catch:** A safe and painless solution, but the lost hours have given the local factions ample time to deduce your location and assemble a welcoming party.
-* **Story Direction:** When you finally shake the dust off and return to the *CSS RUST-404*, you discover fresh scout beacons staked around your perimeter. Straight into **Chapter 10**.
+- **Stats:** -1 HULL, -1 BAT
+- **Leads to:** Chapter 10: The Repair Crisis

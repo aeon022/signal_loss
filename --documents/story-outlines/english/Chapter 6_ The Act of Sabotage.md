@@ -1,47 +1,42 @@
 # Chapter 6: The Act of Sabotage
 
-Having secured the Hyper-Capacitor (through theological acting, a brisk jog, or a spot of electrical vandalism), you return to the battered remains of the *CSS RUST-404*. In the harsh glare of the afternoon sun, your crashed ship looks even more like an abandoned skip than it did this morning. But before you can even contemplate mounting the component, S.T.E.V.E. begins chirping in absolute panic.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-> **S.T.E.V.E.** *(in a tone resembling a blender full of ball bearings)*: "Captain! Emergency! My passive radar array has just picked up a rather nasty anomaly dropping through the upper stratosphere at speed!"
->
-> **S.T.E.V.E.** *(zooms a heavily pixelated optical feed onto the visor)*: "It’s the *SS Scrap-Collector*, skippered by none other than *Vex*—a notoriously unpleasant junk pirate and freelance cutthroat. The gentleman has caught wind of our bounty and fancies claiming our brand-new capacitor and whatever scrap remains of our ship as hood ornaments!"
+**Location:** The Wreck — Vex Standoff
 
-A hulking, mustard-yellow freighter thunders over the ridge, touching down mere yards from your wreckage in a massive swirl of rust and grit. The hydraulic loading ramp crashes down, and out marches Vex—a towering cybernetic brute sporting a glowing infrared targeting optic where his left eye should be, cradling a heavy plasma scattergun with murderous intent.
-
-> **Vex** *(booming through a distorted bullhorn)*: "Right then, you miserable little grease monkey! Let’s keep this civil: drop the capacitor in the dirt, put your hands up, and pray I need fresh meat for the orbital slag mines!"
+Back at the CSS RUST-404, a gunship the approximate shape and subtlety of a falling dumpster descends on your camp, kicking up a curtain of grit that sets off every alarm you have left. Vex — cyborg raider, captain of the SS Scrap-Collector, and a man who has clearly never lost an argument by choice — wants your capacitor and whatever scrap you're still hiding. Chrome plating catches the light wrong as he steps down the ramp, unhurried, already certain how this ends. He is not asking twice.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] Weaponise the Hyper-Capacitor:** Feign immediate surrender, raise the capacitor high at the last second, and discharge an uncontrolled burst of raw energy straight into Vex’s smug cybernetic face.
-* **[2] Deploy S.T.E.V.E.’s sonic assault:** Reroute S.T.E.V.E.’s remaining comms array to breach Vex’s suit receiver, transmitting a deafening, ultra-high-frequency screech directly into his auditory implants while you dive into the scrap.
-* **[3] The audacious doomsday bluff:** Drop to your knees in apparent defeat while conspicuously clutching your suit’s emergency self-destruct trigger, threatening to take the entire valley with you.
+### [1] Discharge Capacitor as Weapon — overload it into a plasma shockwave.
 
----
+**Outcome:** The shockwave knocks Vex flat on his back and wrecks his sidearm. The capacitor casing is scorched but intact, and Vex, cursing, decides today isn't the day.
 
-### What happens next?
+- **Stats:** no change
+- **Items gained:** Damaged Capacitor
+- **Items lost:** Hyper-Capacitor
+- **Leads to:** Chapter 7: The Acid Rain Surprise
 
----
+### [2] S.T.E.V.E. Sonic Hack — pump ear-splitting dial-up static into Vex's cyber-implants.
 
-#### If you choose [1] (Discharge the Capacitor)
+**Outcome:** Vex drops to his knees clutching the side of his skull, drops his shotgun, and staggers back to his ship swearing revenge in at least two languages.
 
-* **What happens:** You pretend to hand it over, only to trigger a manual arc. A blinding wave of sapphire plasma knocks Vex clean off his boots, detonating his scattergun’s power pack in a shower of sparks. The pirate scrambles backward into his freighter, swearing in six distinct dialects.
-* **The Catch:** The pirate is repelled, but the discharge slightly scorched the capacitor's casing, leaving it humming with unpredictable instability.
-* **Story Direction:** You defended your prize, but the damaged capacitor is now radiating odd thermal signatures. This leads directly into the tempestuous events of **Chapter 7 (The Acid Rain Surprise)**.
+- **Stats:** -12 BAT
+- **Items gained:** Vex Plasma Shotgun
+- **Leads to:** Chapter 7: The Acid Rain Surprise
 
----
+### [3] Self-Destruct Bluff — hold up the suit's emergency beacon and threaten to detonate the reactor.
 
-#### If you choose [2] (S.T.E.V.E.’s Sonic Screech)
+**Outcome:** Vex doesn't buy it. He beats you unconscious with the flat of his own gun, strips everything of value from the campsite, and leaves you — and only you — for the scavengers to find. You wake up hours later back at the crash site, empty-handed and several ranks lower in the local pecking order.
 
-* **What happens:** S.T.E.V.E. blasts an agonising, ear-shattering dial-up audio assault directly into Vex’s cyberware. The cyborg clutches his helmet in agony, drops his weapon, trips over his own magnetic boots, and plants his face firmly in the mud.
-* **The Catch:** A completely bloodless and thoroughly satisfying victory, though the transmission consumes nearly all of S.T.E.V.E.’s remaining battery reserves.
-* **Story Direction:** Cursing you and your entire lineage, Vex crawls back up his ramp and retreats. You grab his abandoned scattergun and prepare for the atmospheric nightmare of **Chapter 7**.
+- **Stats:** -10 BAT, ALL SCRAP LOST
+- **Leads to:** Chapter 1: The Landing Site
 
----
+### [4] Let S.T.E.V.E.'s Ego Do the Talking — his newly maxed-out self-regard turns into pure, unhinged trash talk aimed at Vex. _(**unlocks after:** `steve_ego_maxed`)_
 
-#### If you choose [3] (The Self-Destruct Bluff)
+**Outcome:** S.T.E.V.E. unloads a monologue of such spectacular, unearned confidence that Vex actually pauses to process it. It's not intimidating so much as baffling — which, it turns out, works almost as well. Vex leaves muttering that "the ship AI's a bigger problem than the guy," and takes nothing with him.
 
-* **What happens:** You take a knee, dramatic thumb hovering over your suit’s red beacon, and announce: *"One twitch, mate, and my reactor core levels this entire postal code!"* Vex eyes the flashing strobe, misjudges your sanity, panics, scurries back into his cockpit, and blasts off in a hurry.
-* **The Catch:** A masterclass in bluffing, but your trembling thumb came within a millimetre of actually detonating the core. S.T.E.V.E. requires several minutes of soothing logic to cancel the countdown.
-* **Story Direction:** The bluff succeeds, but your adrenaline levels are through the roof. You must regroup swiftly before **Chapter 7** unleashes its wrath.
+- **Stats:** -4 BAT
+- **Leads to:** Chapter 7: The Acid Rain Surprise

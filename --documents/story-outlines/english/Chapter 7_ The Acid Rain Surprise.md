@@ -1,47 +1,40 @@
 # Chapter 7: The Acid Rain Surprise
 
-No sooner has the dust settled from the hasty departure of Vex's pirate barge than the sky above Gryps-4 decides to stage a dramatic change of wardrobe. The customary, depressing pale violet suddenly curdles into a thoroughly toxic neon green. A heavy, eye-watering stench of vaporised ammonia washes through the gulch.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-Presently, the first fat droplet strikes the hull above your head with an angry, corrosive *Sssss!* Within a fraction of a second, it eats a neat, smoking crater straight through the sheet metal.
+**Location:** Acid Rain Shelter
 
-> **S.T.E.V.E.** *(strobing frantically in an alarming shade of orange)*: "Weather warning! Severe meteorological nuisance detected! That is no standard precipitation, Boss. That is Grade-4 industrial-strength sulphuric acid rain, fresh from the chemical smog of the upper atmosphere!"
->
-> **S.T.E.V.E.** *(borderline hysterical)*: "If this deluge touches our remaining hull plating—or heaven forbid, our lovely new Hyper-Capacitor—we are completely done for! Our components will dissolve faster than a cheap sugar cube in boiling tea!"
-
-Outside, the heavens open in a biblical downpour of pure solvent. Great mountains of junk hiss and steam as dense, toxic fog rolls across the floor. The acid is already dripping through the ceiling seams of the *CSS RUST-404*. You have mere seconds to sort yourself out.
+The sky turns toxic neon-green without warning. Grade-4 sulphuric rain starts dissolving the hull plating, the crates, and — S.T.E.V.E. notes with real alarm — anything organic left uncovered for more than ninety seconds. That includes you. The rain hisses where it lands, and the air fills with a smell like a battery factory on fire.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] Patch the leaks:** Scavenge every available tarpaulin, thermal blanket, and grease-caked spacesuit scrap to frantically bung the ceiling leaks and shield the capacitor.
-* **[2] Tuck and run for the cave:** Abandon the wreckage, tuck the capacitor securely under your arm, and dash through the flesh-melting torrent to seek shelter in a nearby disused industrial tunnel.
-* **[3] Deploy S.T.E.V.E.’s emergency barrier:** Force S.T.E.V.E. to route your battery’s absolute final emergency reserves into a short-lived electromagnetic shield to deflect the chemical onslaught.
+### [1] Patch the Leaks with Tarps — tape covers over the roof and the capacitor.
 
----
+**Outcome:** Hardware stays bone-dry. You hunch under the tarp with minor chemical burns through a gap in your overalls, waiting out the worst of the downpour before it's safe to move again. Everything that matters survives intact.
 
-### What happens next?
+- **Stats:** -2 HULL
+- **Time-lock:** 30 minutes
+- **Leads to:** Chapter 8: The Black Market Deal
 
----
+### [2] Dash to Industrial Cave — grab the capacitor and sprint for shelter.
 
-#### If you choose [1] (Frantic patching)
+**Outcome:** You make it, capacitor in hand, boots half-dissolved. The rest of your tools and supplies are left behind in the flooding wreck.
 
-* **What happens:** You tape, shove, and secure tarps while sweat stings your eyes. The acid eats through the outermost layers of rubber and cloth with gusto, but your makeshift umbrella holds, keeping the inner cabin and the precious capacitor bone dry.
-* **The Catch:** You save the vessel and your spoils, but sustain minor chemical burns across your overalls and develop an extremely unattractive hacking cough.
-* **Story Direction:** After an excruciating hour, the toxic cloud drifts off. Equipped with intact hardware, you proceed to **Chapter 8 (The Black Market Deal)**.
+- **Stats:** -1 HULL, ALL SCRAP LOST
+- **Leads to:** Chapter 8: The Black Market Deal
 
----
+### [3] S.T.E.V.E. Kinetic Shield — divert every remaining watt into a defensive energy dome.
 
-#### If you choose [2] (Dash for the cave)
+**Outcome:** The dome holds beautifully for six minutes and collapses on minute seven, a full battery cycle short of the storm passing. The rain finishes what the drained shield started.
 
-* **What happens:** You clutch the capacitor like a rugby ball and make a break for it. The acid spatters against your shoulder plates, but you stumble, gasping, into the dry safety of an abandoned manufacturing conduit. Unfortunately, in the panic, you left half your repair toolkit behind in the flooded wreck.
-* **The Catch:** The capacitor is unscathed, but you are now technically homeless, thoroughly damp, and missing essential gear.
-* **Story Direction:** You must wait out the storm in a pitch-black pipe before emerging, damp and disgruntled, into **Chapter 8**.
+- **Stats:** no change
+- 💀 **FATAL — run ends here.**
 
----
+### [4] Reroute Coolant as a Makeshift Seal — jury-rig the suit's coolant lines to patch the worst gaps.
 
-#### If you choose [3] (S.T.E.V.E.’s Kinetic Shield)
+**Outcome:** Ugly, technically against several safety regulations, and it works. The coolant gels on contact with the acid rain, sealing the gaps just enough. Your suit smells like a chemistry accident for the rest of the run, but everything that matters stays dry.
 
-* **What happens:** S.T.E.V.E. engages the defensive matrix. A shimmering cerulean dome envelops the hull; the acid rain splashes harmlessly against it in bright blue sparks. Impeccable protection! Regrettably, the energy drain completely flattens your power cell.
-* **The Catch:** The wreck is utterly unharmed, but S.T.E.V.E. suffers a total power collapse and goes completely dark.
-* **Story Direction:** You must face the next leg of your journey without the soothing, sarcastic voice of your digital companion, wandering blindly into **Chapter 8**.
+- **Stats:** -1 HULL, -4 BAT
+- **Leads to:** Chapter 8: The Black Market Deal

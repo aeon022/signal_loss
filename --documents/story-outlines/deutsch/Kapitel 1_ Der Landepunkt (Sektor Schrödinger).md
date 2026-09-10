@@ -1,53 +1,39 @@
-# Kapitel 1: Der Landepunkt (Sektor Schrödinger)
+# Kapitel 1: Der Landepunkt
 
-Das Letzte, was du vor dem finalen, ohrenbetäubenden Blackout gesehen hast, war die wild flackernde, berstende Hauptkonsole der *CSS RUST-404* und die panisch rot aufleuchtende Notfallleuchte deiner Rettungskapsel.
+> Diese Datei spiegelt den aktuell live geschalteten Inhalt von `story_de.json` Stand 2026-09-10 (49 Entscheidungen über 12 Kapitel, Flag-gesteuerte Callbacks, dichtere Einleitungen) — neu generiert, ersetzt den früheren Entwurf von vor der eigentlichen Spielmechanik. Hier oder direkt in `story_de.json` weiterbearbeiten — danach synchronisiert sich nichts mehr automatisch.
 
-Jetzt schmeckst du feinen, metallischen Ascheregen und den beißenden Geruch von verschmorten Kabeln auf der Zunge. Deine Rippen fühlen sich an, als hätte sie jemand durch einen industriellen Fleischwolf gedreht, und jeder Atemzug brennt in deiner Lunge wie flüssiges Feuer. Über dir kreischt die dünne, giftige Atmosphäre von Gryps-4 wie ein überlasteter, heulender Düsenjet im Sturzflug.
+**Ort:** Landepunkt
 
-Du liegst kopfüber in einem völlig verzogenen, verkohlten Wrackteil. Es hat sich tief und kompromisslos in eine gigantische, kilometerhohe Müllhalde gebohrt – eine surreale Landschaft aus verrottetem High-Tech-Schrott, rostenden Satellitenschüsseln und kosmischem Biomüll. Dein Raumanzug ist an der linken Schulter rissig, und das stotternde Notfall-Licht deines Helms wirft zuckende, bedrohliche Schatten auf die metallischen Wände.
-
-Plötzlich zuckt ein greller, pinker Lichtkegel über dein zerkratztes Visier. Deine Helm-KI erwacht mit einem schmerzhaften, blechernen Quietschen zum Leben. Ein blauer, fehlerhafter Fortschrittsbalken kriecht zäh und stockend über den Schirm.
-
-> **S.T.E.V.E.:** "System-Boot abgeschlossen... Urgh. Herzlichen Glückwunsch. Oh, du lebst tatsächlich noch. Faszinierend. Die Lebenserhaltung schätzt deine Überlebenschancen aktuell auf exakt glatte 4,2 Prozent. Aber hey – wir wollen mal nicht pessimistisch sein, wir haben schließlich noch Sauerstoff für schätzungsweise zwanzig Minuten!"
-> **S.T.E.V.E.:** "Wir liegen hier irgendwo im tiefsten, gottverlassensten Nirgendwo dieses Sektors. Die Außenhülle brennt an mindestens drei Ecken, mein Hauptspeicher riecht verdächtig nach verbranntem Toast, und die Schwerkraft hier scheint dich persönlich nicht zu mögen."
-> **S.T.E.V.E.:** "Apropos gute Laune und ungetrübter Optimismus: Da drüben, hinter einem rauchenden Berg aus geschmolzenen Holo-Bildschirmen, bewegt sich etwas Schweres. Ein lokaler Alien-Clan mit selbstgeschweißten, hochenergetischen Laser-Mistgabeln nähert sich unserem Standort im Eilmarsch. Sie riechen extrem stark nach saurem Weltraum-Bier, tragen Röcke aus recycelten Autoreifen und sehen absolut nicht so aus, als wären sie wegen einer Unterschrift hier."
-
-Draußen knirscht Metall unter schwerem Druck. Harsche, gurgelnde Laute und das unverkennbare, surrende Summen einer überladenen Energiewaffe schneiden durch die Luft. Sie sind direkt vor der Luke.
-
-### Was unternimmst du?
-
-* **[1] "Hallo Jungs!"** Du stolperst aus der verklemmten Luke, reißt die Arme hoch, tust so, als wärst du der arrogante Besitzer dieses gesamten Schrottplatzes, und versuchst, mit einer lauten Mischung aus gespielter Autorität und blanker Panik mit ihnen zu verhandeln.
-* **[2] Tot stellen.** Du wirfst dich augenblicklich zurück in den ockerfarbenen Dreck, verdrehst die Augen im Helm und machst dich so winzig und leblos wie möglich – in der harten Hoffnung, dass sie dich für völlig wertlosen, ungenießbaren Biomüll halten.
-* **[3] Notfall-EMP.** Du schlägst mit letzter Kraft die Metallverkleidung von S.T.E.V.E.s Gehäuse ab und riskierst eine schmerzhafte Kernüberlastung, um einen manuellen, elektromagnetischen Kurzschluss zu zünden und die Aliens zu grillen.
-
---- 
-
-Hier ist der Ausblick, wohin dich deine jeweilige Entscheidung am Ende von **Kapitel 1** führt und wie sich der Weg im nächsten Kapitel fortsetzt:
+Die CSS RUST-404 hört auf, sich zu überschlagen, und bleibt kopfüber in einem Müllberg von der Größe einer kleinen Gemeinde stecken. Rauch quillt in trägen grauen Schwaden aus der Konsole, vorbei an einem Sichtfenster, das von Rissen durchzogen ist wie ein Spinnennetz. Warnlichter blinken in Farben, die im Handbuch nie erwähnt wurden. Irgendwo über dir streitet die Schwerkraft noch darüber, welche Richtung oben ist. „Systeme... halbwegs nominal“, meldet S.T.E.V.E. mit knisternder Stimme durch einen Lautsprecher, der schon bessere Jahrzehnte gesehen hat. „Überlebenswahrscheinlichkeit: 4,2 Prozent. Aus Freundlichkeit aufgerundet.“ Du bist Arthur Pendelton, Cargo-Ingenieur der Klasse 3 bei Galactic Scrap & Freight, und nach jeder Kennzahl, die die Firma misst, aggressiv durchschnittlich — nicht die schnellsten Reflexe auf deinen letzten drei Schiffen, aber auch nicht die langsamsten, die Art von Unauffälligkeit, die einen Mann in Beschäftigung hält und, bisher, am Leben. Durch die gesprungene Frontscheibe zählst du sechs Gestalten in Reifen-Rock-Rüstung, die sich mit erhobenen Plasma-Ackergeräten der Luke nähern, mit der unaufgeregten Sicherheit von Leuten, die das schon einmal gemacht haben. Die Laser-Mistgabel-Ansässigen haben dich als Erste gefunden.
 
 ---
 
-### Wenn du [1] wählst ("Hallo Jungs!" – Der Verhandlungs-Versuch)
+## Entscheidungen
 
-* **Was passiert:** Du stolperst mit hängenden Armen und einer großen Klappe raus. Der Alien-Anführer mustert dich, ist von so viel Lebensmüdigkeit beeindruckt und hält dich für geistig völlig verwirrt. Statt dich zu rösten, wirft er dir eine rostige Dose zu und zieht weiter.
-* **Der Clou:** Du sicherst dir sofort etwas ersten **Schrott (`SCRAP`)**, bezahlst das Ganze aber mit einem ordentlichen Schluck Energie aus deinem Anzug, weil dein Herzschlag durch die Decke geht.
-* **Wohin die Story geht:** Du überlebst den ersten Schrecken und machst dich direkt auf den Weg zum **Schrott-Basar (Kapitel 2)**, wo du versuchst, deine Beute bei dem zwielichtigen Food-Truck-Kartell gegen eine funktionierende Batterie einzutauschen.
+### [1] „Na dann, guten Tag, die Herren!“ (Diplomatischer Bluff) — stolperst raus und tust, als gehöre dir die Müllhalde.
 
----
+**Ergebnis:** Du marschierst hinaus und klopfst dir Staub von den Handschuhen, als würde dir der ganze Berg gehören. Der Anführer kneift die Augen zusammen, entscheidet sich, dass du entweder verrückt oder wichtig bist, und wirft dir aus reiner Verwirrung Schrott zu, bevor die ganze Bande streitend abzieht.
 
-### Wenn du [2] wählst (Tot stellen – Der Tarn-Versuch)
+- **Werte:** -5 BAT, +3 SCRAP
+- **Führt zu:** Kapitel 2: Der Schrott-Basar
 
-* **Was passiert:** Du wirfst dich in den Dreck, verharst in Schockstarre und riechst dank der Kapsel-Leckage exakt wie eine alte Fischkonserve. Die Aliens treten verächtlich gegen das Wrack, lachen grölend über deine erbärmliche Gestalt und lassen dich liegen, weil du für sie wertloser Müll bist.
-* **Der Clou:** Du sparst dir zwar die Energie für spektakuläre Aktionen, aber deine Würde sinkt auf den absoluten Nullpunkt, und S.T.E.V.E. zieht dich gnadenlos damit auf.
-* **Wohin die Story geht:** Du bleibst unentdeckt, musst aber im Schutz der Trümmer feststellen, dass dein Raumanzug durch die Feuchtigkeit im Dreck Schaden nimmt. Du musst dich im nächsten Schritt durch die Trümmer schleichen, um überhaupt an brauchbares Werkzeug für die Hülle zu kommen.
+### [2] Totstellen (Die Meisterklasse der Feigheit) — mit dem Gesicht voran in den Schlamm fallen.
 
----
+**Ergebnis:** Du gehst nieder wie ein Sack abgelaufener Rationen. Die Ansässigen treten ein paarmal gegen den Rumpf, lachen über den Gestank und verlieren das Interesse. Ätzender Schlamm frisst sich währenddessen ein Stück durch deinen Anzug.
 
-### Wenn du [3] wählst (Notfall-EMP – Die Zerstörungs-Variante)
+- **Werte:** -2 HULL
+- **Führt zu:** Kapitel 2: Der Schrott-Basar
 
-* **Was passiert:** Du reißst S.T.E.V.E.s Abdeckung auf und erzwingst eine manuelle Kernüberlastung. Ein greller, blauer Blitz zuckt aus der Antenne. Die Aliens kreischen wie entfesselte Staubsauger, lassen ihre Mistgabeln fallen und rennen panisch davon.
-* **The Cost:** S.T.E.V.E.s CPU riecht danach nach verbranntem Toast, deine Batterie verliert massiv Saft, und auch das Schiff bekommt einen kleinen zusätzlichen Hüllenschaden ab.
-* **Wohin die Story geht:** Du hast die unmittelbare Bedrohung zwar spektakulär aus dem Weg geräumt, stehst jetzt aber vor einem technischen Scherbenhaufen: S.T.E.V.E. fängt an zu stottern, und du musst in **Kapitel 2** dringend und sofort Saft beschaffen, bevor deine eigene Lebenserhaltung komplett den Geist aufgibt.
+### [3] Notfall-EMP (Verbrannte Erde) — S.T.E.V.E.s Antenne in die Rumpfverkleidung überlasten.
 
----
+**Ergebnis:** Die Überlastung schlägt rückwärts durch den offenen Rumpfbruch, statt nach außen. S.T.E.V.E. schreit eine Warnung eine halbe Sekunde zu spät. Die Ansässigen müssen dich gar nicht mehr fertigmachen — die Rückkopplung erledigt das für sie. Sektor Schrödinger fordert einen weiteren Cargo-Ingenieur, noch vor Kapitel 2.
 
-Wie lautet deine Entscheidung für den Einstieg?
+- **Werte:** keine Änderung
+- 💀 **TÖDLICH — Lauf endet hier.**
+
+### [4] Über die Trümmer zurückkreisen (Du kennst dieses Gelände jetzt) — das Gelände nutzen, das du letztes Mal ausgekundschaftet hast, um zu flankieren statt blind hineinzustolpern. _(**schaltet frei nach:** `enemies_at_ship`)_
+
+**Ergebnis:** Diesmal weißt du genau, wo die Schlammtümpel flach sind und wo der Schatten des Wracks eine gerade Linie zum Grat verbirgt. Du bist hinter der Aufklärungslinie der Ansässigen, bevor die überhaupt fertig aufgestellt haben, und bringst zwei von ihnen aus dem Gleichgewicht, nur indem du nicht dort bist, wo sie dich erwartet haben. Kleiner Sieg, aber er gehört dir.
+
+- **Werte:** -2 BAT, +4 SCRAP
+- **Führt zu:** Kapitel 2: Der Schrott-Basar

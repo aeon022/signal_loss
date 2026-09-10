@@ -1,45 +1,39 @@
-# Chapter 12: The Leap into the Unknown (The Finale)
+# Chapter 12: The Leap into the Unknown
 
-The *CSS RUST-404* tears through the noxious green upper stratosphere of Gryps-4 with deafening, ear-splitting fury. The cockpit's structural struts groan under the immense friction heat, while below your cracked viewport, the burning canyons of the planet blur into a murky ochre carpet.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-Against every law of thermodynamics, aeronautics, and basic common sense, you have actually coaxed this flying scrapheap into orbit.
+**Location:** Open Orbit
 
-> **S.T.E.V.E.** *(strobing in a triumphant, brilliant neon blue)*: "Utterly magnificent flying, skipper! The thrusters are firing, hull integrity is holding at a solid three per cent, and we have successfully escaped the gravitational pull of that ghastly rubbish dump!"
->
-> **S.T.E.V.E.** *(queues a celebratory digital fireworks animation across the console)*: "However, do direct your attention to the primary display. Straight ahead lies our designated hyperspace jump node... which happens to be drifting directly through an uncharted asteroid field, on account of my navigation memory losing several key tables during our earlier scuffles!"
-
-You stand before your final decision. The master lever for the FTL jump to freedom gleams in the control cabin, but without precise vector calculations, a blind jump could strand you in the cosmic void—or deposit you neatly inside the core of a dying star.
+The CSS RUST-404 breaks orbit, alive against every reasonable expectation. The hyperspace beacon pulses dead ahead. Between you and it: an uncharted asteroid field that wasn't on any chart S.T.E.V.E. has access to, which is, S.T.E.V.E. points out, most of them. The console hums low, waiting on your call.
 
 ---
 
-### How does your journey conclude? (Choose the final jump)
+## Choices
 
-* **[1] The blind, full-throttle jump:** Say your prayers, grit your teeth, and yank the hyperspace lever to maximum without course corrections to leave Gryps-4 behind as fast as physics permits.
-* **[2] The risky manual course correction:** Grab the analog flight controls, ignore S.T.E.V.E.’s automated alarms, and thread the needle through the narrow gap in the asteroid field by hand.
-* **[3] Overclock the Hyper-Capacitor:** Shove the scavenged (or purloined) capacitor directly into the manual overload port to force a chaotic, unpredictable quantum leap that bypasses conventional spatial coordinates entirely.
+### [1] Blind Full-Throttle Jump.
 
----
+**Outcome:** You blast blindly into hyperspace and emerge in a quiet, uncharted sector. The ship is totaled beyond any insurance claim, but you're breathing, and the view is nice.
 
-### The Grand Finale – What happens?
+- **Stats:** no change
+- **Ending:** 🏆 Ending: The Lucky Castaway
 
----
+### [2] Manual Course Correction.
 
-#### If you choose [1] (The Blind Full-Throttle Jump):
-You punch blindly into hyperspace. The stars smear into a swirling vortex of incandescent light. After what feels like an eternity, realspace spits you out in a quiet, uncharted border sector. Your ship is an absolute wreck and you have zero idea where on the galactic map you are, but you are alive and breathing. S.T.E.V.E. begins humming an off-key sea shanty—and you’ve made it.  
-**[Ending: The Lucky Castaway]**
+**Outcome:** You thread the needle through the asteroid field by hand, plot a flawless interstellar jump, and land it clean. Scavenger circles will be telling this one for years.
 
----
+- **Stats:** no change
+- **Ending:** 🏆 Ending: The Ace of Sector Schrödinger
 
-#### If you choose [2] (The Manual Course Correction):
-With white knuckles and nerves of steel, you haul the yoke sideways. The *CSS RUST-404* skims past a towering asteroid with a deafening metallic shriek, clears the debris belt by a hair's breadth, and jumps cleanly into the interstellar void. Word of your impossible piloting spreads across the spaceways: you are a legend among scavengers.  
-**[Ending: The Ace of Sector Schrödinger]**
+### [3] Overclock the Hyper-Capacitor.
 
----
+**Outcome:** The capacitor doesn't so much power the jump as detonate through it. You reappear instantly in the home docking bay, directly atop the CEO's hovercar. Sacked on arrival — but home for tea.
 
-#### If you choose [3] (The Overclocked Quantum Leap):
-The capacitor hums with terrifying intensity before detonating in a brilliant pulse of quantum displacement. For a single second, you experience the entirety of space and time simultaneously, before reappearing with an audible *POP* inside the corporate docking bay of your old freight employer—directly atop the CEO's personal hovercar. You are promptly sacked, but you are home in time for tea!  
-**[Ending: The Chaotic Hero]**
+- **Stats:** no change
+- **Ending:** 🏆 Ending: The Chaotic Hero
 
----
+### [4] Broadcast Everything, Full Signal — instead of jumping quiet, blast every sensor log, every faction's dirty laundry, and your own flight path across every open channel in the sector.
 
-*And with that, our interactive terminal adventure on Gryps-4 draws to a close! How was the ride?*
+**Outcome:** Hyperspace doesn't care about radio chatter, so the jump itself goes exactly like the others. What's different is what's waiting when you land: half of Sector Schrödinger already knows what happened to you, because you told all of it, to everyone, on the way out. Cargo companies hate you. Independent scrappers, oddly, love you. Signal restored, whether anyone asked for it or not.
+
+- **Stats:** no change
+- **Ending:** 🏆 Ending: The Loud One

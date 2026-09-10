@@ -1,57 +1,39 @@
-# Chapter 1: The Landing Site (Sector Schrödinger)
+# Chapter 1: The Landing Site
 
-The very last thing you witnessed before the deafening blackout was the wildly sparking, violently exploding main console of the *CSS RUST-404*, accompanied by the frantic crimson strobe of your escape pod's catastrophic failure indicator. Splendid.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-Now, you have the exquisite pleasure of tasting fine metallic ash and the pungent aroma of fried wiring. Your ribs feel as though they have been courteously processed through an industrial mincer, and every breath burns in your lungs like liquid malice. Overhead, the thin, toxic atmosphere of Gryps-4 screams like a severely overloaded jet engine in a terminal nosedive.
+**Location:** Landing Site
 
-You find yourself upside down within a thoroughly warped, scorched lump of fuselage. It has driven itself with commendable determination several storeys deep into a colossal mountain of rubbish—a rather picturesque wasteland of rotting high-tech junk, corroded satellite dishes, and cosmic bio-sludge. Your spacesuit has a charming tear across the left shoulder, and the flickering emergency beacon on your helmet casts ominous, twitching shadows across the twisted bulkhead.
-
-Suddenly, a piercing beam of magenta light washes over your scratched visor. Your helmet AI boots up with a dreadful, tinny screech. A glitchy blue progress bar crawls across your HUD with all the urgency of a drugged snail.
-
-> **S.T.E.V.E.:** "System boot complete... Ugh. Heartiest congratulations, sunshine. You are, against all reasonable odds, still alive. Fascinating. Life support currently calculates your survival probability at a roaring 4.2 per cent. But let’s not be miserable buggers—we’ve still got roughly twenty minutes of oxygen left!"
->
-> **S.T.E.V.E.:** "We are presently nestled in the deepest, most godforsaken armpit of this sector. The exterior hull is on fire in at least three convenient locations, my core memory smells distinctly of burnt toast, and the local gravity appears to have taken an intense personal dislike to you."
->
-> **S.T.E.V.E.:** "Speaking of unbridled optimism: just over yonder, behind that smoking mound of melted holographic displays, something rather heavy is on the move. A charming welcoming committee of locals, armed with home-welded high-energy laser pitchforks, is marching our way. They reek powerfully of sour space-lager, wear skirts fashioned from recycled radial tyres, and don't look particularly keen on exchanging pleasantries."
-
-Outside, metal groans under heavy boots. Harsh, guttural shrieks and the unmistakable whine of an overcharged energy weapon slice through the air. They are right outside the hatch.
+The CSS RUST-404 stops tumbling upside down, half-buried in a rubbish mountain the size of a small municipality. Smoke seeps from the console in lazy grey ribbons, curling past a viewport spider-webbed with cracks. Warning lights blink in colors the manual never mentioned. Somewhere above you, gravity is still arguing about which way is up. "Systems... nominal-ish," S.T.E.V.E. announces, voice crackling through a speaker that's seen better decades. "Survival probability: 4.2%. I've rounded up out of kindness." You are Arthur Pendelton, Class-3 Cargo Engineer for Galactic Scrap & Freight, and you are, by every metric the company tracks, aggressively average — not the fastest reflexes on your last three ships, not the slowest either, the kind of unremarkable that keeps a man employed and, so far, alive. Through the cracked windshield you count six figures in tyre-skirt armor closing in on the hatch, plasma farming tools raised, moving with the unhurried confidence of people who've done this before. The Laser-Pitchfork Locals have found you first.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] "Right, afternoon lads!"** Stumble out of the jammed hatch, throw your arms up, pretend you're the haughty proprietor of this magnificent tip, and attempt to bluff your way through with an insufferable mix of fake authority and unadulterated terror.
-* **[2] Play dead.** Fling yourself face-first into the ochre filth, roll your eyes back in your helmet, and lie as limp as overcooked cabbage—praying fervently that they mistake you for utterly worthless, inedible bio-waste.
-* **[3] Emergency EMP.** Beat the living daylights out of S.T.E.V.E.’s casing and force a rather agonising core overload to trigger a manual electromagnetic blast, politely frying the aliens' rustic weaponry (and your own electronics).
+### [1] "Right, afternoon lads!" (Diplomatic Bluff) — stumble out acting like the junkyard owner.
 
----
+**Outcome:** You march out clapping dust off your gloves like you own the mountain. The chief squints, decides you're either insane or important, and tosses you scrap out of sheer confusion before the whole gang wanders off arguing about it.
 
-### What happens next?
+- **Stats:** -5 BAT, +3 SCRAP
+- **Leads to:** Chapter 2: The Scrap Bazaar
 
----
+### [2] Play Dead (The Masterclass in Cowardice) — collapse face-first into the muck.
 
-#### If you choose [1] ("Right, afternoon lads!" – The Diplomatic Bluff)
+**Outcome:** You go down like a sack of expired rations. The Locals kick the hull a few times, laugh at the smell, and lose interest. Corrosive sludge eats a little of your suit while you wait it out.
 
-* **What happens:** You blunder out, arms dangling, with a mouth full of unwarranted confidence. The alien chieftain looks you up and down, genuinely baffled by such suicidal bravado, and decides you are clinically unhinged. Rather than incinerating you on the spot, he chucks a rusty tin of unidentifiable grease at your head and moves on.
-* **The Catch:** You bag yourself some initial **Scrap (`SCRAP`)**, though your suit’s energy reserves take a proper beating because your heart rate just broke the sound barrier.
-* **Story Direction:** Having narrowly dodged a laser lobotomy, you head straight for the **Scrap Bazaar (Chapter 2)** to barter your loot with the local culinary extortionists for a functioning battery.
+- **Stats:** -2 HULL
+- **Leads to:** Chapter 2: The Scrap Bazaar
 
----
+### [3] Emergency EMP (Scorched Earth) — force-overload S.T.E.V.E.'s antenna into the hull plating.
 
-#### If you choose [2] (Play Dead – The Masterclass in Cowardice)
+**Outcome:** The overload arcs backward through the exposed hull breach instead of outward. S.T.E.V.E. screams a warning half a second too late. The Locals don't even need to finish you off; the feedback does it for them. Sector Schrödinger claims another cargo engineer before Chapter 2.
 
-* **What happens:** You collapse into the muck, rigid with fright, smelling thanks to a pod coolant leak remarkably like a tin of rancid pilchards. The aliens give the hull a dismissive kick, snigger at your pathetic, motionless carcass, and wander off in search of something remotely valuable.
-* **The Catch:** You preserve your precious power, but your self-respect plummets to absolute zero, and S.T.E.V.E. makes it his life's mission to mock you relentlessly. Furthermore, the corrosive sludge begins gnawing at your suit seams.
-* **Story Direction:** Undetected but profoundly humiliated, you must crawl through the debris to scavenge anything that might keep your suit from dissolving.
+- **Stats:** no change
+- 💀 **FATAL — run ends here.**
 
----
+### [4] Circle Back Through the Wreckage (You Know This Ground Now) — use the terrain you scouted last time to flank instead of stumbling in blind. _(**unlocks after:** `enemies_at_ship`)_
 
-#### If you choose [3] (Emergency EMP – The Scorched-Earth Strategy)
+**Outcome:** This time you know exactly where the sludge pools run shallow and where the wreck's shadow hides a straight line to the ridge. You're behind the Locals' scouting line before they've finished setting up, and knock two of them off-balance just by not being where they expected. Small win, but it's yours.
 
-* **What happens:** You rip open S.T.E.V.E.’s maintenance panel and trigger a violent discharge. A blinding blue shockwave erupts from the antenna. The aliens screech like outraged vacuum cleaners, drop their pitchforks, and scatter in absolute panic.
-* **The Catch:** S.T.E.V.E.’s processor now smells of incinerated crumpets, your battery level takes a catastrophic nosedive, and the ship's hull suffers additional structural insult.
-* **Story Direction:** You’ve dispatched the threat with great theatricality, but you are now saddled with a sputtering AI and a dying suit. In **Chapter 2**, securing power is no longer optional—it is a matter of avoiding total asphyxiation.
-
----
-
-What is your opening gambit?
+- **Stats:** -2 BAT, +4 SCRAP
+- **Leads to:** Chapter 2: The Scrap Bazaar

@@ -1,47 +1,48 @@
 # Chapter 10: The Repair Crisis
 
-You have dragged your weary bones back to the wreck of the *CSS RUST-404*—whether by conquering the sandstorm, clambering along jagged cliffs, or dozing under a sheet of rusty corrugated iron. All essential components (dependent upon your previous questionable life choices) now lie before you in the red dust: the Navigation Core, the (perhaps slightly battered) Hyper-Capacitor, and a generous pile of recycled scrap.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-You drop to your knees in the grit, fire up the plasma torch, and begin connecting the primary power conduits of the sub-light thrusters. S.T.E.V.E. hangs half-spilled from the open dashboard, optical cables sparking intermittently.
+**Location:** The Wreck — Reactor Bay
 
-> **S.T.E.V.E.** *(emitting a sharp, metallic click)*: "Hardware interlinks established... Sub-light manifold ready for ignition sequence. One minor bureaucratic detail, however, Captain: the central operating system demands an administrative override passphrase before it will deign to release the primary containment rods."
->
-> **S.T.E.V.E.** *(frantically scanning his registers)*: "My buffer memory returns an absolute blank! Either that black-market charlatan purged the partition, or my backup drive suffered blunt force trauma during our initial arrival. We have precisely three attempts to input the master key, after which the reactor locks down permanently and irreversibly!"
-
-Outside the hull, heavy, mechanical footsteps crunch in the sand. The local factions—the laser-pitchfork enthusiasts, the Food Truck Syndicate, and assorted scavengers—have twigged that you’re preparing to depart, and are marching across the landing flat in alarming numbers. You need that password this instant!
+Parts assembled, hull patched as well as duct tape and spite allow, the main reactor demands an administrative override passphrase before it will fire. Three attempts before permanent lockout. Somewhere out past the ridge, factions are closing in on the noise, and the console's cursor blinks with what feels like personal judgment.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] Enter the standard factory default:** Punch in the generic corporate default code printed on every cheap cargo container in the fleet (`ADMIN_0000`).
-* **[2] Force a manual bypass with an iron crowbar:** Ignore the digital prompt altogether, tear off the primary circuit breaker casing, and weld the live high-voltage relays together using sheer physical brute force.
-* **[3] Gamble on S.T.E.V.E.’s questionable humour:** Type in the most absurd, narcissistic command S.T.E.V.E. has ever uttered (something along the lines of `STEVE_IS_A_GENIUS_42`).
+### [1] Standard Reset Code (ADMIN_0000) — the factory default password.
 
----
+**Outcome:** Accepted, technically. It also silently pings a corporate security drone somewhere in orbit, which is now, per the alert log, "inbound."
 
-### What happens next?
+- **Stats:** no change
+- **Flags set:** `drones_inbound`
+- **Leads to:** Chapter 11: The Final Countdown
 
----
+### [2] S.T.E.V.E.'s Vanity Password (STEVE_IS_A_GENIUS_42).
 
-#### If you choose [1] (Factory Default Reset)
+**Outcome:** The Easter egg is real. The reactor purrs to life like it's been waiting its whole service life for someone to type that in, and S.T.E.V.E. is, for once, too smug to be sarcastic about it.
 
-* **What happens:** You punch in `ADMIN_0000`. A green light chimes pleasantly! The system recognizes the legacy factory code and releases the reactor locks. Unfortunately, it also immediately triggers the corporate piracy alarm, alerting every automated defence turret on the grid.
-* **The Catch:** The reactor is operational, but you must initiate launch procedures in frantic haste before automated security forces arrive to repossess the company property.
-* **Story Direction:** The thrusters cough into life, hurtling you directly towards **Chapter 11 (The Final Countdown)**.
+- **Stats:** +2 HULL, +10 BAT
+- **Leads to:** Chapter 11: The Final Countdown
 
----
+### [3] Crowbar Bypass Relay — jam an iron bar between the high-voltage contacts.
 
-#### If you choose [2] (Crowbar Bypass)
+**Outcome:** Sparks fountain across the console. The reactor doesn't just ignite — it ignites while you're still leaning over the open panel. There's no version of that with a survivable ending.
 
-* **What happens:** You rip away the terminal cover and jam the iron bar between the live nodes. A violent shower of blue sparks erupts in your face, singeing your eyebrows as the reactor roars awake with a deafening rattle—while the entire main console begins billowing acrid black smoke.
-* **The Catch:** The engines are running, but you have sustained minor burns and another compartment on the ship is actively on fire.
-* **Story Direction:** No time to pat down your smouldering sleeves; the commotion has drawn the mobs directly to the ramp. Onward to **Chapter 11**.
+- **Stats:** no change
+- 💀 **FATAL — run ends here.**
 
----
+### [4] Formal Override Request — let the newly-polite S.T.E.V.E. request access through proper corporate channels instead of guessing a password. _(**unlocks after:** `steve_polite`)_
 
-#### If you choose [3] (S.T.E.V.E.’s Vanity Password)
+**Outcome:** S.T.E.V.E.'s relentlessly courteous new voice recites a flawless, dully formal access request — exactly the kind corporate security systems are built to trust. The reactor grants the override cleanly, no red flags, no drone dispatch. For once, politeness is the exploit.
 
-* **What happens:** You type the ridiculous code. S.T.E.V.E. lets out a startled, digital giggle: *"Accepted? Good heavens, really? That was merely a cheeky Easter egg I wrote after our third gin in Sector 7!"* The system purrs into readiness, and S.T.E.V.E. looks as proud as a peacock.
-* **The Catch:** A brilliant stroke of luck without a scratch to your person, which boosts your AI's self-esteem to positively unbearable heights.
-* **Story Direction:** With all engines humming smoothly, you prepare for the grand confrontation in **Chapter 11**.
+- **Stats:** +1 HULL, +5 BAT
+- **Leads to:** Chapter 11: The Final Countdown
+
+### [5] Override Under Fire — the bounty hunters on your tail catch up mid-passphrase; slam the standard code through and accept the corporate ping as the lesser risk. _(**unlocks after:** `underworld_hunted`)_
+
+**Outcome:** The hunters get through the door two seconds after ADMIN_0000 goes in. You're already moving by the time they clear the threshold, reactor humming behind you. The ping to corporate security is the least of your problems now, apparently.
+
+- **Stats:** -2 HULL
+- **Flags set:** `drones_inbound`
+- **Leads to:** Chapter 11: The Final Countdown

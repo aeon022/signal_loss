@@ -1,45 +1,42 @@
 # Chapter 4: The Labyrinth of the Glitch Nomads
 
-Following a gruelling, frostbitten night during which you either froze, fired up a blowtorch, or engaged an empty cargo crate in hand-to-hand combat, S.T.E.V.E. awakens with a deafening retro error sound and a violently strobing magenta user interface.
+> This file mirrors the shipped `story.json` content as of 2026-09-10 (49 choices across 12 chapters, flag-gated callbacks, denser intros) — regenerated to replace the earlier pre-mechanics draft. Edit here or in `story.json` directly; nothing keeps the two in sync automatically past this point.
 
-> **S.T.E.V.E.:** "Top of the morning to you! Core temperature has stabilised, and system integrity is holding at an impressive eight per cent! Do have a look outside: in order to retrieve the next critical ship processor, we have no choice but to stroll straight through the notorious *Canyon of the Flickering Pixels*."
->
-> **S.T.E.V.E.:** "This is the primary turf of the Glitch Nomads—charming entities composed not of flesh and bone, but of pure, outdated holographic data-sludge. The conventional laws of physics have taken an indefinite sabbatical there: time runs in reverse without prior notice, and tripping over a three-dimensional syntax error can erase your physical existence from the galactic census."
+**Location:** Canyon of Flickering Pixels
 
-Before you looms a jagged canyon where the very atmosphere shimmers in chaotic cyan, neon pink, and aggressive magenta. Geometric polygons splinter in mid-air and reconstruct themselves with alarming disregard for Euclidean geometry. Blocking the only navigable path stands a towering figure whose head is a rotating, disembodied wireframe triangle emitting a low, hollow static buzz. The nomad communicates entirely via fragmented, broken lines of code hovering in the air.
+S.T.E.V.E. reboots at dawn, apologizing for the nap. Ahead lies the Canyon of Flickering Pixels, where the local physics engine appears to be running on a bad graphics card — rocks phase through each other, shadows run the wrong direction, and distant terrain pops in and out of existence a beat too late. A wireframe Glitch Nomad blocks the only stable path, muttering in corrupted syntax that might be a threat or might be a segfault, its polygonal outline flickering between three slightly different silhouettes like it can't decide how many arms it's supposed to have.
 
 ---
 
-### What is your move?
+## Choices
 
-* **[1] Debug the nomad:** Step forward, attempt to parse the nomad's chaotic code-gibberish, and use S.T.E.V.E.’s interface to compile a syntactically pristine, soothing terminal command.
-* **[2] The Stone Age approach:** Disregard all digital nonsense, grip your trusty iron crowbar with two hands, and attempt to bludgeon your way through the glitchy fabric of reality.
-* **[3] Sacrifice S.T.E.V.E. as a sacrificial firewall:** Route the incoming stream of corrupted data directly into S.T.E.V.E.’s processors, creating a catastrophic distraction while you sprint blindly through the canyon.
+### [1] Debug the Nomad — write and transmit a syntax patch through S.T.E.V.E.
 
----
+**Outcome:** The nomad's wireframe flickers emerald and holds while the patch compiles — a slow, grinding process neither of you can speed up. It finally stabilizes and — apparently grateful — drops a Navigation Data Core before the pass opens.
 
-### What happens next?
+- **Stats:** -5 BAT
+- **Items gained:** Data Module
+- **Time-lock:** 20 minutes
+- **Leads to:** Chapter 5: The Temple of the Recycling Monks
 
----
+### [2] S.T.E.V.E. Firewall Sacrifice — route a spam packet storm through S.T.E.V.E. while you sprint past.
 
-#### If you choose [1] (Debug the code – The Diplomatic Hacker)
+**Outcome:** It works. You get through untouched. S.T.E.V.E., however, comes out the other side speaking only in fragmented pseudo-Latin, and will for some time.
 
-* **What happens:** You furiously key a syntax patch into S.T.E.V.E.’s console and transmit it. The nomad’s triangular head pauses, glows a serene emerald green, and tilts in polite recognition. It dissolves a path forward and drops an intact, highly valuable data module into the dust.
-* **The Catch:** You resolve the encounter with scholarly elegance and snag a tech upgrade, but S.T.E.V.E. burns through a hefty chunk of processing bandwidth.
-* **Story Direction:** Module tucked safely away, you exit the pixelated gorge and chart a course for **Chapter 5 (The Temple of the Recycling Monks)**.
+- **Stats:** no change
+- **Flags set:** `steve_glitched`
+- **Leads to:** Chapter 5: The Temple of the Recycling Monks
 
----
+### [3] The Stone Age Swing — take a crowbar to the holographic Nomad.
 
-#### If you choose [2] (The Stone Age swing)
+**Outcome:** The crowbar passes clean through the wireframe and completes the circuit with a discharge coil behind it. The electrostatic surge fries your suit's nav chip; you wander the canyon for hours before your suit, on emergency dead reckoning, walks you back to the only fixed point it still remembers: the wreck.
 
-* **What happens:** You scoff at binary logic and charge the nomad with the crowbar raised high. You swing with full force—only for the bar to pass straight through the holographic projection. A violent static discharge zaps down your arm, numbing your hand from fingertips to shoulder. The nomad emits a hollow, glitching chuckle, disintegrates into a cloud of stray pixels, and vanishes.
-* **The Catch:** A breathtaking display of contempt for quantum mechanics, leaving you with severe nerve pain, a useless left arm, and dented pride.
-* **Story Direction:** Massaging your throbbing wrist, you stumble painfully through the canyon and limp right into the trials of **Chapter 5**.
+- **Stats:** -8 BAT, ALL SCRAP LOST
+- **Leads to:** Chapter 1: The Landing Site
 
----
+### [4] Barter With Broken Syntax — try trading directly in the Nomad's own corrupted dialect instead of patching or sacrificing anything.
 
-#### If you choose [3] (S.T.E.V.E. as the meatshield)
+**Outcome:** You cobble together a few words of its language from memory — mostly swear words, probably. It's delighted enough by the effort to wave you through personally, no patch required, no firewall sacrificed, just weirdly touched that you tried.
 
-* **What happens:** You divert the nomad's computational assault into S.T.E.V.E.’s core and leg it. A storm of holographic pop-ups, error prompts, and spam banners erupts across the canyon. S.T.E.V.E. shrieks like a 56k dial-up modem being tortured with a magnet, but absorbs the brunt of the attack, allowing you to sprint past unmolested.
-* **The Catch:** You cross the canyon without a scratch, but S.T.E.V.E. is utterly fried, his display is inverted, and he currently communicates exclusively in mangled pseudo-Latin.
-* **Story Direction:** You cleared the passage, but must now navigate **Chapter 5** accompanied by a thoroughly deranged, babbling AI companion.
+- **Stats:** -2 BAT
+- **Leads to:** Chapter 5: The Temple of the Recycling Monks

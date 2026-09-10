@@ -1,40 +1,39 @@
 # Kapitel 11: Der finale Countdown
 
-Der Reaktor der *CSS RUST-404* vibriert und dröhnt mit einer brachialen Gewalt, die den gesamten Boden unter deinen Füßen in Schwingung versetzt. Durch das zerkratzte Cockpitfenster siehst du, wie sich die Wolkendecke über der Müllhalde rot färbt und ein unheilvolles, metallisches Grollen durch das Tal hallt.
+> Diese Datei spiegelt den aktuell live geschalteten Inhalt von `story_de.json` Stand 2026-09-10 (49 Entscheidungen über 12 Kapitel, Flag-gesteuerte Callbacks, dichtere Einleitungen) — neu generiert, ersetzt den früheren Entwurf von vor der eigentlichen Spielmechanik. Hier oder direkt in `story_de.json` weiterbearbeiten — danach synchronisiert sich nichts mehr automatisch.
 
-Doch du bist nicht allein auf der Startrampe.
+**Ort:** Die Startrampe
 
-> **S.T.E.V.E.** *(schreit fast in den Ohrhörer)*: "Boss! Großer Alarm! Alle Fraktionen von Gryps-4 haben unseren Start-Countdown bemerkt! Die Laser-Mistgabel-Aliens kommen über den Nordhügel, das Food-Truck-Kartell rollt mit ihrem gepanzerten Lieferwagen an, und ich wette, der Pirat Vex ist auch irgendwo im Anflug!"
-> **S.T.E.V.E.** *(blinkt in panischem Rot)*: "Sie stürmen die Landebahn! Sie wollen das Schiff entern, bevor der Triebwerksdruck ausreicht, um abzuheben. Wir haben noch genau sechzig Sekunden, bis die Hauptdüsen zünden. Du musst die Einstiegsluke von aussen verriegeln oder den Abflug erzwingen!"
-
-Draußen vor der Luke siehst du bereits die ersten bewaffneten Gestalten durch den roten Staub auf das Schiff zurennen. Du stehst vor der Steuerkonsole – die Hände voller Ruß, das Adrenalin pumpt.
+Der Reaktor brüllt bei voller Vibration. Jede Fraktion mit einer offenen Rechnung konvergiert gleichzeitig auf der Startrampe — Laser-Mistgabeln, das Food-Truck-Kartell, Vex' Crew — sechzig Sekunden bis zur Triebwerkszündung und näherkommend, ein Ansturm von Beschwerden, die alle deinen Namen tragen.
 
 ---
 
-### Was tust du?
+## Entscheidungen
 
-* **[1] Den Not-Auswurf der Luke zünden:** Du betätigst den manuellen Hebel, der die Einstiegsluke mit einer explosiven Ladung nach außen sprengt und die anstürmenden Aliens im letzten Moment mit einer Schockwelle wegpustet.
-* **[2] Den Countdown mit einem waghalsigen Frühstart erzwingen:** Du pfeifst auf die letzten Sicherheitsprüfungen, reißst den Schubhebel sofort auf Anschlag und riskierst, dass das Schiff auf der Startrampe zerreißt, nur um den Feinden unter dem Hintern wegzubeschleunigen.
-* **[3] Den intergalaktischen Notruf über S.T.E.V.E. abfeuern:** Du nutzt die letzten Reserven, um einen chaotischen, hochfrequenten Notruf an das imperiale Reinigungs-Kommando zu senden, damit die das Areal komplett bombardieren, während ihr abhebt.
+### [1] Die Luken-Schleuse sprengen — die Tür mit Sprengladungen in den anstürmenden Mob schleudern.
 
----
+**Ergebnis:** Die Tür räumt die erste Reihe komplett weg. Die Kabine ist für den finalen Countdown brutalem Seitenwind ausgesetzt, aber der Mob wird lange genug zurückgeschlagen, dass es zählt.
 
-### Was passiert bei den Antworten in Kapitel 11? Wohin geht die Story dann?
+- **Werte:** -2 HULL
+- **Führt zu:** Kapitel 12: Der Sprung ins Ungewisse
 
-#### Wenn du [1] wählst (Not-Auswurf der Luke)
+### [2] Imperiale Säuberungsfackel — einen falschen Prioritäts-Notruf senden, um einen orbitalen Angriff anzulocken.
 
-* **Was passiert:** *BUMM!* Die Luke fliegt nach draußen und erwischt die vordersten Aliens frontal. Sie stolpern und fliegen in den Schlamm, während du dich panisch ins Cockpit wirfst und die internen Schotte schließt.
-* **Der Clou:** Du hast den Ansturm im letzten Moment gestoppt, aber das Schiff ist jetzt zur Seite hin offen und kriegt den vollen Wind ab.
-* **Wohin die Story geht:** Die Triebwerke heulen auf, und du wirst in das epische **Kapitel 12 (Der Sprung ins Ungewisse – Das Finale)** katapultiert!
+**Ergebnis:** Imperiale Laser zermalmen die Startrampe pünktlich nach Zeitplan. Splitter prasseln auf deinen aufsteigenden Rumpf, während du durch die Trümmer deines eigenen Köders abhebst.
 
-#### Wenn du [2] wählst (Der waghalsige Frühstart)
+- **Werte:** -1 HULL, -10 BAT
+- **Führt zu:** Kapitel 12: Der Sprung ins Ungewisse
 
-* **Was passiert:** Du rammst den Hebel nach vorn. Die *CSS RUST-404* brüllt wie ein verletzter Drache, reißt sich von den Halterungen los und schießt in einer gigantischen Flammenwand nach oben, während die verblüfften Aliens verdutzt in den Rauch starren.
-* **Der Clou:** Ein brachialer, adrenalingeladener Abgang, der den Feinden keine Chance lässt, aber die Hülle massiv strapaziert.
-* **Wohin die Story geht:** Mit brennendem Heck und rasendem Puls durchbrichst du die Atmosphäre – direkt ins große Finale in **Kapitel 12**.
+### [3] Rücksichtsloser Frühstart — den Schub aufreißen, bevor die Sicherheitsprüfungen abgeschlossen sind.
 
-#### Wenn du [3] wählst (Der imperiale Notruf)
+**Ergebnis:** Die Rakete verlässt die Rampe in einer haushohen Flammensäule, was großartig wäre, hätte der reparierte Rumpf schon ausgehärtet. Er hat nicht. Der Rahmen gibt vierzig Meter über dem Boden nach.
 
-* **Was passiert:** S.T.E.V.E. ballert den Notruf raus. Am Himmel zucken sofort gewaltige Zielerfassungs-Laser des imperialen Reinigungs-Kommandos, die das gesamte Areal mit Schrott-Bomben eindecken. Die feindlichen Fraktionen paniken und rennen um ihr Leben.
-* **Der Clou:** Du räumst die Startbahn absolut gründlich auf, riskierst aber, dass auch dein eigenes Wrack von Splittern getroffen wird.
-* **Wohin die Story geht:** Im entstandenen Chaos zündest du die Triebwerke und fliegst ab in **Kapitel 12**.
+- **Werte:** keine Änderung
+- 💀 **TÖDLICH — Lauf endet hier.**
+
+### [4] Die anfliegende Drohne umleiten — den Anflugvektor der Firmen-Sicherheitsdrohne kapern und auf den Mob statt auf dich richten. _(**schaltet frei nach:** `drones_inbound`)_
+
+**Ergebnis:** Die Drohne, die eigentlich unterwegs war, um dich zur Firmen-Abholung zu markieren, wirft einen einzigen Blick auf bewaffnete Fraktionen, die eine aktive Startrampe stürmen, und stuft die ganze Szene als feindliche Übernahme ein. Sie eröffnet stattdessen das Feuer auf den Mob — Firmeneigentum verteidigt Firmeneigentum, technisch gesehen. Du hebst unter Deckungsfeuer ab, um das du nicht gebeten hast und das du im Vorfall-Bericht auf keinen Fall erklären willst.
+
+- **Werte:** -3 BAT
+- **Führt zu:** Kapitel 12: Der Sprung ins Ungewisse
