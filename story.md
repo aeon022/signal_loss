@@ -23,11 +23,11 @@
 
 ## 3. The 12 Chapters — Complete Narrative & Decision Matrix
 
-Choices now genuinely branch: most options move the story forward, but on every chapter except the finale, one option is a real dead end — either an instant **death** (💀 fatal) or a **setback** that sends you back to Chapter 1 with something lost. The finale (Chapter 12) branches into three distinct endings.
+Choices now genuinely branch: most options move the story forward, but on every chapter but the finale, one option is a real dead end — either an instant **death** (💀 fatal) or a **setback** that sends you back to Chapter 1 with something lost. Several choices only appear once an earlier decision unlocked them (marked *unlocks after*). The finale (Chapter 12) branches into four distinct endings.
 
 ### Chapter 1: The Landing Site
 * **Location:** Landing Site
-* **Narrative:** The CSS RUST-404 stops tumbling upside down, half-buried in a rubbish mountain the size of a small municipality. Smoke seeps from the console. Somewhere above you, gravity is still arguing about which way is up. "Systems... nominal-ish," S.T.E.V.E. announces, voice crackling. "Survival probability: 4.2%. I've rounded up out of kindness." You are Arthur Pendelton, Class-3 Cargo Engineer for Galactic Scrap & Freight, and you are, by every metric the company tracks, aggressively average. That has kept you alive before. Through the cracked windshield you count six figures in tyre-skirt armor closing in on the hatch, plasma farming tools raised. The Laser-Pitchfork Locals have found you first.
+* **Narrative:** The CSS RUST-404 stops tumbling upside down, half-buried in a rubbish mountain the size of a small municipality. Smoke seeps from the console in lazy grey ribbons, curling past a viewport spider-webbed with cracks. Warning lights blink in colors the manual never mentioned. Somewhere above you, gravity is still arguing about which way is up. "Systems... nominal-ish," S.T.E.V.E. announces, voice crackling through a speaker that's seen better decades. "Survival probability: 4.2%. I've rounded up out of kindness." You are Arthur Pendelton, Class-3 Cargo Engineer for Galactic Scrap & Freight, and you are, by every metric the company tracks, aggressively average — not the fastest reflexes on your last three ships, not the slowest either, the kind of unremarkable that keeps a man employed and, so far, alive. Through the cracked windshield you count six figures in tyre-skirt armor closing in on the hatch, plasma farming tools raised, moving with the unhurried confidence of people who've done this before. The Laser-Pitchfork Locals have found you first.
 * **Choices:**
   * **[1] "Right, afternoon lads!" (Diplomatic Bluff) — stumble out acting like the junkyard owner.**
     * *Outcome:* You march out clapping dust off your gloves like you own the mountain. The chief squints, decides you're either insane or important, and tosses you scrap out of sheer confusion before the whole gang wanders off arguing about it.
@@ -40,12 +40,16 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Emergency EMP (Scorched Earth) — force-overload S.T.E.V.E.'s antenna into the hull plating.**
     * *Outcome:* The overload arcs backward through the exposed hull breach instead of outward. S.T.E.V.E. screams a warning half a second too late. The Locals don't even need to finish you off; the feedback does it for them. Sector Schrödinger claims another cargo engineer before Chapter 2.
     * 💀 **FATAL — run ends here.**
+  * **[4] Circle Back Through the Wreckage (You Know This Ground Now) — use the terrain you scouted last time to flank instead of stumbling in blind.** *(unlocks after: `enemies_at_ship`)*
+    * *Outcome:* This time you know exactly where the sludge pools run shallow and where the wreck's shadow hides a straight line to the ridge. You're behind the Locals' scouting line before they've finished setting up, and knock two of them off-balance just by not being where they expected. Small win, but it's yours.
+    * *Stats:* -2 BAT, +4 SCRAP
+    * Leads to Chapter 2: The Scrap Bazaar.
 
 ---
 
 ### Chapter 2: The Scrap Bazaar
 * **Location:** Scrap Bazaar
-* **Narrative:** Bat reserves dwindling, you follow a hand-painted sign reading "B.B.Q. & BATTERIES" to a grease-slicked mobile fortress run by a four-armed chef of the Intergalactic Food Truck Cartel. He is simultaneously flipping something unidentifiable and eyeing your suit's fusion cell socket like a man appraising a used car. "New meat," he rumbles, not unkindly. "Buy, steal, or entertain me."
+* **Narrative:** Bat reserves dwindling, you follow a hand-painted sign reading "B.B.Q. & BATTERIES" to a grease-slicked mobile fortress run by a four-armed chef of the Intergalactic Food Truck Cartel. Something is frying that probably shouldn't be, and the smoke smells faintly of ozone and regret. He is simultaneously flipping something unidentifiable and eyeing your suit's fusion cell socket like a man appraising a used car. Behind him, a cooler marked "NOT FOOD (PROBABLY)" hums ominously. "New meat," he rumbles, not unkindly. "Buy, steal, or entertain me."
 * **Choices:**
   * **[1] Honest Barter — pay scavenged scrap for a fusion battery.**
     * *Outcome:* Scrap changes hands. The battery needs a slow trickle-charge before it's safe to pull, so you wait it out with, unrequested, a radioactive glowing burger "on the house." S.T.E.V.E. logs it as a biohazard and a snack, in that order.
@@ -58,31 +62,39 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Covert Theft — slither behind the truck to steal a battery from the generator.**
     * *Outcome:* You get the battery. You also trip over a fuel can, faceplant into a folding table, and get identified on sight. The chef's cousins drag you back to the wreck as a warning to other customers, dumping you — and none of your gear — back where you started.
     * *Stats:* ALL SCRAP LOST
-    * ⤺ **SETBACK — sent back to Chapter 1.**
+    * Leads to Chapter 1: The Landing Site.
+  * **[4] The Reasonable Haggle — offer half your scrap and a straight face, and see how far that gets you.**
+    * *Outcome:* The chef considers your offer for exactly as long as it takes to flip his mystery meat, then names a price roughly double yours. You settle somewhere uncomfortable in the middle — less scrap gone than honest barter, less charge gained too, but nobody has to sing anything.
+    * *Stats:* +15 BAT, -1 SCRAP
+    * Leads to Chapter 3: Night Falls.
 
 ---
 
 ### Chapter 3: Night Falls
 * **Location:** Night Camp
-* **Narrative:** Temperature drops to -40°C within the hour. S.T.E.V.E. slides into low-power hibernation to protect the last of the charge, leaving you alone with the sound of your own breathing and, somewhere just outside the hull breach, something large scraping metal. It scratches. It waits. It scratches again, patiently, like it has done this before.
+* **Narrative:** Temperature drops to -40°C within the hour. S.T.E.V.E. slides into low-power hibernation to protect the last of the charge, leaving you alone with the sound of your own breathing, condensation crackling to frost on the inside of your visor, and, somewhere just outside the hull breach, something large scraping metal. It scratches. It waits. It scratches again, patiently, like it has done this before — like it knows exactly how thin the hull is at that spot.
 * **Choices:**
   * **[1] Barricade the Hatch — pile scrap against the door and shiver in the corner.**
     * *Outcome:* The thing batters the door for hours, methodical and unhurried, then gives up before dawn. You survive with frostnip and a new appreciation for silence.
-    * *Stats:* -1 HULL, Time-Lock: 8h
+    * *Stats:* -1 HULL, Time-Lock: 480m
     * Leads to Chapter 4: The Labyrinth of the Glitch Nomads.
   * **[2] Plasma Torch Welder — burn a thermal burst through the seam to scare it off.**
     * *Outcome:* The flare of heat sends it shrieking into the dark. Effective, but it costs you nearly the whole night's charge to keep the torch lit.
-    * *Stats:* -10 BAT, Time-Lock: 8h
+    * *Stats:* -10 BAT, Time-Lock: 480m
     * Leads to Chapter 4: The Labyrinth of the Glitch Nomads.
   * **[3] Ambush with Crowbar — burst the hatch open and swing blindly into the dark.**
     * *Outcome:* You connect with nothing but frozen air. It connects with you. The last thing S.T.E.V.E. logs before losing the suit's vitals feed is a single, unhelpful diagnostic: "that was unwise."
     * 💀 **FATAL — run ends here.**
+  * **[4] Toss Scrap Through the Gap — offer up a chunk of loose metal and hope it's more interested in that than you.**
+    * *Outcome:* Something thin and metallic gets dragged away into the dark with a satisfied-sounding scrape. Whether it eats scrap or just collects it, you don't want to know. It doesn't come back before dawn.
+    * *Stats:* -1 SCRAP, Time-Lock: 480m
+    * Leads to Chapter 4: The Labyrinth of the Glitch Nomads.
 
 ---
 
 ### Chapter 4: The Labyrinth of the Glitch Nomads
 * **Location:** Canyon of Flickering Pixels
-* **Narrative:** S.T.E.V.E. reboots at dawn, apologizing for the nap. Ahead lies the Canyon of Flickering Pixels, where the local physics engine appears to be running on a bad graphics card — rocks phase, shadows run the wrong direction, and a wireframe Glitch Nomad blocks the only stable path, muttering in corrupted syntax that might be a threat or might be a segfault.
+* **Narrative:** S.T.E.V.E. reboots at dawn, apologizing for the nap. Ahead lies the Canyon of Flickering Pixels, where the local physics engine appears to be running on a bad graphics card — rocks phase through each other, shadows run the wrong direction, and distant terrain pops in and out of existence a beat too late. A wireframe Glitch Nomad blocks the only stable path, muttering in corrupted syntax that might be a threat or might be a segfault, its polygonal outline flickering between three slightly different silhouettes like it can't decide how many arms it's supposed to have.
 * **Choices:**
   * **[1] Debug the Nomad — write and transmit a syntax patch through S.T.E.V.E.**
     * *Outcome:* The nomad's wireframe flickers emerald and holds while the patch compiles — a slow, grinding process neither of you can speed up. It finally stabilizes and — apparently grateful — drops a Navigation Data Core before the pass opens.
@@ -90,17 +102,22 @@ Choices now genuinely branch: most options move the story forward, but on every 
     * Leads to Chapter 5: The Temple of the Recycling Monks.
   * **[2] S.T.E.V.E. Firewall Sacrifice — route a spam packet storm through S.T.E.V.E. while you sprint past.**
     * *Outcome:* It works. You get through untouched. S.T.E.V.E., however, comes out the other side speaking only in fragmented pseudo-Latin, and will for some time.
+    * *Stats:* No stat changes
     * Leads to Chapter 5: The Temple of the Recycling Monks.
   * **[3] The Stone Age Swing — take a crowbar to the holographic Nomad.**
     * *Outcome:* The crowbar passes clean through the wireframe and completes the circuit with a discharge coil behind it. The electrostatic surge fries your suit's nav chip; you wander the canyon for hours before your suit, on emergency dead reckoning, walks you back to the only fixed point it still remembers: the wreck.
     * *Stats:* -8 BAT, ALL SCRAP LOST
-    * ⤺ **SETBACK — sent back to Chapter 1.**
+    * Leads to Chapter 1: The Landing Site.
+  * **[4] Barter With Broken Syntax — try trading directly in the Nomad's own corrupted dialect instead of patching or sacrificing anything.**
+    * *Outcome:* You cobble together a few words of its language from memory — mostly swear words, probably. It's delighted enough by the effort to wave you through personally, no patch required, no firewall sacrificed, just weirdly touched that you tried.
+    * *Stats:* -2 BAT
+    * Leads to Chapter 5: The Temple of the Recycling Monks.
 
 ---
 
 ### Chapter 5: The Temple of the Recycling Monks
 * **Location:** Temple of Saint-Plastic
-* **Narrative:** A cathedral built from solar panels and salvaged motherboards rises out of the canyon floor. Inside, the Recycling Monks of Saint-Plastic chant BIOS error codes before a gold-plated altar holding the legendary Hyper-Capacitor — exactly the kind of high-yield power cell that could get your reactor running again.
+* **Narrative:** A cathedral built from solar panels and salvaged motherboards rises out of the canyon floor, its spires strung with prayer flags cut from anti-static bags. Inside, the Recycling Monks of Saint-Plastic chant BIOS error codes before a gold-plated altar holding the legendary Hyper-Capacitor — exactly the kind of high-yield power cell that could get your reactor running again. Incense smoke smells unmistakably like burning solder.
 * **Choices:**
   * **[1] Disguise as a Pilgrim — drape yourself in a plastic tarp and chant Error 404.**
     * *Outcome:* The scanner-monk clocks you as a harmless fanatic. You slip in, lift the capacitor, and slip out without so much as a raised eyebrow behind a faceplate.
@@ -113,12 +130,16 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Sabotage the Solar Grid — cut the main feed and plunge the temple into darkness.**
     * *Outcome:* The temple goes black and the monks, it turns out, are not harmless without light. Chanting turns to shouting, then to something more organized. You don't get the chance to explain yourself before the darkness closes in for good.
     * 💀 **FATAL — run ends here.**
+  * **[4] Let Glitched S.T.E.V.E. Lead the Chant — his fragmented pseudo-Latin turns out to be eerily close to the monks' own BIOS liturgy.** *(unlocks after: `steve_glitched`)*
+    * *Outcome:* S.T.E.V.E.'s garbled Latin-adjacent babbling lines up with the monks' error-code chanting so well that three of them start nodding along. Nobody questions a fellow believer speaking in tongues. You lift the capacitor mid-ceremony, and one monk presses a spare fuse into your hand on the way out, mistaking you for clergy.
+    * *Stats:* +Item: Hyper-Capacitor, +Item: Spare Fuse
+    * Leads to Chapter 6: The Act of Sabotage.
 
 ---
 
 ### Chapter 6: The Act of Sabotage
 * **Location:** The Wreck — Vex Standoff
-* **Narrative:** Back at the CSS RUST-404, a gunship the approximate shape and subtlety of a falling dumpster descends on your camp. Vex — cyborg raider, captain of the SS Scrap-Collector, and a man who has clearly never lost an argument by choice — wants your capacitor and whatever scrap you're still hiding. He is not asking twice.
+* **Narrative:** Back at the CSS RUST-404, a gunship the approximate shape and subtlety of a falling dumpster descends on your camp, kicking up a curtain of grit that sets off every alarm you have left. Vex — cyborg raider, captain of the SS Scrap-Collector, and a man who has clearly never lost an argument by choice — wants your capacitor and whatever scrap you're still hiding. Chrome plating catches the light wrong as he steps down the ramp, unhurried, already certain how this ends. He is not asking twice.
 * **Choices:**
   * **[1] Discharge Capacitor as Weapon — overload it into a plasma shockwave.**
     * *Outcome:* The shockwave knocks Vex flat on his back and wrecks his sidearm. The capacitor casing is scorched but intact, and Vex, cursing, decides today isn't the day.
@@ -131,13 +152,17 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Self-Destruct Bluff — hold up the suit's emergency beacon and threaten to detonate the reactor.**
     * *Outcome:* Vex doesn't buy it. He beats you unconscious with the flat of his own gun, strips everything of value from the campsite, and leaves you — and only you — for the scavengers to find. You wake up hours later back at the crash site, empty-handed and several ranks lower in the local pecking order.
     * *Stats:* -10 BAT, ALL SCRAP LOST
-    * ⤺ **SETBACK — sent back to Chapter 1.**
+    * Leads to Chapter 1: The Landing Site.
+  * **[4] Let S.T.E.V.E.'s Ego Do the Talking — his newly maxed-out self-regard turns into pure, unhinged trash talk aimed at Vex.** *(unlocks after: `steve_ego_maxed`)*
+    * *Outcome:* S.T.E.V.E. unloads a monologue of such spectacular, unearned confidence that Vex actually pauses to process it. It's not intimidating so much as baffling — which, it turns out, works almost as well. Vex leaves muttering that "the ship AI's a bigger problem than the guy," and takes nothing with him.
+    * *Stats:* -4 BAT
+    * Leads to Chapter 7: The Acid Rain Surprise.
 
 ---
 
 ### Chapter 7: The Acid Rain Surprise
 * **Location:** Acid Rain Shelter
-* **Narrative:** The sky turns toxic neon-green without warning. Grade-4 sulphuric rain starts dissolving the hull plating, the crates, and — S.T.E.V.E. notes with real alarm — anything organic left uncovered for more than ninety seconds. That includes you.
+* **Narrative:** The sky turns toxic neon-green without warning. Grade-4 sulphuric rain starts dissolving the hull plating, the crates, and — S.T.E.V.E. notes with real alarm — anything organic left uncovered for more than ninety seconds. That includes you. The rain hisses where it lands, and the air fills with a smell like a battery factory on fire.
 * **Choices:**
   * **[1] Patch the Leaks with Tarps — tape covers over the roof and the capacitor.**
     * *Outcome:* Hardware stays bone-dry. You hunch under the tarp with minor chemical burns through a gap in your overalls, waiting out the worst of the downpour before it's safe to move again. Everything that matters survives intact.
@@ -150,12 +175,16 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] S.T.E.V.E. Kinetic Shield — divert every remaining watt into a defensive energy dome.**
     * *Outcome:* The dome holds beautifully for six minutes and collapses on minute seven, a full battery cycle short of the storm passing. The rain finishes what the drained shield started.
     * 💀 **FATAL — run ends here.**
+  * **[4] Reroute Coolant as a Makeshift Seal — jury-rig the suit's coolant lines to patch the worst gaps.**
+    * *Outcome:* Ugly, technically against several safety regulations, and it works. The coolant gels on contact with the acid rain, sealing the gaps just enough. Your suit smells like a chemistry accident for the rest of the run, but everything that matters stays dry.
+    * *Stats:* -1 HULL, -4 BAT
+    * Leads to Chapter 8: The Black Market Deal.
 
 ---
 
 ### Chapter 8: The Black Market Deal
 * **Location:** Rust-Bar
-* **Narrative:** The Rust-Bar speakeasy smells like solder and regret. A two-headed broker slides an orbital Navigation Core across the counter — exactly what's missing from your jump plot — and names his price: the Hyper-Capacitor, or a full wipe of S.T.E.V.E.'s personality partition.
+* **Narrative:** The Rust-Bar speakeasy smells like solder and regret, lit by a single flickering strip of salvaged neon that hasn't decided what color it wants to be. A two-headed broker slides an orbital Navigation Core across the counter — exactly what's missing from your jump plot — and names his price: the Hyper-Capacitor, or a full wipe of S.T.E.V.E.'s personality partition. Both heads watch you decide, which is somehow worse than one.
 * **Choices:**
   * **[1] Trade the Hyper-Capacitor — hand it over for the Navigation Core.**
     * *Outcome:* Navigation is secured. Your sub-light engines will have to make do without a high-yield booster, but at least you know which way home is now.
@@ -168,13 +197,17 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Smoke Grenade Heist — drop a smoke bomb, grab the Core off the counter, and bolt.**
     * *Outcome:* You clear the door with the Core and nothing traded away — for about ninety seconds, until every bounty board in the district lights up with your face. Hired trackers chase you clean out of the district and all the way back to the wreck, and you lose the Core proving it.
     * *Stats:* -8 BAT, -Item: Nav-Core
-    * ⤺ **SETBACK — sent back to Chapter 1.**
+    * Leads to Chapter 1: The Landing Site.
+  * **[4] Split the Difference — offer to siphon off half the capacitor's charge instead of surrendering it whole.**
+    * *Outcome:* The broker's expression — hard to read on a face with no eyebrows — registers something like respect at the audacity. He takes the partial charge and knocks a chunk off the price. You keep a badly depleted capacitor and get the Core anyway.
+    * *Stats:* -15 BAT, +Item: Nav-Core
+    * Leads to Chapter 9: The Long March Through the Sandstorms.
 
 ---
 
 ### Chapter 9: The Long March Through the Sandstorms
 * **Location:** The Sandstorm Dunes
-* **Narrative:** A blinding iron sandstorm rolls in on the trek back to the ship. Static builds fast enough that S.T.E.V.E. starts flagging lightning risk every few seconds, with the enthusiasm of a smoke detector that's found a fresh battery.
+* **Narrative:** A blinding iron sandstorm rolls in on the trek back to the ship, grit scouring paint off every exposed surface. Static builds fast enough that S.T.E.V.E. starts flagging lightning risk every few seconds, with the enthusiasm of a smoke detector that's found a fresh battery. Visibility drops to arm's length; the dunes ahead are just suggestion and noise.
 * **Choices:**
   * **[1] Straight through the Crater — march directly into the howling gale.**
     * *Outcome:* You cut the crossing time in half. Grit breaches the neck seal of your suit somewhere around the halfway mark and you feel every grain of it for the rest of the day.
@@ -186,17 +219,22 @@ Choices now genuinely branch: most options move the story forward, but on every 
     * Leads to Chapter 10: The Repair Crisis.
   * **[3] Hunker in the Dunes — wait out the storm under a steel plate.**
     * *Outcome:* Zero physical damage from the storm itself. But sheltering in one place long enough lets factions on your trail catch up — you emerge to find your ship's camp already ransacked and hostile scouts waiting, forcing a retreat all the way back to the landing site.
-    * *Stats:* Time-Lock: 4h
-    * ⤺ **SETBACK — sent back to Chapter 1.**
+    * *Stats:* Time-Lock: 240m
+    * Leads to Chapter 1: The Landing Site.
+  * **[4] Cut Through Cartel Supply Lines — you're already a marked face; use it to bluff past a checkpoint hidden in the dunes.** *(unlocks after: `wanted_by_cartel`)*
+    * *Outcome:* Turns out being known to the cartel cuts both ways — you talk your way past their checkpoint by claiming you're delivering yourself for a bounty collection elsewhere. Bad idea in general, works exactly once. You're through the storm's worst stretch in half the time, adrenaline doing what shelter couldn't.
+    * *Stats:* -1 HULL, -1 BAT
+    * Leads to Chapter 10: The Repair Crisis.
 
 ---
 
 ### Chapter 10: The Repair Crisis
 * **Location:** The Wreck — Reactor Bay
-* **Narrative:** Parts assembled, hull patched as well as duct tape and spite allow, the main reactor demands an administrative override passphrase before it will fire. Three attempts before permanent lockout. Somewhere out past the ridge, factions are closing in on the noise.
+* **Narrative:** Parts assembled, hull patched as well as duct tape and spite allow, the main reactor demands an administrative override passphrase before it will fire. Three attempts before permanent lockout. Somewhere out past the ridge, factions are closing in on the noise, and the console's cursor blinks with what feels like personal judgment.
 * **Choices:**
   * **[1] Standard Reset Code (ADMIN_0000) — the factory default password.**
     * *Outcome:* Accepted, technically. It also silently pings a corporate security drone somewhere in orbit, which is now, per the alert log, "inbound."
+    * *Stats:* No stat changes
     * Leads to Chapter 11: The Final Countdown.
   * **[2] S.T.E.V.E.'s Vanity Password (STEVE_IS_A_GENIUS_42).**
     * *Outcome:* The Easter egg is real. The reactor purrs to life like it's been waiting its whole service life for someone to type that in, and S.T.E.V.E. is, for once, too smug to be sarcastic about it.
@@ -205,12 +243,20 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Crowbar Bypass Relay — jam an iron bar between the high-voltage contacts.**
     * *Outcome:* Sparks fountain across the console. The reactor doesn't just ignite — it ignites while you're still leaning over the open panel. There's no version of that with a survivable ending.
     * 💀 **FATAL — run ends here.**
+  * **[4] Formal Override Request — let the newly-polite S.T.E.V.E. request access through proper corporate channels instead of guessing a password.** *(unlocks after: `steve_polite`)*
+    * *Outcome:* S.T.E.V.E.'s relentlessly courteous new voice recites a flawless, dully formal access request — exactly the kind corporate security systems are built to trust. The reactor grants the override cleanly, no red flags, no drone dispatch. For once, politeness is the exploit.
+    * *Stats:* +1 HULL, +5 BAT
+    * Leads to Chapter 11: The Final Countdown.
+  * **[5] Override Under Fire — the bounty hunters on your tail catch up mid-passphrase; slam the standard code through and accept the corporate ping as the lesser risk.** *(unlocks after: `underworld_hunted`)*
+    * *Outcome:* The hunters get through the door two seconds after ADMIN_0000 goes in. You're already moving by the time they clear the threshold, reactor humming behind you. The ping to corporate security is the least of your problems now, apparently.
+    * *Stats:* -2 HULL
+    * Leads to Chapter 11: The Final Countdown.
 
 ---
 
 ### Chapter 11: The Final Countdown
 * **Location:** The Launchpad
-* **Narrative:** The reactor roars at full vibration. Every faction with a grudge converges on the launchpad at once — Laser-Pitchforks, the Food Truck Cartel, Vex's crew — sixty seconds from engine ignition and closing fast.
+* **Narrative:** The reactor roars at full vibration. Every faction with a grudge converges on the launchpad at once — Laser-Pitchforks, the Food Truck Cartel, Vex's crew — sixty seconds from engine ignition and closing fast, a stampede of grievances with your name on all of them.
 * **Choices:**
   * **[1] Blow the Airlock Hatch — jettison the door with explosive charges into the charging mob.**
     * *Outcome:* The door takes out the front rank clean. The cabin's exposed to brutal crosswinds for the final countdown, but the mob is repelled long enough to matter.
@@ -223,22 +269,33 @@ Choices now genuinely branch: most options move the story forward, but on every 
   * **[3] Reckless Early Launch — jam the throttle forward before safety checks finish.**
     * *Outcome:* The rocket leaves the pad in a towering flame pillar, which would be glorious if the patched hull had finished curing. It hasn't. The frame lets go forty meters up.
     * 💀 **FATAL — run ends here.**
+  * **[4] Redirect the Inbound Drone — hijack the corporate security drone's approach vector and point it at the mob instead of you.** *(unlocks after: `drones_inbound`)*
+    * *Outcome:* The drone that was inbound to flag you for corporate retrieval takes exactly one look at armed factions swarming an active launchpad and reclassifies the whole scene as a hostile takeover in progress. It opens fire on the mob instead — corporate assets defending corporate property, technically. You lift off under covering fire you didn't ask for and absolutely don't want to explain in the incident report.
+    * *Stats:* -3 BAT
+    * Leads to Chapter 12: The Leap into the Unknown.
 
 ---
 
 ### Chapter 12: The Leap into the Unknown
 * **Location:** Open Orbit
-* **Narrative:** The CSS RUST-404 breaks orbit, alive against every reasonable expectation. The hyperspace beacon pulses dead ahead. Between you and it: an uncharted asteroid field that wasn't on any chart S.T.E.V.E. has access to, which is, S.T.E.V.E. points out, most of them.
+* **Narrative:** The CSS RUST-404 breaks orbit, alive against every reasonable expectation. The hyperspace beacon pulses dead ahead. Between you and it: an uncharted asteroid field that wasn't on any chart S.T.E.V.E. has access to, which is, S.T.E.V.E. points out, most of them. The console hums low, waiting on your call.
 * **Choices:**
   * **[1] Blind Full-Throttle Jump.**
     * *Outcome:* You blast blindly into hyperspace and emerge in a quiet, uncharted sector. The ship is totaled beyond any insurance claim, but you're breathing, and the view is nice.
+    * *Stats:* No stat changes
     * 🏆 Ending: The Lucky Castaway
   * **[2] Manual Course Correction.**
     * *Outcome:* You thread the needle through the asteroid field by hand, plot a flawless interstellar jump, and land it clean. Scavenger circles will be telling this one for years.
+    * *Stats:* No stat changes
     * 🏆 Ending: The Ace of Sector Schrödinger
   * **[3] Overclock the Hyper-Capacitor.**
     * *Outcome:* The capacitor doesn't so much power the jump as detonate through it. You reappear instantly in the home docking bay, directly atop the CEO's hovercar. Sacked on arrival — but home for tea.
+    * *Stats:* No stat changes
     * 🏆 Ending: The Chaotic Hero
+  * **[4] Broadcast Everything, Full Signal — instead of jumping quiet, blast every sensor log, every faction's dirty laundry, and your own flight path across every open channel in the sector.**
+    * *Outcome:* Hyperspace doesn't care about radio chatter, so the jump itself goes exactly like the others. What's different is what's waiting when you land: half of Sector Schrödinger already knows what happened to you, because you told all of it, to everyone, on the way out. Cargo companies hate you. Independent scrappers, oddly, love you. Signal restored, whether anyone asked for it or not.
+    * *Stats:* No stat changes
+    * 🏆 Ending: The Loud One
 
 ---
 

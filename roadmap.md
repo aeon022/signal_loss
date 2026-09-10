@@ -352,3 +352,33 @@ chapters.
   overlays, a fatal-choice death, and the chapter 12 finale — in German, cross-checked against
   identical English behavior to rule out regressions. Browser side verified via Puppeteer against
   a locally served `/signal_loss/` subpath build, both languages.
+
+---
+
+## Phase 13: Always-Confirm Pacing, Flag-Gated Choices, Deeper Content (2026-09-10)
+- [x] **Every outcome now waits for a keypress, not just the plain-continue path.** Previously
+  `finishOutcome()` branched immediately once the outcome text finished revealing — death went
+  straight to GAME OVER, a time-lock straight to the wait screen, an ending straight to the ending
+  screen, only the "nothing special happens" case actually paused. Split into `finishOutcome()`
+  (always just sets `awaitingContinue`) and a new `applyResolution()` (the actual branching, now
+  gated on a keypress). Verified via pty for all four paths (fatal/time-locked/ending/plain) in
+  both normal and `-fast` mode.
+- [x] **`story.Choice` gained `requires_flag`**: a choice can now stay hidden until an earlier
+  decision set a specific flag. `game.AvailableChoices(state, chapter)` is the single filter every
+  consumer (rendering, digit-key bounds, cursor bounds, selection) goes through — added as one
+  helper rather than duplicating the flag check at each call site.
+- [x] **Every one of the 7 flags the story already tracked (`steve_ego_maxed`, `wanted_by_cartel`,
+  `steve_glitched`, `steve_polite`, `underworld_hunted`, `enemies_at_ship`, `drones_inbound`) now
+  has a real payoff** — they were set but never read before this. Each unlocks exactly one new
+  choice later in the run, usually a genuinely better option than what was available without it
+  (e.g. `steve_polite` from Chapter 8 lets Chapter 10 skip the corporate-drone risk entirely
+  instead of just being flavor text).
+- [x] **12 chapters → 49 choices** (was 36): one new choice in every chapter except Chapter 10,
+  which got two (one per incoming flag). A 4th Chapter 12 ending ("The Loud One") was added too —
+  broadcasting everything instead of jumping quiet.
+- [x] Every chapter's `content` intro got denser — more sensory/atmospheric detail, same core
+  beats, so the existing 3 choices per chapter stay contextually valid.
+- [x] All of the above mirrored in full in `story_de.json` — verified structurally identical to
+  `story.json` (same choice counts, mutations, flags, `next_chapter`s, item-name consistency) via
+  cross-diff and the real Go parser, then spot-checked in German through the same pty harness
+  (flag-gated choice appears/hides correctly, correct footer count `[1-4]`, correct outcome text).

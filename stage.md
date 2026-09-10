@@ -34,10 +34,16 @@ _Last updated 2026-09-09 — see `roadmap.md` for the full phase-by-phase build 
   `pkg/tui` drives the loop and owns all localized chrome.
 - ✅ CLI Entry Point: flag parsing (`-fast`/`-realtime`/`-lang`/`-save`/`-story`), launches the
   Bubble Tea program (cmd/signal_loss/main.go)
-- ✅ story.json + story_de.json: full 12-chapter narrative in **English and German**, real
-  branching (fatal/setback paths), codex lexicon gated by story progress — both files
+- ✅ story.json + story_de.json: full 12-chapter narrative in **English and German**, 49 choices
+  total, real branching (fatal/setback paths), codex lexicon gated by story progress — both files
   mechanically identical (same flags/mutations/branching), verified via cross-diff and the
   actual Go parser
+- ✅ `requires_flag` on `story.Choice` + `game.AvailableChoices(state, chapter)`: choices can stay
+  hidden until an earlier decision unlocked them. All 7 flags the story already tracked now have
+  a real payoff later in the run (previously set but never read) — see `roadmap.md` Phase 13.
+- ✅ Every outcome (death, time-lock, ending, plain continue) now waits for an explicit keypress
+  before the screen changes — previously only the plain-continue case did, so a short outcome
+  could get yanked away the instant it finished typing.
 - ✅ `pkg/tui/labels.go`: every UI-chrome string (boot log, codex/map headings, hints, death/quit
   lines) as an English/German catalog, set once per `Model` via `-lang`/the browser's language
   toggle — `HULL`/`BAT`/`SCRAP`/`INV` deliberately stay English acronyms in both (status-bar

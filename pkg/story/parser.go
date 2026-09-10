@@ -61,6 +61,12 @@ type Choice struct {
 	NextChapter     string          `json:"next_chapter"`
 	Ending          string          `json:"ending"`
 	Fatal           bool            `json:"fatal"`
+
+	// RequiresFlag, if set, hides this choice unless that flag is already
+	// true in the run's state — how an earlier decision unlocks a later
+	// one (a callback, a shortcut, a way around a risk that choice itself
+	// created). Empty means always available. See game.AvailableChoices.
+	RequiresFlag string `json:"requires_flag"`
 }
 
 // StatMutations are the resource deltas a choice applies.

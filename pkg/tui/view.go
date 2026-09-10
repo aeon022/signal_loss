@@ -112,12 +112,13 @@ func (m Model) viewChapter() string {
 	case !m.revealDone():
 		// still typing the narrative — choices appear once it's done.
 	default:
+		choices := game.AvailableChoices(m.state, ch)
 		bottom = append(bottom, "")
-		bottom = append(bottom, renderChoices(ch.Choices, m.cursor, TextWidth)...)
+		bottom = append(bottom, renderChoices(choices, m.cursor, TextWidth)...)
 		if m.hint != "" {
 			bottom = append(bottom, "", dimStyle.Render(m.hint))
 		}
-		bottom = append(bottom, "", dimStyle.Render(fmt.Sprintf(m.labels.ChoiceFooterFmt, len(ch.Choices))))
+		bottom = append(bottom, "", dimStyle.Render(fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))))
 	}
 
 	lines := anchorBottom(top, bottom)

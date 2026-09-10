@@ -38,6 +38,22 @@ func ChapterIndex(id string) int {
 	return -1
 }
 
+// AvailableChoices filters a chapter's choices down to the ones this run
+// can actually see: everything with no RequiresFlag, plus anything gated
+// on a flag the player already has. Always use this instead of reading
+// Chapter.Choices directly — an earlier decision unlocking a later option
+// only works if every choice-list consumer (rendering, digit-key bounds,
+// cursor bounds, selection) agrees on the same filtered list.
+func AvailableChoices(state *GameState, ch story.Chapter) []story.Choice {
+	available := make([]story.Choice, 0, len(ch.Choices))
+	for _, c := range ch.Choices {
+		if c.RequiresFlag == "" || state.Flags[c.RequiresFlag] {
+			available = append(available, c)
+		}
+	}
+	return available
+}
+
 // Resolution is what happens after a choice's mutations are applied: the
 // run continues, time-locks, ends in death, or ends in one of the endings.
 type Resolution struct {

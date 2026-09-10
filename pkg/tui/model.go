@@ -264,6 +264,7 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 
 	// stepNarrative, choices visible.
 	ch, _ := m.currentChapter()
+	choices := game.AvailableChoices(m.state, ch)
 	switch key {
 	case "up", "k":
 		if m.cursor > 0 {
@@ -271,7 +272,7 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 		}
 		return m, nil
 	case "down", "j":
-		if m.cursor < len(ch.Choices)-1 {
+		if m.cursor < len(choices)-1 {
 			m.cursor++
 		}
 		return m, nil
@@ -289,7 +290,7 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 		return m, tea.Quit
 	}
 
-	if idx, ok := digitIndex(key); ok && idx < len(ch.Choices) {
+	if idx, ok := digitIndex(key); ok && idx < len(choices) {
 		return m.selectChoice(idx)
 	}
 
@@ -306,11 +307,12 @@ func digitIndex(key string) (int, bool) {
 
 func (m Model) selectChoice(idx int) (tea.Model, tea.Cmd) {
 	ch, _ := m.currentChapter()
-	if idx < 0 || idx >= len(ch.Choices) {
+	choices := game.AvailableChoices(m.state, ch)
+	if idx < 0 || idx >= len(choices) {
 		m.hint = game.RandomInvalidResponse(m.story)
 		return m, nil
 	}
-	choice := ch.Choices[idx]
+	choice := choices[idx]
 	m.outcomeTitle = ch.Title
 	m.resolution = game.ResolveChoice(m.state, choice, m.story)
 	m.save(m.state)

@@ -6,7 +6,8 @@ A retro-futuristic sci-fi text adventure for the terminal. You crash-land on Gry
 dumping ground — with a sarcastic, anxious, perpetually-low-on-battery ship AI and twelve
 chapters' worth of ways to make things worse. Real branching: every chapter but the finale has a
 choice that's a genuine dead end (instant death, or a setback that sends you back to the start
-with something lost). Three possible endings.
+with something lost). Decisions echo forward, too — several choices only appear once an earlier
+one unlocked them. Four possible endings.
 
 Built with Go and [Bubble Tea](https://github.com/charmbracelet/bubbletea)/[Lipgloss](https://github.com/charmbracelet/lipgloss).
 Also runs in a browser — the exact same engine, compiled to WebAssembly, no reimplementation.
