@@ -207,10 +207,9 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   // it. We don't want that: capture wheel events before xterm sees them
   // and just scroll the page instead.
   // Lock scroll: while playing, the page stays put so a stray wheel or swipe cannot
-  // scroll the terminal out of view. Locking brings the terminal into view first.
+  // scroll the terminal out of view. Locked, the terminal takes the whole window (see global.css).
   const lockBtn = document.getElementById("lock-btn")!;
   function setLock(on: boolean) {
-    if (on) widget.scrollIntoView({ behavior: "smooth", block: "start" });
     document.documentElement.classList.toggle("play-lock", on);
     lockBtn.setAttribute("aria-pressed", String(on));
     lockBtn.textContent = on ? T.unlock : T.lock;

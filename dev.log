@@ -49,3 +49,15 @@ compdef:153: _comps: assignment to invalid subscript range
 20:29:32 [200] /de/ 23ms
 20:29:35 [200] / 3ms
 20:29:39 [200] / 2ms
+20:31:25 [200] / 28ms
+20:32:23 [watch] /src/styles/global.css
+20:32:23 [watch] src/components/GameTerminal.astro
+20:32:23 [200] / 19ms
+20:32:23 [200] /de/ 29ms
+20:32:25 [200] /de/ 2ms
+20:32:27 [200] / 6ms
+20:32:28 [200] /de/ 8ms
+20:32:28 [200] /de/ 2ms
+20:32:28 [200] /de/ 3ms
+20:32:28 [200] /de/ 2ms
+20:32:31 [200] / 2ms

@@ -266,3 +266,14 @@ body {
 html { scroll-snap-type: y proximity; }
 #play { scroll-snap-align: center; }
 html.play-lock { overflow: hidden; }
+/* Locked: header, ticker and the rest of the page are covered; the terminal gets the whole window. */
+html.play-lock #game-widget {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  max-width: none;
+  overflow: auto;
+  padding: 0.75rem;
+  background: var(--color-void);
+}
+html.play-lock #terminal { height: calc(100dvh - 7.5rem) !important; }
