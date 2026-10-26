@@ -1,0 +1,47 @@
+name: Release binaries
+
+# Every v* tag gets ready-made binaries for install.sh / install.ps1.
+# Run by hand with a tag to (re)build the assets of an existing release.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to build, e.g. v0.4.1"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27"
+      - name: Test
+        run: go test ./...
+      - name: Build
+        run: |
+          mkdir dist
+          for target in linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64 windows/arm64; do
+            os=${target%/*}; arch=${target#*/}
+            name=signal_loss_${TAG#v}_${os}_${arch}
+            bin=signal_loss; [ "$os" = windows ] && bin=signal_loss.exe
+            CGO_ENABLED=0 GOOS=$os GOARCH=$arch go build -trimpath -ldflags "-s -w" -o "$bin" ./cmd/signal_loss
+            if [ "$os" = windows ]; then zip -q "dist/$name.zip" "$bin" LICENSE README.md; else tar -czf "dist/$name.tar.gz" "$bin" LICENSE README.md; fi
+            rm "$bin"
+          done
+          (cd dist && sha256sum * > checksums.txt)
+      - name: Publish
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$TAG" --generate-notes
+          gh release upload "$TAG" dist/* --clobber
