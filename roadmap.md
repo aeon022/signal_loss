@@ -409,3 +409,7 @@ chapters.
 - [x] ⚠ risk marks, endings log, end summary/share line/support link
 - [x] Release binaries + install.sh / install.ps1
 - [ ] Open: test install.ps1 on a real Windows machine; Homebrew tap if wanted
+
+## Later (idea, user request 2026-10-26)
+
+- [ ] Foldable layout (e.g. a folding iPhone): when half-folded, terminal on the upper half and the on-screen keys on the lower half. Use the viewport-segments / `env(fold-*)` media features where the browser exposes them; the terminal already refits (`slResize`), the touch keys (`#touchpad`) are the lower half. Not testable without a device; check real support first.
