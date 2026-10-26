@@ -26,6 +26,7 @@ try {
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto(base + path, { waitUntil: "networkidle0" });
     if (!(await page.$(`#launch-panel [data-value="${lang}"][aria-pressed="true"]`))) throw new Error(`${lang}: wrong language preselected`);
+    await page.click("#launch-panel summary"); // the speed buttons sit under OPTIONS
     await page.click('#launch-panel [data-group="speed"] [data-value="fast"]');
     await page.click("#launch-btn");
     await until(page, choose, `${lang} first screen`);
@@ -42,7 +43,8 @@ try {
     await page.setViewport(viewport);
   await page.evaluateOnNewDocument(() => { localStorage.clear(); localStorage.setItem("sl_lang", "en"); localStorage.setItem("sl_cookie_ack", "1"); });
   await page.goto(base, { waitUntil: "networkidle0" });
-  await page.click('#launch-panel [data-group="speed"] [data-value="fast"]');
+  await page.click("#launch-panel summary"); // the speed buttons sit under OPTIONS
+    await page.click('#launch-panel [data-group="speed"] [data-value="fast"]');
   await page.click("#launch-btn");
   await until(page, "choose", "death run");
   await page.keyboard.press("3");
