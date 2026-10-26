@@ -17,3 +17,4 @@
 
 - `story.md` Kapitelteil nie von Hand ändern: `go run ./cmd/storydoc` erzeugt ihn aus `story.json`.
 - Neue `reputation`/`requires_rep`-Werte: `TestReputationGatesAreReachable` und `TestEveryEndingIsWinnable` müssen grün bleiben.
+- Browser: Seite, Zweisprachigkeit (`/` und `/de/`), Ton, Touch-Tasten, Teilen und der Rauchtest liegen im Branch `deploy/landing` (`scripts/smoke.mjs`, läuft vor jedem Deploy mit `go test ./...`). `slStart` bekommt Statistik als optionale Argumente 9/10; Reihenfolge nicht ändern.
