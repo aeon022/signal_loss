@@ -17,7 +17,7 @@ async function until(page, text, what) {
 }
 
 try {
-  for (const [path, lang, choose, next] of [["", "en", "choose", "Chapter 2"], ["de/", "de", "wählen", "Kapitel 2"]]) {
+  for (const [path, lang, choose, cont, next] of [["", "en", "choose", "continue", "Chapter 2"], ["de/", "de", "wählen", "fortzufahren", "Kapitel 2"]]) {
     const page = await browser.newPage();
     await page.evaluateOnNewDocument(() => { localStorage.setItem("sl_lang", "en"); localStorage.setItem("sl_cookie_ack", "1"); }); // no language redirect, no notice over the buttons
     const errors = [];
@@ -28,7 +28,7 @@ try {
     await page.click("#launch-btn");
     await until(page, choose, `${lang} first screen`);
     await page.keyboard.press("1");
-    await until(page, "▶", `${lang} outcome`); // outcome waits for a key
+    await until(page, cont, `${lang} outcome`); // outcome waits for a key
     await page.keyboard.press("Space");
     await until(page, next, `${lang} chapter 2`);
     if (errors.length) throw new Error(`${lang}: page errors: ${errors.join("; ")}`);
