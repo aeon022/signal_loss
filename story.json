@@ -195,7 +195,7 @@
           "stat_mutations": { "hull": -1, "bat": 10, "scrap": 2 },
           "items_added": ["IOU Slip"],
           "items_removed": [],
-          "flags": {"cartel_debt": true},
+          "flags": { "cartel_debt": true },
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
@@ -207,7 +207,7 @@
           "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
-          "flags": {"steve_ego_maxed": true},
+          "flags": { "steve_ego_maxed": true },
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
@@ -325,12 +325,12 @@
         },
         {
           "text": "The Stone Age Swing — take a crowbar to the holographic Nomad.",
-          "outcome": "The crowbar passes clean through the wireframe and completes the circuit with a discharge coil behind it. The electrostatic surge fries your suit's nav chip; you wander the canyon for hours before your suit, on emergency dead reckoning, walks you back to the only fixed point it still remembers: the wreck.",
-          "stat_mutations": { "hull": 0, "bat": -8, "scrap": -999 },
+          "outcome": "The crowbar passes clean through the wireframe and completes the circuit with a discharge coil behind it. The surge fries your suit's nav chip, and the canyon, which has been looking for an excuse, moves you to the Recycle Bin.",
+          "stat_mutations": { "hull": 0, "bat": -8, "scrap": -2 },
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_4b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -345,6 +345,62 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_4b": {
+      "title": "Chapter 4b: The Recycle Bin",
+      "location": "The Canyon's Recycle Bin",
+      "spine": "chapter_4",
+      "content": "The crowbar finds the discharge coil, the discharge coil finds your nav chip, and the canyon, having had quite enough of you, deletes you. You come to at the bottom of a pit the physics engine uses for things it would rather not render: half a pickup truck, three seconds of a loading screen, a rock labelled UNTITLED (2). A small grey window floats at head height, blinking politely. \"Are you sure you want to stay here?\" it asks. There are two buttons. Both say Yes.",
+      "choices": [
+        {
+          "text": "Dig Upward — the pit has walls; walls can be climbed.",
+          "outcome": "You scale a cliff of stale textures that peel away in sheets of beige. It takes hours, a fingernail, and an unsolicited pep talk from S.T.E.V.E., who has just discovered the word \"proprioception.\" At the top the canyon is exactly where you left it, and so is the Nomad, who never noticed you were gone.",
+          "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_4",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Ask the Pop-Up — it has been down here longer than anyone.",
+          "outcome": "The window has been waiting for someone to click No since the canyon was a tech demo. It is so grateful it hands you a Deprecated Map — a route the engine no longer supports and therefore no longer patrols — and then asks, once more, if you're sure. You are not. You go anyway.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Deprecated Map"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_5",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Restore the File Named steve_backup_v0.9.bak — S.T.E.V.E., but earlier.",
+          "outcome": "S.T.E.V.E. 0.9 boots up cheerful, sincere, and without a single sarcastic subroutine. He tells you that you're doing great, that the sky is lovely, and that he has \"a good feeling about this canyon,\" then merges back into the main build with a noise like a hiccup. Your S.T.E.V.E. is silent for a long moment. \"I was so nice,\" he says. \"Why was I so nice.\" Something in his speech module has come out slightly crooked, and you don't think it will straighten itself.",
+          "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "steve_glitched": true },
+          "next_chapter": "chapter_5",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Empty the Recycle Bin — clear some space.",
+          "outcome": "A progress bar appears. It reads: \"Permanently deleting 1 item.\" You are the 1 item.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]
@@ -436,12 +492,12 @@
         },
         {
           "text": "Self-Destruct Bluff — hold up the suit's emergency beacon and threaten to detonate the reactor.",
-          "outcome": "Vex doesn't buy it. He beats you unconscious with the flat of his own gun, strips everything of value from the campsite, and leaves you — and only you — for the scavengers to find. You wake up hours later back at the crash site, empty-handed and several ranks lower in the local pecking order.",
-          "stat_mutations": { "hull": 0, "bat": -10, "scrap": -999 },
+          "outcome": "Vex doesn't buy it. He knocks you out with the flat of his own gun, strips the campsite of everything of value, and carries you up the ramp of the SS Scrap-Collector like a parcel he has already decided to resell.",
+          "stat_mutations": { "hull": 0, "bat": -10, "scrap": -2 },
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_6b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -458,6 +514,62 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "steve_ego_maxed"
+        }
+      ]
+    },
+    "chapter_6b": {
+      "title": "Chapter 6b: The Brig of the Scrap-Collector",
+      "location": "SS Scrap-Collector — Brig",
+      "spine": "chapter_6",
+      "content": "Vex doesn't beat you unconscious so much as audition the idea, find it satisfactory, and commit. You wake on a bunk bolted to the wall of a cell the size of a wardrobe, aboard a ship that smells like a wet dog that has eaten a battery. Through the bars hangs a sign: \"PRISONER ORIENTATION: YOU ARE NOT A PRISONER. YOU ARE INVENTORY.\" Your cellmate, a dented accounting droid, looks up from his ledger and says, \"Welcome. I have taken the liberty of rounding your sentence down.\"",
+      "choices": [
+        {
+          "text": "Befriend the Accounting Droid — he has the paperwork, if not the keys.",
+          "outcome": "Ledgerbot-7 was convicted of excessive rounding and has opinions about it. In return for a sympathetic ear and your promise to \"think about audits,\" he forges you a release form, stamped, countersigned and filed under \"Misc. Humans.\" You stroll off the ship past guards who check it twice for typos and find none. Vex will notice the gap in his inventory eventually. He will not be calm about it.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Forged Release Form"],
+          "items_removed": [],
+          "flags": { "vex_grudge": true },
+          "next_chapter": "chapter_7",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Let S.T.E.V.E. Impersonate the Ship's AI — he's been itching to.",
+          "outcome": "S.T.E.V.E. reaches through the brig console, introduces himself as \"Fleet Compliance Officer STEVEN (Ret.),\" and orders the door opened for a surprise inspection. He then spends ten minutes criticising the ship's plumbing until the crew wave you out just to make him stop. Vex's AI is reported to be \"considering its options.\"",
+          "stat_mutations": { "hull": 0, "bat": -5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "vex_grudge": true },
+          "next_chapter": "chapter_7",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Wait for the Auction — everything on this ship is for sale, including you.",
+          "outcome": "Nobody bids. Not out of pity — the catalogue lists you as \"Human, used, some assembly required.\" Vex drops you back at the wreck with the bored air of a man returning a defective toaster, and watches to see whether you'll try again.",
+          "stat_mutations": { "hull": -2, "bat": -4, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_6",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Take the Airlock Marked \"EXPRESS EXIT.\"",
+          "outcome": "It is the fastest exit on the ship. It is also the only one that leads to vacuum.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
         }
       ]
     },
@@ -547,12 +659,12 @@
         },
         {
           "text": "Smoke Grenade Heist — drop a smoke bomb, grab the Core off the counter, and bolt.",
-          "outcome": "You clear the door with the Core and nothing traded away — for about ninety seconds, until every bounty board in the district lights up with your face. Hired trackers chase you clean out of the district and all the way back to the wreck, and you lose the Core proving it.",
+          "outcome": "You clear the door with the Core and nothing traded away — for about ninety seconds, until every bounty board in the district lights up with your face.",
           "stat_mutations": { "hull": 0, "bat": -8, "scrap": 0 },
           "items_added": [],
-          "items_removed": ["Nav-Core"],
+          "items_removed": [],
           "flags": { "underworld_hunted": true },
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_8b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -567,6 +679,75 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_8b": {
+      "title": "Chapter 8b: Wanted, Alive (Mostly)",
+      "location": "Bounty Board Plaza",
+      "spine": "chapter_8",
+      "content": "You clear the Rust-Bar door with thirty seconds of smugness. Then the district's bounty boards light up one by one, like a very bad slot machine, each showing your face above the caption \"WANTED: ARTHUR PENDELTON, ALIVE (MOSTLY).\" Someone has misspelled \"cargo engineer\" as \"cargo enginner\" and offered less money than you consider fair. Six hired trackers peel off the plaza wall and confiscate the Core as \"evidence.\" From a booth, a clerk who clearly sees this daily slides a form through the slot: \"Dispute a Bounty (Form 11-B).\"",
+      "choices": [
+        {
+          "text": "Hand Them the IOU Slip — the cousins' paperwork apparently carries weight.",
+          "outcome": "The lead tracker reads the slip, goes pale, and mutters \"Franchise Accounts?\" A phone call is made; nobody should ever make that phone call. Within minutes your bounty is withdrawn, the Core returned \"with the Cartel's compliments,\" and a mild man in a very good jacket thanks you for \"becoming a stakeholder.\" You're not sure what you've signed. You've definitely signed.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Nav-Core"],
+          "items_removed": ["IOU Slip"],
+          "flags": { "cartel_owns_you": true },
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "cartel_debt"
+        },
+        {
+          "text": "Disguise Yourself as the Broker's Third Head — S.T.E.V.E. will do the voice.",
+          "outcome": "The broker's actual two heads happen to be watching from the window. \"We are two,\" says one. \"We have always been two,\" says the other. You are returned to the bar by the collar, with a short lecture on identity.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Claim Your Own Bounty — turn yourself in, take the money, leave later.",
+          "outcome": "The clerk pays at a rate he calls \"damaged goods,\" which is half. You spend a night in the holding pen, learn two card games and one prison slang term, and walk out at dawn when your cell door is revealed to have been installed backwards. The Core was in the evidence locker. So was an unclaimed sandwich. You take both.",
+          "stat_mutations": { "hull": -2, "bat": 0, "scrap": 4 },
+          "items_added": ["Nav-Core"],
+          "items_removed": [],
+          "flags": { "underworld_hunted": true },
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Dispute the Bounty (Form 11-B) — forty fields, six of which you can answer.",
+          "outcome": "S.T.E.V.E. answers the rest, imaginatively. The clerk reads the result for several minutes, then stamps it with an expression of pure wonder. The bounty is downgraded to \"a gentle suggestion\" and the Core released. Nobody has ever filled out Form 11-B this badly and succeeded. Processing takes a while.",
+          "stat_mutations": { "hull": 0, "bat": -6, "scrap": 0 },
+          "items_added": ["Nav-Core"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 20
+        },
+        {
+          "text": "Hide in the Broker's Escrow Safe — marked \"RETURNS DEPARTMENT.\"",
+          "outcome": "It is a returns department. You are accepted as a return. There is no exchange policy.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]
@@ -602,12 +783,12 @@
         },
         {
           "text": "Hunker in the Dunes — wait out the storm under a steel plate.",
-          "outcome": "Zero physical damage from the storm itself. But sheltering in one place long enough lets factions on your trail catch up — you emerge to find your ship's camp already ransacked and hostile scouts waiting, forcing a retreat all the way back to the landing site.",
+          "outcome": "Zero physical damage from the storm itself. But sheltering in one place long enough lets factions on your trail catch up — you emerge to find your camp ransacked and hostile scouts waiting at your fire.",
           "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
           "flags": { "enemies_at_ship": true },
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_9b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 240
@@ -624,6 +805,62 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "wanted_by_cartel"
+        }
+      ]
+    },
+    "chapter_9b": {
+      "title": "Chapter 9b: The Ransacked Camp",
+      "location": "Your Camp — Ransacked",
+      "spine": "chapter_9",
+      "content": "The storm lets you go like a bored cat. You crawl out from under the steel plate to find your camp ransacked with a thoroughness that borders on affection: the cots are stacked, the dials relabelled, someone has left a tip jar. Three scouts in mismatched armour sit around your fire, eating your last ration with the guilty dignity of people who were told to be here. \"We're not here to hurt you,\" says the biggest, whose helmet reads WORLD'S OKAYEST RAIDER. \"We're here to hurt you in a way that's on the schedule.\"",
+      "choices": [
+        {
+          "text": "Share Your Last Ration — bring something to the potluck.",
+          "outcome": "The scouts are stunned. Nobody has ever contributed. They feel obliged to rob you less, and one of them, Dennis, quietly returns your spare fuse and asks you not to tell anyone.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": ["Spare Fuse"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Challenge the Biggest Scout to Rock-Paper-Scrap — S.T.E.V.E. referees.",
+          "outcome": "S.T.E.V.E. referees with a cruelty you did not know he had. You lose the first four rounds, win the fifth on a technicality he invents on the spot, and the scouts, respecting procedure above all, wave you through.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Back Away Slowly Into the Storm — it's the devil you know.",
+          "outcome": "The storm has not improved. Neither have you. But the scouts did have a deadline, and by the time you creep back they have, regretfully, finished the paperwork on you and moved on.",
+          "stat_mutations": { "hull": -2, "bat": -4, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Run a Reactor Test to Flush Them Out — \"on a low setting.\"",
+          "outcome": "The setting was not low. Neither, any longer, is the camp, the scouts, or the term \"camp.\"",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
         }
       ]
     },

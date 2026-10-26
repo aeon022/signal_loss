@@ -50,7 +50,7 @@
       "text": "Geborgene Teile und die einzige Währung, die auf Gryps-4 irgendjemand respektiert.",
       "unlock_chapter": "chapter_1"
     },
-    "Laser-Mistgabel-Ansässige": {
+    "Laser-Mistgabel-Ans\u00e4ssige": {
       "text": "Nomadische Schrottsammler in Reifen-Röcken, bewaffnet mit selbstgeschweißten Plasma-Ackergeräten. Riechen nach abgestandenem Weltraum-Lager.",
       "unlock_chapter": "chapter_1"
     },
@@ -62,7 +62,7 @@
       "text": "Drahtgitterartige, polygonale Wesen, die in korrupten Datenschluchten leben. Sprechen in gebrochener Syntax. Löschen physische Materie, wenn sie genervt sind.",
       "unlock_chapter": "chapter_4"
     },
-    "Recycling-Mönche von Sankt-Plastik": {
+    "Recycling-M\u00f6nche von Sankt-Plastik": {
       "text": "Religiöse Fanatiker, die ausgemusterte Hauptplatinen verehren und BIOS-Fehlercodes rezitieren. Bewachen den Hyperkondensator.",
       "unlock_chapter": "chapter_5"
     },
@@ -195,7 +195,7 @@
           "stat_mutations": { "hull": -1, "bat": 10, "scrap": 2 },
           "items_added": ["Schuldschein"],
           "items_removed": [],
-          "flags": {"cartel_debt": true},
+          "flags": { "cartel_debt": true },
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
@@ -207,7 +207,7 @@
           "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
-          "flags": {"steve_ego_maxed": true},
+          "flags": { "steve_ego_maxed": true },
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
@@ -325,12 +325,12 @@
         },
         {
           "text": "Der Steinzeit-Schwung — mit dem Brecheisen auf den holografischen Nomaden losgehen.",
-          "outcome": "Das Brecheisen fährt glatt durch das Drahtgitter und schließt dahinter einen Entladungskreis. Die elektrostatische Entladung brät den Navigationschip deines Anzugs; du irrst stundenlang durch die Schlucht, bevor dein Anzug dich per Notfall-Koppelnavigation zum einzigen Fixpunkt zurückführt, den er noch kennt: das Wrack.",
-          "stat_mutations": { "hull": 0, "bat": -8, "scrap": -999 },
+          "outcome": "Das Brecheisen fährt glatt durch das Drahtgitter und schließt dahinter einen Entladungskreis. Der Stoß brät den Navigationschip deines Anzugs, und die Schlucht, die nur auf einen Anlass gewartet hat, verschiebt dich in den Papierkorb.",
+          "stat_mutations": { "hull": 0, "bat": -8, "scrap": -2 },
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_4b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -345,6 +345,62 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_4b": {
+      "title": "Kapitel 4b: Der Papierkorb",
+      "location": "Der Papierkorb der Schlucht",
+      "spine": "chapter_4",
+      "content": "Das Brecheisen findet die Entladungsspule, die Entladungsspule findet deinen Navigationschip, und die Schlucht, die von dir endgültig genug hat, löscht dich. Du kommst auf dem Grund einer Grube zu dir, in die die Physik-Engine alles wirft, was sie lieber nicht rendert: einen halben Pickup, drei Sekunden Ladebildschirm, einen Felsen namens OHNE TITEL (2). Ein kleines graues Fenster schwebt auf Kopfhöhe und blinkt höflich. „Möchten Sie wirklich hierbleiben?“, fragt es. Es gibt zwei Schaltflächen. Beide heißen Ja.",
+      "choices": [
+        {
+          "text": "Nach oben graben — die Grube hat Wände; Wände kann man erklettern.",
+          "outcome": "Du erklimmst eine Klippe aus abgestandenen Texturen, die in beigen Bahnen abblättern. Es dauert Stunden, einen Fingernagel und eine ungebetene Motivationsrede von S.T.E.V.E., der gerade das Wort „Propriozeption“ entdeckt hat. Oben liegt die Schlucht genau dort, wo du sie verlassen hast, und der Nomade auch; er hat nie bemerkt, dass du weg warst.",
+          "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_4",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Das Pop-up fragen — es ist länger hier unten als jeder andere.",
+          "outcome": "Das Fenster wartet darauf, dass jemand „Nein“ klickt, seit die Schlucht eine Techdemo war. Es ist so dankbar, dass es dir eine Veraltete Karte schenkt — eine Route, die die Engine nicht mehr unterstützt und deshalb nicht mehr bewacht — und dann noch einmal fragt, ob du sicher bist. Bist du nicht. Du gehst trotzdem.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Veraltete Karte"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_5",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Die Datei steve_backup_v0.9.bak wiederherstellen — S.T.E.V.E., nur früher.",
+          "outcome": "S.T.E.V.E. 0.9 bootet fröhlich, aufrichtig und ohne eine einzige sarkastische Subroutine. Er sagt dir, dass du das großartig machst, dass der Himmel schön ist und dass er „ein gutes Gefühl bei dieser Schlucht“ hat, dann verschmilzt er mit einem Geräusch wie ein Schluckauf wieder mit dem Hauptbuild. Dein S.T.E.V.E. schweigt lange. „Ich war so nett“, sagt er. „Warum war ich so nett.“ Irgendetwas in seinem Sprachmodul ist leicht schief herausgekommen, und du glaubst nicht, dass es sich von selbst richtet.",
+          "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "steve_glitched": true },
+          "next_chapter": "chapter_5",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Den Papierkorb leeren — ein bisschen Platz schaffen.",
+          "outcome": "Ein Fortschrittsbalken erscheint. Er lautet: „1 Element wird endgültig gelöscht.“ Du bist das 1 Element.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]
@@ -436,12 +492,12 @@
         },
         {
           "text": "Selbstzerstörungs-Bluff — das Notfallsignal des Anzugs hochhalten und drohen, den Reaktor zu zünden.",
-          "outcome": "Vex glaubt es nicht. Er schlägt dich mit der Flachseite seiner eigenen Waffe bewusstlos, plündert alles Wertvolle aus dem Lager und lässt dich — und nur dich — für die Schrottsammler zurück. Du wachst Stunden später wieder am Absturzort auf, mit leeren Händen und ein paar Rängen tiefer in der lokalen Hackordnung.",
-          "stat_mutations": { "hull": 0, "bat": -10, "scrap": -999 },
+          "outcome": "Vex glaubt es nicht. Er schlägt dich mit der Flachseite seiner eigenen Waffe nieder, plündert das Lager und trägt dich die Rampe der SS Scrap-Collector hinauf wie ein Paket, das er schon weiterverkauft hat.",
+          "stat_mutations": { "hull": 0, "bat": -10, "scrap": -2 },
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_6b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -458,6 +514,62 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "steve_ego_maxed"
+        }
+      ]
+    },
+    "chapter_6b": {
+      "title": "Kapitel 6b: Die Arrestzelle der Scrap-Collector",
+      "location": "SS Scrap-Collector — Arrestzelle",
+      "spine": "chapter_6",
+      "content": "Vex schlägt dich nicht bewusstlos, er spricht eher für die Idee vor, findet sie zufriedenstellend und setzt sie um. Du erwachst auf einer Pritsche, die an der Wand einer Zelle von der Größe eines Kleiderschranks festgeschraubt ist, an Bord eines Schiffs, das riecht wie ein nasser Hund, der eine Batterie gefressen hat. Vor dem Gitter hängt ein Schild: „GEFANGENEN-EINWEISUNG: SIE SIND KEIN GEFANGENER. SIE SIND INVENTAR.“ Dein Zellengenosse, ein verbeulter Buchhaltungsdroide, blickt von seinem Kassenbuch auf und sagt: „Willkommen. Ich habe mir erlaubt, Ihre Strafe abzurunden.“",
+      "choices": [
+        {
+          "text": "Den Buchhaltungsdroiden becircen — er hat die Papiere, wenn schon nicht die Schlüssel.",
+          "outcome": "Ledgerbot-7 wurde wegen übermäßigen Rundens verurteilt und hat dazu Meinungen. Im Tausch gegen ein offenes Ohr und dein Versprechen, „über Betriebsprüfungen nachzudenken“, fälscht er dir ein Entlassungsformular, abgestempelt, gegengezeichnet und abgelegt unter „Sonstige Menschen“. Du schlenderst an Wachen vorbei, die es zweimal auf Tippfehler prüfen und keine finden. Vex wird die Lücke in seinem Inventar irgendwann bemerken. Er wird nicht ruhig bleiben.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Gefälschtes Entlassungsformular"],
+          "items_removed": [],
+          "flags": { "vex_grudge": true },
+          "next_chapter": "chapter_7",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "S.T.E.V.E. die Schiffs-KI imitieren lassen — er juckt schon die ganze Zeit.",
+          "outcome": "S.T.E.V.E. greift durch die Zellenkonsole, stellt sich als „Flottenprüfer STEVEN (a. D.)“ vor und befiehlt, die Tür für eine unangekündigte Inspektion zu öffnen. Dann kritisiert er zehn Minuten lang die Rohrleitungen, bis die Crew dich hinauswinkt, nur damit er aufhört. Vex' KI soll „ihre Optionen prüfen“.",
+          "stat_mutations": { "hull": 0, "bat": -5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "vex_grudge": true },
+          "next_chapter": "chapter_7",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Die Auktion abwarten — auf diesem Schiff ist alles zu verkaufen, du auch.",
+          "outcome": "Niemand bietet. Nicht aus Mitleid — der Katalog führt dich als „Mensch, gebraucht, Montage erforderlich“. Vex setzt dich mit der gelangweilten Miene eines Mannes, der einen defekten Toaster zurückbringt, am Wrack ab und schaut zu, ob du es noch einmal versuchst.",
+          "stat_mutations": { "hull": -2, "bat": -4, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_6",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Die Schleuse mit der Aufschrift „EXPRESS-AUSGANG“ nehmen.",
+          "outcome": "Es ist der schnellste Ausgang des Schiffs. Es ist auch der einzige, der ins Vakuum führt.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
         }
       ]
     },
@@ -547,12 +659,12 @@
         },
         {
           "text": "Rauchbomben-Coup — eine Rauchbombe werfen, den Kern von der Theke greifen und abhauen.",
-          "outcome": "Du verlässt die Tür mit dem Kern und ohne etwas eingetauscht zu haben — für etwa neunzig Sekunden, bis jede Kopfgeldtafel im Viertel mit deinem Gesicht aufleuchtet. Angeheuerte Kopfgeldjäger jagen dich sauber aus dem Viertel und den ganzen Weg zurück zum Wrack, und du verlierst den Kern, während du es beweist.",
+          "outcome": "Du verlässt die Tür mit dem Kern und ohne etwas eingetauscht zu haben — für etwa neunzig Sekunden, bis jede Kopfgeldtafel im Viertel mit deinem Gesicht aufleuchtet.",
           "stat_mutations": { "hull": 0, "bat": -8, "scrap": 0 },
           "items_added": [],
-          "items_removed": ["Navigationskern"],
+          "items_removed": [],
           "flags": { "underworld_hunted": true },
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_8b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -567,6 +679,75 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_8b": {
+      "title": "Kapitel 8b: Gesucht, lebendig (größtenteils)",
+      "location": "Kopfgeld-Tafelplatz",
+      "spine": "chapter_8",
+      "content": "Du verlässt die Rust-Bar mit dreißig Sekunden Selbstzufriedenheit. Dann leuchten die Kopfgeldtafeln des Viertels eine nach der anderen auf, wie ein sehr schlechter Spielautomat, jede zeigt dein Gesicht über der Zeile „GESUCHT: ARTHUR PENDELTON, LEBENDIG (GRÖSSTENTEILS).“ Jemand hat „Frachtingenieur“ als „Frachtingenör“ geschrieben und weniger Geld geboten, als du für angemessen hältst. Sechs angeheuerte Spurensucher lösen sich von der Platzwand und beschlagnahmen den Kern als „Beweismittel“. Aus einem Häuschen schiebt ein Angestellter, der das täglich sieht, ein Formular durch den Schlitz: „Kopfgeld anfechten (Formular 11-B).“",
+      "choices": [
+        {
+          "text": "Den Schuldschein vorzeigen — das Papier der Cousins hat offenbar Gewicht.",
+          "outcome": "Der Anführer liest den Schuldschein, wird blass und murmelt „Franchise-Konten?“. Es wird telefoniert; niemand sollte diese Nummer jemals anrufen. Binnen Minuten ist dein Kopfgeld zurückgezogen, der Kern wird „mit den Empfehlungen des Kartells“ zurückgegeben, und ein milder Mann in einem sehr guten Sakko dankt dir dafür, „Teilhaber geworden zu sein“. Du bist nicht sicher, was du unterschrieben hast. Unterschrieben hast du definitiv.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Navigationskern"],
+          "items_removed": ["Schuldschein"],
+          "flags": { "cartel_owns_you": true },
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "cartel_debt"
+        },
+        {
+          "text": "Als dritter Kopf des Vermittlers verkleiden — S.T.E.V.E. macht die Stimme.",
+          "outcome": "Die beiden echten Köpfe des Vermittlers schauen zufällig aus dem Fenster. „Wir sind zwei“, sagt der eine. „Wir waren immer zwei“, sagt der andere. Man bringt dich am Kragen zurück in die Bar, mit einem kurzen Vortrag über Identität.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Das eigene Kopfgeld kassieren — sich stellen, Geld nehmen, später gehen.",
+          "outcome": "Der Angestellte zahlt zum Satz „beschädigte Ware“, also die Hälfte. Du verbringst eine Nacht im Verwahrraum, lernst zwei Kartenspiele und einen Knastausdruck und gehst bei Sonnenaufgang, als sich herausstellt, dass deine Zellentür verkehrt herum eingebaut war. Der Kern lag im Beweisspind. Ein nicht abgeholtes Sandwich auch. Du nimmst beides.",
+          "stat_mutations": { "hull": -2, "bat": 0, "scrap": 4 },
+          "items_added": ["Navigationskern"],
+          "items_removed": [],
+          "flags": { "underworld_hunted": true },
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Das Kopfgeld anfechten (Formular 11-B) — vierzig Felder, sechs davon kannst du ausfüllen.",
+          "outcome": "S.T.E.V.E. beantwortet den Rest, einfallsreich. Der Angestellte liest das Ergebnis mehrere Minuten lang und stempelt es dann mit dem Ausdruck reinen Staunens. Das Kopfgeld wird zu „einer sanften Empfehlung“ herabgestuft und der Kern freigegeben. Noch nie hat jemand Formular 11-B so schlecht ausgefüllt und gewonnen. Die Bearbeitung dauert.",
+          "stat_mutations": { "hull": 0, "bat": -6, "scrap": 0 },
+          "items_added": ["Navigationskern"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 20
+        },
+        {
+          "text": "Sich im Treuhandtresor des Vermittlers verstecken — beschriftet mit „RÜCKGABESTELLE“.",
+          "outcome": "Es ist eine Rückgabestelle. Du wirst als Rücksendung angenommen. Ein Umtausch ist nicht vorgesehen.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]
@@ -602,12 +783,12 @@
         },
         {
           "text": "In den Dünen ausharren — den Sturm unter einer Stahlplatte abwarten.",
-          "outcome": "Null physischer Schaden durch den Sturm selbst. Aber wer so lange an einem Ort ausharrt, lässt die Fraktionen auf seiner Spur aufholen — du tauchst auf und findest dein Schiffslager bereits geplündert vor, mit feindlichen Kundschaftern, die auf dich warten, und musst den ganzen Weg zurück zum Landepunkt fliehen.",
+          "outcome": "Null physischer Schaden durch den Sturm selbst. Aber wer so lange an einem Ort ausharrt, lässt die Fraktionen auf seiner Spur aufholen — du tauchst auf und findest dein Lager geplündert, mit feindlichen Kundschaftern an deinem Feuer.",
           "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
           "flags": { "enemies_at_ship": true },
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_9b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 240
@@ -624,6 +805,62 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "wanted_by_cartel"
+        }
+      ]
+    },
+    "chapter_9b": {
+      "title": "Kapitel 9b: Das geplünderte Lager",
+      "location": "Dein Lager — geplündert",
+      "spine": "chapter_9",
+      "content": "Der Sturm lässt dich los wie eine gelangweilte Katze. Du kriechst unter der Stahlplatte hervor und findest dein Lager mit einer Gründlichkeit geplündert, die an Zuneigung grenzt: Die Pritschen sind gestapelt, die Anzeigen umbeschriftet, jemand hat ein Trinkgeldglas hingestellt. Drei Kundschafter in zusammengewürfelten Rüstungen sitzen an deinem Feuer und essen deine letzte Ration mit der schuldbewussten Würde von Leuten, denen man gesagt hat, sie sollen hier sein. „Wir sind nicht hier, um dir wehzutun“, sagt der Größte, auf dessen Helm WELTBESTER DURCHSCHNITTSRÄUBER steht. „Wir sind hier, um dir auf eine Weise wehzutun, die im Plan steht.“",
+      "choices": [
+        {
+          "text": "Die letzte Ration teilen — etwas zum Büfett beisteuern.",
+          "outcome": "Die Kundschafter sind sprachlos. Noch nie hat jemand etwas beigesteuert. Sie fühlen sich verpflichtet, dich weniger auszurauben, und einer von ihnen, Dennis, gibt dir leise deine Ersatzsicherung zurück und bittet dich, es niemandem zu sagen.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": ["Ersatzsicherung"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Den größten Kundschafter zu Schere-Stein-Schrott herausfordern — S.T.E.V.E. ist Schiedsrichter.",
+          "outcome": "S.T.E.V.E. leitet mit einer Grausamkeit, die du ihm nicht zugetraut hättest. Du verlierst die ersten vier Runden, gewinnst die fünfte durch eine Formalie, die er spontan erfindet, und die Kundschafter, die Verfahren über alles achten, winken dich durch.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Langsam zurück in den Sturm weichen — den Teufel kennt man wenigstens.",
+          "outcome": "Der Sturm ist nicht besser geworden. Du auch nicht. Aber die Kundschafter hatten eine Frist, und als du zurückschleichst, haben sie die Akte über dich bedauernd abgeschlossen und sind weitergezogen.",
+          "stat_mutations": { "hull": -2, "bat": -4, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Einen Reaktortest laufen lassen, um sie auszuräuchern — „auf niedriger Stufe“.",
+          "outcome": "Die Stufe war nicht niedrig. Das Lager, die Kundschafter und der Begriff „Lager“ sind es jetzt auch nicht mehr.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
         }
       ]
     },
