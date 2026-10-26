@@ -87,5 +87,5 @@ pipeline, bigger follow-up).
 
 Smaller/older open ideas, still not started:
 1. More than one setback destination (currently all setbacks route to chapter_1).
-2. Automated tests (`go test`) beyond the scripted pty-driven playthroughs used so far.
+2. ~~Automated tests~~ — `pkg/story/story_test.go` (EN/DE parity, story consistency) added 2026-10-26; engine/TUI tests still open.
 3. Window-size-aware layout (currently a fixed 76-column content width, doesn't reflow on resize).

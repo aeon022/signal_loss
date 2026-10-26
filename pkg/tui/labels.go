@@ -11,18 +11,18 @@ package tui
 // tuned to their exact lengths, and compact stat acronyms staying in
 // English is common practice even in fully localized games.
 type Labels struct {
-	BootSubtitle   string
-	BootLink       string
-	BootLines      []string
-	PressUplink    string
-	ErrUnknownChap string
-	PressContinue  string
+	BootSubtitle    string
+	BootLink        string
+	BootLines       []string
+	PressUplink     string
+	ErrUnknownChap  string
+	PressContinue   string
 	ChoiceFooterFmt string // %d = choice count
 
-	CodexHeading      string
-	CodexEmpty        string
-	CodexFooterFmt    string // %d = known count
-	CodexScrollFmt    string // %d, %d, %s = pos, max, footer
+	CodexHeading   string
+	CodexEmpty     string
+	CodexFooterFmt string // %d = known count
+	CodexScrollFmt string // %d, %d, %s = pos, max, footer
 
 	MapHeading string
 	MapFooter  string
@@ -30,19 +30,19 @@ type Labels struct {
 	TimelockStandby string
 	TimelockSkip    string
 
-	RealLockHeading   string
-	RealLockBodyPre   string // + battery-standby explanation, + duration + "."
+	RealLockHeading       string
+	RealLockBodyPre       string // + battery-standby explanation, + duration + "."
 	RealLockBackOnlinePre string // + timestamp
-	RealLockSaved     string
-	RealLockQuit      string
+	RealLockSaved         string
+	RealLockQuit          string
 
 	EndQuit       string
 	GameOverTitle string
 }
 
 var labelsEN = Labels{
-	BootSubtitle:    "// SECTOR SCHRÖDINGER //",
-	BootLink:        "CSS RUST-404 — EMERGENCY TERMINAL LINK",
+	BootSubtitle: "// SECTOR SCHRÖDINGER //",
+	BootLink:     "CSS RUST-404 — EMERGENCY TERMINAL LINK",
 	BootLines: []string{
 		"> INITIALIZING S.T.E.V.E. CORE......... OK",
 		"> LIFE SUPPORT DIAGNOSTIC............... OK",
@@ -77,8 +77,8 @@ var labelsEN = Labels{
 }
 
 var labelsDE = Labels{
-	BootSubtitle:    "// SEKTOR SCHRÖDINGER //",
-	BootLink:        "CSS RUST-404 — NOTFALL-TERMINALVERBINDUNG",
+	BootSubtitle: "// SEKTOR SCHRÖDINGER //",
+	BootLink:     "CSS RUST-404 — NOTFALL-TERMINALVERBINDUNG",
 	BootLines: []string{
 		"> INITIALISIERE S.T.E.V.E.-KERN......... OK",
 		"> LEBENSERHALTUNGS-DIAGNOSE.............. OK",

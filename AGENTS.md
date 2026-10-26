@@ -1,17 +1,16 @@
 # signal_loss — Projektkontext
 
-**Tech-Stack:** Go (`go.mod`: `module signal_loss`, go 1.27.1). Kein Node/JS/Python — nicht nach `package.json`/`README.md`/`*.js`/`*.ts` suchen, das ist hier irrelevant.
+**Tech-Stack:** Go (Bubble Tea TUI), Modul `github.com/aeon022/signal_loss`. Kein Node im Spiel-Repo; die Landingpage liegt im Branch `deploy/landing`.
 
-**Status:** Migration von einem alten Flat-Prototyp zu einer neuen `pkg/`-Architektur läuft, laut `roadmap.md` (Phase 1–5).
+**Stand:** Spiel, Story (EN + DE, 12 Kapitel, 49 Entscheidungen, 4 Enden), Terminal-UI, Browser-Build (WASM) und Deployment sind fertig. Details: `stage.md` (Übergabestand), `roadmap.md` (Bau-Protokoll und Backlog), `story.md` (Story-Bibel).
 
-- **Alt/veraltet** (Root, `package main`): `game.go`, `player.go`, `item.go`, `enemy.go` — Prototyp, wird durch die neue Architektur ersetzt, aktuell nicht konsistent (referenziert einen nicht existierenden globalen `game`).
-- **Neu, in Arbeit** (Zielarchitektur):
-  - `cmd/signal_loss/main.go` — CLI-Entrypoint
-  - `pkg/game/state.go` — `GameState` struct
-  - `pkg/game/engine.go` — Engine-Loop (**aktuell kaputt/leer, Phase 4 unvollständig**)
-  - `pkg/story/parser.go` — lädt `story.json`
-  - `pkg/ui/terminal.go` — ANSI-Terminal-Rendering
-- `story.json` — Kapitel-/Dialogdaten für das Spiel
-- `roadmap.md` — Phasenplan, Quelle der Wahrheit für die Zielstruktur
+**Aufbau:**
+- `cmd/signal_loss/` CLI (`-fast`, `-realtime`, `-lang`, `-save`, `-story`); `cmd/wasm/` eigenes Modul für den Browser, dieselbe Engine
+- `pkg/game/` reine Logik (State, Engine), `pkg/story/` JSON-Parser, `pkg/tui/` Oberfläche und alle UI-Texte (`labels.go`)
+- `story.json` (EN) und `story_de.json` (DE): müssen mechanisch identisch sein; der Test `pkg/story/story_test.go` prüft das
 
-**Vor jeder Aufgabe:** `go build ./...` laufen lassen, um den aktuellen Kompilierstatus zu sehen, bevor Rückfragen zum Tech-Stack gestellt werden.
+**Regeln:**
+- Vor jeder Aufgabe `go build ./... && go vet ./... && go test ./...`.
+- Story-Änderungen immer in beiden Sprachdateien; `go test ./pkg/story/` muss grün bleiben.
+- Live-Seite: `deploy/landing` baut bei jedem Push (oder `workflow_dispatch`) das Spiel aus `main`. Spieländerungen auf `main` erscheinen erst nach einem Deploy-Lauf im Browser.
+- Terminal und Browser teilen sich Engine und Story; UI-Texte nur in `pkg/tui/labels.go` ändern, nicht doppelt pflegen.
