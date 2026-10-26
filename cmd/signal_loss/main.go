@@ -7,6 +7,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 
+	signal_loss "github.com/aeon022/signal_loss"
 	"github.com/aeon022/signal_loss/pkg/game"
 	"github.com/aeon022/signal_loss/pkg/story"
 	"github.com/aeon022/signal_loss/pkg/tui"
@@ -18,19 +19,23 @@ func main() {
 	savePath := flag.String("save", "save.json", "path to the save file")
 	statsPath := flag.String("stats", "stats.json", "path to the stats file (endings found, deaths; unlocks New Game+)")
 	lang := flag.String("lang", "en", "game language: en or de")
-	storyPath := flag.String("story", "", "path to the story data file (default: story.json for en, story_de.json for de)")
+	storyPath := flag.String("story", "", "path to the story data file (default: built into the binary)")
 	flag.Parse()
 
-	path := *storyPath
-	if path == "" {
+	var storyData *story.StoryData
+	var err error
+	if *storyPath != "" {
+		storyData, err = story.LoadStory(*storyPath)
+	} else {
+		name := "story.json"
 		if *lang == "de" {
-			path = "story_de.json"
-		} else {
-			path = "story.json"
+			name = "story_de.json"
+		}
+		var data []byte
+		if data, err = signal_loss.Stories.ReadFile(name); err == nil {
+			storyData, err = story.ParseStory(data)
 		}
 	}
-
-	storyData, err := story.LoadStory(path)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to load story: %v\n", err)
 		os.Exit(1)
