@@ -3,35 +3,38 @@
 [![Created by abteilung83](https://img.shields.io/badge/Crafted%20by-abteilung83-black.svg)](https://github.com/aeon022)
 
 A retro-futuristic sci-fi text adventure for the terminal. You crash-land on Gryps-4 — a cosmic
-dumping ground — with a sarcastic, anxious, perpetually-low-on-battery ship AI and twelve
-chapters' worth of ways to make things worse. Real branching: every chapter but the finale has a
-choice that's a genuine dead end (instant death, or a setback that sends you back to the start
-with something lost). Decisions echo forward, too — several choices only appear once an earlier
-one unlocked them. Four possible endings.
+dumping ground — with a sarcastic, anxious, perpetually-low-on-battery ship AI and a spine of twelve
+chapters to make worse. Failures cost you more than time (a botched theft puts you to work at the
+grill, a bad bluff lands you in a pirate's brig), the road forks halfway through, factions
+remember what you did, items open shortcuts or save your life once, and some choices only appear
+because of an earlier one. Eight endings, one of them hidden behind New Game+.
+
+![Chapter view with the instrument sidebar](docs/screenshots/chapter.png)
 
 Built with Go and [Bubble Tea](https://github.com/charmbracelet/bubbletea)/[Lipgloss](https://github.com/charmbracelet/lipgloss).
-Also runs in a browser — the exact same engine, compiled to WebAssembly, no reimplementation.
-See `roadmap.md` for how that works and everything else that went into this.
+The screen fills your terminal (60×22 and up) and resizes with it. Also runs in a browser — the
+exact same engine, compiled to WebAssembly, no reimplementation. See `roadmap.md` for how that
+works and everything else that went into this.
 
 ## Play
 
 **In your browser: https://aeon022.github.io/signal_loss/** — no install, same Go engine
 compiled to WebAssembly.
 
-Or on the command line:
+Or install it (no Go needed — this downloads the ready-made binary for your system into `~/.local/bin`):
 
 ```sh
-go install github.com/aeon022/signal_loss/cmd/signal_loss@v0.1.0
+curl -fsSL https://raw.githubusercontent.com/aeon022/signal_loss/main/install.sh | sh     # Linux, macOS
+irm https://raw.githubusercontent.com/aeon022/signal_loss/main/install.ps1 | iex          # Windows (PowerShell)
 signal_loss
 ```
 
-Or clone and build:
+With Go installed, `go install github.com/aeon022/signal_loss/cmd/signal_loss@latest` works too (the
+binary lands in `~/go/bin`; the story files are built in). Or build it yourself:
 
 ```sh
-git clone https://github.com/aeon022/signal_loss.git
-cd signal_loss
-./install.sh
-./signal_loss
+git clone https://github.com/aeon022/signal_loss.git && cd signal_loss
+go build -o signal_loss ./cmd/signal_loss && ./signal_loss
 ```
 
 ### Flags
@@ -43,11 +46,15 @@ cd signal_loss
   has the same choice as a launch-screen toggle
 - `-save PATH` — save file location (default `save.json`)
 - `-stats PATH` — stats file (default `stats.json`): runs, deaths, endings found; three different endings unlock a hidden chapter (New Game+)
-- `-story PATH` — story data file (default `story.json` for `en`, `story_de.json` for `de`)
+- `-story PATH` — story data file (default: the story built into the binary)
 
 ### Controls
 
-`1`–`9` choose · `↑↓` + `Enter` navigate · `c` codex · `m` map · `q` quit
+`1`–`9` choose · `↑↓` + `Enter` navigate · `c` codex · `m` map · `e` endings log · `?` help · `PgUp`/`PgDn` scroll long text · `q` quit
+
+A ⚠ in front of a choice means S.T.E.V.E. flags it as deadly — once he has a route, or you found the manual.
+
+![Endings log](docs/screenshots/endings.png)
 
 ## Development
 
