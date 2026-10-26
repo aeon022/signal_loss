@@ -3,13 +3,19 @@
 // terminal — the exact same Bubble Tea engine as the CLI, bridged to the
 // browser. Fixed size to match the game's own fixed-viewport design (it
 // deliberately doesn't reflow — see signal_loss/pkg/tui).
+import { t } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "en" } = Astro.props as { lang?: Lang };
+const G = t(lang).game;
 const base = import.meta.env.BASE_URL;
+const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 ---
 
-<div id="game-widget" class="mx-auto w-fit max-w-full" data-base={base}>
+<div id="game-widget" class="mx-auto w-fit max-w-full" data-base={base} data-lang={lang} data-t={JSON.stringify(G)}>
   <div class="mb-2 flex items-center justify-between px-1 text-xs tracking-widest text-dim">
     <span>CSS RUST-404 // EMERGENCY TERMINAL LINK</span>
-    <span id="game-status" class="text-amber">STANDBY</span>
+    <span id="game-status" class="text-amber">{G.status.standby}</span>
   </div>
 
   <!-- The terminal itself is a fixed 84-column widget (matches the game's
@@ -23,46 +29,51 @@ const base = import.meta.env.BASE_URL;
          terminal. Removed once ESTABLISH UPLINK is pressed. -->
     <div
       id="launch-panel"
-      class="absolute inset-3 flex flex-col items-center justify-center gap-6 bg-black/95 px-6 text-center"
+      class="absolute inset-3 flex flex-col items-center justify-center gap-5 overflow-y-auto bg-black/95 px-6 text-center"
     >
-      <div class="glow-cyan text-sm tracking-[0.25em] text-cyan-bright">LAUNCH CONFIGURATION</div>
+      <div class="glow-cyan text-sm tracking-[0.25em] text-cyan-bright">{G.launch}</div>
 
-      <div class="w-full max-w-sm space-y-5">
+      <div class="w-full max-w-sm space-y-4">
         <div>
-          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">LANGUAGE</div>
+          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">{G.language}</div>
           <div class="grid grid-cols-2 gap-2" data-group="lang">
-            <button type="button" data-value="en" class="config-btn" aria-pressed="true">ENGLISH</button>
-            <button type="button" data-value="de" class="config-btn">DEUTSCH</button>
+            <button type="button" data-value="en" class="config-btn" aria-pressed={String(lang === "en")}>ENGLISH</button>
+            <button type="button" data-value="de" class="config-btn" aria-pressed={String(lang === "de")}>DEUTSCH</button>
           </div>
         </div>
 
         <div>
-          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">TEXT SPEED</div>
+          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">{G.speed}</div>
           <div class="grid grid-cols-2 gap-2" data-group="speed">
-            <button type="button" data-value="normal" class="config-btn" aria-pressed="true">NORMAL</button>
-            <button type="button" data-value="fast" class="config-btn">FAST</button>
+            <button type="button" data-value="normal" class="config-btn" aria-pressed="true">{G.normal}</button>
+            <button type="button" data-value="fast" class="config-btn">{G.fast}</button>
           </div>
         </div>
 
         <div>
-          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">TIME-LOCKS</div>
+          <div class="mb-2 text-left text-[11px] tracking-widest text-dim">{G.locks}</div>
           <div class="grid grid-cols-2 gap-2" data-group="mode">
-            <button type="button" data-value="compressed" class="config-btn" aria-pressed="true">COMPRESSED</button>
-            <button type="button" data-value="realtime" class="config-btn">REAL-TIME</button>
+            <button type="button" data-value="compressed" class="config-btn" aria-pressed="true">{G.compressed}</button>
+            <button type="button" data-value="realtime" class="config-btn">{G.realtime}</button>
           </div>
-          <p class="mt-2 text-left text-[11px] leading-relaxed text-dim" id="mode-hint">
-            A couple of story beats make you wait. Compressed turns that into a few seconds.
-          </p>
+          <p class="mt-2 text-left text-[11px] leading-relaxed text-dim" id="mode-hint">{G.hintCompressed}</p>
         </div>
       </div>
 
       <button
         id="launch-btn"
         type="button"
-        class="mt-2 rounded-sm border border-cyan/50 px-8 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(94,234,212,0.3)]"
+        class="mt-1 rounded-sm border border-cyan/50 px-8 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(94,234,212,0.3)]"
       >
-        &gt; ESTABLISH UPLINK
+        {G.establish}
       </button>
+
+      <div class="text-[11px] tracking-widest text-dim">
+        <label class="cursor-pointer underline decoration-dotted hover:text-cyan">
+          {G.import}<input id="import-file" type="file" accept=".json,application/json" class="hidden" />
+        </label>
+        <p id="import-msg" class="mt-1 h-4 normal-case tracking-normal"></p>
+      </div>
     </div>
 
     <!-- Shown when the player quits in-game ([q]) or the WASM program exits
@@ -71,15 +82,20 @@ const base = import.meta.env.BASE_URL;
       id="exit-panel"
       class="absolute inset-3 hidden flex-col items-center justify-center gap-5 bg-black/95 px-6 text-center"
     >
-      <div class="glow-cyan text-sm tracking-[0.25em] text-red">SIGNAL LOST</div>
+      <div class="glow-cyan text-sm tracking-[0.25em] text-red">{G.exitTitle}</div>
       <p id="exit-quote" class="max-w-sm text-sm italic text-slate-400"></p>
+      <div id="share" class="hidden max-w-sm flex-col items-center gap-2 border border-white/10 px-4 py-3">
+        <div class="text-[11px] tracking-widest text-dim">{G.shareTitle}</div>
+        <p id="share-text" class="text-sm text-slate-200"></p>
+        <button id="share-btn" type="button" class="config-btn">{G.shareCopy}</button>
+      </div>
       <div class="mt-2 flex flex-wrap items-center justify-center gap-3">
         <button
           id="reconnect-btn"
           type="button"
           class="rounded-sm border border-cyan/50 px-6 py-2.5 text-xs tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(94,234,212,0.3)]"
         >
-          &gt; RECONNECT
+          {G.reconnect}
         </button>
         <a
           href="https://github.com/aeon022/signal_loss"
@@ -87,25 +103,35 @@ const base = import.meta.env.BASE_URL;
           rel="noopener noreferrer"
           class="rounded-sm border border-white/20 px-6 py-2.5 text-xs tracking-widest text-slate-300 transition hover:border-white/40 hover:text-white"
         >
-          VIEW SOURCE ON GITHUB ↗
+          {G.source}
         </a>
       </div>
     </div>
   </div>
 
-  <p class="mt-2 px-1 text-xs text-dim">
-    Click the terminal to focus it, then type. Your run saves to this browser automatically.
-  </p>
+  <div class="mt-2 flex flex-wrap items-center justify-between gap-2 px-1 text-xs text-dim">
+    <p>{G.focus}</p>
+    <div class="flex gap-2">
+      <button id="sound-btn" type="button" class="config-btn" aria-pressed="false">{G.soundOff}</button>
+      <button id="export-btn" type="button" class="config-btn">{G.exportSave}</button>
+    </div>
+  </div>
   <p class="mt-1 px-1 text-xs text-dim">
-    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">1</kbd>–<kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">9</kbd> choose ·
-    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">↑↓</kbd>+<kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">⏎</kbd> navigate ·
-    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">c</kbd> codex ·
-    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">m</kbd> map ·
-    <kbd class="rounded border border-white/10 bg-white/10 px-1 text-slate-300">q</kbd> quit
+    {G.keys.map(([k, label], i) => (<><kbd class={kbd}>{k}</kbd> {label}{i < G.keys.length - 1 ? " · " : ""}</>))}
   </p>
+
+  <!-- On-screen keys for phones and tablets (coarse pointer only). -->
+  <div id="touchpad" class="touchpad mt-3 flex-wrap justify-center gap-2" aria-label={G.touch}>
+    {[["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"], ["↑", "\x1b[A"], ["↓", "\x1b[B"], ["⏎", "\r"], ["c", "c"], ["m", "m"], ["?", "?"], ["esc", "\x1b"]].map(([label, send]) => (
+      <button type="button" class="config-btn touch-btn" data-send={send}>{label}</button>
+    ))}
+  </div>
 </div>
 
 <style>
+  .touchpad { display: none; }
+  @media (pointer: coarse) { .touchpad { display: flex; } }
+  .touch-btn { min-width: 3rem; min-height: 2.75rem; font-size: 1rem; }
   .config-btn {
     border: 1px solid var(--color-dim);
     padding: 0.5rem 0.75rem;
@@ -146,11 +172,14 @@ const base = import.meta.env.BASE_URL;
   const COLS = 84;
   const ROWS = 37;
   const SAVE_KEY = "signal_loss_save";
+  const STATS_KEY = "signal_loss_stats"; // shared by both languages: endings are keyed by id
 
+  const widget = document.getElementById("game-widget")!;
   // Matches astro.config.mjs's `base` — read off the DOM instead of
   // hardcoding it here, since this script has no access to Astro's
   // frontmatter/build-time env directly.
-  const BASE = document.getElementById("game-widget")!.dataset.base || "/";
+  const BASE = widget.dataset.base || "/";
+  const T = JSON.parse(widget.dataset.t!);
 
   const statusEl = document.getElementById("game-status")!;
   const terminalEl = document.getElementById("terminal")!;
@@ -162,15 +191,10 @@ const base = import.meta.env.BASE_URL;
   const exitQuote = document.getElementById("exit-quote")!;
   const reconnectBtn = document.getElementById("reconnect-btn")!;
 
-  // S.T.E.V.E. gets the last word when you quit — small nod, no real
-  // mechanic behind it, just flavor for what would otherwise be a dead end.
-  const EXIT_QUOTES = [
-    "S.T.E.V.E.: Connection terminated. Rude, but understandable.",
-    "S.T.E.V.E.: Going dark. Try not to miss me too much.",
-    "S.T.E.V.E.: Uplink severed. Gryps-4 will still be here later. Unfortunately.",
-    "S.T.E.V.E.: Powering down non-essential sarcasm subroutines. Bye.",
-    "S.T.E.V.E.: Signal lost. Your run is saved, my dignity is not.",
-  ];
+  const store = {
+    get: (k: string) => { try { return localStorage.getItem(k) || ""; } catch { return ""; } },
+    set: (k: string, v: string) => { try { localStorage.setItem(k, v); } catch { /* private mode: the run just won't persist */ } },
+  };
 
   reconnectBtn.addEventListener("click", () => window.location.reload());
 
@@ -236,6 +260,8 @@ const base = import.meta.env.BASE_URL;
         onOutput: (out: string) => void,
         onSave: (json: string) => void,
         onExit: () => void,
+        statsJSON: string,
+        onStats: (json: string) => void,
       ) => void;
       slInput: (data: string) => void;
     }
@@ -243,19 +269,21 @@ const base = import.meta.env.BASE_URL;
 
   // --- launch panel wiring -------------------------------------------
 
-  const selection: Record<string, string> = { lang: "en", speed: "normal", mode: "compressed" };
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const selection: Record<string, string> = { lang: widget.dataset.lang || "en", speed: reducedMotion ? "fast" : "normal", mode: "compressed" };
+
+  const press = (group: Element, value: string) =>
+    group.querySelectorAll<HTMLButtonElement>(".config-btn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.value === value)));
 
   document.querySelectorAll<HTMLElement>("#launch-panel [data-group]").forEach((group) => {
     const key = group.dataset.group!;
+    press(group, selection[key]);
     group.querySelectorAll<HTMLButtonElement>(".config-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         selection[key] = btn.dataset.value!;
-        group.querySelectorAll(".config-btn").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+        press(group, selection[key]);
         if (key === "mode") {
-          modeHint.textContent =
-            btn.dataset.value === "realtime"
-              ? "A couple of story beats will lock you out for real minutes/hours. Your run saves — close the tab and come back."
-              : "A couple of story beats make you wait. Compressed turns that into a few seconds.";
+          modeHint.textContent = btn.dataset.value === "realtime" ? T.hintRealtime : T.hintCompressed;
         }
       });
     });
@@ -266,10 +294,108 @@ const base = import.meta.env.BASE_URL;
     boot(selection.lang, selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
   });
 
+  // Save import (from the terminal version, or another browser) and export.
+  // Saves are per language — item names differ — so a save lands in the language chosen above.
+  const importMsg = document.getElementById("import-msg")!;
+  document.getElementById("import-file")!.addEventListener("change", async (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const s = JSON.parse(text);
+      if (typeof s.current_chapter !== "string" || typeof s.hull !== "number") throw new Error("not a save");
+      store.set(`${SAVE_KEY}_${selection.lang}`, text);
+      importMsg.textContent = T.importDone;
+    } catch {
+      importMsg.textContent = T.importBad;
+    }
+  });
+
+  let playingLang = selection.lang;
+  document.getElementById("export-btn")!.addEventListener("click", () => {
+    const text = store.get(`${SAVE_KEY}_${playingLang}`);
+    if (!text) {
+      statusEl.textContent = T.noSave;
+      return;
+    }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+    a.download = `signal_loss_save_${playingLang}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  // --- touch keys ------------------------------------------------------
+
+  document.querySelectorAll<HTMLButtonElement>("#touchpad [data-send]").forEach((b) =>
+    b.addEventListener("click", () => window.slInput?.(b.dataset.send!)),
+  );
+
+  // --- sound (off until asked for; nothing is downloaded, it is all synthesized) ---
+
+  let audio: AudioContext | null = null;
+  let soundOn = store.get("sl_sound") === "1";
+  const soundBtn = document.getElementById("sound-btn")!;
+  const showSound = () => {
+    soundBtn.textContent = soundOn ? T.soundOn : T.soundOff;
+    soundBtn.setAttribute("aria-pressed", String(soundOn));
+  };
+  showSound();
+  soundBtn.addEventListener("click", () => {
+    soundOn = !soundOn;
+    store.set("sl_sound", soundOn ? "1" : "0");
+    showSound();
+    if (soundOn) beep(660, 0.08, "square", 0.05);
+  });
+  function beep(freq: number, dur: number, type: OscillatorType = "square", gain = 0.03, delay = 0) {
+    if (!soundOn || reducedMotion && dur > 0.2) return;
+    audio ??= new AudioContext();
+    const t0 = audio.currentTime + delay;
+    const osc = audio.createOscillator();
+    const g = audio.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(gain, t0);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g).connect(audio.destination);
+    osc.start(t0);
+    osc.stop(t0 + dur);
+  }
+
+  // --- end of a run: stats and the share text --------------------------
+
+  let stats = (() => { try { return JSON.parse(store.get(STATS_KEY) || "{}"); } catch { return {}; } })();
+
+  function onStats(json: string) {
+    const prev = stats;
+    stats = JSON.parse(json);
+    store.set(STATS_KEY, json);
+    let text: string;
+    if ((stats.deaths || 0) > (prev.deaths || 0)) {
+      text = T.died.replace("{n}", String(stats.deaths));
+      [220, 165, 110].forEach((f, i) => beep(f, 0.25, "sawtooth", 0.05, i * 0.22));
+    } else {
+      const id = Object.keys(stats.endings || {}).find((k) => stats.endings[k] > ((prev.endings || {})[k] || 0)) || "";
+      text = T.escaped.replace("{title}", T.endings[id] || id);
+      [523, 659, 784, 1047].forEach((f, i) => beep(f, 0.2, "triangle", 0.05, i * 0.12));
+    }
+    document.getElementById("share-text")!.textContent = text;
+    const share = document.getElementById("share")!;
+    share.classList.remove("hidden");
+    share.classList.add("flex");
+  }
+
+  const shareBtn = document.getElementById("share-btn")!;
+  shareBtn.addEventListener("click", async () => {
+    const text = `${document.getElementById("share-text")!.textContent} ${location.origin}${BASE}`;
+    try { await navigator.clipboard.writeText(text); shareBtn.textContent = T.shareCopied; } catch { window.prompt("", text); }
+  });
+
   // ---------------------------------------------------------------------
 
   async function boot(lang: string, fast: boolean, realtime: boolean) {
-    statusEl.textContent = "CONNECTING…";
+    statusEl.textContent = T.status.connecting;
+    playingLang = lang;
 
     const go = new window.Go();
 
@@ -283,9 +409,12 @@ const base = import.meta.env.BASE_URL;
     // wouldn't match English story data's items_removed lookups ("Hyper-Capacitor"),
     // so switching languages starts a fresh run instead of corrupting inventory state.
     const saveKey = `${SAVE_KEY}_${lang}`;
-    const saved = localStorage.getItem(saveKey) || "";
+    const saved = store.get(saveKey);
 
-    term.onData((data) => window.slInput(data));
+    term.onData((data) => {
+      window.slInput(data);
+      if (data.length === 1 || data.startsWith("\x1b")) beep(1200, 0.02, "square", 0.015);
+    });
 
     window.slStart(
       storyText,
@@ -294,11 +423,13 @@ const base = import.meta.env.BASE_URL;
       realtime,
       lang,
       (out) => term.write(out),
-      (json) => localStorage.setItem(saveKey, json),
+      (json) => store.set(saveKey, json),
       onExit,
+      JSON.stringify(stats),
+      onStats,
     );
 
-    statusEl.textContent = "LIVE";
+    statusEl.textContent = T.status.live;
     statusEl.classList.remove("text-amber");
     statusEl.classList.add("text-green");
     term.focus();
@@ -309,19 +440,19 @@ const base = import.meta.env.BASE_URL;
   // left as-is behind the panel (Bubble Tea already restores the main
   // screen on its way out, so there's nothing worth showing there).
   function onExit() {
-    statusEl.textContent = "OFFLINE";
+    statusEl.textContent = T.status.offline;
     statusEl.classList.remove("text-green");
     statusEl.classList.add("text-dim");
-    exitQuote.textContent = EXIT_QUOTES[Math.floor(Math.random() * EXIT_QUOTES.length)];
+    exitQuote.textContent = T.quotes[Math.floor(Math.random() * T.quotes.length)];
     exitPanel.classList.remove("hidden");
     exitPanel.classList.add("flex");
   }
 
   function onBootError(err: unknown) {
-    statusEl.textContent = "SIGNAL LOST";
+    statusEl.textContent = T.status.lost;
     statusEl.classList.remove("text-amber");
     statusEl.classList.add("text-red");
     console.error(err);
-    term.write("\r\nFailed to establish uplink. See console for details.\r\n");
+    term.write(`\r\n${T.bootError}\r\n`);
   }
 </script>

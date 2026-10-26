@@ -1,0 +1,103 @@
+// All user-facing copy of the page, per language. Pages pick one with `lang`;
+// the game terminal reads its slice from a data attribute (see GameTerminal.astro).
+export type Lang = "en" | "de";
+
+const game = {
+  en: {
+    status: { standby: "STANDBY", connecting: "CONNECTING…", live: "LIVE", offline: "OFFLINE", lost: "SIGNAL LOST" },
+    launch: "LAUNCH CONFIGURATION", language: "LANGUAGE", speed: "TEXT SPEED", normal: "NORMAL", fast: "FAST",
+    locks: "TIME-LOCKS", compressed: "COMPRESSED", realtime: "REAL-TIME",
+    hintCompressed: "A couple of story beats make you wait. Compressed turns that into a few seconds.",
+    hintRealtime: "A couple of story beats will lock you out for real minutes/hours. Your run saves — close the tab and come back.",
+    establish: "> ESTABLISH UPLINK", import: "IMPORT SAVE", importDone: "Save imported for this language.", importBad: "That file is not a signal_loss save.",
+    exportSave: "EXPORT SAVE", noSave: "No save to export yet.",
+    exitTitle: "SIGNAL LOST", reconnect: "> RECONNECT", source: "VIEW SOURCE ON GITHUB ↗",
+    focus: "Click the terminal to focus it, then type. Your run saves to this browser automatically.",
+    keys: [["1–9", "choose"], ["↑↓+⏎", "navigate"], ["c", "codex"], ["m", "map"], ["?", "help"], ["q", "quit"]],
+    soundOff: "SOUND: OFF", soundOn: "SOUND: ON", touch: "TOUCH CONTROLS",
+    shareTitle: "RUN OVER", shareCopy: "COPY RESULT", shareCopied: "COPIED ✓",
+    died: "I died on Gryps-4 (death #{n}). The cargo company will be informed. #SignalLoss",
+    escaped: "I escaped Gryps-4 as “{title}”. #SignalLoss",
+    endings: { lucky_castaway: "The Lucky Castaway", ace: "The Ace of Sector Schrödinger", chaotic_hero: "The Chaotic Hero", loud_one: "The Loud One", apostle: "The Apostle", franchisee: "The Franchisee", ascension_file: "The Ascension File", loop_breaker: "The Loop Breaker" },
+    quotes: [
+      "S.T.E.V.E.: Connection terminated. Rude, but understandable.",
+      "S.T.E.V.E.: Going dark. Try not to miss me too much.",
+      "S.T.E.V.E.: Uplink severed. Gryps-4 will still be here later. Unfortunately.",
+      "S.T.E.V.E.: Powering down non-essential sarcasm subroutines. Bye.",
+      "S.T.E.V.E.: Signal lost. Your run is saved, my dignity is not.",
+    ],
+    bootError: "Failed to establish uplink. See console for details.",
+  },
+  de: {
+    status: { standby: "BEREIT", connecting: "VERBINDE…", live: "LIVE", offline: "OFFLINE", lost: "SIGNAL VERLOREN" },
+    launch: "STARTKONFIGURATION", language: "SPRACHE", speed: "TEXTTEMPO", normal: "NORMAL", fast: "SCHNELL",
+    locks: "WARTEZEITEN", compressed: "VERKÜRZT", realtime: "ECHTZEIT",
+    hintCompressed: "Ein paar Story-Momente lassen dich warten. Verkürzt macht daraus ein paar Sekunden.",
+    hintRealtime: "Ein paar Story-Momente sperren dich für echte Minuten/Stunden. Dein Lauf wird gespeichert — Tab schließen und später wiederkommen.",
+    establish: "> UPLINK HERSTELLEN", import: "SPIELSTAND IMPORTIEREN", importDone: "Spielstand für diese Sprache importiert.", importBad: "Diese Datei ist kein signal_loss-Spielstand.",
+    exportSave: "SPIELSTAND EXPORTIEREN", noSave: "Noch kein Spielstand zum Exportieren.",
+    exitTitle: "SIGNAL VERLOREN", reconnect: "> NEU VERBINDEN", source: "QUELLCODE AUF GITHUB ↗",
+    focus: "Klicke ins Terminal, um es zu fokussieren, dann tippe. Dein Lauf wird automatisch in diesem Browser gespeichert.",
+    keys: [["1–9", "wählen"], ["↑↓+⏎", "navigieren"], ["c", "Codex"], ["m", "Karte"], ["?", "Hilfe"], ["q", "beenden"]],
+    soundOff: "TON: AUS", soundOn: "TON: AN", touch: "TOUCH-STEUERUNG",
+    shareTitle: "LAUF BEENDET", shareCopy: "ERGEBNIS KOPIEREN", shareCopied: "KOPIERT ✓",
+    died: "Ich bin auf Gryps-4 gestorben (Tod Nr. {n}). Die Frachtfirma wird informiert. #SignalLoss",
+    escaped: "Ich bin als „{title}“ von Gryps-4 entkommen. #SignalLoss",
+    endings: { lucky_castaway: "Der glückliche Schiffbrüchige", ace: "Das Ass von Sektor Schrödinger", chaotic_hero: "Der chaotische Held", loud_one: "Der Laute", apostle: "Der Apostel", franchisee: "Der Franchisenehmer", ascension_file: "Die Aufstiegs-Datei", loop_breaker: "Der Schleifenbrecher" },
+    quotes: [
+      "S.T.E.V.E.: Verbindung beendet. Unhöflich, aber verständlich.",
+      "S.T.E.V.E.: Ich gehe offline. Vermiss mich nicht zu sehr.",
+      "S.T.E.V.E.: Uplink gekappt. Gryps-4 ist später auch noch da. Leider.",
+      "S.T.E.V.E.: Fahre nicht lebenswichtige Sarkasmus-Routinen herunter. Tschüss.",
+      "S.T.E.V.E.: Signal verloren. Dein Lauf ist gespeichert, meine Würde nicht.",
+    ],
+    bootError: "Uplink konnte nicht hergestellt werden. Details in der Konsole.",
+  },
+};
+
+const page = {
+  en: {
+    htmlLang: "en", title: "Signal Loss — Sector Schrödinger",
+    description: "A retro-futuristic sci-fi text adventure. Crash-land on Gryps-4, survive S.T.E.V.E.'s sarcasm, and get off the planet.",
+    tagline: "// terminal distress beacon", github: "GITHUB", support: "SUPPORT", imprint: "IMPRESSUM", contact: "KONTAKT", other: "DE",
+    ticker: "HULL INTEGRITY: 61% · O2 RESERVE: 340 CYCLES · S.T.E.V.E. MOOD: RESIGNED · SECTOR: SCHRÖDINGER · SIGNAL: LOST · COORDINATES: UNKNOWN · BATTERY: 12% AND FALLING ·",
+    heroKicker: "SECTOR SCHRÖDINGER · GRYPS-4",
+    heroText: "Your freighter just crash-landed on a cosmic dumping ground. Your ship's AI is sarcastic, anxious, and perpetually low on battery. Twelve chapters, a dozen detours, eight endings (one of them hidden). Most of your choices are worse than they sound.",
+    cta: "> ESTABLISH UPLINK",
+    cards: [
+      ["REAL BRANCHING", "Failures cost you now, not just time: a botched theft puts you to work at the grill, a bad bluff lands you in a pirate's brig. Halfway through the road forks — and who likes you decides which roads you get."],
+      ["LIVING CODEX", "Press c in-game for a lexicon of terms — it only knows what the story has actually told you so far, and marks what's new."],
+      ["RUNS IN YOUR BROWSER", "The exact same Go engine as the terminal version, compiled to WebAssembly. No install, no server round-trips — it's playing locally, right here."],
+    ],
+    built: "SIGNAL LOSS: SECTOR SCHRÖDINGER — built with Go,", and: "and Astro.", source: "Source on GitHub", terminal: "prefer a real terminal?",
+    supportLink: "Support this project ↗",
+    privacy: "No tracking cookies, no analytics — your save file and stats live in this browser's localStorage and nothing else leaves your machine.",
+    cookieHead: "◉ SYSTEM NOTICE —", cookieBody: "this terminal stores your save file in this browser's", cookieTail: "No cookies, no tracking, no third parties.", details: "Details", ack: "ACKNOWLEDGE",
+    konami: "S.T.E.V.E.: Nice. Doesn't do anything, but nice.",
+    oldProtocols: "S.T.E.V.E.: this terminal still answers to a few old arcade protocols, for whoever still remembers them.",
+    notFoundTitle: "404 — Signal Lost", notFoundText: "S.T.E.V.E.: This sector isn't on any chart I have access to, which is most of them.", back: "> BACK TO THE CRASH SITE",
+  },
+  de: {
+    htmlLang: "de", title: "Signal Loss — Sektor Schrödinger",
+    description: "Ein retro-futuristisches Sci-Fi-Textabenteuer. Notlande auf Gryps-4, überlebe S.T.E.V.E.s Sarkasmus und verlasse den Planeten.",
+    tagline: "// Notrufbake im Terminal", github: "GITHUB", support: "UNTERSTÜTZEN", imprint: "IMPRESSUM", contact: "KONTAKT", other: "EN",
+    ticker: "RUMPFINTEGRITÄT: 61% · O2-RESERVE: 340 ZYKLEN · S.T.E.V.E.-STIMMUNG: RESIGNIERT · SEKTOR: SCHRÖDINGER · SIGNAL: VERLOREN · KOORDINATEN: UNBEKANNT · BATTERIE: 12% UND FALLEND ·",
+    heroKicker: "SEKTOR SCHRÖDINGER · GRYPS-4",
+    heroText: "Dein Frachter ist gerade auf einer kosmischen Müllhalde notgelandet. Die Bord-KI ist sarkastisch, ängstlich und dauerhaft knapp an Batterie. Zwölf Kapitel, ein Dutzend Umwege, acht Enden (eines davon versteckt). Die meisten deiner Entscheidungen sind schlimmer, als sie klingen.",
+    cta: "> UPLINK HERSTELLEN",
+    cards: [
+      ["ECHTE VERZWEIGUNG", "Scheitern kostet jetzt mehr als Zeit: Ein missglückter Diebstahl schickt dich an den Grill, ein schlechter Bluff in die Arrestzelle eines Piraten. Auf halber Strecke gabelt sich der Weg — und wer dich mag, entscheidet, welche Wege du bekommst."],
+      ["LEBENDIGER CODEX", "Drück im Spiel c für ein Lexikon — es weiß nur, was dir die Geschichte bisher erzählt hat, und markiert Neues."],
+      ["LÄUFT IM BROWSER", "Dieselbe Go-Engine wie die Terminal-Version, nach WebAssembly kompiliert. Keine Installation, keine Server-Anfragen — es läuft lokal, genau hier."],
+    ],
+    built: "SIGNAL LOSS: SEKTOR SCHRÖDINGER — gebaut mit Go,", and: "und Astro.", source: "Quellcode auf GitHub", terminal: "lieber ein echtes Terminal?",
+    supportLink: "Projekt unterstützen ↗",
+    privacy: "Keine Tracking-Cookies, keine Analytics — Spielstand und Statistik liegen im localStorage dieses Browsers, sonst verlässt nichts deinen Rechner.",
+    cookieHead: "◉ SYSTEMHINWEIS —", cookieBody: "dieses Terminal speichert deinen Spielstand im", cookieTail: "Keine Cookies, kein Tracking, keine Dritten.", details: "Details", ack: "VERSTANDEN",
+    konami: "S.T.E.V.E.: Nett. Bringt nichts, aber nett.",
+    oldProtocols: "S.T.E.V.E.: dieses Terminal reagiert noch auf ein paar alte Arcade-Protokolle, für alle, die sich erinnern.",
+    notFoundTitle: "404 — Signal verloren", notFoundText: "S.T.E.V.E.: Dieser Sektor steht auf keiner Karte, auf die ich Zugriff habe, also auf den meisten.", back: "> ZURÜCK ZUR ABSTURZSTELLE",
+  },
+};
+
+export const t = (lang: Lang) => ({ ...page[lang], game: game[lang] });

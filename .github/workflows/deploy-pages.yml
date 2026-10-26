@@ -35,6 +35,10 @@ jobs:
         with:
           go-version: "1.27"
 
+      - name: Test the game
+        run: go test ./...
+        working-directory: signal_loss-game
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -48,6 +52,16 @@ jobs:
           SIGNAL_LOSS_DIR: ${{ github.workspace }}/signal_loss-game
 
       - run: npm run build
+
+      # Real browser, built page and WASM: both languages load, a first choice
+      # works, a death is counted. A broken game never reaches Pages.
+      - name: Smoke test
+        run: |
+          npx astro preview --port 4321 &
+          for i in $(seq 30); do curl -sf http://localhost:4321/signal_loss/ >/dev/null && break; sleep 1; done
+          npm run smoke
+        env:
+          CHROME_BIN: google-chrome
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

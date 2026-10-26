@@ -1,0 +1,250 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GameTerminal from "./GameTerminal.astro";
+import FooterSignature from "./FooterSignature.astro";
+import { t } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "en" } = Astro.props as { lang?: Lang };
+const T = t(lang);
+const base = import.meta.env.BASE_URL;
+const starfield = `${base}starfield.svg`;
+const otherHref = lang === "de" ? base : `${base}de/`;
+---
+
+<Layout lang={lang}>
+  <header id="site-header" class="sticky top-0 z-50 border-b border-white/10 bg-void/80 px-4 py-3 backdrop-blur sm:px-6">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4">
+      <a href={base} id="header-logo" class="flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-cyan-bright sm:text-sm">
+        <span class="pulse-glow text-green">●</span>
+        SIGNAL LOSS
+        <span id="header-tagline" class="hidden font-normal tracking-normal text-dim sm:inline">{T.tagline}</span>
+      </a>
+      <nav class="hidden items-center gap-5 text-xs tracking-widest text-dim sm:flex">
+        <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">{T.github}</a>
+        <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="hover:text-amber">{T.support}</a>
+        <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">{T.imprint}</a>
+        <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">{T.contact}</a>
+        <a href={otherHref} hreflang={lang === "de" ? "en" : "de"} data-lang-switch={lang === "de" ? "en" : "de"} class="border border-white/20 px-1.5 py-0.5 text-slate-300 hover:border-cyan hover:text-cyan">{T.other}</a>
+      </nav>
+
+      <button
+        id="burger-btn"
+        type="button"
+        aria-label="Menu"
+        aria-expanded="false"
+        class="flex h-8 w-8 items-center justify-center text-dim sm:hidden"
+      >
+        <svg id="burger-icon-open" width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <path d="M0 1H18" stroke="currentColor" stroke-width="1.5" />
+          <path d="M0 7H18" stroke="currentColor" stroke-width="1.5" />
+          <path d="M0 13H18" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <svg id="burger-icon-close" width="16" height="16" viewBox="0 0 16 16" fill="none" class="hidden">
+          <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+    </div>
+
+    <nav
+      id="mobile-nav"
+      class="hidden flex-col gap-4 border-t border-white/10 px-4 py-4 text-xs tracking-widest text-dim sm:hidden"
+    >
+      <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">{T.github}</a>
+      <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="hover:text-amber">{T.support}</a>
+      <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">{T.imprint}</a>
+      <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="hover:text-cyan">{T.contact}</a>
+      <a href={otherHref} hreflang={lang === "de" ? "en" : "de"} data-lang-switch={lang === "de" ? "en" : "de"} class="border border-white/20 px-1.5 py-0.5 text-slate-300 hover:border-cyan hover:text-cyan">{T.other}</a>
+    </nav>
+  </header>
+
+  <script define:vars={{ lang, deHref: `${base}de/` }}>
+    // Remember an explicit language choice; without one, send German browsers to /de/ once.
+    try {
+      document.querySelectorAll("[data-lang-switch]").forEach((a) =>
+        a.addEventListener("click", () => localStorage.setItem("sl_lang", a.dataset.langSwitch)));
+      const chosen = localStorage.getItem("sl_lang");
+      if (!chosen && lang === "en" && navigator.language.toLowerCase().startsWith("de")) {
+        localStorage.setItem("sl_lang", "de");
+        location.replace(deHref);
+      }
+    } catch {}
+  </script>
+
+  <script>
+    // Shrinks the sticky header once you've scrolled past it, so it reads
+    // as a compact floating bar instead of taking full hero-height space
+    // for the whole page.
+    const siteHeader = document.getElementById("site-header")!;
+    const tagline = document.getElementById("header-tagline")!;
+    const onScroll = () => {
+      const scrolled = window.scrollY > 24;
+      siteHeader.classList.toggle("is-scrolled", scrolled);
+      tagline.style.display = scrolled ? "none" : "";
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Mobile burger menu — IMPRESSUM/KONTAKT used to just vanish below the
+    // sm breakpoint; now everything's reachable, just tucked behind a toggle.
+    const burgerBtn = document.getElementById("burger-btn")!;
+    const burgerOpen = document.getElementById("burger-icon-open")!;
+    const burgerClose = document.getElementById("burger-icon-close")!;
+    const mobileNav = document.getElementById("mobile-nav")!;
+    burgerBtn.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("flex");
+      mobileNav.classList.toggle("hidden", !isOpen);
+      burgerOpen.classList.toggle("hidden", isOpen);
+      burgerClose.classList.toggle("hidden", !isOpen);
+      burgerBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+    mobileNav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => burgerBtn.click())
+    );
+  </script>
+
+  <div class="overflow-hidden border-b border-white/5 bg-black/40 py-1.5 text-[10px] tracking-[0.15em] text-amber/70">
+    <div class="ticker-track">
+      <span class="px-4">{T.ticker}</span>
+      <span class="px-4">{T.ticker}</span>
+    </div>
+  </div>
+
+  <main class="relative">
+    <div class="grid-backdrop" style={`background-image: url("${starfield}"), url("${starfield}");`}></div>
+
+    <section class="relative mx-auto flex min-h-[75vh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center">
+      <div class="radar-ping"></div>
+      <p class="relative z-10 mb-4 flex items-center gap-2 text-sm tracking-[0.3em] text-cyan crt-flicker">
+        <span class="pulse-glow text-green">●</span>
+        {T.heroKicker}
+      </p>
+      <h1 class="glow-chromatic relative z-10 text-6xl font-bold tracking-tight text-cyan-bright sm:text-8xl">
+        SIGNAL LOSS
+      </h1>
+      <p class="relative z-10 mt-6 max-w-xl text-balance text-base text-slate-300">{T.heroText}</p>
+      <a
+        href="#play"
+        class="group relative z-10 mt-10 flex items-center gap-2 rounded-sm border border-cyan/50 px-6 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+      >
+        {T.cta}
+        <span class="transition group-hover:translate-x-1">↓</span>
+      </a>
+    </section>
+
+    <div class="mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-cyan/30 to-transparent"></div>
+
+    <section id="play" class="relative px-4 py-20">
+      <GameTerminal lang={lang} />
+    </section>
+
+    <div class="hazard-stripe mx-auto max-w-3xl"></div>
+
+    <section class="relative mx-auto max-w-4xl px-6 py-20 text-sm text-slate-300">
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-amber">
+          <span class="rivet-tr"></span><span class="rivet-bl"></span>
+          <h2 class="glow-amber mb-2 text-xs tracking-widest">{T.cards[0][0]}</h2>
+          <p class="text-slate-300">{T.cards[0][1]}</p>
+        </div>
+        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-magenta">
+          <span class="rivet-tr"></span><span class="rivet-bl"></span>
+          <h2 class="glow-magenta mb-2 text-xs tracking-widest">{T.cards[1][0]}</h2>
+          <p class="text-slate-300">{T.cards[1][1]}</p>
+        </div>
+        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-green">
+          <span class="rivet-tr"></span><span class="rivet-bl"></span>
+          <h2 class="glow-green mb-2 text-xs tracking-widest">{T.cards[2][0]}</h2>
+          <p class="text-slate-300">{T.cards[2][1]}</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="relative border-t border-white/10 px-6 py-10 text-center text-xs text-dim">
+      <p>
+        {T.built}
+        <a href="https://github.com/charmbracelet/bubbletea" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Bubble Tea</a>,
+        {T.and}
+      </p>
+      <p class="mt-2">
+        <a href="https://github.com/aeon022/signal_loss" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">{T.source}</a>
+        · {T.terminal}
+      </p>
+      <p class="mt-1 px-6">
+        <code class="break-all text-slate-400">go install github.com/aeon022/signal_loss/cmd/signal_loss@latest</code>
+      </p>
+      <p class="mt-2">
+        <a href="https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-amber">{T.supportLink}</a>
+      </p>
+      <p class="mt-6 text-dim/70">{T.privacy}</p>
+      <p class="mt-2 text-dim/70">
+        <a href="https://abteilung83.at/imprint" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Impressum</a>
+        · <a href="https://abteilung83.at/privacy" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Datenschutz</a>
+        · <a href="https://abteilung83.at/cookies" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Cookies</a>
+        · <a href="https://abteilung83.at/contact" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">Kontakt</a>
+      </p>
+      <p class="mt-6 text-[10px] tracking-widest text-dim/40">{T.oldProtocols}</p>
+    </footer>
+    <FooterSignature />
+  </main>
+
+  <div
+    id="cookie-notice"
+    class="fixed inset-x-4 bottom-4 z-[70] mx-auto flex max-w-lg flex-col gap-3 rounded-sm border border-cyan/40 bg-black/95 px-5 py-4 text-xs text-slate-300 shadow-[0_0_30px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p class="leading-relaxed">
+      <span class="text-cyan-bright">{T.cookieHead}</span>
+      {T.cookieBody} <code class="text-slate-400">localStorage</code>.
+      {T.cookieTail}
+      <a href="https://abteilung83.at/cookies" target="_blank" rel="noopener noreferrer" class="underline decoration-dotted hover:text-cyan">{T.details}</a>
+    </p>
+    <button
+      id="cookie-ack"
+      type="button"
+      class="shrink-0 rounded-sm border border-cyan/50 px-4 py-2 text-xs tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10"
+    >
+      {T.ack}
+    </button>
+  </div>
+
+  <script>
+    const COOKIE_KEY = "sl_cookie_ack";
+    const notice = document.getElementById("cookie-notice")!;
+    if (localStorage.getItem(COOKIE_KEY) === "1") {
+      notice.remove();
+    } else {
+      document.getElementById("cookie-ack")!.addEventListener("click", () => {
+        localStorage.setItem(COOKIE_KEY, "1");
+        notice.remove();
+      });
+    }
+  </script>
+
+  <div
+    id="konami-toast"
+    class="pointer-events-none fixed inset-x-4 bottom-6 z-[60] mx-auto max-w-sm -translate-y-2 rounded-sm border border-green/50 bg-black/95 px-4 py-3 text-center text-xs tracking-widest text-green opacity-0 shadow-[0_0_25px_rgba(74,222,128,0.25)] transition-all duration-300"
+  >
+    {T.konami}
+  </div>
+
+  <script>
+    // Konami code easter egg — up up down down left right left right b a.
+    // No mechanic behind it, same spirit as the exit-screen quotes.
+    console.log("%cS.T.E.V.E.: Some old arcade protocols still work on this terminal. ↑↑↓↓←→←→ba, if you remember them.", "color: #4ade80; font-family: monospace;");
+    const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+    let progress = 0;
+    document.addEventListener("keydown", (e) => {
+      progress = e.key === KONAMI[progress] ? progress + 1 : (e.key === KONAMI[0] ? 1 : 0);
+      if (progress === KONAMI.length) {
+        progress = 0;
+        const toast = document.getElementById("konami-toast")!;
+        toast.style.opacity = "1";
+        toast.style.transform = "translateY(0)";
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(-0.5rem)";
+        }, 3000);
+      }
+    });
+  </script>
+</Layout>
