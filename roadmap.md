@@ -390,4 +390,4 @@ chapters.
 - [x] A: Gabelung 7b mit drei Routen (Mönche, Kartell, Nomaden), je zwei Kapitel
 - [x] C: Ruf bei Fraktionen, 3 neue Enden (Apostel, Franchisenehmer, Aufstiegs-Datei)
 - [x] D: S.T.E.V.E.-Vertrauen (`steve`), Notfall-Neustart in Kapitel 11
-- [ ] E: Neues Spiel+ — braucht die Statistik-Datei aus Richtung 2
+- [x] E: Neues Spiel+ — Kapitel 13 (verstecktes Ende „Der Schleifenbrecher“) nach drei verschiedenen Enden, Statistik in `stats.json`

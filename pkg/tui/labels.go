@@ -38,6 +38,14 @@ type Labels struct {
 
 	EndQuit       string
 	GameOverTitle string
+	EndStatsFmt   string // runs, deaths, endings found, endings total
+
+	CodexNewFmt string // %d = unseen entries, appended to the choice footer
+	CodexNewTag string
+
+	HelpHeading string
+	HelpLines   []string
+	TooSmallFmt string // need w, h, have w, h
 }
 
 var labelsEN = Labels{
@@ -53,7 +61,7 @@ var labelsEN = Labels{
 	PressUplink:     "Press any key to establish uplink...",
 	ErrUnknownChap:  "ERROR: unknown chapter",
 	PressContinue:   "Press any key to continue...",
-	ChoiceFooterFmt: "[1-%d] choose   ↑↓ + enter   [c]odex   [m]ap   [q]uit",
+	ChoiceFooterFmt: "[1-%d] choose   ↑↓ + enter   [c]odex   [m]ap   [?]   [q]uit",
 
 	CodexHeading:   "S.T.E.V.E. DATABASE — CODEX",
 	CodexEmpty:     "No data on file yet. Keep moving.",
@@ -74,6 +82,22 @@ var labelsEN = Labels{
 
 	EndQuit:       "[any key] quit",
 	GameOverTitle: "💀 GAME OVER",
+	EndStatsFmt:   "Run %d · deaths %d · endings found %d/%d",
+
+	CodexNewFmt: "   codex: %d new",
+	CodexNewTag: "NEW",
+
+	HelpHeading: "S.T.E.V.E. HELP — KEYS",
+	HelpLines: []string{
+		"1-9          pick a choice",
+		"↑ ↓ / j k    move the cursor, Enter confirms",
+		"any key      skip the typewriter, or continue",
+		"c            codex (what S.T.E.V.E. knows)",
+		"m            map of Sector Schrödinger",
+		"?            this help",
+		"q            quit (the run is saved)",
+	},
+	TooSmallFmt: "Window too small: this terminal needs %d×%d, yours is %d×%d. Enlarge it.",
 }
 
 var labelsDE = Labels{
@@ -89,7 +113,7 @@ var labelsDE = Labels{
 	PressUplink:     "Beliebige Taste drücken, um den Uplink herzustellen...",
 	ErrUnknownChap:  "FEHLER: unbekanntes Kapitel",
 	PressContinue:   "Beliebige Taste drücken, um fortzufahren...",
-	ChoiceFooterFmt: "[1-%d] wählen   ↑↓ + Enter   [c]odex   [m]ap   [q] beenden",
+	ChoiceFooterFmt: "[1-%d] wählen   ↑↓ + Enter   [c]odex   [m]ap   [?]   [q] beenden",
 
 	CodexHeading:   "S.T.E.V.E.-DATENBANK — CODEX",
 	CodexEmpty:     "Noch keine Daten vorhanden. Weiter vorankommen.",
@@ -110,6 +134,22 @@ var labelsDE = Labels{
 
 	EndQuit:       "[beliebige Taste] beenden",
 	GameOverTitle: "💀 SPIEL VORBEI",
+	EndStatsFmt:   "Durchlauf %d · Tode %d · Enden gefunden %d/%d",
+
+	CodexNewFmt: "   Codex: %d neu",
+	CodexNewTag: "NEU",
+
+	HelpHeading: "S.T.E.V.E.-HILFE — TASTEN",
+	HelpLines: []string{
+		"1-9          Auswahl treffen",
+		"↑ ↓ / j k    Cursor bewegen, Enter bestätigt",
+		"beliebige    Tippeffekt überspringen oder weiter",
+		"c            Codex (was S.T.E.V.E. weiß)",
+		"m            Karte von Sektor Schrödinger",
+		"?            diese Hilfe",
+		"q            beenden (der Lauf ist gespeichert)",
+	},
+	TooSmallFmt: "Fenster zu klein: dieses Terminal braucht %d×%d, deines hat %d×%d. Vergrößere es.",
 }
 
 // labelsFor resolves a lang code ("en", "de") to its Labels set, defaulting

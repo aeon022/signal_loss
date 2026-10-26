@@ -20,6 +20,8 @@ type GameState struct {
 	// Unlike CurrentChapter it never regresses on a setback, so the codex
 	// doesn't "forget" things a setback sent you back past.
 	MaxChapterIndex int `json:"max_chapter_index"`
+	// CodexSeen holds the entries the player has already looked at, so new ones can be marked.
+	CodexSeen map[string]bool `json:"codex_seen"`
 }
 
 // ApplyMutations applies stat/inventory/flag changes from a chosen choice.

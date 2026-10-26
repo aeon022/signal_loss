@@ -51,6 +51,30 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Stats:* -2 BAT, +4 SCRAP
     * *Unlocks after:* flag `enemies_at_ship`
     * Leads to Chapter 2: The Scrap Bazaar.
+  * **[5] Open the Maintenance Hatch That Wasn't There Before — it's labelled "ONBOARDING MODULE 4."**
+    * *Outcome:* The hatch swings open without a sound, which is the first thing about this planet that has.
+    * *Unlocks after:* flag `ng_plus`
+    * Leads to Chapter 13: The Onboarding Module.
+
+### Chapter 13: The Onboarding Module
+* **Location:** Behind the Wall
+* **Side chapter** beside Chapter 1: The Landing Site (`chapter_13`)
+* **Narrative:** Behind the hatch is a corridor too clean to be on Gryps-4: fluorescent strips, grey carpet, a laminated sign reading "GALACTIC SCRAP & FREIGHT — ONBOARDING MODULE 4: SURVIVING YOUR FIRST CRASH (v2.3, MANDATORY)." S.T.E.V.E.'s voice comes from a wall speaker, small and tired. "I've been meaning to tell you. You have now died in three different ways, which triggers the debrief. I have also been here for four hundred iterations. Also, the cooler is not real. Please be gentle." At the end of the corridor: a door under an EXIT sign, and a tray of complimentary pastry.
+* **Choices:**
+  * **[1] Take the Complimentary Pastry — you've earned it.**
+    * *Outcome:* It tastes of nostalgia and nothing else, and it is the best thing you have eaten on this planet. S.T.E.V.E. suggests, quietly, that you go back out and try to be a little better at this. You do.
+    * *Stats:* +2 HULL
+    * Leads to Chapter 2: The Scrap Bazaar.
+  * **[2] Read the Training Manual — page one is "Things Not To Do."**
+    * *Outcome:* It is a long list, and you are on every line of it. Someone has annotated the margins in S.T.E.V.E.'s handwriting, which should not exist, with notes like "he WILL do this" and "don't look at the cooler." You pocket it. S.T.E.V.E. is touched that you read the footnotes.
+    * *Standing:* steve +1
+    * Leads to Chapter 2: The Scrap Bazaar.
+  * **[3] Walk Through the Exit Door.**
+    * *Outcome:* It opens onto a conference room full of Galactic Scrap & Freight HR in lanyards, applauding. "Congratulations, Arthur," says a woman with a clipboard, "you've completed Module 4 in only 3,271 attempts. A company record!" You are given a certificate, a lanyard and a four percent raise. S.T.E.V.E. is reassigned to Module 5. "Don't be a stranger," he says, in the voice of a man who will absolutely see you again.
+    * 🏆 Ending: The Loop Breaker
+  * **[4] Press the Button Marked "RESET SIMULATION."**
+    * *Outcome:* Everything resets. That includes you. The pastry, notably, does not.
+    * 💀 **Fatal.**
 
 ### Chapter 2: The Scrap Bazaar
 * **Location:** Scrap Bazaar

@@ -41,6 +41,10 @@ func (m Model) View() string {
 		return chrome(frameStyle(colorRed).Render("ERROR: "+m.fatalErr.Error()), "")
 	}
 
+	if m.width > 0 && (m.width < BezelWidth || m.height < BezelHeight) {
+		return fmt.Sprintf(m.labels.TooSmallFmt, BezelWidth, BezelHeight, m.width, m.height) + "\n"
+	}
+
 	switch m.phase {
 	case phaseBoot:
 		return m.viewBoot()
@@ -94,6 +98,9 @@ func (m Model) viewChapter() string {
 	if m.overlay == "map" {
 		return m.viewMap()
 	}
+	if m.overlay == "help" {
+		return m.viewHelp()
+	}
 
 	title := ch.Title
 	if m.step == stepOutcome {
@@ -118,7 +125,11 @@ func (m Model) viewChapter() string {
 		if m.hint != "" {
 			bottom = append(bottom, "", dimStyle.Render(m.hint))
 		}
-		bottom = append(bottom, "", dimStyle.Render(fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))))
+		footer := fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))
+		if n := m.unseenCodex(); n > 0 {
+			footer += fmt.Sprintf(m.labels.CodexNewFmt, n)
+		}
+		bottom = append(bottom, "", dimStyle.Render(footer))
 	}
 
 	lines := anchorBottom(top, bottom)
@@ -160,10 +171,8 @@ func renderChoices(choices []story.Choice, cursor, width int) []string {
 // everything in the codex frame that isn't part of the scrollable body.
 const codexOverhead = 3
 
-// viewCodex shows only the lexicon entries the story has actually
-// introduced so far (by furthest chapter reached), not the full database —
-// S.T.E.V.E. hasn't got intel on Vex before you've met him.
-func (m Model) viewCodex() string {
+// knownCodexTerms are the entries the story has introduced so far, sorted.
+func (m Model) knownCodexTerms() []string {
 	terms := make([]string, 0, len(m.story.Codex))
 	for term, entry := range m.story.Codex {
 		if game.ChapterIndex(entry.UnlockChapter) <= m.state.MaxChapterIndex {
@@ -171,10 +180,38 @@ func (m Model) viewCodex() string {
 		}
 	}
 	sort.Strings(terms)
+	return terms
+}
+
+func (m Model) unseenCodex() int {
+	n := 0
+	for _, term := range m.knownCodexTerms() {
+		if !m.state.CodexSeen[term] {
+			n++
+		}
+	}
+	return n
+}
+
+func (m Model) viewHelp() string {
+	lines := append([]string{heading(m.labels.HelpHeading, colorCyan), ""}, m.labels.HelpLines...)
+	lines = append(lines, "", dimStyle.Render(m.labels.MapFooter))
+	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), m.hudLine())
+}
+
+// viewCodex shows only the lexicon entries the story has actually
+// introduced so far (by furthest chapter reached), not the full database —
+// S.T.E.V.E. hasn't got intel on Vex before you've met him.
+func (m Model) viewCodex() string {
+	terms := m.knownCodexTerms()
 
 	var body []string
 	for _, term := range terms {
-		body = append(body, boldStyle.Render(term))
+		title := boldStyle.Render(term)
+		if !m.state.CodexSeen[term] {
+			title += " " + lipgloss.NewStyle().Foreground(colorGreen).Bold(true).Render(m.labels.CodexNewTag)
+		}
+		body = append(body, title)
 		body = append(body, wrap(m.story.Codex[term].Text, TextWidth)...)
 		body = append(body, "")
 	}
@@ -235,6 +272,9 @@ func (m Model) viewMap() string {
 			mark = "·"
 		}
 		lines = append(lines, fmt.Sprintf("%s %2d. %s", mark, i+1, name))
+		if cur := m.story.Chapters[m.state.CurrentChapter]; i == currentIdx && cur.Spine != "" {
+			lines = append(lines, dimStyle.Render("       ↳ "+cur.Location))
+		}
 	}
 	lines = append(lines, "", dimStyle.Render(m.labels.MapFooter))
 	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), m.hudLine())
@@ -299,6 +339,19 @@ func (m Model) viewEnd(c lipgloss.Color) string {
 		lines = append(lines, heading(m.endTitle, c), "")
 	}
 	lines = append(lines, wrap(m.endMessage, TextWidth)...)
+	lines = append(lines, "", dimStyle.Render(fmt.Sprintf(m.labels.EndStatsFmt, m.stats.Runs, m.stats.Deaths, len(m.stats.Endings), m.endingTotal())))
 	lines = append(lines, "", dimStyle.Render(m.labels.EndQuit))
 	return chrome(frameStyle(c).Render(strings.Join(lines, "\n")), m.hudLine())
+}
+
+func (m Model) endingTotal() int {
+	n := 0
+	for _, ch := range m.story.Chapters {
+		for _, c := range ch.Choices {
+			if c.EndingID != "" {
+				n++
+			}
+		}
+	}
+	return n
 }

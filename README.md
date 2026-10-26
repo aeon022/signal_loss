@@ -42,6 +42,7 @@ cd signal_loss
 - `-lang en|de` — game language, UI chrome and story content (default `en`); the browser build
   has the same choice as a launch-screen toggle
 - `-save PATH` — save file location (default `save.json`)
+- `-stats PATH` — stats file (default `stats.json`): runs, deaths, endings found; three different endings unlock a hidden chapter (New Game+)
 - `-story PATH` — story data file (default `story.json` for `en`, `story_de.json` for `de`)
 
 ### Controls

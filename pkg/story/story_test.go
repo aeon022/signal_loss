@@ -16,8 +16,8 @@ func load(t *testing.T, name string) *StoryData {
 
 // mechanics is everything except prose (an ending counts as present or not; its title is prose): what must be identical across languages.
 func mechanics(c Choice) string {
-	return fmt.Sprintf("%+v|%v|%v|%v|%d|%s|%t|%t|%s|%v|%v", c.StatMutations, len(c.ItemsAdded), len(c.ItemsRemoved),
-		c.Flags, c.TimeLockMinutes, c.NextChapter, c.Ending != "", c.Fatal, c.RequiresFlag, c.Reputation, c.RequiresRep)
+	return fmt.Sprintf("%+v|%v|%v|%v|%d|%s|%t|%t|%s|%v|%v|%s", c.StatMutations, len(c.ItemsAdded), len(c.ItemsRemoved),
+		c.Flags, c.TimeLockMinutes, c.NextChapter, c.Ending != "", c.Fatal, c.RequiresFlag, c.Reputation, c.RequiresRep, c.EndingID)
 }
 
 func TestGermanMatchesEnglishMechanics(t *testing.T) {
@@ -71,7 +71,7 @@ func TestStoryIsConsistent(t *testing.T) {
 				if ch.Text == "" || ch.Outcome == "" {
 					t.Errorf("%s: %s choice %d has empty text/outcome", name, id, i)
 				}
-				if ch.RequiresFlag != "" && !setFlags[ch.RequiresFlag] {
+				if ch.RequiresFlag != "" && !setFlags[ch.RequiresFlag] && ch.RequiresFlag != "ng_plus" { // ng_plus is set by the host from Stats
 					t.Errorf("%s: %s choice %d requires flag %q that nothing sets", name, id, i, ch.RequiresFlag)
 				}
 				if ch.NextChapter == "" && ch.Ending == "" && !ch.Fatal {
@@ -172,6 +172,23 @@ func TestReputationGatesAreReachable(t *testing.T) {
 						t.Errorf("%s: %s choice %d needs %s %d, best reachable is %d", name, id, i, f, need, max[f])
 					}
 				}
+			}
+		}
+	}
+}
+
+func TestEndingsHaveUniqueIDs(t *testing.T) {
+	for _, name := range []string{"story.json", "story_de.json"} {
+		ids := map[string]bool{}
+		for id, ch := range load(t, name).Chapters {
+			for i, c := range ch.Choices {
+				if (c.Ending == "") != (c.EndingID == "") {
+					t.Errorf("%s: %s choice %d: ending and ending_id must be set together", name, id, i)
+				}
+				if c.EndingID != "" && ids[c.EndingID] {
+					t.Errorf("%s: duplicate ending_id %q", name, c.EndingID)
+				}
+				ids[c.EndingID] = true
 			}
 		}
 	}

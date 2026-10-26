@@ -16,6 +16,7 @@ func main() {
 	fast := flag.Bool("fast", false, "skip typewriter effect and time-lock waits")
 	realTime := flag.Bool("realtime", false, "make story time-locks real minutes/hours instead of a compressed few seconds — come back later, can't be skipped with -fast")
 	savePath := flag.String("save", "save.json", "path to the save file")
+	statsPath := flag.String("stats", "stats.json", "path to the stats file (endings found, deaths; unlocks New Game+)")
 	lang := flag.String("lang", "en", "game language: en or de")
 	storyPath := flag.String("story", "", "path to the story data file (default: story.json for en, story_de.json for de)")
 	flag.Parse()
@@ -48,7 +49,9 @@ func main() {
 	// current unconfirmed input, not run progress. No separate signal
 	// handler needed on top of what Bubble Tea already restores.
 	save := func(s *game.GameState) error { return game.SaveState(*savePath, s) }
-	model := tui.New(storyData, state, save, *fast, *realTime, *lang)
+	stats := game.LoadStats(*statsPath)
+	saveStats := func(s *game.Stats) error { return game.SaveStats(*statsPath, s) }
+	model := tui.New(storyData, state, save, stats, saveStats, *fast, *realTime, *lang)
 	if _, err := tea.NewProgram(model, tea.WithAltScreen()).Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "\ngame error: %v\n", err)
 		os.Exit(1)

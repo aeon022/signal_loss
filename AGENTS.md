@@ -2,7 +2,7 @@
 
 **Tech-Stack:** Go (Bubble Tea TUI), Modul `github.com/aeon022/signal_loss`. Kein Node im Spiel-Repo; die Landingpage liegt im Branch `deploy/landing`.
 
-**Stand:** Spiel, Story (EN + DE, 12 Hauptkapitel + 12 Nebenkapitel, 103 Entscheidungen, 7 Enden), Terminal-UI, Browser-Build (WASM) und Deployment sind fertig. Details: `stage.md` (Übergabestand), `roadmap.md` (Bau-Protokoll und Backlog), `story.md` (Story-Bibel).
+**Stand:** Spiel, Story (EN + DE, 12 Hauptkapitel + 13 Nebenkapitel, 108 Entscheidungen, 8 Enden), Terminal-UI, Browser-Build (WASM) und Deployment sind fertig. Details: `stage.md` (Übergabestand), `roadmap.md` (Bau-Protokoll und Backlog), `story.md` (Story-Bibel).
 
 **Aufbau:**
 - `cmd/signal_loss/` CLI (`-fast`, `-realtime`, `-lang`, `-save`, `-story`); `cmd/wasm/` eigenes Modul für den Browser, dieselbe Engine

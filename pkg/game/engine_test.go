@@ -1,7 +1,6 @@
 package game
 
 import (
-	"encoding/json"
 	"testing"
 
 	"github.com/aeon022/signal_loss/pkg/story"
@@ -63,49 +62,36 @@ func TestCoolerIsFatalAndRunIsAWayBack(t *testing.T) {
 	}
 }
 
-// Reachability on paper (story tests) ignores gates and survival; this plays every
-// legal line from a fresh run and collects the endings that someone can actually get.
-// A state is skipped when an earlier visit had the same chapter, flags and (capped)
-// standing with at least as much hull and battery: it could do everything this one can.
-func TestEveryEndingIsWinnable(t *testing.T) {
-	st := loadStory(t)
-	type pair struct{ hull, bat int }
-	seen := map[string][]pair{}
-	endings := map[string]bool{}
-	var walk func(s *GameState)
-	walk = func(s *GameState) {
-		rep := map[string]int{}
-		for k, v := range s.Rep {
-			rep[k] = min(v, 4) // no gate asks for more
-		}
-		key, _ := json.Marshal([]any{s.CurrentChapter, s.Flags, rep})
-		for _, p := range seen[string(key)] {
-			if p.hull >= s.Hull && p.bat >= s.Bat {
-				return
-			}
-		}
-		seen[string(key)] = append(seen[string(key)], pair{s.Hull, s.Bat})
-		for _, c := range AvailableChoices(s, st.Chapters[s.CurrentChapter]) {
-			next := *s
-			next.Flags, next.Rep = map[string]bool{}, map[string]int{}
-			for k, v := range s.Flags {
-				next.Flags[k] = v
-			}
-			for k, v := range s.Rep {
-				next.Rep[k] = v
-			}
-			next.Inventory = nil
-			r := ResolveChoice(&next, c, st)
-			switch {
-			case r.Ending != "":
-				endings[r.Ending] = true
-			case !r.Fatal && !r.GameOver:
-				walk(&next)
-			}
-		}
+// One real winning line per ending, found once by a search over every legal
+// choice (hull, battery, flags and standing included) and pinned here. Choice
+// texts are matched by prefix, so a rewrite of a line shows up as a failure.
+func TestEveryEndingHasAWinningLine(t *testing.T) {
+	spine := []string{`"Right, afternoon`, "Honest Barter", "Barricade the Hatch", "Debug the Nomad", "Disguise as a Pilgrim", "Discharge Capacitor"}
+	finale := []string{"Trade the Hyper-Capacitor", "Straight through the Crater", "Standard Reset Code", "Blow the Airlock Hatch"}
+	line := func(mid string, route ...string) []string {
+		l := append(append([]string{}, spine...), "Patch the Leaks", mid)
+		return append(append(l, route...), finale...)
 	}
-	walk(NewGameState(st))
-	if len(endings) != 7 {
-		t.Errorf("want 7 reachable endings, got %d: %v", len(endings), endings)
+	lines := map[string][]string{
+		"lucky_castaway": append(line("Take the Direct Road"), "Blind Full-Throttle"),
+		"ace":            append(line("Take the Direct Road"), "Manual Course Correction"),
+		"chaotic_hero":   append(line("Take the Direct Road"), "Overclock"),
+		"loud_one":       append(line("Take the Direct Road"), "Broadcast Everything"),
+		"apostle":        append(line("Join the Pilgrim Road", "Carry the Toaster Shrine", "Deliver a Sermon"), "Broadcast the Gospel"),
+		"franchisee":     append(line("Hitch a Ride", "Work the Fryer", "Order the Combo Meal"), "Sign the Franchise"),
+		"ascension_file": append(line("Slip Into the Glitch", "Join the Card Game", "Fix the Sky"), "Upload Yourself"),
+		"loop_breaker":   {`"Right, afternoon`, "Covert Theft", "Run for It", "Open the Maintenance Hatch", "Walk Through the Exit"},
+	}
+	st := loadStory(t)
+	for want, choices := range lines {
+		s := NewGameState(st)
+		s.Flags["ng_plus"] = true // the hidden chapter is for people who already finished three runs
+		var r Resolution
+		for _, prefix := range choices {
+			r = choose(t, st, s, prefix)
+		}
+		if r.EndingID != want {
+			t.Errorf("line for %s ended with %q", want, r.EndingID)
+		}
 	}
 }

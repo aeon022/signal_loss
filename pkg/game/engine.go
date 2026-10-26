@@ -83,6 +83,7 @@ type Resolution struct {
 	GameOver        bool
 	DeathMessage    string
 	Ending          string
+	EndingID        string
 	TimeLockMinutes int
 }
 
@@ -122,7 +123,7 @@ func ResolveChoice(state *GameState, choice story.Choice, st *story.StoryData) R
 	}
 
 	if choice.Ending != "" {
-		return Resolution{Ending: choice.Ending}
+		return Resolution{Ending: choice.Ending, EndingID: choice.EndingID}
 	}
 
 	return Resolution{TimeLockMinutes: choice.TimeLockMinutes}

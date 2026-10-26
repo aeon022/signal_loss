@@ -65,6 +65,7 @@ type Choice struct {
 	TimeLockMinutes int             `json:"time_lock_minutes"`
 	NextChapter     string          `json:"next_chapter"`
 	Ending          string          `json:"ending"`
+	EndingID        string          `json:"ending_id"` // language-independent key for stats; set exactly when Ending is
 	Fatal           bool            `json:"fatal"`
 
 	// RequiresFlag, if set, hides this choice unless that flag is already

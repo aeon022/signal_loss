@@ -125,6 +125,19 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "enemies_at_ship"
+        },
+        {
+          "text": "Die Wartungsluke öffnen, die vorher nicht da war — beschriftet mit „EINFÜHRUNGSMODUL 4“.",
+          "outcome": "Die Luke schwingt lautlos auf, was das Erste an diesem Planeten ist, das das tut.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_13",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "ng_plus"
         }
       ]
     },
@@ -1465,7 +1478,8 @@
           "next_chapter": "",
           "ending": "🏆 Ende: Der glückliche Schiffbrüchige",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "lucky_castaway"
         },
         {
           "text": "Manuelle Kurskorrektur.",
@@ -1477,7 +1491,8 @@
           "next_chapter": "",
           "ending": "🏆 Ende: Der Ass von Sektor Schrödinger",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "ace"
         },
         {
           "text": "Den Hyperkondensator überlasten.",
@@ -1489,7 +1504,8 @@
           "next_chapter": "",
           "ending": "🏆 Ende: Der chaotische Held",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "chaotic_hero"
         },
         {
           "text": "Alles senden, volles Signal — statt leise zu springen, jedes Sensorprotokoll, jede Fraktions-Schmutzwäsche und deinen eigenen Flugweg über jeden offenen Kanal im Sektor blasen.",
@@ -1501,7 +1517,8 @@
           "next_chapter": "",
           "ending": "🏆 Ende: Der Laute",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "loud_one"
         },
         {
           "text": "Das Evangelium des Heiligen Plastik senden — springen, während zweihundert Mönche auf jedem Kanal Fehlercodes singen.",
@@ -1514,7 +1531,8 @@
           "ending": "🏆 Ende: Der Apostel",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_rep": { "monks": 4 }
+          "requires_rep": { "monks": 4 },
+          "ending_id": "apostle"
         },
         {
           "text": "Den Franchise-Vertrag unterschreiben — mit Kassenbuch, Fritteuse und winzigem Papierhut springen.",
@@ -1527,7 +1545,8 @@
           "ending": "🏆 Ende: Der Franchisenehmer",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_rep": { "cartel": 4 }
+          "requires_rep": { "cartel": 4 },
+          "ending_id": "franchisee"
         },
         {
           "text": "Sich selbst hochladen — durch die Tür mit der Aufschrift J / N treten.",
@@ -1540,7 +1559,66 @@
           "ending": "🏆 Ende: Die Aufstiegs-Datei",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_rep": { "nomads": 4 }
+          "requires_rep": { "nomads": 4 },
+          "ending_id": "ascension_file"
+        }
+      ]
+    },
+    "chapter_13": {
+      "title": "Kapitel 13: Das Einführungsmodul",
+      "location": "Hinter der Wand",
+      "spine": "chapter_1",
+      "content": "Hinter der Luke liegt ein Korridor, der zu sauber für Gryps-4 ist: Neonröhren, grauer Teppich, ein laminiertes Schild: „GALACTIC SCRAP & FREIGHT — EINFÜHRUNGSMODUL 4: IHREN ERSTEN ABSTURZ ÜBERLEBEN (v2.3, VERPFLICHTEND).“ S.T.E.V.E.s Stimme kommt aus einem Wandlautsprecher, klein und müde. „Ich wollte es dir schon lange sagen. Du bist jetzt auf drei verschiedene Arten gestorben, was die Nachbesprechung auslöst. Ich bin außerdem seit vierhundert Durchläufen hier. Und die Kühlbox ist nicht echt. Bitte sei sanft.“ Am Ende des Korridors: eine Tür unter einem AUSGANG-Schild und ein Tablett mit Gratis-Gebäck.",
+      "choices": [
+        {
+          "text": "Das Gratis-Gebäck nehmen — du hast es dir verdient.",
+          "outcome": "Es schmeckt nach Nostalgie und sonst nichts, und es ist das Beste, was du auf diesem Planeten gegessen hast. S.T.E.V.E. schlägt leise vor, dass du wieder hinausgehst und versuchst, dich ein bisschen besser anzustellen. Du tust es.",
+          "stat_mutations": { "hull": 2, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Das Schulungshandbuch lesen — Seite eins heißt „Was man nicht tun soll“.",
+          "outcome": "Es ist eine lange Liste, und du stehst in jeder Zeile. Jemand hat den Rand in S.T.E.V.E.s Handschrift kommentiert, die es nicht geben dürfte, mit Notizen wie „er WIRD das tun“ und „nicht die Kühlbox ansehen“. Du steckst es ein. S.T.E.V.E. ist gerührt, dass du die Fußnoten gelesen hast.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Schulungshandbuch"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "steve": 1 }
+        },
+        {
+          "text": "Durch die Ausgangstür gehen.",
+          "outcome": "Sie öffnet sich zu einem Konferenzraum voller Galactic-Scrap-&-Freight-Personalabteilung mit Lanyards, die applaudiert. „Glückwunsch, Arthur“, sagt eine Frau mit Klemmbrett, „Sie haben Modul 4 in nur 3.271 Versuchen abgeschlossen. Firmenrekord!“ Du bekommst ein Zertifikat, ein Lanyard und vier Prozent mehr Gehalt. S.T.E.V.E. wird Modul 5 zugeteilt. „Bleib nicht fremd“, sagt er, mit der Stimme eines Mannes, der dich ganz sicher wiedersehen wird.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Der Schleifenbrecher",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "ending_id": "loop_breaker"
+        },
+        {
+          "text": "Den Knopf „SIMULATION ZURÜCKSETZEN“ drücken.",
+          "outcome": "Alles wird zurückgesetzt. Das schließt dich ein. Das Gebäck, bemerkenswerterweise, nicht.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
         }
       ]
     }

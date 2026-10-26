@@ -56,6 +56,8 @@ type Model struct {
 	story    *story.StoryData
 	state    *game.GameState
 	save     func(*game.GameState) error
+	stats    *game.Stats
+	saveStat func(*game.Stats) error
 	fastMode bool
 	realTime bool
 	labels   Labels
@@ -89,6 +91,8 @@ type Model struct {
 	endTitle   string
 	endMessage string
 
+	width, height int // last WindowSizeMsg; 0 until the terminal reports one
+
 	quitting bool
 	fatalErr error
 }
@@ -96,11 +100,19 @@ type Model struct {
 // New builds the initial model. Pass an already-loaded state (fresh or
 // resumed), story data, and a save func — file-backed on the native CLI,
 // localStorage-backed in the WASM build, the model doesn't care which.
-func New(st *story.StoryData, state *game.GameState, save func(*game.GameState) error, fastMode, realTime bool, lang string) Model {
+func New(st *story.StoryData, state *game.GameState, save func(*game.GameState) error, stats *game.Stats, saveStats func(*game.Stats) error, fastMode, realTime bool, lang string) Model {
+	if state.Flags == nil { // very old saves
+		state.Flags = map[string]bool{}
+	}
+	if stats.NGPlus() {
+		state.Flags["ng_plus"] = true
+	}
 	m := Model{
 		story:    st,
 		state:    state,
 		save:     save,
+		stats:    stats,
+		saveStat: saveStats,
 		fastMode: fastMode,
 		realTime: realTime,
 		labels:   labelsFor(lang),
@@ -173,6 +185,9 @@ func (e errUnknownChapter) Error() string { return "unknown chapter: " + string(
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
+	case tea.WindowSizeMsg:
+		m.width, m.height = msg.Width, msg.Height
+		return m, nil
 	case tea.KeyMsg:
 		return m.handleKey(msg)
 	case tickMsg:
@@ -231,7 +246,10 @@ func (m Model) handleBootKey() (tea.Model, tea.Cmd) {
 func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 	if m.overlay != "" {
 		switch key {
-		case "c", "m", "esc":
+		case "c", "m", "esc", "?":
+			if m.overlay == "codex" {
+				m.markCodexSeen()
+			}
 			m.overlay = ""
 		case "up", "k":
 			if m.codexScroll > 0 {
@@ -284,6 +302,9 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 		return m, nil
 	case "m":
 		m.overlay = "map"
+		return m, nil
+	case "?":
+		m.overlay = "help"
 		return m, nil
 	case "q":
 		m.quitting = true
@@ -347,7 +368,7 @@ func (m Model) applyResolution() (tea.Model, tea.Cmd) {
 		m.phase = phaseGameOver
 		m.endTitle = m.labels.GameOverTitle
 		m.endMessage = r.DeathMessage
-
+		m.finishRun("")
 		return m, nil
 	case r.TimeLockMinutes > 0 && m.realTime:
 		m.state.TimeLockUntil = time.Now().Add(time.Duration(r.TimeLockMinutes) * time.Minute).Unix()
@@ -362,7 +383,7 @@ func (m Model) applyResolution() (tea.Model, tea.Cmd) {
 	case r.Ending != "":
 		m.phase = phaseEnding
 		m.endMessage = r.Ending
-
+		m.finishRun(r.EndingID)
 		return m, nil
 	default:
 		return m.advanceChapter()
@@ -384,7 +405,7 @@ func (m Model) afterTimelock() (tea.Model, tea.Cmd) {
 	if m.resolution.Ending != "" {
 		m.phase = phaseEnding
 		m.endMessage = m.resolution.Ending
-
+		m.finishRun(m.resolution.EndingID)
 		return m, nil
 	}
 	m.phase = phaseGlitch
@@ -467,4 +488,24 @@ func (m Model) handleTick() (tea.Model, tea.Cmd) {
 		return m, tick(glitchInterval)
 	}
 	return m, nil
+}
+
+// finishRun records the run in the stats and overwrites the save with a fresh
+// game, so the next launch starts over instead of resuming a dead run. The
+// in-memory state stays as it is for the end screen's status bar.
+func (m *Model) finishRun(endingID string) {
+	m.stats.Record(endingID)
+	m.saveStat(m.stats)
+	m.save(game.NewGameState(m.story))
+}
+
+// markCodexSeen is called as the codex closes: whatever was listed is no longer new.
+func (m *Model) markCodexSeen() {
+	if m.state.CodexSeen == nil {
+		m.state.CodexSeen = map[string]bool{}
+	}
+	for _, term := range m.knownCodexTerms() {
+		m.state.CodexSeen[term] = true
+	}
+	m.save(m.state)
 }

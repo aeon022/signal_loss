@@ -125,6 +125,19 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "enemies_at_ship"
+        },
+        {
+          "text": "Open the Maintenance Hatch That Wasn't There Before — it's labelled \"ONBOARDING MODULE 4.\"",
+          "outcome": "The hatch swings open without a sound, which is the first thing about this planet that has.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_13",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "ng_plus"
         }
       ]
     },
@@ -1465,7 +1478,8 @@
           "next_chapter": "",
           "ending": "🏆 Ending: The Lucky Castaway",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "lucky_castaway"
         },
         {
           "text": "Manual Course Correction.",
@@ -1477,7 +1491,8 @@
           "next_chapter": "",
           "ending": "🏆 Ending: The Ace of Sector Schrödinger",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "ace"
         },
         {
           "text": "Overclock the Hyper-Capacitor.",
@@ -1489,7 +1504,8 @@
           "next_chapter": "",
           "ending": "🏆 Ending: The Chaotic Hero",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "chaotic_hero"
         },
         {
           "text": "Broadcast Everything, Full Signal — instead of jumping quiet, blast every sensor log, every faction's dirty laundry, and your own flight path across every open channel in the sector.",
@@ -1501,7 +1517,8 @@
           "next_chapter": "",
           "ending": "🏆 Ending: The Loud One",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "ending_id": "loud_one"
         },
         {
           "text": "Broadcast the Gospel of Saint-Plastic — jump while two hundred monks sing error codes on every channel.",
@@ -1514,7 +1531,8 @@
           "ending": "🏆 Ending: The Apostle",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_rep": { "monks": 4 }
+          "requires_rep": { "monks": 4 },
+          "ending_id": "apostle"
         },
         {
           "text": "Sign the Franchise Agreement — jump with a ledger, a fryer and a tiny paper hat.",
@@ -1527,7 +1545,8 @@
           "ending": "🏆 Ending: The Franchisee",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_rep": { "cartel": 4 }
+          "requires_rep": { "cartel": 4 },
+          "ending_id": "franchisee"
         },
         {
           "text": "Upload Yourself — step through the door marked Y / N.",
@@ -1540,7 +1559,66 @@
           "ending": "🏆 Ending: The Ascension File",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_rep": { "nomads": 4 }
+          "requires_rep": { "nomads": 4 },
+          "ending_id": "ascension_file"
+        }
+      ]
+    },
+    "chapter_13": {
+      "title": "Chapter 13: The Onboarding Module",
+      "location": "Behind the Wall",
+      "spine": "chapter_1",
+      "content": "Behind the hatch is a corridor too clean to be on Gryps-4: fluorescent strips, grey carpet, a laminated sign reading \"GALACTIC SCRAP & FREIGHT — ONBOARDING MODULE 4: SURVIVING YOUR FIRST CRASH (v2.3, MANDATORY).\" S.T.E.V.E.'s voice comes from a wall speaker, small and tired. \"I've been meaning to tell you. You have now died in three different ways, which triggers the debrief. I have also been here for four hundred iterations. Also, the cooler is not real. Please be gentle.\" At the end of the corridor: a door under an EXIT sign, and a tray of complimentary pastry.",
+      "choices": [
+        {
+          "text": "Take the Complimentary Pastry — you've earned it.",
+          "outcome": "It tastes of nostalgia and nothing else, and it is the best thing you have eaten on this planet. S.T.E.V.E. suggests, quietly, that you go back out and try to be a little better at this. You do.",
+          "stat_mutations": { "hull": 2, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Read the Training Manual — page one is \"Things Not To Do.\"",
+          "outcome": "It is a long list, and you are on every line of it. Someone has annotated the margins in S.T.E.V.E.'s handwriting, which should not exist, with notes like \"he WILL do this\" and \"don't look at the cooler.\" You pocket it. S.T.E.V.E. is touched that you read the footnotes.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": ["Training Manual"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "steve": 1 }
+        },
+        {
+          "text": "Walk Through the Exit Door.",
+          "outcome": "It opens onto a conference room full of Galactic Scrap & Freight HR in lanyards, applauding. \"Congratulations, Arthur,\" says a woman with a clipboard, \"you've completed Module 4 in only 3,271 attempts. A company record!\" You are given a certificate, a lanyard and a four percent raise. S.T.E.V.E. is reassigned to Module 5. \"Don't be a stranger,\" he says, in the voice of a man who will absolutely see you again.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ending: The Loop Breaker",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "ending_id": "loop_breaker"
+        },
+        {
+          "text": "Press the Button Marked \"RESET SIMULATION.\"",
+          "outcome": "Everything resets. That includes you. The pastry, notably, does not.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
         }
       ]
     }

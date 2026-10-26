@@ -44,6 +44,9 @@ const TextWidth = MaxWidth - 2
 // 1-space, 1-border-char margin on each side.
 const BezelWidth = FrameWidth + 4
 
+// BezelHeight is the rendered screen height: frame + border, status block, two bezel edges.
+const BezelHeight = FixedHeight + 7
+
 var (
 	colorCyan    = lipgloss.Color("14")
 	colorAmber   = lipgloss.Color("3")

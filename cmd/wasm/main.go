@@ -52,7 +52,8 @@ func (w *bridgeWriter) Write(p []byte) (int, error) {
 func main() {
 	inputCh := make(chan []byte, 64)
 
-	// slStart(storyJSON, savedStateJSON, fast, realtime, lang, onOutput, onSave, onExit)
+	// slStart(storyJSON, savedStateJSON, fast, realtime, lang, onOutput, onSave, onExit[, statsJSON, onStats])
+	// The stats pair is optional so an older page can still call it.
 	// lang only picks the UI chrome (headings, hints, boot log) — storyJSON
 	// already carries whichever language's narrative content JS fetched,
 	// so the two need to be kept in sync by the caller.
@@ -74,6 +75,21 @@ func main() {
 
 		state := loadOrNewState(storyData, savedJSON)
 
+		stats := &game.Stats{}
+		saveStats := func(*game.Stats) error { return nil }
+		if len(args) > 9 {
+			json.Unmarshal([]byte(args[8].String()), stats) //nolint:errcheck // empty or broken: start over
+			onStats := args[9]
+			saveStats = func(s *game.Stats) error {
+				data, err := json.Marshal(s)
+				if err != nil {
+					return err
+				}
+				onStats.Invoke(string(data))
+				return nil
+			}
+		}
+
 		save := func(s *game.GameState) error {
 			data, err := json.Marshal(s)
 			if err != nil {
@@ -83,7 +99,7 @@ func main() {
 			return nil
 		}
 
-		model := tui.New(storyData, state, save, fast, realtime, lang)
+		model := tui.New(storyData, state, save, stats, saveStats, fast, realtime, lang)
 		prog := tea.NewProgram(model,
 			tea.WithAltScreen(),
 			tea.WithInput(&bridgeReader{ch: inputCh}),
