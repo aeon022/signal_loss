@@ -188,13 +188,25 @@ func (m Model) viewBoot(l layout) string {
 
 // centered places a block in the middle of the main panel, line by line.
 // Each part is kept left-aligned as a unit and the units are centered, so
-// lines of different length (a boot log) don't drift apart.
+// lines of different length (a boot log) don't drift apart. When the parts
+// are taller than the panel the less important ones go: from the second to
+// last backwards, the last part (the key prompt) always stays.
 func centered(l layout, parts ...[]string) []string {
+	height := func() (n int) {
+		for _, p := range parts {
+			n += len(p)
+		}
+		return n
+	}
+	for height() > l.rows && len(parts) > 2 {
+		parts = append(parts[:len(parts)-2], parts[len(parts)-1])
+	}
 	units := make([]string, len(parts))
 	for i, p := range parts {
 		units[i] = lipgloss.JoinVertical(lipgloss.Left, p...)
 	}
-	return strings.Split(lipgloss.Place(l.textW, l.rows, lipgloss.Center, lipgloss.Center, lipgloss.JoinVertical(lipgloss.Center, units...)), "\n")
+	lines := strings.Split(lipgloss.Place(l.textW, l.rows, lipgloss.Center, lipgloss.Center, lipgloss.JoinVertical(lipgloss.Center, units...)), "\n")
+	return lines[:min(len(lines), l.rows)]
 }
 
 func (m Model) viewGlitch(l layout) string {
@@ -222,6 +234,8 @@ func (m Model) viewChapter(l layout) string {
 		return m.viewMap(l)
 	case "help":
 		return m.viewHelp(l)
+	case "endings":
+		return m.viewEndings(l)
 	}
 
 	title := ch.Title
@@ -243,11 +257,16 @@ func (m Model) viewChapter(l layout) string {
 		// still typing the narrative — choices appear once it's done.
 	default:
 		choices := game.AvailableChoices(m.state, ch)
-		bottom = append([]string{""}, renderChoices(choices, m.cursor, l.textW)...)
+		warn := m.state.Flags["sat_data"] || m.state.Flags["knows_traps"]
+		risky := func(c story.Choice) bool { return warn && game.Risky(m.state, c) }
+		bottom = append([]string{""}, renderChoices(choices, m.cursor, l.textW, risky)...)
 		if m.hint != "" {
 			bottom = append(bottom, "", dimStyle.Render(m.hint))
 		}
 		footer = fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))
+		if warn {
+			footer += m.labels.RiskLegend
+		}
 		if n := m.unseenCodex(); n > 0 {
 			footer += fmt.Sprintf(m.labels.CodexNewFmt, n)
 		}
@@ -260,12 +279,15 @@ func (m Model) viewChapter(l layout) string {
 // renderChoices word-wraps each choice under a hanging indent and
 // highlights the cursor-selected one. Returns individual rows, not a
 // single joined block, so callers can count/pad them line-for-line.
-func renderChoices(choices []story.Choice, cursor, width int) []string {
+func renderChoices(choices []story.Choice, cursor, width int, risky func(story.Choice) bool) []string {
 	var rows []string
 	for i, c := range choices {
 		marker, style := "▸", choiceStyle
 		if i == cursor {
 			marker, style = "▶", cursorStyle
+		}
+		if risky(c) {
+			marker = "⚠"
 		}
 		prefix := fmt.Sprintf("[%d] ", i+1)
 		indent := strings.Repeat(" ", len(prefix)+2)
@@ -406,17 +428,16 @@ func (m Model) viewRealLock(l layout) string {
 	remaining := max(time.Until(time.Unix(m.state.TimeLockUntil, 0)), 0)
 	unlockAt := time.Unix(m.state.TimeLockUntil, 0).Local().Format("Mon 15:04")
 
-	block := []string{heading(m.labels.RealLockHeading, colorDim), ""}
-	block = append(block, wrap(m.labels.RealLockBodyPre+formatDuration(remaining)+".", min(l.textW, 70))...)
-	block = append(block,
-		"",
-		dimStyle.Render(m.labels.RealLockBackOnlinePre+unlockAt),
-		"",
-		dimStyle.Render(m.labels.RealLockSaved),
-		"",
-		dimStyle.Render(m.labels.RealLockQuit),
-	)
-	return m.screen(l, colorDim, centered(l, block), "")
+	w := min(l.textW, 70)
+	dim := func(s string) []string {
+		out := wrap(s, w)
+		for i := range out {
+			out[i] = dimStyle.Render(out[i])
+		}
+		return out
+	}
+	head := append([]string{heading(m.labels.RealLockHeading, colorDim), ""}, wrap(m.labels.RealLockBodyPre+formatDuration(remaining)+".", w)...)
+	return m.screen(l, colorDim, centered(l, head, append([]string{""}, dim(m.labels.RealLockBackOnlinePre+unlockAt)...), append([]string{""}, dim(m.labels.RealLockSaved)...), []string{"", dimStyle.Render(m.labels.RealLockQuit)}), "")
 }
 
 func formatDuration(d time.Duration) string {
@@ -434,13 +455,78 @@ func formatDuration(d time.Duration) string {
 }
 
 func (m Model) viewEnd(l layout, c lipgloss.Color) string {
-	var block []string
+	var story []string
 	if m.endTitle != "" {
-		block = append(block, heading(m.endTitle, c), "")
+		story = append(story, heading(m.endTitle, c), "")
 	}
-	block = append(block, wrap(m.endMessage, min(l.textW, 78))...)
-	block = append(block, "", dimStyle.Render(fmt.Sprintf(m.labels.EndStatsFmt, m.stats.Runs, m.stats.Deaths, len(m.stats.Endings), m.endingTotal())), "", dimStyle.Render(m.labels.EndQuit))
-	return m.screen(l, c, centered(l, block), "")
+	story = append(story, wrap(m.endMessage, min(l.textW, 78))...)
+
+	s := m.state
+	share := fmt.Sprintf(m.labels.EndShareDeath, s.Steps)
+	if m.phase == phaseEnding {
+		title := m.endMessage
+		if i := strings.Index(title, ": "); i >= 0 {
+			title = title[i+2:]
+		}
+		share = fmt.Sprintf(m.labels.EndShareEnding, title, s.Steps)
+	}
+	numbers := []string{"", fmt.Sprintf(m.labels.EndSummaryFmt, s.Steps, s.Hull, s.Bat, s.Scrap),
+		dimStyle.Render(fmt.Sprintf(m.labels.EndStatsFmt, m.stats.Runs, m.stats.Deaths, len(m.stats.Endings), m.endingTotal()))}
+	support := []string{""}
+	for _, ln := range wrap(share, min(l.textW, 78)) {
+		support = append(support, dimStyle.Render(ln))
+	}
+	if lines := wrap(m.labels.SupportLine, min(l.textW, 78)); widest(lines) <= l.textW { // a link that can't wrap is left out of narrow terminals
+		for _, ln := range lines {
+			support = append(support, dimStyle.Render(ln))
+		}
+	}
+	return m.screen(l, c, centered(l, story, numbers, support, []string{"", dimStyle.Render(m.labels.EndQuit)}), "")
+}
+
+// endings lists every ending of the story in play order: (id, title).
+func (m Model) endings() [][2]string {
+	ids := make([]string, 0, len(m.story.Chapters))
+	for id := range m.story.Chapters {
+		ids = append(ids, id)
+	}
+	sort.Strings(ids)
+	var out [][2]string
+	for _, id := range ids {
+		for _, c := range m.story.Chapters[id].Choices {
+			if c.EndingID != "" {
+				out = append(out, [2]string{c.EndingID, c.Ending})
+			}
+		}
+	}
+	return out
+}
+
+func (m Model) viewEndings(l layout) string {
+	all := m.endings()
+	lines := []string{heading(m.labels.EndingsHeading, colorMagenta), ""}
+	for _, e := range all {
+		if n := m.stats.Endings[e[0]]; n > 0 {
+			lines = append(lines, lipgloss.NewStyle().Foreground(colorMagenta).Render("◆ ")+e[1]+dimStyle.Render(fmt.Sprintf("  ×%d", n)))
+		} else {
+			lines = append(lines, dimStyle.Render("◇ "+m.labels.EndingsHidden))
+		}
+	}
+	lines = append(lines, "", fmt.Sprintf(m.labels.EndingsFoundFmt, len(m.stats.Endings), len(all)))
+	if m.stats.NGPlus() {
+		lines = append(lines, m.labels.EndingsNGPlus)
+	} else {
+		lines = append(lines, dimStyle.Render(fmt.Sprintf(m.labels.EndingsNeedFmt, game.NGPlusEndings-len(m.stats.Endings))))
+	}
+	lines = append(lines, "", dimStyle.Render(m.labels.MapFooter))
+	return m.screen(l, colorMagenta, window(lines, l.rows, 0, false), "")
+}
+
+func widest(lines []string) (w int) {
+	for _, ln := range lines {
+		w = max(w, lipgloss.Width(ln))
+	}
+	return w
 }
 
 func (m Model) endingTotal() int {

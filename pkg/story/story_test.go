@@ -16,8 +16,8 @@ func load(t *testing.T, name string) *StoryData {
 
 // mechanics is everything except prose (an ending counts as present or not; its title is prose): what must be identical across languages.
 func mechanics(c Choice) string {
-	return fmt.Sprintf("%+v|%v|%v|%v|%d|%s|%t|%t|%s|%v|%v|%s", c.StatMutations, len(c.ItemsAdded), len(c.ItemsRemoved),
-		c.Flags, c.TimeLockMinutes, c.NextChapter, c.Ending != "", c.Fatal, c.RequiresFlag, c.Reputation, c.RequiresRep, c.EndingID)
+	return fmt.Sprintf("%+v|%v|%v|%v|%d|%s|%t|%t|%s|%v|%v|%s|%t|%t|%s|%d|%+v", c.StatMutations, len(c.ItemsAdded), len(c.ItemsRemoved),
+		c.Flags, c.TimeLockMinutes, c.NextChapter, c.Ending != "", c.Fatal, c.RequiresFlag, c.Reputation, c.RequiresRep, c.EndingID, c.RequiresItem != "", c.SavedByItem != "", c.SavedNext, luckChance(c), luckStats(c))
 }
 
 func TestGermanMatchesEnglishMechanics(t *testing.T) {
@@ -106,6 +106,9 @@ func TestEverythingIsReachable(t *testing.T) {
 				if ch.NextChapter != "" {
 					queue = append(queue, ch.NextChapter)
 				}
+				if ch.SavedNext != "" {
+					queue = append(queue, ch.SavedNext)
+				}
 				if ch.Ending != "" {
 					endings++
 				}
@@ -189,6 +192,47 @@ func TestEndingsHaveUniqueIDs(t *testing.T) {
 					t.Errorf("%s: duplicate ending_id %q", name, c.EndingID)
 				}
 				ids[c.EndingID] = true
+			}
+		}
+	}
+}
+
+func luckChance(c Choice) int {
+	if c.Luck == nil {
+		return 0
+	}
+	return c.Luck.Chance
+}
+
+func luckStats(c Choice) StatMutations {
+	if c.Luck == nil {
+		return StatMutations{}
+	}
+	return c.Luck.StatMutations
+}
+
+// An item that is asked for must be handed out somewhere, in each language's own spelling.
+func TestRequiredItemsExist(t *testing.T) {
+	for _, name := range []string{"story.json", "story_de.json"} {
+		s := load(t, name)
+		given := map[string]bool{}
+		for _, ch := range s.Chapters {
+			for _, c := range ch.Choices {
+				for _, item := range c.ItemsAdded {
+					given[item] = true
+				}
+			}
+		}
+		for id, ch := range s.Chapters {
+			for i, c := range ch.Choices {
+				for _, need := range []string{c.RequiresItem, c.SavedByItem} {
+					if need != "" && !given[need] {
+						t.Errorf("%s: %s choice %d needs item %q that nothing hands out", name, id, i, need)
+					}
+				}
+				if (c.SavedByItem != "") != (c.SavedNext != "" && c.SavedOutcome != "") || c.SavedByItem != "" && !c.Fatal {
+					t.Errorf("%s: %s choice %d: saved_by_item needs fatal, saved_outcome and saved_next together", name, id, i)
+				}
 			}
 		}
 	}

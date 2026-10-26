@@ -80,6 +80,29 @@ type Choice struct {
 	// why some options only ever appear to people who were nice earlier.
 	Reputation  map[string]int `json:"reputation"`
 	RequiresRep map[string]int `json:"requires_rep"`
+
+	// RequiresItem hides the choice unless the item (by its name in this
+	// language's story file) is in the inventory.
+	RequiresItem string `json:"requires_item"`
+
+	// A fatal choice with SavedByItem set is survivable by someone carrying
+	// that item: the item is used up, SavedOutcome is shown and play goes on
+	// at SavedNext instead of ending in death.
+	SavedByItem  string `json:"saved_by_item"`
+	SavedOutcome string `json:"saved_outcome"`
+	SavedNext    string `json:"saved_next"`
+
+	// Luck is a chance, per choice and per run, of an extra twist on top of
+	// the normal outcome. Rolls come from the run's seed, so a given run is
+	// reproducible; a negative seed (tests) switches luck off.
+	Luck *Luck `json:"luck"`
+}
+
+// Luck is the optional twist of a choice: Chance percent of runs get the extra text and stat changes.
+type Luck struct {
+	Chance        int           `json:"chance"`
+	Outcome       string        `json:"outcome"`
+	StatMutations StatMutations `json:"stat_mutations"`
 }
 
 // StatMutations are the resource deltas a choice applies.
@@ -109,11 +132,13 @@ func ParseStory(data []byte) (*StoryData, error) {
 
 	for id, chapter := range story.Chapters {
 		for _, choice := range chapter.Choices {
-			if choice.NextChapter == "" {
-				continue
-			}
-			if _, ok := story.Chapters[choice.NextChapter]; !ok {
-				return nil, fmt.Errorf("invalid next_chapter reference %q in chapter %q", choice.NextChapter, id)
+			for _, next := range []string{choice.NextChapter, choice.SavedNext} {
+				if next == "" {
+					continue
+				}
+				if _, ok := story.Chapters[next]; !ok {
+					return nil, fmt.Errorf("invalid next_chapter reference %q in chapter %q", next, id)
+				}
 			}
 		}
 	}

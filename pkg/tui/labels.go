@@ -43,6 +43,17 @@ type Labels struct {
 	CodexNewFmt string // %d = unseen entries, appended to the choice footer
 	CodexNewTag string
 
+	RiskLegend      string // appended to the footer while S.T.E.V.E. is flagging risks
+	EndingsHeading  string
+	EndingsHidden   string
+	EndingsFoundFmt string // found, total
+	EndingsNGPlus   string
+	EndingsNeedFmt  string // %d more endings until New Game+
+	EndSummaryFmt   string // choices, hull, bat, scrap
+	EndShareDeath   string // %d choices
+	EndShareEnding  string // title, %d choices
+	SupportLine     string
+
 	RouteUnknown string // shown instead of the route until S.T.E.V.E. has satellite data
 
 	HelpHeading string
@@ -63,7 +74,7 @@ var labelsEN = Labels{
 	PressUplink:     "Press any key to establish uplink...",
 	ErrUnknownChap:  "ERROR: unknown chapter",
 	PressContinue:   "Press any key to continue...",
-	ChoiceFooterFmt: "[1-%d] choose   ↑↓ + enter   [c]odex   [m]ap   [?]   [q]uit",
+	ChoiceFooterFmt: "[1-%d] choose   ↑↓ + enter   [c]odex   [m]ap   [e]ndings   [?]   [q]uit",
 
 	CodexHeading:   "S.T.E.V.E. DATABASE — CODEX",
 	CodexEmpty:     "No data on file yet. Keep moving.",
@@ -91,6 +102,17 @@ var labelsEN = Labels{
 
 	RouteUnknown: "— no nav data —",
 
+	RiskLegend:      "   ⚠ = S.T.E.V.E. flags a risk",
+	EndingsHeading:  "ENDINGS LOG",
+	EndingsHidden:   "???",
+	EndingsFoundFmt: "%d of %d endings found",
+	EndingsNGPlus:   "New Game+ unlocked: a hatch at the wreck is open to you.",
+	EndingsNeedFmt:  "%d more different endings unlock New Game+.",
+	EndSummaryFmt:   "%d choices · HULL %d · BAT %d · SCRAP %d",
+	EndShareDeath:   "I died on Gryps-4 after %d choices. #SignalLoss",
+	EndShareEnding:  "I escaped Gryps-4 as “%s” in %d choices. #SignalLoss",
+	SupportLine:     "Enjoyed it? Pay what you want: https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0",
+
 	HelpHeading: "S.T.E.V.E. HELP — KEYS",
 	HelpLines: []string{
 		"1-9          pick a choice",
@@ -99,6 +121,7 @@ var labelsEN = Labels{
 		"PgUp PgDn    scroll a long text",
 		"c            codex (what S.T.E.V.E. knows)",
 		"m            map of Sector Schrödinger",
+		"e            endings log",
 		"?            this help",
 		"q            quit (the run is saved)",
 	},
@@ -118,7 +141,7 @@ var labelsDE = Labels{
 	PressUplink:     "Beliebige Taste drücken, um den Uplink herzustellen...",
 	ErrUnknownChap:  "FEHLER: unbekanntes Kapitel",
 	PressContinue:   "Beliebige Taste drücken, um fortzufahren...",
-	ChoiceFooterFmt: "[1-%d] wählen   ↑↓ + Enter   [c]odex   [m]ap   [?]   [q] beenden",
+	ChoiceFooterFmt: "[1-%d] wählen   ↑↓ + Enter   [c]odex   [m]ap   [e]nden   [?]   [q] beenden",
 
 	CodexHeading:   "S.T.E.V.E.-DATENBANK — CODEX",
 	CodexEmpty:     "Noch keine Daten vorhanden. Weiter vorankommen.",
@@ -146,6 +169,17 @@ var labelsDE = Labels{
 
 	RouteUnknown: "— keine Navigationsdaten —",
 
+	RiskLegend:      "   ⚠ = S.T.E.V.E. meldet ein Risiko",
+	EndingsHeading:  "ENDEN-LOG",
+	EndingsHidden:   "???",
+	EndingsFoundFmt: "%d von %d Enden gefunden",
+	EndingsNGPlus:   "Neues Spiel+ freigeschaltet: Am Wrack steht eine Luke offen.",
+	EndingsNeedFmt:  "Noch %d verschiedene Enden bis Neues Spiel+.",
+	EndSummaryFmt:   "%d Entscheidungen · HULL %d · BAT %d · SCRAP %d",
+	EndShareDeath:   "Ich bin auf Gryps-4 nach %d Entscheidungen gestorben. #SignalLoss",
+	EndShareEnding:  "Ich bin als „%s“ von Gryps-4 entkommen, in %d Entscheidungen. #SignalLoss",
+	SupportLine:     "Gefallen? Zahl, was du willst: https://buy.polar.sh/polar_cl_CbYo27mWKgPdiEv3IJS680uCrzqDus7LWzd131V74y0",
+
 	HelpHeading: "S.T.E.V.E.-HILFE — TASTEN",
 	HelpLines: []string{
 		"1-9          Auswahl treffen",
@@ -154,6 +188,7 @@ var labelsDE = Labels{
 		"BildAuf/Ab   langen Text scrollen",
 		"c            Codex (was S.T.E.V.E. weiß)",
 		"m            Karte von Sektor Schrödinger",
+		"e            Enden-Log",
 		"?            diese Hilfe",
 		"q            beenden (der Lauf ist gespeichert)",
 	},

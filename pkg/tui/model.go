@@ -248,7 +248,7 @@ func (m Model) handleBootKey() (tea.Model, tea.Cmd) {
 func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 	if m.overlay != "" {
 		switch key {
-		case "c", "m", "esc", "?":
+		case "c", "m", "e", "esc", "?":
 			if m.overlay == "codex" {
 				m.markCodexSeen()
 			}
@@ -314,6 +314,9 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 	case "m":
 		m.overlay = "map"
 		return m, nil
+	case "e":
+		m.overlay = "endings"
+		return m, nil
 	case "?":
 		m.overlay = "help"
 		return m, nil
@@ -353,7 +356,7 @@ func (m Model) selectChoice(idx int) (tea.Model, tea.Cmd) {
 	m.awaitingContinue = false
 	m.hint = ""
 	m.textScroll = 0
-	m.setReveal(choice.Outcome)
+	m.setReveal(m.resolution.Outcome)
 
 	if m.fastMode {
 		return m.finishOutcome()

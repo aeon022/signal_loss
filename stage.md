@@ -54,6 +54,14 @@ _Last updated 2026-09-09 — see `roadmap.md` for the full phase-by-phase build 
 - ✅ Browser (branch `deploy/landing`): bilingual page (`/`, `/de/`, hreflang, redirect for German browsers),
   terminal fits its box (`slResize`, @xterm/addon-fit), share text after a run, sound toggle, touch keys,
   save import/export, 404, `go test` + puppeteer smoke test before every deploy. No analytics.
+- ✅ Items and luck (v0.5.0): `requires_item` (shortcuts: Deprecated Map, Forged Release Form, Nav-Core,
+  Spare Fuse), `saved_by_item` (Blessed Fuse, Glitch Charm, Combo Voucher turn a fatal choice into a
+  survivable one, item used up), `luck` (seeded per run: `GameState.Seed`, negative = off, used by tests),
+  loose flags paid off in chapter 11 (`vex_grudge`, `cartel_owns_you`, `monks_forgave`).
+  UI: ⚠ marks fatal choices once S.T.E.V.E. has a route (`sat_data`) or the Training Manual (`knows_traps`),
+  `e` endings log, end screen with summary, share line and the Polar support link.
+- ✅ Distribution: release workflow (tag `v*` → binaries for linux/macOS/windows, amd64+arm64, checksums),
+  `install.sh` (Linux/macOS, no Go needed, falls back to `go install`) and `install.ps1` (Windows, untested).
 - ✅ `requires_flag` on `story.Choice` + `game.AvailableChoices(state, chapter)`: choices can stay
   hidden until an earlier decision unlocked them. All 7 flags the story already tracked now have
   a real payoff later in the run (previously set but never read) — see `roadmap.md` Phase 13.

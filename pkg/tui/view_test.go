@@ -33,3 +33,29 @@ func TestRouteHiddenUntilSatelliteData(t *testing.T) {
 		}
 	}
 }
+
+func TestEveryScreenFitsTheTerminal(t *testing.T) {
+	st, err := story.LoadStory("../../story_de.json") // German runs longest
+	if err != nil {
+		t.Fatal(err)
+	}
+	long := strings.Repeat("Ein langer Satz über das Ende dieser Geschichte. ", 6)
+	for _, size := range [][2]int{{150, 42}, {100, 30}, {70, 26}, {60, 22}} {
+		for _, phase := range []phase{phaseBoot, phaseGameOver, phaseEnding, phaseTimelock, phaseRealLock, phaseGlitch} {
+			for _, overlay := range []string{"", "codex", "map", "help", "endings"} {
+				if overlay != "" && phase != phaseChapter {
+					continue
+				}
+				s := game.NewGameState(st)
+				s.Flags["sat_data"] = true
+				m := New(st, s, func(*game.GameState) error { return nil }, &game.Stats{Endings: map[string]int{"ace": 1}}, func(*game.Stats) error { return nil }, true, false, "de")
+				m.phase, m.endMessage, m.endTitle, m.bootIdx, m.glitchLine = phase, long, "💀", 5, randomGlitchLine()
+				m.overlay, m.awaitingUplink = overlay, true
+				next, _ := m.Update(tea.WindowSizeMsg{Width: size[0], Height: size[1]})
+				if rows := strings.Count(next.(Model).View(), "\n") + 1; rows != size[1] {
+					t.Errorf("%v phase %d overlay %q: %d rows", size, phase, overlay, rows)
+				}
+			}
+		}
+	}
+}

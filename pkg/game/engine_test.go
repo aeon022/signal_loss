@@ -85,6 +85,7 @@ func TestEveryEndingHasAWinningLine(t *testing.T) {
 	st := loadStory(t)
 	for want, choices := range lines {
 		s := NewGameState(st)
+		s.Seed = -1               // no luck: these lines are pinned
 		s.Flags["ng_plus"] = true // the hidden chapter is for people who already finished three runs
 		var r Resolution
 		for _, prefix := range choices {
@@ -93,5 +94,57 @@ func TestEveryEndingHasAWinningLine(t *testing.T) {
 		if r.EndingID != want {
 			t.Errorf("line for %s ended with %q", want, r.EndingID)
 		}
+	}
+}
+
+func TestLuckIsReproducibleAndCanBeSwitchedOff(t *testing.T) {
+	hits := 0
+	for steps := 1; steps <= 1000; steps++ {
+		if luckRoll(7, steps) != luckRoll(7, steps) {
+			t.Fatal("roll is not reproducible")
+		}
+		if luckRoll(7, steps) < 30 {
+			hits++
+		}
+	}
+	if hits < 250 || hits > 350 {
+		t.Errorf("30%% chance hit %d of 1000 times", hits)
+	}
+	st := &story.StoryData{Chapters: map[string]story.Chapter{}}
+	s := &GameState{Hull: 10, Bat: 10, Seed: -1, Flags: map[string]bool{}}
+	for range 50 {
+		ResolveChoice(s, story.Choice{Luck: &story.Luck{Chance: 100, StatMutations: story.StatMutations{Hull: -1}}}, st)
+	}
+	if s.Hull != 10 {
+		t.Errorf("luck fired with seed -1: hull %d", s.Hull)
+	}
+}
+
+func TestItemSavesFromDeathOnce(t *testing.T) {
+	st := loadStory(t)
+	run := func(items ...string) (Resolution, *GameState) {
+		s := NewGameState(st)
+		s.Seed = -1
+		s.CurrentChapter, s.Inventory = "chapter_10", items
+		return choose(t, st, s, "Crowbar Bypass"), s
+	}
+	if r, _ := run(); !r.Fatal {
+		t.Error("crowbar bypass should kill without the fuse")
+	}
+	r, s := run("Blessed Fuse")
+	if r.Fatal || s.CurrentChapter != "chapter_11" || len(s.Inventory) != 0 {
+		t.Errorf("fuse should save and be used up: fatal=%v chapter=%s items=%v", r.Fatal, s.CurrentChapter, s.Inventory)
+	}
+}
+
+func TestItemGatedChoiceNeedsTheItem(t *testing.T) {
+	st := loadStory(t)
+	s := NewGameState(st)
+	s.CurrentChapter = "chapter_10"
+	count := func() int { return len(AvailableChoices(s, st.Chapters["chapter_10"])) }
+	before := count()
+	s.Inventory = []string{"Spare Fuse"}
+	if count() != before+1 {
+		t.Errorf("spare fuse should unlock one more choice: %d -> %d", before, count())
 	}
 }

@@ -46,6 +46,15 @@ func main() {
 			if c.RequiresFlag != "" {
 				fmt.Printf("    * *Unlocks after:* flag `%s`\n", c.RequiresFlag)
 			}
+			if c.RequiresItem != "" {
+				fmt.Printf("    * *Needs item:* %s\n", c.RequiresItem)
+			}
+			if c.SavedByItem != "" {
+				fmt.Printf("    * *Saved by item:* %s — %s (continues at %s)\n", c.SavedByItem, c.SavedOutcome, st.Chapters[c.SavedNext].Title)
+			}
+			if c.Luck != nil {
+				fmt.Printf("    * *Luck (%d%%):* %s %s\n", c.Luck.Chance, c.Luck.Outcome, stats(c.Luck.StatMutations))
+			}
 			if len(c.RequiresRep) > 0 {
 				fmt.Printf("    * *Needs standing:* %s\n", fmtMap(c.RequiresRep))
 			}

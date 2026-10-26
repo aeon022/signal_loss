@@ -15,8 +15,11 @@ type GameState struct {
 	Flags          map[string]bool `json:"flags"`
 	Rep            map[string]int  `json:"rep"`
 	Lang           string          `json:"lang"` // language the run was started in (CLI only)
-	TimeLockUntil  int64           `json:"time_lock_until"`
-	LastUpdated    int64           `json:"last_updated"`
+	// Seed makes the run's luck reproducible; negative switches luck off. Steps counts choices made.
+	Seed          int64 `json:"seed"`
+	Steps         int   `json:"steps"`
+	TimeLockUntil int64 `json:"time_lock_until"`
+	LastUpdated   int64 `json:"last_updated"`
 	// MaxChapterIndex is the furthest point ever reached in ChapterOrder.
 	// Unlike CurrentChapter it never regresses on a setback, so the codex
 	// doesn't "forget" things a setback sent you back past.

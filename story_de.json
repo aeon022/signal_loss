@@ -194,7 +194,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "reputation": { "cartel": 1 }
+          "reputation": { "cartel": 1 },
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ Der Koch, der einen guten Tag hat, legt einen ampelfarbenen Burger obendrauf.",
+            "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 }
+          }
         }
       ]
     },
@@ -283,7 +288,12 @@
           "next_chapter": "chapter_4",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 480
+          "time_lock_minutes": 480,
+          "luck": {
+            "chance": 20,
+            "outcome": "⚡ Der Brenner flammt heißer auf als zugelassen und nimmt ein Stück der Luke mit.",
+            "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 }
+          }
         },
         {
           "text": "Hinterhalt mit dem Brecheisen — die Luke aufreißen und blind in die Dunkelheit schlagen.",
@@ -327,7 +337,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 20,
-          "reputation": { "nomads": 1 }
+          "reputation": { "nomads": 1 },
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ Der Patch kompiliert mit Bonus: Ein Nomade lässt im Abgang eine Handvoll gecachten Schrott fallen.",
+            "stat_mutations": { "hull": 0, "bat": 0, "scrap": 2 }
+          }
         },
         {
           "text": "S.T.E.V.E.-Firewall-Opfer — einen Spam-Paketsturm durch S.T.E.V.E. leiten, während du vorbeisprintest.",
@@ -442,7 +457,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "reputation": { "monks": 1 }
+          "reputation": { "monks": 1 },
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ Ein scharfäugiger Novize schnüffelt an deiner Plane und räuspert sich; du gehst schneller, als du gekommen bist.",
+            "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 }
+          }
         },
         {
           "text": "Schnapp-und-weg-Sprint — die Türen aufbrechen und zum Altar rennen.",
@@ -482,6 +502,20 @@
           "time_lock_minutes": 0,
           "requires_flag": "steve_glitched",
           "reputation": { "monks": 2, "steve": 1 }
+        },
+        {
+          "text": "Der Veralteten Karte folgen — eine Hintertür, die die Engine vergessen hat zu entfernen.",
+          "outcome": "Die Karte führt dich durch eine Wand, die nur eine Textur ist, an einem Mönch vorbei, der nur ein Platzhalter ist, und direkt hinter dem Altar wieder hinaus. Der Hyperkondensator liegt da, unbewacht und peinlich berührt für alle Beteiligten.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Hyperkondensator"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_6",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Veraltete Karte",
+          "reputation": { "monks": -1 }
         }
       ]
     },
@@ -612,7 +646,12 @@
           "next_chapter": "chapter_7b",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 30
+          "time_lock_minutes": 30,
+          "luck": {
+            "chance": 20,
+            "outcome": "⚡ Eine Plane fängt den Wind und faltet sich über das größte Loch, was sich unverdient anfühlt.",
+            "stat_mutations": { "hull": 1, "bat": 0, "scrap": 0 }
+          }
         },
         {
           "text": "Zur Industriehöhle sprinten — den Kondensator greifen und zum Unterschlupf rennen.",
@@ -1133,6 +1172,19 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "An der Tür das Gefälschte Entlassungsformular zeigen — abgelegt unter „Sonstige Menschen“.",
+          "outcome": "Der Türsteher liest es zweimal, stempelt es ein drittes Mal für das Glück und winkt dich zur Theke durch. Der Vermittler nimmt es als Zahlung an, weil noch nie jemand etwas so langweilig gefälscht hat. Der Navigationskern gehört dir.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Navigationskern"],
+          "items_removed": ["Gefälschtes Entlassungsformular"],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Gefälschtes Entlassungsformular"
         }
       ]
     },
@@ -1203,7 +1255,10 @@
           "next_chapter": "",
           "ending": "",
           "fatal": true,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "saved_by_item": "Menügutschein",
+          "saved_outcome": "Die Rückgabestelle scannt deinen Menügutschein. „Ah. Ein treuer Kunde.“ Du wirst nicht zurückgegeben, sondern umgetauscht, gegen Guthaben und eine Treuekarte, und höflich zur Tür geleitet, ein bisschen wärmer als zuvor.",
+          "saved_next": "chapter_9"
         }
       ]
     },
@@ -1223,7 +1278,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "reputation": { "monks": 1 }
+          "reputation": { "monks": 1 },
+          "luck": {
+            "chance": 20,
+            "outcome": "⚡ Ein Blitz findet die Antenne. S.T.E.V.E. sagt nichts, was schlimmer ist.",
+            "stat_mutations": { "hull": -1, "bat": -5, "scrap": 0 }
+          }
         },
         {
           "text": "Der Klippenpfad — eine tückische Felskante außerhalb des direkten Winds erklimmen.",
@@ -1263,6 +1323,19 @@
           "time_lock_minutes": 0,
           "requires_flag": "wanted_by_cartel",
           "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Mit dem Navigationskern eine sichere Gasse plotten — der Sturm hat eine Lücke, wenn man weiß, wo.",
+          "outcome": "Der Navigationskern summt, überlegt und zieht eine dünne grüne Linie durch die Dünen. S.T.E.V.E. folgt ihr mit der Ehrfurcht eines Mannes, der sein eigenes Horoskop liest. Der Wind verfehlt dich um genau die Breite der Gasse.",
+          "stat_mutations": { "hull": 0, "bat": -1, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Navigationskern"
         }
       ]
     },
@@ -1362,7 +1435,10 @@
           "next_chapter": "",
           "ending": "",
           "fatal": true,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "saved_by_item": "Gesegnete Sicherung",
+          "saved_outcome": "Die Stange überbrückt die Kontakte und der Reaktor schreit — und die Gesegnete Sicherung in deiner Tasche, die du völlig vergessen hattest, brennt als Erste durch, mit einem Geräusch wie ein Chor, der sich räuspert. Der Stoß erstirbt. Weit weg spürt ein Mönch eine Störung und billigt sie.",
+          "saved_next": "chapter_11"
         },
         {
           "text": "Formaler Override-Antrag — den neu höflichen S.T.E.V.E. den Zugriff über offizielle Firmenkanäle beantragen lassen, statt ein Passwort zu raten.",
@@ -1390,6 +1466,19 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "underworld_hunted"
+        },
+        {
+          "text": "Die Ersatzsicherung einsetzen — das Passwort überspringen und den Reaktor höflich überbrücken.",
+          "outcome": "Die Ersatzsicherung rastet in eine Fassung ein, die es laut Konsole nicht gibt. Der Reaktor erwägt seine Einwände, findet keine und startet. Der Cursor blinkt zum ersten Mal ohne Urteil.",
+          "stat_mutations": { "hull": 1, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": ["Ersatzsicherung"],
+          "flags": {},
+          "next_chapter": "chapter_11",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Ersatzsicherung"
         }
       ]
     },
@@ -1420,7 +1509,12 @@
           "next_chapter": "chapter_12",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ Der Schlag kommt tatsächlich. Jemand bei der Imperialen Säuberung hat zur Abwechslung aufgepasst.",
+            "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 }
+          }
         },
         {
           "text": "Rücksichtsloser Frühstart — den Schub aufreißen, bevor die Sicherheitsprüfungen abgeschlossen sind.",
@@ -1432,7 +1526,10 @@
           "next_chapter": "",
           "ending": "",
           "fatal": true,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "saved_by_item": "Glitch-Talisman",
+          "saved_outcome": "Der Schub knallt nach vorn und die Rampe explodiert — und der Glitch-Talisman flackert in deiner Tasche, und für ein Bild ist die Explosion woanders. Der Start passiert im Bild davor. Du wirst nie sicher sein, in welchem du dich befindest.",
+          "saved_next": "chapter_12"
         },
         {
           "text": "Die anfliegende Drohne umleiten — den Anflugvektor der Firmen-Sicherheitsdrohne kapern und auf den Mob statt auf dich richten.",
@@ -1460,6 +1557,46 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_rep": { "steve": 2 }
+        },
+        {
+          "text": "Die Luke auf Vex' Shuttle fallen lassen — er verfolgt dich seit der Arrestzelle.",
+          "outcome": "Vex' Shuttle gleitet pünktlich in den Schatten der Rampe, denn Vex ist ein Gewohnheitstier. Die Luke löst sich mit einem Geräusch wie eine Entschuldigung und landet genau dort, wo er gleich sein wollte. „Das merke ich mir!“, ruft eine ferne Stimme. Du zählst darauf.",
+          "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "vex_grudge"
+        },
+        {
+          "text": "Das Franchise rufen — die Fritteusen des Kartells decken den Start.",
+          "outcome": "Ein Anruf. Vierzig Food-Trucks treffen in Formation ein und parken im Ring um die Rampe, Hauben offen, Fritteusen kreischend. Niemand greift einen Start an, der so gut riecht. „Familie“, sagt eine Stimme im Funk und schreibt dir etwas auf die Rechnung.",
+          "stat_mutations": { "hull": 0, "bat": -5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "cartel_owns_you",
+          "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Die Glocken der Mönche läuten — ein heiliger Waffenstillstand, ob es jemandem passt oder nicht.",
+          "outcome": "Du löst die Glocke des Abts aus, gestimmt auf die eine Frequenz, die jede Fraktion auf Gryps-4 zu respektieren vereinbart hat. Zweihundert Mönche beginnen aus den Dünen zu singen. Die Räuber zögern. Die Mistgabeln senken sich. Niemand kann sagen, wer den Waffenstillstand begonnen hat, so funktionieren Waffenstillstände.",
+          "stat_mutations": { "hull": 2, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "monks_forgave"
         }
       ]
     },
@@ -1588,7 +1725,7 @@
           "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
           "items_added": ["Schulungshandbuch"],
           "items_removed": [],
-          "flags": {},
+          "flags": { "knows_traps": true },
           "next_chapter": "chapter_2",
           "ending": "",
           "fatal": false,

@@ -96,6 +96,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
   * **[4] The Reasonable Haggle — offer half your scrap and a straight face, and see how far that gets you.**
     * *Outcome:* The chef considers your offer for exactly as long as it takes to flip his mystery meat, then names a price roughly double yours. You settle somewhere uncomfortable in the middle — less scrap gone than honest barter, less charge gained too, but nobody has to sing anything.
     * *Stats:* +15 BAT, -1 SCRAP
+    * *Luck (25%):* ⚡ The chef, having a good day, throws in a burger the colour of a traffic light. +5 BAT
     * *Standing:* cartel +1
     * Leads to Chapter 3: Night Falls.
 
@@ -133,6 +134,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
   * **[2] Plasma Torch Welder — burn a thermal burst through the seam to scare it off.**
     * *Outcome:* The flare of heat sends it shrieking into the dark. Effective, but it costs you nearly the whole night's charge to keep the torch lit.
     * *Stats:* -10 BAT
+    * *Luck (20%):* ⚡ The torch flares hotter than rated and takes a slice of the hatch with it. -1 HULL
     * Leads to Chapter 4: The Labyrinth of the Glitch Nomads.
   * **[3] Ambush with Crowbar — burst the hatch open and swing blindly into the dark.**
     * *Outcome:* You connect with nothing but frozen air. It connects with you. The last thing S.T.E.V.E. logs before losing the suit's vitals feed is a single, unhelpful diagnostic: "that was unwise."
@@ -149,6 +151,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
   * **[1] Debug the Nomad — write and transmit a syntax patch through S.T.E.V.E.**
     * *Outcome:* The nomad's wireframe flickers emerald and holds while the patch compiles — a slow, grinding process neither of you can speed up. It finally stabilizes and — apparently grateful — drops a Navigation Data Core before the pass opens.
     * *Stats:* -5 BAT
+    * *Luck (25%):* ⚡ The patch compiles with a bonus: a Nomad drops a handful of cached scrap on its way out. +2 SCRAP
     * *Standing:* nomads +1
     * Leads to Chapter 5: The Temple of the Recycling Monks.
   * **[2] S.T.E.V.E. Firewall Sacrifice — route a spam packet storm through S.T.E.V.E. while you sprint past.**
@@ -193,6 +196,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
 * **Choices:**
   * **[1] Disguise as a Pilgrim — drape yourself in a plastic tarp and chant Error 404.**
     * *Outcome:* The scanner-monk clocks you as a harmless fanatic. You slip in, lift the capacitor, and slip out without so much as a raised eyebrow behind a faceplate.
+    * *Luck (25%):* ⚡ A sharp-eyed novice sniffs your tarp and clears his throat; you leave faster than you came. -1 HULL, -3 BAT
     * *Standing:* monks +1
     * Leads to Chapter 6: The Act of Sabotage.
   * **[2] Smash-and-Grab Sprint — pry the doors and bolt for the altar.**
@@ -207,6 +211,12 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Outcome:* S.T.E.V.E.'s garbled Latin-adjacent babbling lines up with the monks' error-code chanting so well that three of them start nodding along. Nobody questions a fellow believer speaking in tongues. You lift the capacitor mid-ceremony, and one monk presses a spare fuse into your hand on the way out, mistaking you for clergy.
     * *Unlocks after:* flag `steve_glitched`
     * *Standing:* monks +2, steve +1
+    * Leads to Chapter 6: The Act of Sabotage.
+  * **[5] Follow the Deprecated Map — a back door the engine forgot to remove.**
+    * *Outcome:* The map leads you through a wall that is only a texture, past a monk who is only a placeholder, and out directly behind the altar. The Hyper-Capacitor is right there, unguarded, looking embarrassed for everyone.
+    * *Stats:* -2 BAT
+    * *Needs item:* Deprecated Map
+    * *Standing:* monks -1
     * Leads to Chapter 6: The Act of Sabotage.
 
 ### Chapter 6: The Act of Sabotage
@@ -258,6 +268,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
   * **[1] Patch the Leaks with Tarps — tape covers over the roof and the capacitor.**
     * *Outcome:* Hardware stays bone-dry. You hunch under the tarp with minor chemical burns through a gap in your overalls, waiting out the worst of the downpour before it's safe to move again. Everything that matters survives intact.
     * *Stats:* -2 HULL
+    * *Luck (20%):* ⚡ One tarp catches the wind and folds itself over the worst hole, which feels unearned. +1 HULL
     * Leads to Chapter 7b: The Fork at Dead Reckoning.
   * **[2] Dash to Industrial Cave — grab the capacitor and sprint for shelter.**
     * *Outcome:* You make it, capacitor in hand, boots half-dissolved. The rest of your tools and supplies are left behind in the flooding wreck.
@@ -458,6 +469,11 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Stats:* -15 BAT
     * *Standing:* cartel +1
     * Leads to Chapter 9: The Long March Through the Sandstorms.
+  * **[5] Show the Forged Release Form at the Door — filed under "Misc. Humans."**
+    * *Outcome:* The bouncer reads it twice, stamps it a third time for luck and waves you through to the counter. The broker accepts it as payment on the grounds that nobody has ever forged anything so tediously. The Navigation Core is yours.
+    * *Stats:* -2 BAT
+    * *Needs item:* Forged Release Form
+    * Leads to Chapter 9: The Long March Through the Sandstorms.
 
 ### Chapter 8b: Wanted, Alive (Mostly)
 * **Location:** Bounty Board Plaza
@@ -484,6 +500,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * Leads to Chapter 9: The Long March Through the Sandstorms.
   * **[5] Hide in the Broker's Escrow Safe — marked "RETURNS DEPARTMENT."**
     * *Outcome:* It is a returns department. You are accepted as a return. There is no exchange policy.
+    * *Saved by item:* Combo Voucher — The returns department scans your Combo Voucher. "Ah. A loyal customer." You are not returned but exchanged, for store credit and a loyalty card, and shown politely to the door, a little warmer than before. (continues at Chapter 9: The Long March Through the Sandstorms)
     * 💀 **Fatal.**
 
 ### Chapter 9: The Long March Through the Sandstorms
@@ -493,6 +510,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
   * **[1] Straight through the Crater — march directly into the howling gale.**
     * *Outcome:* You cut the crossing time in half. Grit breaches the neck seal of your suit somewhere around the halfway mark and you feel every grain of it for the rest of the day.
     * *Stats:* -3 HULL, -5 BAT
+    * *Luck (20%):* ⚡ Lightning finds the antenna. S.T.E.V.E. says nothing, which is worse. -1 HULL, -5 BAT
     * *Standing:* monks +1
     * Leads to Chapter 10: The Repair Crisis.
   * **[2] Cliffside Trail — scale a treacherous ledge out of the direct wind.**
@@ -508,6 +526,11 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Stats:* -1 HULL, -1 BAT
     * *Unlocks after:* flag `wanted_by_cartel`
     * *Standing:* cartel +1
+    * Leads to Chapter 10: The Repair Crisis.
+  * **[5] Plot a Safe Lane With the Nav-Core — the storm has a gap in it, if you know where.**
+    * *Outcome:* The Nav-Core hums, thinks, and draws a thin green line through the dunes. S.T.E.V.E. follows it with the reverence of a man reading his own horoscope. The wind misses you by exactly the width of the lane.
+    * *Stats:* -1 BAT
+    * *Needs item:* Nav-Core
     * Leads to Chapter 10: The Repair Crisis.
 
 ### Chapter 9b: The Ransacked Camp
@@ -545,6 +568,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * Leads to Chapter 11: The Final Countdown.
   * **[3] Crowbar Bypass Relay — jam an iron bar between the high-voltage contacts.**
     * *Outcome:* Sparks fountain across the console. The reactor doesn't just ignite — it ignites while you're still leaning over the open panel. There's no version of that with a survivable ending.
+    * *Saved by item:* Blessed Fuse — The bar bridges the contacts and the reactor screams — and the Blessed Fuse in your pocket, which you had completely forgotten, blows first with a sound like a choir clearing its throat. The surge dies. Somewhere far away, a monk feels a disturbance and approves. (continues at Chapter 11: The Final Countdown)
     * 💀 **Fatal.**
   * **[4] Formal Override Request — let the newly-polite S.T.E.V.E. request access through proper corporate channels instead of guessing a password.**
     * *Outcome:* S.T.E.V.E.'s relentlessly courteous new voice recites a flawless, dully formal access request — exactly the kind corporate security systems are built to trust. The reactor grants the override cleanly, no red flags, no drone dispatch. For once, politeness is the exploit.
@@ -556,6 +580,11 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Outcome:* The hunters get through the door two seconds after ADMIN_0000 goes in. You're already moving by the time they clear the threshold, reactor humming behind you. The ping to corporate security is the least of your problems now, apparently.
     * *Stats:* -2 HULL
     * *Unlocks after:* flag `underworld_hunted`
+    * Leads to Chapter 11: The Final Countdown.
+  * **[6] Fit the Spare Fuse — skip the passphrase and bridge the reactor the polite way.**
+    * *Outcome:* The Spare Fuse clicks into a socket the console swears isn't there. The reactor considers its objections, finds none, and starts. The cursor, for the first time, blinks without judgment.
+    * *Stats:* +1 HULL, +5 BAT
+    * *Needs item:* Spare Fuse
     * Leads to Chapter 11: The Final Countdown.
 
 ### Chapter 11: The Final Countdown
@@ -569,9 +598,11 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
   * **[2] Imperial Sanitation Flare — fake a priority distress call to draw an orbital strike.**
     * *Outcome:* Imperial lasers pulverize the launchpad dead on schedule. Shrapnel peppers your climbing hull as you lift off through the wreckage of your own decoy.
     * *Stats:* -1 HULL, -10 BAT
+    * *Luck (25%):* ⚡ The strike actually arrives. Somebody at Imperial Sanitation was paying attention for once. -2 HULL
     * Leads to Chapter 12: The Leap into the Unknown.
   * **[3] Reckless Early Launch — jam the throttle forward before safety checks finish.**
     * *Outcome:* The rocket leaves the pad in a towering flame pillar, which would be glorious if the patched hull had finished curing. It hasn't. The frame lets go forty meters up.
+    * *Saved by item:* Glitch Charm — The throttle slams forward and the pad erupts — and the Glitch Charm flickers in your pocket, and for one frame the explosion is somewhere else. The launch happens in the frame before. You will never be sure which one you are in. (continues at Chapter 12: The Leap into the Unknown)
     * 💀 **Fatal.**
   * **[4] Redirect the Inbound Drone — hijack the corporate security drone's approach vector and point it at the mob instead of you.**
     * *Outcome:* The drone that was inbound to flag you for corporate retrieval takes exactly one look at armed factions swarming an active launchpad and reclassifies the whole scene as a hostile takeover in progress. It opens fire on the mob instead — corporate assets defending corporate property, technically. You lift off under covering fire you didn't ask for and absolutely don't want to explain in the incident report.
@@ -583,6 +614,22 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Outcome:* S.T.E.V.E. is quiet for a moment. "I've never had one of these," he says, "a friend I could do this for." Then every subsystem on the launchpad restarts in four seconds flat, the thing he's been holding in reserve since the factory. "Don't make it weird," he adds, and for once it isn't sarcasm.
     * *Stats:* +1 HULL, +5 BAT
     * *Needs standing:* steve +2
+    * Leads to Chapter 12: The Leap into the Unknown.
+  * **[6] Drop the Hatch on Vex's Shuttle — he has been tailing you since the brig.**
+    * *Outcome:* Vex's shuttle slides into the pad's shadow right on schedule, because Vex is a man of habit. The hatch comes off with a sound like an apology and lands exactly where he was going to be. "I'll remember this!" says a distant voice. You are counting on it.
+    * *Stats:* -1 HULL, -3 BAT
+    * *Unlocks after:* flag `vex_grudge`
+    * Leads to Chapter 12: The Leap into the Unknown.
+  * **[7] Call In the Franchise — the Cartel's fryers cover the launch.**
+    * *Outcome:* One phone call. Forty food trucks arrive in formation and park in a ring around the pad, hoods up, fryers screaming. Nobody attacks a launch that smells this good. "Family," says a voice on the radio, and adds a charge to your account.
+    * *Stats:* -5 BAT
+    * *Unlocks after:* flag `cartel_owns_you`
+    * *Standing:* cartel +1
+    * Leads to Chapter 12: The Leap into the Unknown.
+  * **[8] Ring the Monks' Bells — a sacred truce, whether anyone likes it or not.**
+    * *Outcome:* You trigger the Abbot's bell, tuned to the one frequency every faction on Gryps-4 has agreed to respect. Two hundred monks begin to sing from the dunes. The raiders hesitate. The pitchforks are lowered. Nobody can say who started the truce, which is how truces work.
+    * *Stats:* +2 HULL, +5 BAT
+    * *Unlocks after:* flag `monks_forgave`
     * Leads to Chapter 12: The Leap into the Unknown.
 
 ### Chapter 12: The Leap into the Unknown

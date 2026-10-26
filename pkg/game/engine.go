@@ -38,6 +38,7 @@ func NewGameState(st *story.StoryData) *GameState {
 		Flags:           map[string]bool{},
 		Rep:             map[string]int{},
 		MaxChapterIndex: ChapterIndex(st.InitialState.CurrentChapter),
+		Seed:            time.Now().UnixNano() & 0x7fffffff,
 	}
 }
 
@@ -60,11 +61,34 @@ func ChapterIndex(id string) int {
 func AvailableChoices(state *GameState, ch story.Chapter) []story.Choice {
 	available := make([]story.Choice, 0, len(ch.Choices))
 	for _, c := range ch.Choices {
-		if (c.RequiresFlag == "" || state.Flags[c.RequiresFlag]) && hasRep(state, c.RequiresRep) {
+		if (c.RequiresFlag == "" || state.Flags[c.RequiresFlag]) && hasRep(state, c.RequiresRep) && (c.RequiresItem == "" || hasItem(state, c.RequiresItem)) {
 			available = append(available, c)
 		}
 	}
 	return available
+}
+
+func hasItem(state *GameState, item string) bool {
+	for _, have := range state.Inventory {
+		if have == item {
+			return true
+		}
+	}
+	return false
+}
+
+// luckRoll is a reproducible 0-99 for this run at this step (a splitmix-style hash).
+func luckRoll(seed int64, steps int) int {
+	x := uint64(seed)*0x9E3779B97F4A7C15 + uint64(steps)*0xBF58476D1CE4E5B9
+	x = (x ^ x>>30) * 0xBF58476D1CE4E5B9
+	x = (x ^ x>>27) * 0x94D049BB133111EB
+	return int((x ^ x>>31) % 100)
+}
+
+// Risky reports whether picking c would kill this run: a fatal choice the
+// player holds no saving item for. S.T.E.V.E. flags these once he has a route.
+func Risky(state *GameState, c story.Choice) bool {
+	return c.Fatal && !(c.SavedByItem != "" && hasItem(state, c.SavedByItem))
 }
 
 func hasRep(state *GameState, need map[string]int) bool {
@@ -79,6 +103,7 @@ func hasRep(state *GameState, need map[string]int) bool {
 // Resolution is what happens after a choice's mutations are applied: the
 // run continues, time-locks, ends in death, or ends in one of the endings.
 type Resolution struct {
+	Outcome         string // the text to show: the choice's, its saved variant, plus any luck
 	Fatal           bool
 	GameOver        bool
 	DeathMessage    string
@@ -91,6 +116,13 @@ type Resolution struct {
 // State.CurrentChapter is already updated by the time this returns. st is
 // only needed for CheckGameOver's localized death messages.
 func ResolveChoice(state *GameState, choice story.Choice, st *story.StoryData) Resolution {
+	state.Steps++
+	text := choice.Outcome
+	if choice.Fatal && choice.SavedByItem != "" && hasItem(state, choice.SavedByItem) {
+		state.Inventory = removeItem(state.Inventory, choice.SavedByItem)
+		text, choice.Fatal, choice.NextChapter = choice.SavedOutcome, false, choice.SavedNext
+	}
+
 	state.ApplyMutations(
 		choice.StatMutations.Hull,
 		choice.StatMutations.Bat,
@@ -105,10 +137,14 @@ func ResolveChoice(state *GameState, choice story.Choice, st *story.StoryData) R
 	for faction, d := range choice.Reputation {
 		state.Rep[faction] += d
 	}
+	if l := choice.Luck; l != nil && state.Seed >= 0 && luckRoll(state.Seed, state.Steps) < l.Chance {
+		state.ApplyMutations(l.StatMutations.Hull, l.StatMutations.Bat, l.StatMutations.Scrap, nil, nil, nil)
+		text += " " + l.Outcome
+	}
 	state.LastUpdated = time.Now().Unix()
 
 	if choice.Fatal {
-		return Resolution{Fatal: true, DeathMessage: choice.Outcome}
+		return Resolution{Outcome: text, Fatal: true, DeathMessage: text}
 	}
 
 	if choice.NextChapter != "" {
@@ -119,14 +155,14 @@ func ResolveChoice(state *GameState, choice story.Choice, st *story.StoryData) R
 	}
 
 	if over, msg := CheckGameOver(state, st); over {
-		return Resolution{GameOver: true, DeathMessage: msg}
+		return Resolution{Outcome: text, GameOver: true, DeathMessage: msg}
 	}
 
 	if choice.Ending != "" {
-		return Resolution{Ending: choice.Ending, EndingID: choice.EndingID}
+		return Resolution{Outcome: text, Ending: choice.Ending, EndingID: choice.EndingID}
 	}
 
-	return Resolution{TimeLockMinutes: choice.TimeLockMinutes}
+	return Resolution{Outcome: text, TimeLockMinutes: choice.TimeLockMinutes}
 }
 
 // CheckGameOver reports whether the run has ended in death from the stats

@@ -402,3 +402,10 @@ chapters.
 - [x] Route hidden until S.T.E.V.E. has satellite data (flag `sat_data`, found in ch. 1 or ch. 3)
 - [ ] Not done: codex search, devlog, per-ending OG image, a second source for `sat_data` after chapter 3
 - [ ] Manual (Gerwin): itch.io page, abteilung83.at redirect, proofread DE texts (reminder set)
+
+## v0.5.0 — items, luck, loose ends (2026-10-26)
+
+- [x] Item gates and life-savers, seeded luck, loose flags resolved in chapter 11
+- [x] ⚠ risk marks, endings log, end summary/share line/support link
+- [x] Release binaries + install.sh / install.ps1
+- [ ] Open: test install.ps1 on a real Windows machine; Homebrew tap if wanted

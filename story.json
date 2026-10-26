@@ -194,7 +194,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "reputation": { "cartel": 1 }
+          "reputation": { "cartel": 1 },
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ The chef, having a good day, throws in a burger the colour of a traffic light.",
+            "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 }
+          }
         }
       ]
     },
@@ -283,7 +288,12 @@
           "next_chapter": "chapter_4",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 480
+          "time_lock_minutes": 480,
+          "luck": {
+            "chance": 20,
+            "outcome": "⚡ The torch flares hotter than rated and takes a slice of the hatch with it.",
+            "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 }
+          }
         },
         {
           "text": "Ambush with Crowbar — burst the hatch open and swing blindly into the dark.",
@@ -327,7 +337,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 20,
-          "reputation": { "nomads": 1 }
+          "reputation": { "nomads": 1 },
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ The patch compiles with a bonus: a Nomad drops a handful of cached scrap on its way out.",
+            "stat_mutations": { "hull": 0, "bat": 0, "scrap": 2 }
+          }
         },
         {
           "text": "S.T.E.V.E. Firewall Sacrifice — route a spam packet storm through S.T.E.V.E. while you sprint past.",
@@ -442,7 +457,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "reputation": { "monks": 1 }
+          "reputation": { "monks": 1 },
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ A sharp-eyed novice sniffs your tarp and clears his throat; you leave faster than you came.",
+            "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 }
+          }
         },
         {
           "text": "Smash-and-Grab Sprint — pry the doors and bolt for the altar.",
@@ -482,6 +502,20 @@
           "time_lock_minutes": 0,
           "requires_flag": "steve_glitched",
           "reputation": { "monks": 2, "steve": 1 }
+        },
+        {
+          "text": "Follow the Deprecated Map — a back door the engine forgot to remove.",
+          "outcome": "The map leads you through a wall that is only a texture, past a monk who is only a placeholder, and out directly behind the altar. The Hyper-Capacitor is right there, unguarded, looking embarrassed for everyone.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Hyper-Capacitor"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_6",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Deprecated Map",
+          "reputation": { "monks": -1 }
         }
       ]
     },
@@ -612,7 +646,12 @@
           "next_chapter": "chapter_7b",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 30
+          "time_lock_minutes": 30,
+          "luck": {
+            "chance": 20,
+            "outcome": "⚡ One tarp catches the wind and folds itself over the worst hole, which feels unearned.",
+            "stat_mutations": { "hull": 1, "bat": 0, "scrap": 0 }
+          }
         },
         {
           "text": "Dash to Industrial Cave — grab the capacitor and sprint for shelter.",
@@ -1133,6 +1172,19 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Show the Forged Release Form at the Door — filed under \"Misc. Humans.\"",
+          "outcome": "The bouncer reads it twice, stamps it a third time for luck and waves you through to the counter. The broker accepts it as payment on the grounds that nobody has ever forged anything so tediously. The Navigation Core is yours.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Nav-Core"],
+          "items_removed": ["Forged Release Form"],
+          "flags": {},
+          "next_chapter": "chapter_9",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Forged Release Form"
         }
       ]
     },
@@ -1203,7 +1255,10 @@
           "next_chapter": "",
           "ending": "",
           "fatal": true,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "saved_by_item": "Combo Voucher",
+          "saved_outcome": "The returns department scans your Combo Voucher. \"Ah. A loyal customer.\" You are not returned but exchanged, for store credit and a loyalty card, and shown politely to the door, a little warmer than before.",
+          "saved_next": "chapter_9"
         }
       ]
     },
@@ -1223,7 +1278,12 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "reputation": { "monks": 1 }
+          "reputation": { "monks": 1 },
+          "luck": {
+            "chance": 20,
+            "outcome": "⚡ Lightning finds the antenna. S.T.E.V.E. says nothing, which is worse.",
+            "stat_mutations": { "hull": -1, "bat": -5, "scrap": 0 }
+          }
         },
         {
           "text": "Cliffside Trail — scale a treacherous ledge out of the direct wind.",
@@ -1263,6 +1323,19 @@
           "time_lock_minutes": 0,
           "requires_flag": "wanted_by_cartel",
           "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Plot a Safe Lane With the Nav-Core — the storm has a gap in it, if you know where.",
+          "outcome": "The Nav-Core hums, thinks, and draws a thin green line through the dunes. S.T.E.V.E. follows it with the reverence of a man reading his own horoscope. The wind misses you by exactly the width of the lane.",
+          "stat_mutations": { "hull": 0, "bat": -1, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_10",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Nav-Core"
         }
       ]
     },
@@ -1362,7 +1435,10 @@
           "next_chapter": "",
           "ending": "",
           "fatal": true,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "saved_by_item": "Blessed Fuse",
+          "saved_outcome": "The bar bridges the contacts and the reactor screams — and the Blessed Fuse in your pocket, which you had completely forgotten, blows first with a sound like a choir clearing its throat. The surge dies. Somewhere far away, a monk feels a disturbance and approves.",
+          "saved_next": "chapter_11"
         },
         {
           "text": "Formal Override Request — let the newly-polite S.T.E.V.E. request access through proper corporate channels instead of guessing a password.",
@@ -1390,6 +1466,19 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_flag": "underworld_hunted"
+        },
+        {
+          "text": "Fit the Spare Fuse — skip the passphrase and bridge the reactor the polite way.",
+          "outcome": "The Spare Fuse clicks into a socket the console swears isn't there. The reactor considers its objections, finds none, and starts. The cursor, for the first time, blinks without judgment.",
+          "stat_mutations": { "hull": 1, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": ["Spare Fuse"],
+          "flags": {},
+          "next_chapter": "chapter_11",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_item": "Spare Fuse"
         }
       ]
     },
@@ -1420,7 +1509,12 @@
           "next_chapter": "chapter_12",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "luck": {
+            "chance": 25,
+            "outcome": "⚡ The strike actually arrives. Somebody at Imperial Sanitation was paying attention for once.",
+            "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 }
+          }
         },
         {
           "text": "Reckless Early Launch — jam the throttle forward before safety checks finish.",
@@ -1432,7 +1526,10 @@
           "next_chapter": "",
           "ending": "",
           "fatal": true,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "saved_by_item": "Glitch Charm",
+          "saved_outcome": "The throttle slams forward and the pad erupts — and the Glitch Charm flickers in your pocket, and for one frame the explosion is somewhere else. The launch happens in the frame before. You will never be sure which one you are in.",
+          "saved_next": "chapter_12"
         },
         {
           "text": "Redirect the Inbound Drone — hijack the corporate security drone's approach vector and point it at the mob instead of you.",
@@ -1460,6 +1557,46 @@
           "fatal": false,
           "time_lock_minutes": 0,
           "requires_rep": { "steve": 2 }
+        },
+        {
+          "text": "Drop the Hatch on Vex's Shuttle — he has been tailing you since the brig.",
+          "outcome": "Vex's shuttle slides into the pad's shadow right on schedule, because Vex is a man of habit. The hatch comes off with a sound like an apology and lands exactly where he was going to be. \"I'll remember this!\" says a distant voice. You are counting on it.",
+          "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "vex_grudge"
+        },
+        {
+          "text": "Call In the Franchise — the Cartel's fryers cover the launch.",
+          "outcome": "One phone call. Forty food trucks arrive in formation and park in a ring around the pad, hoods up, fryers screaming. Nobody attacks a launch that smells this good. \"Family,\" says a voice on the radio, and adds a charge to your account.",
+          "stat_mutations": { "hull": 0, "bat": -5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "cartel_owns_you",
+          "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Ring the Monks' Bells — a sacred truce, whether anyone likes it or not.",
+          "outcome": "You trigger the Abbot's bell, tuned to the one frequency every faction on Gryps-4 has agreed to respect. Two hundred monks begin to sing from the dunes. The raiders hesitate. The pitchforks are lowered. Nobody can say who started the truce, which is how truces work.",
+          "stat_mutations": { "hull": 2, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "monks_forgave"
         }
       ]
     },
@@ -1588,7 +1725,7 @@
           "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
           "items_added": ["Training Manual"],
           "items_removed": [],
-          "flags": {},
+          "flags": { "knows_traps": true },
           "next_chapter": "chapter_2",
           "ending": "",
           "fatal": false,
