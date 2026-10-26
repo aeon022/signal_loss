@@ -277,3 +277,8 @@ html.play-lock #game-widget {
   background: var(--color-void);
 }
 html.play-lock #terminal { height: calc(100dvh - 7.5rem) !important; }
+
+/* Locked on a phone: the docked key pad sits at the bottom, the terminal ends above it. */
+@media (pointer: coarse) {
+  html.play-lock #terminal { height: calc(100dvh - 13.5rem) !important; }
+}
