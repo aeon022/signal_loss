@@ -59,9 +59,9 @@ jobs:
         run: |
           npx astro preview --port 4321 &
           for i in $(seq 30); do curl -sf http://localhost:4321/signal_loss/ >/dev/null && break; sleep 1; done
+          export CHROME_BIN=$(command -v google-chrome-stable google-chrome chromium-browser chromium | head -1)
+          echo "browser: $CHROME_BIN"
           npm run smoke
-        env:
-          CHROME_BIN: google-chrome
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
