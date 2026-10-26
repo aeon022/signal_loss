@@ -34,10 +34,14 @@ _Last updated 2026-09-09 — see `roadmap.md` for the full phase-by-phase build 
   `pkg/tui` drives the loop and owns all localized chrome.
 - ✅ CLI Entry Point: flag parsing (`-fast`/`-realtime`/`-lang`/`-save`/`-story`), launches the
   Bubble Tea program (cmd/signal_loss/main.go)
-- ✅ story.json + story_de.json: full 12-chapter narrative in **English and German**, 49 choices
-  total, real branching (fatal/setback paths), codex lexicon gated by story progress — both files
+- ✅ story.json + story_de.json: 12-chapter spine + 12 side chapters (setbacks 2b/4b/6b/8b/9b, fork 7b with three
+  two-chapter detours) in **English and German**, 103 choices, 7 endings, real branching, codex lexicon gated by story progress — both files
   mechanically identical (same flags/mutations/branching), verified via cross-diff and the
   actual Go parser
+- ✅ Reputation (v0.2): `reputation` / `requires_rep` on `story.Choice`, `GameState.Rep` (hidden standing with
+  monks, cartel, nomads and S.T.E.V.E.); gates the detours, 3 new endings and a reboot option.
+  `go run ./cmd/storydoc` regenerates the chapter section of `story.md` from `story.json`.
+  Tests: gates reachable, every ending winnable by a real playthrough search.
 - ✅ `requires_flag` on `story.Choice` + `game.AvailableChoices(state, chapter)`: choices can stay
   hidden until an earlier decision unlocked them. All 7 flags the story already tracked now have
   a real payoff later in the run (previously set but never read) — see `roadmap.md` Phase 13.

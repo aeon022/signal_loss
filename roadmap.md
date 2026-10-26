@@ -382,3 +382,12 @@ chapters.
   `story.json` (same choice counts, mutations, flags, `next_chapter`s, item-name consistency) via
   cross-diff and the real Go parser, then spot-checked in German through the same pty harness
   (flag-gated choice appears/hides correctly, correct footer count `[1-4]`, correct outcome text).
+
+
+## v0.2.0 — Story (2026-10-26)
+
+- [x] B: Rückwürfe mit Folgen — 2b/4b/6b/8b/9b statt fünfmal Kapitel 1; `spine` für Nebenkapitel
+- [x] A: Gabelung 7b mit drei Routen (Mönche, Kartell, Nomaden), je zwei Kapitel
+- [x] C: Ruf bei Fraktionen, 3 neue Enden (Apostel, Franchisenehmer, Aufstiegs-Datei)
+- [x] D: S.T.E.V.E.-Vertrauen (`steve`), Notfall-Neustart in Kapitel 11
+- [ ] E: Neues Spiel+ — braucht die Statistik-Datei aus Richtung 2
