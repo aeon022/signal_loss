@@ -159,12 +159,12 @@
         },
         {
           "text": "Covert Theft — slither behind the truck to steal a battery from the generator.",
-          "outcome": "You get the battery. You also trip over a fuel can, faceplant into a folding table, and get identified on sight. The chef's cousins drag you back to the wreck as a warning to other customers, dumping you — and none of your gear — back where you started.",
+          "outcome": "You get the battery. You also trip over a fuel can, faceplant into a folding table, and get identified on sight. The chef's cousins confiscate the battery, your scrap, and what remains of your dignity, then march you round the back of the truck to discuss the ledger.",
           "stat_mutations": { "hull": 0, "bat": 0, "scrap": -999 },
           "items_added": [],
           "items_removed": [],
           "flags": { "wanted_by_cartel": true },
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_2b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -179,6 +179,62 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_2b": {
+      "title": "Chapter 2b: The Cousins' Ledger",
+      "location": "Behind the Food Truck",
+      "spine": "chapter_2",
+      "content": "The cousins don't throw you out. They sit you on an upturned crate behind the truck and slide a greasy ledger across a folding table — the same folding table, you notice, with your face-shaped dent in it. The pen is attached to the binding with what looks like gristle. \"Item: one table, folding. Item: one fuel can, spilled. Item: dignity of the chef, bruised.\" The total is written in a numeral system you suspect they invented this morning. S.T.E.V.E. reads it over your shoulder and offers, in a whisper, to \"represent you legally.\" It is not a comforting offer.",
+      "choices": [
+        {
+          "text": "Work the Grill — pay it off in shifts, one burnt knuckle at a time.",
+          "outcome": "Three hours of flipping things that flip back. The cousins pay in a battery they call \"employee discount\" and a signed slip they call \"nothing to worry about.\" It says IOU. It is not made out to you.",
+          "stat_mutations": { "hull": -1, "bat": 10, "scrap": 2 },
+          "items_added": ["IOU Slip"],
+          "items_removed": [],
+          "flags": {"cartel_debt": true},
+          "next_chapter": "chapter_3",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 15
+        },
+        {
+          "text": "Let S.T.E.V.E. Negotiate — he did say he'd represent you.",
+          "outcome": "S.T.E.V.E. clears his throat and proposes, as settlement, a live performance of the battery jingle. The cousins confer. They accept, on the condition that he does an encore at their cousin's wedding, date to be announced. A small battery changes hands. S.T.E.V.E. has not been this happy since the factory reset, and you will hear about it.",
+          "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {"steve_ego_maxed": true},
+          "next_chapter": "chapter_3",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Run for It — bolt for the wreck while the cousins argue about the total.",
+          "outcome": "You make it past the second tent before the shouting starts, and past the fourth before it stops mattering. The cousins wave you off with the weary look of people who will simply add interest. You reach the wreck winded, battery-less, and exactly where you started.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Raid the Cooler Marked \"NOT FOOD (PROBABLY)\" — surely there's a battery in there.",
+          "outcome": "There is a battery in there. It is also, it turns out, very much food, and the food is very much awake. The label was right about the probably.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]

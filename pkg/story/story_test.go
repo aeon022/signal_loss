@@ -86,3 +86,43 @@ func TestStoryIsConsistent(t *testing.T) {
 		}
 	}
 }
+
+// Every chapter must be reachable from the start (ignoring flag gates), every
+// ending must be reachable, and a side chapter's spine must be a real chapter.
+func TestEverythingIsReachable(t *testing.T) {
+	for _, name := range []string{"story.json", "story_de.json"} {
+		s := load(t, name)
+		seen := map[string]bool{}
+		endings := 0
+		queue := []string{s.InitialState.CurrentChapter}
+		for len(queue) > 0 {
+			id := queue[0]
+			queue = queue[1:]
+			if seen[id] {
+				continue
+			}
+			seen[id] = true
+			for _, ch := range s.Chapters[id].Choices {
+				if ch.NextChapter != "" {
+					queue = append(queue, ch.NextChapter)
+				}
+				if ch.Ending != "" {
+					endings++
+				}
+			}
+		}
+		for id, c := range s.Chapters {
+			if !seen[id] {
+				t.Errorf("%s: %s is unreachable", name, id)
+			}
+			if c.Spine != "" {
+				if _, ok := s.Chapters[c.Spine]; !ok {
+					t.Errorf("%s: %s names unknown spine %q", name, id, c.Spine)
+				}
+			}
+		}
+		if endings == 0 {
+			t.Errorf("%s: no ending reachable", name)
+		}
+	}
+}

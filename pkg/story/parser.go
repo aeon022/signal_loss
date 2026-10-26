@@ -47,6 +47,11 @@ type Chapter struct {
 	Location string   `json:"location"`
 	Content  string   `json:"content"`
 	Choices  []Choice `json:"choices"`
+
+	// Spine, set only on a side chapter (e.g. "chapter_2b"), names the main-
+	// line chapter it sits beside. The map shows the player there, and a
+	// side chapter never moves the furthest-reached marker that gates the codex.
+	Spine string `json:"spine"`
 }
 
 // Choice is one option a player can pick within a chapter.

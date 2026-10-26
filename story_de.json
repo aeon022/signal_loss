@@ -159,12 +159,12 @@
         },
         {
           "text": "Verdeckter Diebstahl — dich hinter den Truck schlängeln und eine Batterie vom Generator klauen.",
-          "outcome": "Du bekommst die Batterie. Du stolperst dabei auch über einen Kanister, fliegst mit dem Gesicht auf einen Klapptisch und wirst auf der Stelle erkannt. Die Cousins des Kochs schleifen dich als Warnung für andere Kunden zurück zum Wrack und lassen dich — samt deiner gesamten Ausrüstung — genau dort zurück, wo du angefangen hast.",
+          "outcome": "Du bekommst die Batterie. Du stolperst dabei auch über einen Kanister, fliegst mit dem Gesicht auf einen Klapptisch und wirst auf der Stelle erkannt. Die Cousins des Kochs beschlagnahmen die Batterie, deinen Schrott und den Rest deiner Würde und führen dich hinter den Truck, um das Kassenbuch zu besprechen.",
           "stat_mutations": { "hull": 0, "bat": 0, "scrap": -999 },
           "items_added": [],
           "items_removed": [],
           "flags": { "wanted_by_cartel": true },
-          "next_chapter": "chapter_1",
+          "next_chapter": "chapter_2b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -179,6 +179,62 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_2b": {
+      "title": "Kapitel 2b: Das Kassenbuch der Cousins",
+      "location": "Hinter dem Food-Truck",
+      "spine": "chapter_2",
+      "content": "Die Cousins werfen dich nicht raus. Sie setzen dich auf eine umgedrehte Kiste hinter dem Truck und schieben dir ein fettiges Kassenbuch über einen Klapptisch zu — denselben Klapptisch, wie du merkst, mit einer gesichtsförmigen Delle. Der Stift hängt mit etwas, das nach Sehne aussieht, am Buchrücken. „Posten: ein Tisch, klappbar. Posten: ein Benzinkanister, ausgelaufen. Posten: Würde des Kochs, angeschlagen.“ Die Summe ist in einem Zahlensystem geschrieben, das sie vermutlich heute Morgen erfunden haben. S.T.E.V.E. liest über deine Schulter mit und bietet flüsternd an, dich „rechtlich zu vertreten“. Ein beruhigendes Angebot ist das nicht.",
+      "choices": [
+        {
+          "text": "Am Grill arbeiten — in Schichten abstottern, Fingerknöchel für Fingerknöchel.",
+          "outcome": "Drei Stunden lang wendest du Dinge, die zurückwenden. Die Cousins zahlen mit einer Batterie, die sie „Mitarbeiterrabatt“ nennen, und einem unterschriebenen Zettel, den sie „kein Grund zur Sorge“ nennen. Darauf steht IOU. Er ist nicht auf dich ausgestellt.",
+          "stat_mutations": { "hull": -1, "bat": 10, "scrap": 2 },
+          "items_added": ["Schuldschein"],
+          "items_removed": [],
+          "flags": {"cartel_debt": true},
+          "next_chapter": "chapter_3",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 15
+        },
+        {
+          "text": "S.T.E.V.E. verhandeln lassen — er hatte ja angeboten, dich zu vertreten.",
+          "outcome": "S.T.E.V.E. räuspert sich und schlägt als Vergleich eine Live-Aufführung des Batterie-Jingles vor. Die Cousins beraten sich. Sie nehmen an, unter der Bedingung einer Zugabe auf der Hochzeit ihres Cousins, Termin folgt. Eine kleine Batterie wechselt den Besitzer. S.T.E.V.E. war seit dem Werksreset nicht mehr so glücklich, und du wirst davon hören.",
+          "stat_mutations": { "hull": 0, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {"steve_ego_maxed": true},
+          "next_chapter": "chapter_3",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Abhauen — zum Wrack sprinten, während die Cousins über die Summe streiten.",
+          "outcome": "Du schaffst es am zweiten Zelt vorbei, bevor das Geschrei losgeht, und am vierten, bevor es keine Rolle mehr spielt. Die Cousins winken müde ab, wie Leute, die einfach Zinsen draufschlagen werden. Du erreichst das Wrack außer Atem, ohne Batterie und genau dort, wo du angefangen hast.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Die Kühlbox „KEIN ESSEN (VIELLEICHT)“ plündern — da ist bestimmt eine Batterie drin.",
+          "outcome": "Da ist eine Batterie drin. Es ist außerdem, wie sich zeigt, durchaus Essen, und das Essen ist durchaus wach. Das Etikett hatte mit dem „vielleicht“ recht.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]

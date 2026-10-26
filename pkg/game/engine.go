@@ -15,6 +15,18 @@ var ChapterOrder = []string{
 	"chapter_7", "chapter_8", "chapter_9", "chapter_10", "chapter_11", "chapter_12",
 }
 
+// SpineIndex is the map position of a chapter: its place in ChapterOrder, or
+// for a side chapter the place of the spine chapter it names. -1 if unknown.
+func SpineIndex(st *story.StoryData, id string) int {
+	if i := ChapterIndex(id); i >= 0 {
+		return i
+	}
+	if ch, ok := st.Chapters[id]; ok {
+		return ChapterIndex(ch.Spine)
+	}
+	return -1
+}
+
 // NewGameState builds a fresh GameState from the story's initial_state block.
 func NewGameState(st *story.StoryData) *GameState {
 	return &GameState{

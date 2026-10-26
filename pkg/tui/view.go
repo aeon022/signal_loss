@@ -212,13 +212,7 @@ func (m Model) viewCodex() string {
 }
 
 func (m Model) viewMap() string {
-	currentIdx := -1
-	for i, id := range game.ChapterOrder {
-		if id == m.state.CurrentChapter {
-			currentIdx = i
-			break
-		}
-	}
+	currentIdx := game.SpineIndex(m.story, m.state.CurrentChapter)
 
 	lines := []string{heading(m.labels.MapHeading, colorCyan), ""}
 	for i, id := range game.ChapterOrder {
