@@ -5,7 +5,7 @@ export type Lang = "en" | "de";
 const game = {
   en: {
     status: { standby: "STANDBY", connecting: "CONNECTING…", live: "LIVE", offline: "OFFLINE", lost: "SIGNAL LOST" },
-    launch: "LAUNCH CONFIGURATION", language: "LANGUAGE", speed: "TEXT SPEED", normal: "NORMAL", fast: "FAST",
+    options: "OPTIONS", launch: "LAUNCH CONFIGURATION", language: "LANGUAGE", speed: "TEXT SPEED", normal: "NORMAL", fast: "FAST",
     locks: "TIME-LOCKS", compressed: "COMPRESSED", realtime: "REAL-TIME",
     hintCompressed: "A couple of story beats make you wait. Compressed turns that into a few seconds.",
     hintRealtime: "A couple of story beats will lock you out for real minutes/hours. Your run saves — close the tab and come back.",
@@ -14,7 +14,7 @@ const game = {
     exitTitle: "SIGNAL LOST", reconnect: "> RECONNECT", source: "VIEW SOURCE ON GITHUB ↗",
     focus: "Click the terminal to focus it, then type. Your run saves to this browser automatically.",
     keys: [["1–9", "choose"], ["↑↓+⏎", "navigate"], ["c", "codex"], ["m", "map"], ["?", "help"], ["q", "quit"]],
-    soundOff: "SOUND: OFF", soundOn: "SOUND: ON", touch: "TOUCH CONTROLS",
+    lock: "LOCK SCROLL", unlock: "UNLOCK SCROLL", soundOff: "SOUND: OFF", soundOn: "SOUND: ON", touch: "TOUCH CONTROLS",
     shareTitle: "RUN OVER", shareCopy: "COPY RESULT", shareCopied: "COPIED ✓",
     died: "I died on Gryps-4 (death #{n}). The cargo company will be informed. #SignalLoss",
     escaped: "I escaped Gryps-4 as “{title}”. #SignalLoss",
@@ -30,7 +30,7 @@ const game = {
   },
   de: {
     status: { standby: "BEREIT", connecting: "VERBINDE…", live: "LIVE", offline: "OFFLINE", lost: "SIGNAL VERLOREN" },
-    launch: "STARTKONFIGURATION", language: "SPRACHE", speed: "TEXTTEMPO", normal: "NORMAL", fast: "SCHNELL",
+    options: "OPTIONEN", launch: "STARTKONFIGURATION", language: "SPRACHE", speed: "TEXTTEMPO", normal: "NORMAL", fast: "SCHNELL",
     locks: "WARTEZEITEN", compressed: "VERKÜRZT", realtime: "ECHTZEIT",
     hintCompressed: "Ein paar Story-Momente lassen dich warten. Verkürzt macht daraus ein paar Sekunden.",
     hintRealtime: "Ein paar Story-Momente sperren dich für echte Minuten/Stunden. Dein Lauf wird gespeichert — Tab schließen und später wiederkommen.",
@@ -39,7 +39,7 @@ const game = {
     exitTitle: "SIGNAL VERLOREN", reconnect: "> NEU VERBINDEN", source: "QUELLCODE AUF GITHUB ↗",
     focus: "Klicke ins Terminal, um es zu fokussieren, dann tippe. Dein Lauf wird automatisch in diesem Browser gespeichert.",
     keys: [["1–9", "wählen"], ["↑↓+⏎", "navigieren"], ["c", "Codex"], ["m", "Karte"], ["?", "Hilfe"], ["q", "beenden"]],
-    soundOff: "TON: AUS", soundOn: "TON: AN", touch: "TOUCH-STEUERUNG",
+    lock: "FIXIEREN", unlock: "LÖSEN", soundOff: "TON: AUS", soundOn: "TON: AN", touch: "TOUCH-STEUERUNG",
     shareTitle: "LAUF BEENDET", shareCopy: "ERGEBNIS KOPIEREN", shareCopied: "KOPIERT ✓",
     died: "Ich bin auf Gryps-4 gestorben (Tod Nr. {n}). Die Frachtfirma wird informiert. #SignalLoss",
     escaped: "Ich bin als „{title}“ von Gryps-4 entkommen. #SignalLoss",
@@ -64,6 +64,7 @@ const page = {
     heroKicker: "SECTOR SCHRÖDINGER · GRYPS-4",
     heroText: "Your freighter just crash-landed on a cosmic dumping ground. Your ship's AI is sarcastic, anxious, and perpetually low on battery. Twelve chapters, a dozen detours, eight endings (one of them hidden). Most of your choices are worse than they sound.",
     cta: "> ESTABLISH UPLINK",
+    stats: [["12", "CHAPTERS"], ["13", "DETOURS"], ["8", "ENDINGS"], ["0", "TRACKERS"]],
     cards: [
       ["REAL BRANCHING", "Failures cost you now, not just time: a botched theft puts you to work at the grill, a bad bluff lands you in a pirate's brig. Halfway through the road forks — and who likes you decides which roads you get."],
       ["LIVING CODEX", "Press c in-game for a lexicon of terms — it only knows what the story has actually told you so far, and marks what's new."],
@@ -85,6 +86,7 @@ const page = {
     heroKicker: "SEKTOR SCHRÖDINGER · GRYPS-4",
     heroText: "Dein Frachter ist gerade auf einer kosmischen Müllhalde notgelandet. Die Bord-KI ist sarkastisch, ängstlich und dauerhaft knapp an Batterie. Zwölf Kapitel, ein Dutzend Umwege, acht Enden (eines davon versteckt). Die meisten deiner Entscheidungen sind schlimmer, als sie klingen.",
     cta: "> UPLINK HERSTELLEN",
+    stats: [["12", "KAPITEL"], ["13", "UMWEGE"], ["8", "ENDEN"], ["0", "TRACKER"]],
     cards: [
       ["ECHTE VERZWEIGUNG", "Scheitern kostet jetzt mehr als Zeit: Ein missglückter Diebstahl schickt dich an den Grill, ein schlechter Bluff in die Arrestzelle eines Piraten. Auf halber Strecke gabelt sich der Weg — und wer dich mag, entscheidet, welche Wege du bekommst."],
       ["LEBENDIGER CODEX", "Drück im Spiel c für ein Lexikon — es weiß nur, was dir die Geschichte bisher erzählt hat, und markiert Neues."],

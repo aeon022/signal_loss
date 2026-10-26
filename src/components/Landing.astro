@@ -113,7 +113,7 @@ const otherHref = lang === "de" ? base : `${base}de/`;
   <main class="relative">
     <div class="grid-backdrop" style={`background-image: url("${starfield}"), url("${starfield}");`}></div>
 
-    <section class="relative mx-auto flex min-h-[75vh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center">
+    <section class="relative mx-auto flex max-w-4xl flex-col items-center justify-center px-6 pb-10 pt-20 text-center">
       <div class="radar-ping"></div>
       <p class="relative z-10 mb-4 flex items-center gap-2 text-sm tracking-[0.3em] text-cyan crt-flicker">
         <span class="pulse-glow text-green">●</span>
@@ -123,9 +123,17 @@ const otherHref = lang === "de" ? base : `${base}de/`;
         SIGNAL LOSS
       </h1>
       <p class="relative z-10 mt-6 max-w-xl text-balance text-base text-slate-300">{T.heroText}</p>
+      <dl class="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center">
+        {T.stats.map(([n, label]) => (
+          <div>
+            <dt class="glow-cyan text-2xl font-bold text-cyan-bright">{n}</dt>
+            <dd class="text-[10px] tracking-[0.25em] text-dim">{label}</dd>
+          </div>
+        ))}
+      </dl>
       <a
         href="#play"
-        class="group relative z-10 mt-10 flex items-center gap-2 rounded-sm border border-cyan/50 px-6 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+        class="group relative z-10 mt-8 flex items-center gap-2 rounded-sm border border-cyan/50 px-6 py-3 text-sm tracking-widest text-cyan-bright transition hover:border-cyan hover:bg-cyan/10 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
       >
         {T.cta}
         <span class="transition group-hover:translate-x-1">↓</span>
@@ -134,7 +142,7 @@ const otherHref = lang === "de" ? base : `${base}de/`;
 
     <div class="mx-auto h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-cyan/30 to-transparent"></div>
 
-    <section id="play" class="relative px-4 py-20">
+    <section id="play" class="relative px-4 pb-20 pt-6">
       <GameTerminal lang={lang} />
     </section>
 
@@ -142,19 +150,16 @@ const otherHref = lang === "de" ? base : `${base}de/`;
 
     <section class="relative mx-auto max-w-4xl px-6 py-20 text-sm text-slate-300">
       <div class="grid gap-6 sm:grid-cols-3">
-        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-amber">
-          <span class="rivet-tr"></span><span class="rivet-bl"></span>
-          <h2 class="glow-amber mb-2 text-xs tracking-widest">{T.cards[0][0]}</h2>
+        <div class="tui-panel p-5 text-amber">
+                    <h2 class="glow-amber mb-3 text-xs font-bold tracking-widest">◈ {T.cards[0][0]}</h2>
           <p class="text-slate-300">{T.cards[0][1]}</p>
         </div>
-        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-magenta">
-          <span class="rivet-tr"></span><span class="rivet-bl"></span>
-          <h2 class="glow-magenta mb-2 text-xs tracking-widest">{T.cards[1][0]}</h2>
+        <div class="tui-panel p-5 text-magenta">
+                    <h2 class="glow-magenta mb-3 text-xs font-bold tracking-widest">◈ {T.cards[1][0]}</h2>
           <p class="text-slate-300">{T.cards[1][1]}</p>
         </div>
-        <div class="corner-frame border border-white/10 bg-panel/60 p-5 text-green">
-          <span class="rivet-tr"></span><span class="rivet-bl"></span>
-          <h2 class="glow-green mb-2 text-xs tracking-widest">{T.cards[2][0]}</h2>
+        <div class="tui-panel p-5 text-green">
+                    <h2 class="glow-green mb-3 text-xs font-bold tracking-widest">◈ {T.cards[2][0]}</h2>
           <p class="text-slate-300">{T.cards[2][1]}</p>
         </div>
       </div>

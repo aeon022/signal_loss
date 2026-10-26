@@ -239,3 +239,30 @@ body {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+/* The terminal as a CRT: glow, rounded glass, scanlines and a vignette over the top. */
+.crt-screen {
+  border: 4px double var(--color-cyan);
+  box-shadow: 0 0 60px rgba(34, 211, 238, 0.16), inset 0 0 40px rgba(34, 211, 238, 0.08);
+}
+.crt-screen::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, 0.07) 3px 4px),
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+/* Same double-line frames as the terminal game, for the cards. */
+.tui-panel {
+  border: 4px double currentColor;
+  background: color-mix(in oklab, var(--color-panel) 80%, transparent);
+}
+
+/* While playing, the page is held in place; the terminal section snaps into view when scrolling near it. */
+html { scroll-snap-type: y proximity; }
+#play { scroll-snap-align: center; }
+html.play-lock { overflow: hidden; }

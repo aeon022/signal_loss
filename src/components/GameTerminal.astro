@@ -12,17 +12,12 @@ const base = import.meta.env.BASE_URL;
 const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 ---
 
-<div id="game-widget" class="mx-auto w-full max-w-6xl" data-base={base} data-lang={lang} data-t={JSON.stringify(G)}>
-  <div class="mb-2 flex items-center justify-between px-1 text-xs tracking-widest text-dim">
-    <span>CSS RUST-404 // EMERGENCY TERMINAL LINK</span>
-    <span id="game-status" class="text-amber">{G.status.standby}</span>
-  </div>
-
+<div id="game-widget" class="mx-auto w-full max-w-6xl scroll-mt-16" data-base={base} data-lang={lang} data-t={JSON.stringify(G)}>
   <!-- The terminal itself is a fixed 84-column widget (matches the game's
        own "monitor, doesn't reflow" design) — on screens narrower than
        that, it scrolls horizontally within this box instead of forcing
        the whole page wider than the viewport. -->
-  <div class="relative w-full rounded-sm border border-cyan/40 bg-black p-3 shadow-[0_0_50px_rgba(94,234,212,0.14)]">
+  <div id="screen" class="crt-screen relative w-full bg-black p-3">
     <div id="terminal" class="w-full" style="height: clamp(480px, 78vh, 940px);"></div>
 
     <!-- Pre-launch config panel, overlaid on top of the (still empty)
@@ -42,6 +37,9 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
           </div>
         </div>
 
+        <details class="group text-left">
+          <summary class="cursor-pointer list-none text-center text-[11px] tracking-widest text-dim transition hover:text-cyan">{G.options} <span class="inline-block transition group-open:rotate-180">▾</span></summary>
+          <div class="mt-4 space-y-4">
         <div>
           <div class="mb-2 text-left text-[11px] tracking-widest text-dim">{G.speed}</div>
           <div class="grid grid-cols-2 gap-2" data-group="speed">
@@ -58,6 +56,8 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
           </div>
           <p class="mt-2 text-left text-[11px] leading-relaxed text-dim" id="mode-hint">{G.hintCompressed}</p>
         </div>
+          </div>
+        </details>
       </div>
 
       <button
@@ -109,16 +109,15 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
     </div>
   </div>
 
-  <div class="mt-2 flex flex-wrap items-center justify-between gap-2 px-1 text-xs text-dim">
-    <p>{G.focus}</p>
+  <div class="mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 bg-white/10 px-3 py-1.5 text-xs text-slate-300">
+    <p class="tracking-widest text-dim">SIGNAL: <span id="game-status" class="font-bold text-cyan-bright">{G.status.standby}</span></p>
     <div class="flex gap-2">
+      <button id="lock-btn" type="button" class="config-btn" aria-pressed="false">{G.lock}</button>
       <button id="sound-btn" type="button" class="config-btn" aria-pressed="false">{G.soundOff}</button>
       <button id="export-btn" type="button" class="config-btn">{G.exportSave}</button>
     </div>
   </div>
-  <p class="mt-1 px-1 text-xs text-dim">
-    {G.keys.map(([k, label], i) => (<><kbd class={kbd}>{k}</kbd> {label}{i < G.keys.length - 1 ? " · " : ""}</>))}
-  </p>
+  <p class="mt-2 px-1 text-xs text-dim">{G.focus}</p>
 
   <!-- On-screen keys for phones and tablets (coarse pointer only). -->
   <div id="touchpad" class="touchpad mt-3 flex-wrap justify-center gap-2" aria-label={G.touch}>
@@ -207,13 +206,24 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   // keypresses, which advanced the boot prompt just from scrolling past
   // it. We don't want that: capture wheel events before xterm sees them
   // and just scroll the page instead.
+  // Lock scroll: while playing, the page stays put so a stray wheel or swipe cannot
+  // scroll the terminal out of view. Locking brings the terminal into view first.
+  const lockBtn = document.getElementById("lock-btn")!;
+  function setLock(on: boolean) {
+    if (on) widget.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.documentElement.classList.toggle("play-lock", on);
+    lockBtn.setAttribute("aria-pressed", String(on));
+    lockBtn.textContent = on ? T.unlock : T.lock;
+  }
+  lockBtn.addEventListener("click", () => setLock(!document.documentElement.classList.contains("play-lock")));
+
   termBox.addEventListener(
     "wheel",
     (e) => {
       if (Math.abs(e.deltaY) >= Math.abs(e.deltaX)) {
         e.preventDefault();
         e.stopPropagation();
-        window.scrollBy(0, e.deltaY);
+        if (!document.documentElement.classList.contains("play-lock")) window.scrollBy(0, e.deltaY);
       }
       // otherwise: mostly-horizontal gesture, let the box's own
       // overflow-x-auto scroll natively (narrow-screen terminal panning).
@@ -295,6 +305,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 
   launchBtn.addEventListener("click", () => {
     launchPanel.remove();
+    if (matchMedia("(pointer: fine)").matches) setLock(true); // playing with a mouse: hold the page still (the button lets go); on touch the keys below must stay reachable
     boot(selection.lang, selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
   });
 
@@ -435,8 +446,6 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 
     refit(); // the game starts with a default size; give it the real one
     statusEl.textContent = T.status.live;
-    statusEl.classList.remove("text-amber");
-    statusEl.classList.add("text-green");
     term.focus();
   }
 
@@ -446,8 +455,6 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   // screen on its way out, so there's nothing worth showing there).
   function onExit() {
     statusEl.textContent = T.status.offline;
-    statusEl.classList.remove("text-green");
-    statusEl.classList.add("text-dim");
     exitQuote.textContent = T.quotes[Math.floor(Math.random() * T.quotes.length)];
     exitPanel.classList.remove("hidden");
     exitPanel.classList.add("flex");
@@ -455,8 +462,6 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 
   function onBootError(err: unknown) {
     statusEl.textContent = T.status.lost;
-    statusEl.classList.remove("text-amber");
-    statusEl.classList.add("text-red");
     console.error(err);
     term.write(`\r\n${T.bootError}\r\n`);
   }
