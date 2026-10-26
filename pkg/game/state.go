@@ -14,6 +14,7 @@ type GameState struct {
 	Inventory      []string        `json:"inventory"`
 	Flags          map[string]bool `json:"flags"`
 	Rep            map[string]int  `json:"rep"`
+	Lang           string          `json:"lang"` // language the run was started in (CLI only)
 	TimeLockUntil  int64           `json:"time_lock_until"`
 	LastUpdated    int64           `json:"last_updated"`
 	// MaxChapterIndex is the furthest point ever reached in ChapterOrder.
