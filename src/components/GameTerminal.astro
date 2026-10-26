@@ -129,6 +129,8 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   <!-- On-screen keys for phones and tablets (coarse pointer only): docked at the bottom so the
        phone keyboard can stay hidden. Digits, arrows and Enter cover every choice. -->
   <div id="touchpad" class="touchpad" aria-label={G.touch}>
+    <button id="pad-fold" type="button" class="config-btn pad-fold" aria-expanded="true">▼ {G.touch}</button>
+    <div class="pad-body">
     <div class="tp-row">
       {[["↑", "\x1b[A"], ["↓", "\x1b[B"], ["⏎", "\r"]].map(([label, send]) => (
         <button type="button" class="config-btn touch-btn tp-big" data-send={send}>{label}</button>
@@ -144,6 +146,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
         <button type="button" class="config-btn touch-btn" data-send={send}>{label}</button>
       ))}
       <button id="kbd-btn" type="button" class="config-btn touch-btn" aria-pressed="false">⌨</button>
+    </div>
     </div>
   </div>
 </div>
@@ -166,6 +169,11 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
     #game-widget { padding-bottom: 10rem; }
     #terminal { height: calc(100dvh - 15.5rem) !important; }
   }
+  .pad-body { display: flex; flex-direction: column; gap: 0.4rem; }
+  .pad-fold { padding-block: 0.3rem; font-size: 0.7rem; }
+  :global(html.pad-closed) .pad-body { display: none; }
+  :global(html.pad-closed) #game-widget { padding-bottom: 4rem; }
+  :global(html.pad-closed) #terminal { height: calc(100dvh - 8rem) !important; }
   .tp-row { display: flex; gap: 0.4rem; }
   .tp-row > * { flex: 1 1 0; padding-inline: 0.2rem; }
   .touch-btn { min-height: 2.3rem; font-size: 0.9rem; }
@@ -394,6 +402,14 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
     term.textarea?.setAttribute("inputmode", on ? "text" : "none");
     kbdBtn.setAttribute("aria-pressed", String(on));
     if (on) term.focus(); else term.textarea?.blur();
+  });
+
+  const fold = document.getElementById("pad-fold")!;
+  fold.addEventListener("click", () => {
+    const closed = document.documentElement.classList.toggle("pad-closed");
+    fold.setAttribute("aria-expanded", String(!closed));
+    fold.textContent = (closed ? "▲ " : "▼ ") + fold.textContent!.slice(2);
+    window.dispatchEvent(new Event("resize")); // terminal refits to its new height
   });
 
   document.querySelectorAll<HTMLButtonElement>("#touchpad [data-send]").forEach((b) =>

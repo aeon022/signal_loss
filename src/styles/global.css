@@ -278,13 +278,19 @@ html.play-lock #game-widget {
 }
 html.play-lock #terminal { height: calc(100dvh - 7.5rem) !important; }
 
-/* Locked on a phone: the docked key pad sits at the bottom, the terminal ends above it. */
+/* Locked on a phone/tablet: the bar with the buttons pins to the top, the key pad sits at the bottom
+   and folds away down to a handle (html.pad-closed), so nothing is ever covered. */
 @media (pointer: coarse) {
   html.play-lock #terminal { height: calc(100dvh - 16.5rem) !important; }
-  /* the bar with the buttons would sit under the pad, so the unlock button floats above the terminal */
-  html.play-lock #game-widget { padding-top: 3rem; }
-  html.play-lock #keybar { visibility: hidden; }
-  html.play-lock #lock-btn { visibility: visible; position: fixed; top: 0.5rem; right: 0.5rem; z-index: 70; background: var(--color-void); }
+  html.play-lock.pad-closed #terminal { height: calc(100dvh - 8rem) !important; }
+  html.play-lock #game-widget { padding-top: 3.25rem; }
+  html.play-lock #keybar {
+    position: fixed; inset: 0 0 auto 0; z-index: 70; margin: 0;
+    flex-wrap: nowrap; justify-content: flex-end; padding: 0.4rem 0.5rem;
+    background: var(--color-void); border-bottom: 1px solid var(--color-dim);
+  }
+  html.play-lock #keybar > p { display: none; }
+  html.play-lock #keybar .config-btn { padding: 0.4rem 0.5rem; }
 }
 
 /* Game snippets inside the cards: a few real lines from the TUI. */
