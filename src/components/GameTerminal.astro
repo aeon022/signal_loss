@@ -261,8 +261,11 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   function refit() {
     const width = termBox.clientWidth - 24;
     term.options.fontSize = Math.max(8, Math.min(15, Math.floor(width / 37.5)));
-    fit.fit();
-    window.slResize?.(term.cols, term.rows);
+    // xterm measures the new font a frame later; fitting at once would use the old, larger cell size
+    requestAnimationFrame(() => {
+      fit.fit();
+      window.slResize?.(term.cols, term.rows);
+    });
   }
   new ResizeObserver(refit).observe(termBox);
   refit();
