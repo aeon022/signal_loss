@@ -391,3 +391,14 @@ chapters.
 - [x] C: Ruf bei Fraktionen, 3 neue Enden (Apostel, Franchisenehmer, Aufstiegs-Datei)
 - [x] D: S.T.E.V.E.-Vertrauen (`steve`), Notfall-Neustart in Kapitel 11
 - [x] E: Neues Spiel+ — Kapitel 13 (verstecktes Ende „Der Schleifenbrecher“) nach drei verschiedenen Enden, Statistik in `stats.json`
+
+
+## v0.3 – v0.4 — UI/UX and browser (2026-10-26)
+
+- [x] Stats (`stats.json`), New Game+, `?` help, codex NEW marker, window-size hint
+- [x] Browser: DE page, share text, sound, touch keys, save import/export, 404, CI smoke test
+- [x] CLI: embedded stories, language prompt (v0.3.1/v0.3.2)
+- [x] Full-screen responsive retro TUI, sidebar, logo, scrolling; browser terminal fits its box (v0.4.0)
+- [x] Route hidden until S.T.E.V.E. has satellite data (flag `sat_data`, found in ch. 1 or ch. 3)
+- [ ] Not done: codex search, devlog, per-ending OG image, a second source for `sat_data` after chapter 3
+- [ ] Manual (Gerwin): itch.io page, abteilung83.at redirect, proofread DE texts (reminder set)

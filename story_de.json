@@ -91,11 +91,11 @@
         },
         {
           "text": "Totstellen (Die Meisterklasse der Feigheit) — mit dem Gesicht voran in den Schlamm fallen.",
-          "outcome": "Du gehst nieder wie ein Sack abgelaufener Rationen. Die Ansässigen treten ein paarmal gegen den Rumpf, lachen über den Gestank und verlieren das Interesse. Ätzender Schlamm frisst sich währenddessen ein Stück durch deinen Anzug.",
+          "outcome": "Du gehst nieder wie ein Sack abgelaufener Rationen. Die Ansässigen treten ein paarmal gegen den Rumpf, lachen über den Gestank und verlieren das Interesse. Ätzender Schlamm frisst sich währenddessen ein Stück durch deinen Anzug. Mit dem Gesicht im Dreck spürst du unter dem Handschuh etwas Eckiges, Warmes: ein gesprungenes Satellitendatenmodul, aus der Konsole des Wracks gerissen. „Oh“, sagt S.T.E.V.E. leise. „Das enthält Orbitalvermessungsdaten. Gib mir eine Nacht, dann plotte ich dir eine Route hier raus.“",
           "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
-          "flags": {},
+          "flags": { "sat_data": true },
           "next_chapter": "chapter_2",
           "ending": "",
           "fatal": false,
@@ -263,11 +263,11 @@
       "choices": [
         {
           "text": "Die Luke verbarrikadieren — Schrott gegen die Tür stapeln und in der Ecke zittern.",
-          "outcome": "Das Ding hämmert stundenlang methodisch und unbeeilt gegen die Tür, gibt aber vor der Dämmerung auf. Du überlebst mit Frostbeulen und einer neuen Wertschätzung für Stille.",
+          "outcome": "Das Ding hämmert stundenlang methodisch und unbeeilt gegen die Tür, gibt aber vor der Dämmerung auf. Du überlebst mit Frostbeulen und einer neuen Wertschätzung für Stille. Zwischen zwei Schrottplatten findest du ein gesprungenes Satellitendatenmodul, im Konsolenwrack verkeilt. S.T.E.V.E., der im Morgengrauen erwacht, liest es zweimal. „Orbitalvermessungsdaten“, sagt er. „Ich kann dir eine Route plotten. Mach kein Ding draus.“",
           "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
-          "flags": {},
+          "flags": { "sat_data": true },
           "next_chapter": "chapter_4",
           "ending": "",
           "fatal": false,

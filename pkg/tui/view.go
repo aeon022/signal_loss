@@ -82,7 +82,10 @@ func (m Model) screen(l layout, c lipgloss.Color, body []string, footer string) 
 	}
 	right := ""
 	if idx := game.SpineIndex(m.story, m.state.CurrentChapter); idx >= 0 && m.phase != phaseBoot {
-		right = fmt.Sprintf("CH %02d/%02d ", idx+1, len(game.ChapterOrder))
+		right = fmt.Sprintf("CH %02d ", idx+1)
+		if m.state.Flags["sat_data"] {
+			right = fmt.Sprintf("CH %02d/%02d ", idx+1, len(game.ChapterOrder))
+		}
 	}
 	head := bar(colorCyan, l.w, " ◢◤ S.T.E.V.E. TERMINAL // MK.IV", "SECTOR SCHRÖDINGER · "+signal+" ")
 	foot := bar(colorDim, l.w, " "+footer, right)
@@ -110,7 +113,9 @@ func (m Model) sidebar(l layout) string {
 
 	cur := game.SpineIndex(m.story, s.CurrentChapter)
 	lines = append(lines, "", heading("◈ ROUTE", colorCyan))
-	if l.bodyH-len(lines) >= len(game.ChapterOrder)+1 {
+	if !s.Flags["sat_data"] {
+		lines = append(lines, dimStyle.Render("  "+m.labels.RouteUnknown))
+	} else if l.bodyH-len(lines) >= len(game.ChapterOrder)+1 {
 		for i, id := range game.ChapterOrder {
 			name := m.story.Chapters[id].Location
 			mark := "·"
@@ -351,6 +356,10 @@ func (m Model) viewMap(l layout) string {
 	currentIdx := game.SpineIndex(m.story, m.state.CurrentChapter)
 
 	lines := []string{heading(m.labels.MapHeading, colorCyan), ""}
+	if !m.state.Flags["sat_data"] {
+		lines = append(lines, dimStyle.Render(m.labels.RouteUnknown), "", dimStyle.Render(m.labels.MapFooter))
+		return m.screen(l, colorCyan, lines, "")
+	}
 	for i, id := range game.ChapterOrder {
 		ch, ok := m.story.Chapters[id]
 		if !ok {

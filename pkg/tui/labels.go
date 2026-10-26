@@ -43,6 +43,8 @@ type Labels struct {
 	CodexNewFmt string // %d = unseen entries, appended to the choice footer
 	CodexNewTag string
 
+	RouteUnknown string // shown instead of the route until S.T.E.V.E. has satellite data
+
 	HelpHeading string
 	HelpLines   []string
 	TooSmallFmt string // need w, h, have w, h
@@ -86,6 +88,8 @@ var labelsEN = Labels{
 
 	CodexNewFmt: "   codex: %d new",
 	CodexNewTag: "NEW",
+
+	RouteUnknown: "— no nav data —",
 
 	HelpHeading: "S.T.E.V.E. HELP — KEYS",
 	HelpLines: []string{
@@ -139,6 +143,8 @@ var labelsDE = Labels{
 
 	CodexNewFmt: "   Codex: %d neu",
 	CodexNewTag: "NEU",
+
+	RouteUnknown: "— keine Navigationsdaten —",
 
 	HelpHeading: "S.T.E.V.E.-HILFE — TASTEN",
 	HelpLines: []string{

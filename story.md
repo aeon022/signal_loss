@@ -40,7 +40,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
     * *Stats:* -5 BAT, +3 SCRAP
     * Leads to Chapter 2: The Scrap Bazaar.
   * **[2] Play Dead (The Masterclass in Cowardice) — collapse face-first into the muck.**
-    * *Outcome:* You go down like a sack of expired rations. The Locals kick the hull a few times, laugh at the smell, and lose interest. Corrosive sludge eats a little of your suit while you wait it out.
+    * *Outcome:* You go down like a sack of expired rations. The Locals kick the hull a few times, laugh at the smell, and lose interest. Corrosive sludge eats a little of your suit while you wait it out. Face-down in the muck you notice something square and warm under your glove: a cracked Satellite Data Module, ripped from the wreck's console. "Oh," says S.T.E.V.E. quietly. "That has orbital survey data on it. Give me a night and I can plot you a route out of here."
     * *Stats:* -2 HULL
     * Leads to Chapter 2: The Scrap Bazaar.
   * **[3] Emergency EMP (Scorched Earth) — force-overload S.T.E.V.E.'s antenna into the hull plating.**
@@ -127,7 +127,7 @@ The spine runs Chapter 1–12. Side chapters (2b, 4b, 6b, 8b, 9b, 7b and the thr
 * **Narrative:** Temperature drops to -40°C within the hour. S.T.E.V.E. slides into low-power hibernation to protect the last of the charge, leaving you alone with the sound of your own breathing, condensation crackling to frost on the inside of your visor, and, somewhere just outside the hull breach, something large scraping metal. It scratches. It waits. It scratches again, patiently, like it has done this before — like it knows exactly how thin the hull is at that spot.
 * **Choices:**
   * **[1] Barricade the Hatch — pile scrap against the door and shiver in the corner.**
-    * *Outcome:* The thing batters the door for hours, methodical and unhurried, then gives up before dawn. You survive with frostnip and a new appreciation for silence.
+    * *Outcome:* The thing batters the door for hours, methodical and unhurried, then gives up before dawn. You survive with frostnip and a new appreciation for silence. Between two scrap panels you find a cracked Satellite Data Module, wedged in the console wreckage. S.T.E.V.E., waking at dawn, reads it twice. "Orbital survey data," he says. "I can plot you a route. Do not make it weird."
     * *Stats:* -1 HULL
     * Leads to Chapter 4: The Labyrinth of the Glitch Nomads.
   * **[2] Plasma Torch Welder — burn a thermal burst through the seam to scare it off.**

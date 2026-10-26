@@ -91,11 +91,11 @@
         },
         {
           "text": "Play Dead (The Masterclass in Cowardice) — collapse face-first into the muck.",
-          "outcome": "You go down like a sack of expired rations. The Locals kick the hull a few times, laugh at the smell, and lose interest. Corrosive sludge eats a little of your suit while you wait it out.",
+          "outcome": "You go down like a sack of expired rations. The Locals kick the hull a few times, laugh at the smell, and lose interest. Corrosive sludge eats a little of your suit while you wait it out. Face-down in the muck you notice something square and warm under your glove: a cracked Satellite Data Module, ripped from the wreck's console. \"Oh,\" says S.T.E.V.E. quietly. \"That has orbital survey data on it. Give me a night and I can plot you a route out of here.\"",
           "stat_mutations": { "hull": -2, "bat": 0, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
-          "flags": {},
+          "flags": { "sat_data": true },
           "next_chapter": "chapter_2",
           "ending": "",
           "fatal": false,
@@ -263,11 +263,11 @@
       "choices": [
         {
           "text": "Barricade the Hatch — pile scrap against the door and shiver in the corner.",
-          "outcome": "The thing batters the door for hours, methodical and unhurried, then gives up before dawn. You survive with frostnip and a new appreciation for silence.",
+          "outcome": "The thing batters the door for hours, methodical and unhurried, then gives up before dawn. You survive with frostnip and a new appreciation for silence. Between two scrap panels you find a cracked Satellite Data Module, wedged in the console wreckage. S.T.E.V.E., waking at dawn, reads it twice. \"Orbital survey data,\" he says. \"I can plot you a route. Do not make it weird.\"",
           "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
           "items_added": [],
           "items_removed": [],
-          "flags": {},
+          "flags": { "sat_data": true },
           "next_chapter": "chapter_4",
           "ending": "",
           "fatal": false,

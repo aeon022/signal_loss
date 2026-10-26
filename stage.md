@@ -45,6 +45,15 @@ _Last updated 2026-09-09 — see `roadmap.md` for the full phase-by-phase build 
 - ✅ Stats + New Game+ (v0.3): `game.Stats` (runs, deaths, endings by `ending_id`) in `stats.json` (`-stats`),
   the save is reset when a run ends; three different endings set the flag `ng_plus`, which opens the hidden
   chapter 13 (8th ending, "The Loop Breaker"). UI: `?` help, codex NEW marker, window-size hint.
+- ✅ TUI (v0.4.0): full-screen, responsive (60×22 up): title bar, double-line panels, instrument sidebar from
+  96 columns (gauges, cargo, route), big logo on boot, scrolling (PgUp/PgDn) for long text in small windows.
+  The route (sidebar, map `m`, `CH n/12`) stays hidden until the flag `sat_data` is set: S.T.E.V.E. finds
+  a Satellite Data Module in chapter 1 ("Play Dead") or chapter 3 ("Barricade the Hatch") and can plot it.
+- ✅ CLI: story files are embedded (`go install` runs anywhere), DE/EN is asked when a new run starts, a run
+  keeps its language (`GameState.Lang`).
+- ✅ Browser (branch `deploy/landing`): bilingual page (`/`, `/de/`, hreflang, redirect for German browsers),
+  terminal fits its box (`slResize`, @xterm/addon-fit), share text after a run, sound toggle, touch keys,
+  save import/export, 404, `go test` + puppeteer smoke test before every deploy. No analytics.
 - ✅ `requires_flag` on `story.Choice` + `game.AvailableChoices(state, chapter)`: choices can stay
   hidden until an earlier decision unlocked them. All 7 flags the story already tracked now have
   a real payoff later in the run (previously set but never read) — see `roadmap.md` Phase 13.
