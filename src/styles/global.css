@@ -282,3 +282,26 @@ html.play-lock #terminal { height: calc(100dvh - 7.5rem) !important; }
 @media (pointer: coarse) {
   html.play-lock #terminal { height: calc(100dvh - 13.5rem) !important; }
 }
+
+/* Game snippets inside the cards: a few real lines from the TUI. */
+.tui-snippet {
+  margin-top: 1rem;
+  padding: 0.6rem 0.75rem;
+  background: #000;
+  border: 1px solid color-mix(in oklab, currentColor 35%, transparent);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--color-slate-300, #cbd5e1);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.tui-snippet .g { color: var(--color-green); }
+.tui-snippet .a { color: var(--color-amber); font-weight: 700; }
+.tui-snippet .r { color: var(--color-red); }
+.tui-snippet .m { color: var(--color-magenta); }
+.tui-snippet .c { color: var(--color-cyan); }
+.tui-snippet .b { font-weight: 700; color: #fff; }
+.tui-snippet .d { color: var(--color-dim); }
+
+/* The terminal grid is a whole number of cells wide; keep the leftover pixels on both sides. */
+#terminal { display: flex; justify-content: center; }

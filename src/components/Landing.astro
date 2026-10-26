@@ -9,6 +9,8 @@ const { lang = "en" } = Astro.props as { lang?: Lang };
 const T = t(lang);
 const base = import.meta.env.BASE_URL;
 const starfield = `${base}starfield.svg`;
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const snippet = (lines: string[][]) => lines.map(([text, cls]) => `<span class="${cls}">${esc(text)}\n</span>`).join("");
 const otherHref = lang === "de" ? base : `${base}de/`;
 ---
 
@@ -153,14 +155,17 @@ const otherHref = lang === "de" ? base : `${base}de/`;
         <div class="tui-panel p-5 text-amber">
                     <h2 class="glow-amber mb-3 text-xs font-bold tracking-widest">◈ {T.cards[0][0]}</h2>
           <p class="text-slate-300">{T.cards[0][1]}</p>
+          <pre class="tui-snippet" set:html={snippet(T.cards[0][2])} />
         </div>
         <div class="tui-panel p-5 text-magenta">
                     <h2 class="glow-magenta mb-3 text-xs font-bold tracking-widest">◈ {T.cards[1][0]}</h2>
           <p class="text-slate-300">{T.cards[1][1]}</p>
+          <pre class="tui-snippet" set:html={snippet(T.cards[1][2])} />
         </div>
         <div class="tui-panel p-5 text-green">
                     <h2 class="glow-green mb-3 text-xs font-bold tracking-widest">◈ {T.cards[2][0]}</h2>
           <p class="text-slate-300">{T.cards[2][1]}</p>
+          <pre class="tui-snippet" set:html={snippet(T.cards[2][2])} />
         </div>
       </div>
     </section>
