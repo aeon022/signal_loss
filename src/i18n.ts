@@ -5,7 +5,7 @@ export type Lang = "en" | "de";
 const game = {
   en: {
     status: { standby: "STANDBY", connecting: "CONNECTING…", live: "LIVE", offline: "OFFLINE", lost: "SIGNAL LOST" },
-    options: "OPTIONS", launch: "LAUNCH CONFIGURATION", language: "LANGUAGE", speed: "TEXT SPEED", normal: "NORMAL", fast: "FAST",
+    reader: "SCREEN READER", off: "OFF", on: "ON", options: "OPTIONS", launch: "LAUNCH CONFIGURATION", language: "LANGUAGE", speed: "TEXT SPEED", normal: "NORMAL", fast: "FAST",
     locks: "TIME-LOCKS", compressed: "COMPRESSED", realtime: "REAL-TIME",
     hintCompressed: "A couple of story beats make you wait. Compressed turns that into a few seconds.",
     hintRealtime: "A couple of story beats will lock you out for real minutes/hours. Your run saves — close the tab and come back.",
@@ -30,7 +30,7 @@ const game = {
   },
   de: {
     status: { standby: "BEREIT", connecting: "VERBINDE…", live: "LIVE", offline: "OFFLINE", lost: "SIGNAL VERLOREN" },
-    options: "OPTIONEN", launch: "STARTKONFIGURATION", language: "SPRACHE", speed: "TEXTTEMPO", normal: "NORMAL", fast: "SCHNELL",
+    reader: "SCREENREADER", off: "AUS", on: "AN", options: "OPTIONEN", launch: "STARTKONFIGURATION", language: "SPRACHE", speed: "TEXTTEMPO", normal: "NORMAL", fast: "SCHNELL",
     locks: "WARTEZEITEN", compressed: "VERKÜRZT", realtime: "ECHTZEIT",
     hintCompressed: "Ein paar Story-Momente lassen dich warten. Verkürzt macht daraus ein paar Sekunden.",
     hintRealtime: "Ein paar Story-Momente sperren dich für echte Minuten/Stunden. Dein Lauf wird gespeichert — Tab schließen und später wiederkommen.",

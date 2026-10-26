@@ -56,6 +56,13 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
           </div>
           <p class="mt-2 text-left text-[11px] leading-relaxed text-dim" id="mode-hint">{G.hintCompressed}</p>
         </div>
+            <div>
+              <div class="mb-2 text-left text-[11px] tracking-widest text-dim">{G.reader}</div>
+              <div class="grid grid-cols-2 gap-2" data-group="reader">
+                <button type="button" data-value="off" class="config-btn" aria-pressed="true">{G.off}</button>
+                <button type="button" data-value="on" class="config-btn">{G.on}</button>
+              </div>
+            </div>
           </div>
         </details>
       </div>
@@ -283,7 +290,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   // --- launch panel wiring -------------------------------------------
 
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const selection: Record<string, string> = { lang: widget.dataset.lang || "en", speed: reducedMotion ? "fast" : "normal", mode: "compressed" };
+  const selection: Record<string, string> = { lang: widget.dataset.lang || "en", speed: reducedMotion ? "fast" : "normal", mode: "compressed", reader: "off" };
 
   const press = (group: Element, value: string) =>
     group.querySelectorAll<HTMLButtonElement>(".config-btn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.value === value)));
@@ -304,6 +311,8 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 
   launchBtn.addEventListener("click", () => {
     launchPanel.remove();
+    document.getElementById("cookie-notice")?.classList.add("hidden"); // it would sit over the key bar
+    term.options.screenReaderMode = selection.reader === "on"; // xterm then mirrors the screen as readable text
     if (matchMedia("(pointer: fine)").matches) setLock(true); // playing with a mouse: hold the page still (the button lets go); on touch the keys below must stay reachable
     boot(selection.lang, selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
   });
