@@ -280,7 +280,11 @@ html.play-lock #terminal { height: calc(100dvh - 7.5rem) !important; }
 
 /* Locked on a phone: the docked key pad sits at the bottom, the terminal ends above it. */
 @media (pointer: coarse) {
-  html.play-lock #terminal { height: calc(100dvh - 13.5rem) !important; }
+  html.play-lock #terminal { height: calc(100dvh - 16.5rem) !important; }
+  /* the bar with the buttons would sit under the pad, so the unlock button floats above the terminal */
+  html.play-lock #game-widget { padding-top: 3rem; }
+  html.play-lock #keybar { visibility: hidden; }
+  html.play-lock #lock-btn { visibility: visible; position: fixed; top: 0.5rem; right: 0.5rem; z-index: 70; background: var(--color-void); }
 }
 
 /* Game snippets inside the cards: a few real lines from the TUI. */
