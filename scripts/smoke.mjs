@@ -4,6 +4,7 @@
 import puppeteer from "puppeteer-core";
 
 const base = process.env.SMOKE_URL ?? "http://localhost:4321/signal_loss/";
+const viewport = { width: 1280, height: 900 };
 const executablePath = process.env.CHROME_BIN ?? "google-chrome";
 const browser = await puppeteer.launch({ executablePath, headless: true, args: ["--no-sandbox", "--lang=en-US"] });
 
@@ -19,6 +20,7 @@ async function until(page, text, what) {
 try {
   for (const [path, lang, choose, cont, next] of [["", "en", "choose", "continue", "Chapter 2"], ["de/", "de", "wählen", "fortzufahren", "Kapitel 2"]]) {
     const page = await browser.newPage();
+    await page.setViewport(viewport);
     await page.evaluateOnNewDocument(() => { localStorage.setItem("sl_lang", "en"); localStorage.setItem("sl_cookie_ack", "1"); }); // no language redirect, no notice over the buttons
     const errors = [];
     page.on("pageerror", (e) => errors.push(e.message));
@@ -37,6 +39,7 @@ try {
   }
   // A fatal first choice must end the run, count it and offer the share text.
   const page = await browser.newPage();
+    await page.setViewport(viewport);
   await page.evaluateOnNewDocument(() => { localStorage.clear(); localStorage.setItem("sl_lang", "en"); localStorage.setItem("sl_cookie_ack", "1"); });
   await page.goto(base, { waitUntil: "networkidle0" });
   await page.click('#launch-panel [data-group="speed"] [data-value="fast"]');

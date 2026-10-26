@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL;
 const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 ---
 
-<div id="game-widget" class="mx-auto w-fit max-w-full" data-base={base} data-lang={lang} data-t={JSON.stringify(G)}>
+<div id="game-widget" class="mx-auto w-full max-w-6xl" data-base={base} data-lang={lang} data-t={JSON.stringify(G)}>
   <div class="mb-2 flex items-center justify-between px-1 text-xs tracking-widest text-dim">
     <span>CSS RUST-404 // EMERGENCY TERMINAL LINK</span>
     <span id="game-status" class="text-amber">{G.status.standby}</span>
@@ -22,8 +22,8 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
        own "monitor, doesn't reflow" design) — on screens narrower than
        that, it scrolls horizontally within this box instead of forcing
        the whole page wider than the viewport. -->
-  <div class="relative max-w-full overflow-x-auto rounded-sm border border-cyan/40 bg-black p-3 shadow-[0_0_50px_rgba(94,234,212,0.14)]">
-    <div id="terminal" class="w-fit"></div>
+  <div class="relative w-full rounded-sm border border-cyan/40 bg-black p-3 shadow-[0_0_50px_rgba(94,234,212,0.14)]">
+    <div id="terminal" class="w-full" style="height: clamp(480px, 78vh, 940px);"></div>
 
     <!-- Pre-launch config panel, overlaid on top of the (still empty)
          terminal. Removed once ESTABLISH UPLINK is pressed. -->
@@ -160,17 +160,9 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
 
 <script>
   import { Terminal } from "@xterm/xterm";
+  import { FitAddon } from "@xterm/addon-fit";
   import "@xterm/xterm/css/xterm.css";
 
-  // Must be >= the game's true rendered frame height or Bubble Tea's
-  // relative-cursor redraw math desyncs against xterm.js's own scrolling —
-  // each frame then lands one row lower than the last instead of
-  // overwriting in place (confirmed via a real VT100 emulator, not
-  // guessed). Frame height = FixedHeight(30) + 2 border + 3 status block +
-  // 2 bezel edges = 37 (see signal_loss/pkg/tui/styles.go). Keep in sync
-  // if that ever changes.
-  const COLS = 84;
-  const ROWS = 37;
   const SAVE_KEY = "signal_loss_save";
   const STATS_KEY = "signal_loss_stats"; // shared by both languages: endings are keyed by id
 
@@ -230,8 +222,6 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   );
 
   const term = new Terminal({
-    cols: COLS,
-    rows: ROWS,
     // convertEol must stay OFF: it force-rewrites every \n to \r\n, which
     // corrupts Bubble Tea's own cursor math (it manages \r/\n itself, the
     // same way it would over a real raw-mode pty — no implicit LF-to-CRLF
@@ -246,7 +236,20 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
       foreground: "#d1d5db",
     },
   });
+  const fit = new FitAddon();
+  term.loadAddon(fit);
   term.open(terminalEl);
+
+  // The game fills whatever terminal it is given (>= 60x22), so fit the terminal to its box
+  // and tell the game. The font shrinks on narrow screens to keep at least ~62 columns.
+  function refit() {
+    const width = termBox.clientWidth - 24;
+    term.options.fontSize = Math.max(8, Math.min(15, Math.floor(width / 37.5)));
+    fit.fit();
+    window.slResize?.(term.cols, term.rows);
+  }
+  new ResizeObserver(refit).observe(termBox);
+  refit();
 
   declare global {
     interface Window {
@@ -264,6 +267,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
         onStats: (json: string) => void,
       ) => void;
       slInput: (data: string) => void;
+      slResize?: (cols: number, rows: number) => void;
     }
   }
 
@@ -429,6 +433,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
       onStats,
     );
 
+    refit(); // the game starts with a default size; give it the real one
     statusEl.textContent = T.status.live;
     statusEl.classList.remove("text-amber");
     statusEl.classList.add("text-green");

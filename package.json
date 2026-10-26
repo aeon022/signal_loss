@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.2",
+    "@xterm/addon-fit": "^0.10.0",
     "@xterm/xterm": "^5.5.0",
     "astro": "^6.3.1",
     "tailwindcss": "^4.2.2"
