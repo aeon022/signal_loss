@@ -12,7 +12,7 @@ because of an earlier one. Eight endings, one of them hidden behind New Game+.
 ![Chapter view with the instrument sidebar](docs/screenshots/chapter.png)
 
 Built with Go and [Bubble Tea](https://github.com/charmbracelet/bubbletea)/[Lipgloss](https://github.com/charmbracelet/lipgloss).
-The screen fills your terminal (60×22 and up) and resizes with it. Also runs in a browser — the
+The screen fills your terminal (40×16 and up; below 24 rows the title bar goes and choices show only their titles) and resizes with it. Also runs in a browser — the
 exact same engine, compiled to WebAssembly, no reimplementation. See `roadmap.md` for how that
 works and everything else that went into this.
 

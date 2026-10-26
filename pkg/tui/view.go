@@ -67,10 +67,10 @@ func (m Model) View() string {
 // instrument sidebar when there is room) and the key bar.
 func (m Model) screen(l layout, c lipgloss.Color, body []string, footer string) string {
 	if !l.side && (m.phase == phaseChapter || m.phase == phaseGlitch) {
-		body = append([]string{statusBar(m.state.Hull, m.state.Bat, m.state.Scrap, len(m.state.Inventory)), ""}, body...)
+		body = append([]string{statusBar(l.textW, m.state.Hull, m.state.Bat, m.state.Scrap, len(m.state.Inventory)), ""}, body...)
 	}
-	for i := range body {
-		body[i] = l.indent + body[i]
+	for i := range body { // a line that cannot fit is cut, not wrapped: wrapping would add rows
+		body[i] = trunc(l.indent+body[i], l.mainW-6)
 	}
 	row := panel(c, l.mainW, l.bodyH, 2, body)
 	if l.side {
@@ -87,9 +87,11 @@ func (m Model) screen(l layout, c lipgloss.Color, body []string, footer string) 
 			right = fmt.Sprintf("CH %02d/%02d ", idx+1, len(game.ChapterOrder))
 		}
 	}
-	head := bar(colorCyan, l.w, " ◢◤ S.T.E.V.E. TERMINAL // MK.IV", "SECTOR SCHRÖDINGER · "+signal+" ")
 	foot := bar(colorDim, l.w, " "+footer, right)
-	return head + "\n" + row + "\n" + foot
+	if !l.head {
+		return row + "\n" + foot
+	}
+	return bar(colorCyan, l.w, " ◢◤ S.T.E.V.E. TERMINAL // MK.IV", "SECTOR SCHRÖDINGER · "+signal+" ") + "\n" + row + "\n" + foot
 }
 
 // sidebar is the instrument panel: gauges, cargo and the route so far.
@@ -259,8 +261,11 @@ func (m Model) viewChapter(l layout) string {
 		choices := game.AvailableChoices(m.state, ch)
 		warn := m.state.Flags["sat_data"] || m.state.Flags["knows_traps"]
 		risky := func(c story.Choice) bool { return warn && game.Risky(m.state, c) }
-		bottom = append([]string{""}, renderChoices(choices, m.cursor, l.textW, risky)...)
-		if m.hint != "" {
+		rows, starts := renderChoices(choices, m.cursor, l.textW, l.rows < 24, risky)
+		bottom = append([]string{""}, rows...)
+		cursorRow := 1 + starts[min(m.cursor, len(starts)-1)]
+		bottom = window(bottom, min(len(bottom), max(l.rows-4, 3)), max(cursorRow-1, 0), false)
+		if m.hint != "" && l.rows >= 24 {
 			bottom = append(bottom, "", dimStyle.Render(m.hint))
 		}
 		footer = fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))
@@ -279,8 +284,7 @@ func (m Model) viewChapter(l layout) string {
 // renderChoices word-wraps each choice under a hanging indent and
 // highlights the cursor-selected one. Returns individual rows, not a
 // single joined block, so callers can count/pad them line-for-line.
-func renderChoices(choices []story.Choice, cursor, width int, risky func(story.Choice) bool) []string {
-	var rows []string
+func renderChoices(choices []story.Choice, cursor, width int, short bool, risky func(story.Choice) bool) (rows []string, starts []int) {
 	for i, c := range choices {
 		marker, style := "▸", choiceStyle
 		if i == cursor {
@@ -291,7 +295,11 @@ func renderChoices(choices []story.Choice, cursor, width int, risky func(story.C
 		}
 		prefix := fmt.Sprintf("[%d] ", i+1)
 		indent := strings.Repeat(" ", len(prefix)+2)
-		wrapped := wrap(c.Text, max(width-len(indent), 10))
+		text := c.Text
+		if i2 := strings.Index(text, " — "); short && i2 > 0 { // small screens: the title, not the description
+			text = text[:i2]
+		}
+		wrapped := wrap(text, max(width-len(indent), 10))
 		block := make([]string, len(wrapped))
 		for j, ln := range wrapped {
 			if j == 0 {
@@ -300,9 +308,10 @@ func renderChoices(choices []story.Choice, cursor, width int, risky func(story.C
 				block[j] = indent + ln
 			}
 		}
+		starts = append(starts, len(rows))
 		rows = append(rows, strings.Split(style.Render(strings.Join(block, "\n")), "\n")...)
 	}
-	return rows
+	return rows, starts
 }
 
 // knownCodexTerms are the entries the story has introduced so far, sorted.

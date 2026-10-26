@@ -12,8 +12,8 @@ import (
 // sensible layout, so the game says so instead (see View). Text never gets
 // wider than maxTextW: very long lines are hard to read on a big monitor.
 const (
-	minW     = 60
-	minH     = 22
+	minW     = 40
+	minH     = 16
 	maxTextW = 104
 	sideMinW = 96 // from this width on, the instrument sidebar appears
 )
@@ -41,6 +41,7 @@ type layout struct {
 	sideW   int  // outer width of the sidebar, border included
 	mainW   int  // outer width of the main panel
 	bodyH   int  // rows inside the panels
+	head    bool // title bar shown (hidden on short terminals to save a row)
 	textW   int  // widest text line inside the main panel
 	indent  string
 	sideTxt int // widest text line inside the sidebar
@@ -52,7 +53,11 @@ func (m Model) layout() layout {
 	if w == 0 || h == 0 { // no size reported yet (or not a tty)
 		w, h = 100, 36
 	}
-	l := layout{w: w, h: h, bodyH: h - 4} // header + footer rows, panel borders
+	l := layout{w: w, h: h, head: h >= 24}
+	l.bodyH = h - 3 // key bar and the panel borders
+	if l.head {
+		l.bodyH-- // title bar
+	}
 	l.mainW = w
 	if w >= sideMinW {
 		l.side = true
@@ -94,6 +99,7 @@ func panel(c lipgloss.Color, outerW, innerH, padX int, lines []string) string {
 
 // bar fills a whole row with text on the left and right, in reverse video.
 func bar(c lipgloss.Color, w int, left, right string) string {
+	left = lipgloss.NewStyle().MaxWidth(w).Render(left) // never wider than the screen
 	gap := w - lipgloss.Width(left) - lipgloss.Width(right)
 	if gap < 1 {
 		right, gap = "", max(w-lipgloss.Width(left), 0)
@@ -181,12 +187,20 @@ func gauge(pct, width int) string {
 
 func pad(s string, n int) string { return lipgloss.NewStyle().Width(n).Render(s) }
 
-// statusBar is the one-line readout used when the sidebar does not fit.
-func statusBar(hull, bat, scrap, inventoryCount int) string {
-	return boldStyle.Render("HULL") + " " + gauge(hull, 8) + " " + pad(strconv.Itoa(hull)+"%", 4) +
-		boldStyle.Render("BAT") + " " + gauge(bat, 8) + " " + pad(strconv.Itoa(bat)+"%", 4) +
-		boldStyle.Render("SCRAP") + " " + pad(strconv.Itoa(scrap), 3) +
-		boldStyle.Render("INV") + " " + strconv.Itoa(inventoryCount)
+// statusBar is the one-line readout used when the sidebar does not fit;
+// it gets plainer as the width shrinks.
+func statusBar(width, hull, bat, scrap, inventoryCount int) string {
+	switch {
+	case width >= 56:
+		return boldStyle.Render("HULL") + " " + gauge(hull, 8) + " " + pad(strconv.Itoa(hull)+"%", 4) +
+			boldStyle.Render("BAT") + " " + gauge(bat, 8) + " " + pad(strconv.Itoa(bat)+"%", 4) +
+			boldStyle.Render("SCRAP") + " " + pad(strconv.Itoa(scrap), 3) +
+			boldStyle.Render("INV") + " " + strconv.Itoa(inventoryCount)
+	case width >= 36:
+		return fmt.Sprintf("%s %d%%  %s %d%%  %s %d", boldStyle.Render("HULL"), hull, boldStyle.Render("BAT"), bat, boldStyle.Render("SCRAP"), scrap)
+	default:
+		return fmt.Sprintf("H%d B%d S%d", hull, bat, scrap)
+	}
 }
 
 func sideRow(label string, pct, width int) string {
