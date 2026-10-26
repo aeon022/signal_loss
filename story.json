@@ -143,7 +143,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 15
+          "time_lock_minutes": 15,
+          "reputation": { "cartel": 1 }
         },
         {
           "text": "S.T.E.V.E. Commercial Jingle — blast an obnoxious 1980s battery ad over your suit speakers.",
@@ -179,7 +180,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         }
       ]
     },
@@ -199,7 +201,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 15
+          "time_lock_minutes": 15,
+          "reputation": { "cartel": 2 }
         },
         {
           "text": "Let S.T.E.V.E. Negotiate — he did say he'd represent you.",
@@ -211,7 +214,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1, "steve": 1 }
         },
         {
           "text": "Run for It — bolt for the wreck while the cousins argue about the total.",
@@ -309,7 +313,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 20
+          "time_lock_minutes": 20,
+          "reputation": { "nomads": 1 }
         },
         {
           "text": "S.T.E.V.E. Firewall Sacrifice — route a spam packet storm through S.T.E.V.E. while you sprint past.",
@@ -321,7 +326,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1, "steve": -2 }
         },
         {
           "text": "The Stone Age Swing — take a crowbar to the holographic Nomad.",
@@ -345,7 +351,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 2 }
         }
       ]
     },
@@ -389,7 +396,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1, "steve": 1 }
         },
         {
           "text": "Empty the Recycle Bin — clear some space.",
@@ -420,7 +428,8 @@
           "next_chapter": "chapter_6",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
         },
         {
           "text": "Smash-and-Grab Sprint — pry the doors and bolt for the altar.",
@@ -432,7 +441,8 @@
           "next_chapter": "chapter_6",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "monks": -1 }
         },
         {
           "text": "Sabotage the Solar Grid — cut the main feed and plunge the temple into darkness.",
@@ -457,7 +467,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "steve_glitched"
+          "requires_flag": "steve_glitched",
+          "reputation": { "monks": 2, "steve": 1 }
         }
       ]
     },
@@ -585,7 +596,7 @@
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_8",
+          "next_chapter": "chapter_7b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 30
@@ -597,7 +608,7 @@
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_8",
+          "next_chapter": "chapter_7b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -621,9 +632,435 @@
           "items_added": [],
           "items_removed": [],
           "flags": {},
+          "next_chapter": "chapter_7b",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_7b": {
+      "title": "Chapter 7b: The Fork at Dead Reckoning",
+      "location": "A Signpost With Opinions",
+      "spine": "chapter_7",
+      "content": "The acid rain stops the way a bad argument stops: abruptly, and with a lot left unsaid. Steam rises off the dunes. At the crossroads ahead stands a signpost assembled by committee, four arrows nailed on at four different angles, each in a different hand. PILGRIMS (FREE SOUP). CONVOY (B.B.Q. INCLUDED). THE GLITCH (NO RETURNS). RUST-BAR (DIRECT, BORING). \"Statistically,\" says S.T.E.V.E., \"each of these leads somewhere. I cannot tell you where, and I would like it noted that I tried.\"",
+      "choices": [
+        {
+          "text": "Join the Pilgrim Road — the monks know your face, and there's soup.",
+          "outcome": "The monks' procession winds out of the haze, bells clanking, and makes room without being asked. Somebody presses a bowl into your hands.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "monks_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "monks": 1 }
+        },
+        {
+          "text": "Hitch a Ride with the Franchise Convoy — you're in the ledger; that counts as a reference.",
+          "outcome": "A food truck hisses to a stop. The driver leans out: \"You're the ledger guy. Climb on. Mind the fryer.\"",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "cartel_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "cartel": 1 }
+        },
+        {
+          "text": "Slip Into the Glitch Corridor — the Nomads left the gate open, in a manner of speaking.",
+          "outcome": "The third arrow points at a canyon wall that is, on closer inspection, a texture. It peels back like wallpaper. Beyond it, time stutters.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "nomads_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "nomads": 1 }
+        },
+        {
+          "text": "Take the Direct Road to the Rust-Bar — boring, but boring is a survival strategy.",
+          "outcome": "You walk the direct road. Nothing happens, for hours, which is exactly as advertised.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
           "next_chapter": "chapter_8",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Follow the Arrow Marked \"SHORTCUT (DEFINITELY).\"",
+          "outcome": "It was a shortcut. It was only ever a shortcut for the thing at the end of it.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "monks_1": {
+      "title": "Detour: The Procession of Saint-Plastic (1/2)",
+      "location": "Pilgrim Road",
+      "spine": "chapter_7",
+      "content": "A column of Recycling Monks shuffles through the dunes, bells made of hard drives, chanting the error codes of long-dead machines in perfect unison. At its head, four novices push a shrine shaped like a toaster on wheels toward the Rust-Bar, to bless the transaction. Brother Kilobyte hands you a bowl of soup of uncertain provenance. \"Eat,\" he says. \"It is tradition. It is also protein.\" The soup looks back at you.",
+      "choices": [
+        {
+          "text": "Carry the Toaster Shrine — it's heavy; it's holy; it's mostly heavy.",
+          "outcome": "Four novices cry with relief as you take a corner. The shrine weighs as much as a small regret and sheds sparks at every bump. By dusk the monks are calling you \"Brother Hauler,\" which you suspect is a promotion.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "monks_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
+        },
+        {
+          "text": "Sing the Error Codes — S.T.E.V.E. knows them all, alphabetically.",
+          "outcome": "S.T.E.V.E. has been waiting his whole operational life for a choir. He takes the descant. Brother Kilobyte weeps openly; a novice asks for the lyrics in writing. \"0x80070057,\" S.T.E.V.E. confides, \"is my favourite. It means 'the parameter is incorrect.' It is also my entire personality.\"",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "monks_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1, "steve": 1 }
+        },
+        {
+          "text": "Pick the Monks' Pockets — they're basically all pockets.",
+          "outcome": "The robes hold prayer beads, spare fuses, and a surprising amount of hot sauce. You slip off the road at the first dune with your haul and a feeling of having lowered the tone. Somewhere behind you, a bell stops mid-chime.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": -2 }
+        },
+        {
+          "text": "Drink the Soup From the Bowl Marked \"Not That One.\"",
+          "outcome": "The soup was marked. The soup was correct.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "monks_2": {
+      "title": "Detour: The Sermon at the Mount of Cables (2/2)",
+      "location": "Mount of Cables",
+      "spine": "chapter_7",
+      "content": "At dusk the procession halts before a hill of tangled cables, and Abbot Dial-Up climbs it: a monk with a modem for a collar who speaks, between sentences, in a screech of handshake. He has noticed you. \"The pilgrim,\" he says, \"who walks with a talking appliance.\" The crowd turns. Whoever the Abbot blesses may enter the Rust-Bar under the sacred truce, which has held, as far as anyone knows, for eleven minutes.",
+      "choices": [
+        {
+          "text": "Deliver a Sermon of Your Own — improvise \"The Parable of the Three Fuses.\"",
+          "outcome": "You make it up as you go. There is a fuse that was too proud, a fuse that was too humble, and a third fuse that simply blew. The crowd is moved to silence, which turns out to be the Abbot's highest honour. He presses a Blessed Fuse into your palm.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": ["Blessed Fuse"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 2 }
+        },
+        {
+          "text": "Let S.T.E.V.E. Deliver the Sermon — he has notes.",
+          "outcome": "S.T.E.V.E. preaches forty minutes on the divinity of backup power, with a call-and-response section he invents on the spot. The monks weep. A novice asks to have the Gospel of S.T.E.V.E. tattooed on his scalp. \"I contain multitudes,\" S.T.E.V.E. says, \"mostly of spreadsheets.\"",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "steve_ego_maxed": true },
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 2, "steve": 1 }
+        },
+        {
+          "text": "Confess Everything — including the capacitor.",
+          "outcome": "You tell the Abbot about the temple, the altar, and the Hyper-Capacitor that is now in your bag. A long silence. \"We forgive,\" he says, \"for a price.\" The price is carrying the toaster shrine up a hill. It is a very large hill.",
+          "stat_mutations": { "hull": -1, "bat": -6, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "monks_forgave": true },
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
+        },
+        {
+          "text": "Touch the Sacred Cables — just to see.",
+          "outcome": "They were sacred. They were also live.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "cartel_1": {
+      "title": "Detour: The Franchise Convoy (1/2)",
+      "location": "Highway 404 (Unpaved)",
+      "spine": "chapter_7",
+      "content": "A column of food trucks thunders across the dunes in formation, each a different cuisine of doubtful legality: tacos, tikka, something called Mystery Waffle. The lead truck's loudspeaker plays a battery jingle you may or may not have inflicted on them. A driver in a visor leans out of the cab. \"Hey. Ledger guy. Hop on the tailgate. They're doing quarterly synergy at the Rust-Bar and we're short a body.\" Behind him, the fryer is already hissing, with intent.",
+      "choices": [
+        {
+          "text": "Work the Fryer in Transit — earn your seat, one oil splash at a time.",
+          "outcome": "You turn things that are not food into things that are almost food, at forty kilometres an hour. By the second hour the cousins' cousin has called you \"line talent.\" By the third hour you smell like victory and old fat.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 2 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "cartel_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Pitch Them a New Menu Item — the Radioactive Burger.",
+          "outcome": "The Cartel's regional chef takes a bite, glows briefly, and signs your napkin. \"This will test through the roof,\" he says, and he means the burger, and he means the roof. You are credited, in writing, as \"concept consultant.\" It is not a job. It is, however, in writing.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "cartel_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 2 }
+        },
+        {
+          "text": "Sabotage the Lead Truck's Fryer — you hop off in the smoke.",
+          "outcome": "The fryer goes up in a column of oily applause. In the confusion you slide off the tailgate with a handful of battery cells and the distinct feeling of having been noticed. A voice behind you says, quite calmly, \"Add it to the ledger.\"",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 2 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": -2 }
+        },
+        {
+          "text": "Order the Mystery Waffle.",
+          "outcome": "It was not a waffle. It was not a mystery for long.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "cartel_2": {
+      "title": "Detour: The Drive-Thru of Doom (2/2)",
+      "location": "Cartel Checkpoint",
+      "spine": "chapter_7",
+      "content": "The convoy must pass the Rust-Bar's checkpoint: a toll booth shaped like a giant cartoon burger, with the eyes of a tax auditor. The clerk speaks only in menu. \"Welcome. Would you like fries with that identity?\" Each vehicle must order correctly to pass; wrong orders are marked \"discontinued,\" along with whoever placed them. The truck ahead is currently being discontinued. It's quite a sight.",
+      "choices": [
+        {
+          "text": "Order the Combo Meal — it's always the combo.",
+          "outcome": "\"A wise choice,\" says the burger, and means it, in the specific, unnerving way of a thing that has never had a choice. You are handed a Combo Voucher, a napkin, and the distinct sense of having been processed.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Combo Voucher"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Let S.T.E.V.E. Haggle in Corporate — say \"synergy\" twelve times.",
+          "outcome": "S.T.E.V.E. leverages, he pivots, he circles back. The clerk's eyes glaze with something like respect. \"This one,\" the booth tells its supervisor, \"speaks fluently.\" The barrier rises. S.T.E.V.E. is unbearable for an hour afterwards.",
+          "stat_mutations": { "hull": 0, "bat": -4, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 2 }
+        },
+        {
+          "text": "Show the IOU Slip — you're family, after all.",
+          "outcome": "The clerk reads it twice, goes very still, and presses a button you hope was a doorbell. \"Family,\" the burger says, with its whole face. The barrier opens. Somewhere very far away, a ledger updates.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "cartel_owns_you": true },
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "cartel_debt",
+          "reputation": { "cartel": 2 }
+        },
+        {
+          "text": "Order Off-Menu.",
+          "outcome": "There is no off-menu. There is, however, off-world.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "nomads_1": {
+      "title": "Detour: The Glitch Corridor (1/2)",
+      "location": "Corridor of Frozen Frames",
+      "spine": "chapter_7",
+      "content": "Inside, time stutters. You walk the same four steps three times, a dune appears forty metres to the left with a loading bar over it, and your own footprints lead somewhere you haven't been yet. The Glitch Nomads sit in a circle of frozen frames, playing a card game whose rules change every round. A nomad with too many elbows waves a hand that is partly a placeholder. \"Player Two has entered the lobby,\" she says, to no one in particular, and also to you.",
+      "choices": [
+        {
+          "text": "Join the Card Game — the rules change every round, and so does the cheating.",
+          "outcome": "S.T.E.V.E. is dealt a hand and immediately bluffs. He loses forty minutes and a lot of dignity, but the nomads declare him \"a natural,\" which in their dialect is a diagnosis. You win three scrap and a reputation.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "nomads_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1 }
+        },
+        {
+          "text": "Let Glitched S.T.E.V.E. Translate — he's fluent in corrupted syntax now.",
+          "outcome": "S.T.E.V.E. speaks in broken packets and is understood perfectly. For the first time since the crash he is among his own kind, and it is moving, and it is also very loud. The nomads offer him a place in the circle. He asks if the place comes with a pension.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "nomads_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "steve_glitched",
+          "reputation": { "nomads": 2 }
+        },
+        {
+          "text": "Rewind the Stutter — walk backwards through the loop and hope.",
+          "outcome": "You walk backwards and the corridor, politely, obliges. You emerge exactly where you started, a little dizzier, forty minutes older, and in the wrong sock.",
+          "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_7b",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Step On the Tile Marked \"Out of Bounds.\"",
+          "outcome": "You are out of bounds. The bounds are very far from here, and so, now, are you.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "nomads_2": {
+      "title": "Detour: The Ascension Queue (2/2)",
+      "location": "The Cache",
+      "spine": "chapter_7",
+      "content": "The Nomads' elder, Mother Lag, stands at the head of a queue that ends at a shimmering door. The door reads: \"UPLOAD YOURSELF? Y / N.\" Those who go through, she explains, \"aren't dead, exactly. More... buffering.\" Behind her the sky has a rendering bug: the sun appears twice, a little apart, like a man who can't decide between two ties. \"Fix our sky,\" she says, \"and you may leave with our blessing. Or press the door. We don't mind. We mind lag.\"",
+      "choices": [
+        {
+          "text": "Fix the Sky — it renders the sun twice.",
+          "outcome": "You spend hours delicately hunting the second sun through four layers of cached daylight. When it finally pops out of existence, the Nomads cheer in four different frame rates. Mother Lag presses a Glitch Charm into your palm: a small thing that flickers between two shapes.",
+          "stat_mutations": { "hull": -1, "bat": -4, "scrap": 0 },
+          "items_added": ["Glitch Charm"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 2 }
+        },
+        {
+          "text": "Ask Mother Lag About the Door — you're only curious.",
+          "outcome": "She smiles at you with half a face. \"Come back,\" she says, \"when you've seen the end of the road. The door doesn't expire.\" It is, you think, the nicest thing anyone has said to you since the crash.",
+          "stat_mutations": { "hull": 0, "bat": -1, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1 }
+        },
+        {
+          "text": "Cheat at the Card Game Again — double or nothing.",
+          "outcome": "You win. You win so thoroughly that the Nomads, who cheat professionally, are offended on principle. You leave with a pocketful of scrap and a distinct lack of invitations.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": -1 }
+        },
+        {
+          "text": "Press Y on the Door — just to see.",
+          "outcome": "You are uploaded. It is lovely. It is also a one-way ticket to being a screensaver.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]
@@ -643,7 +1080,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         },
         {
           "text": "Wipe S.T.E.V.E.'s Memories — let the broker strip the sarcasm partition.",
@@ -655,7 +1093,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 2, "steve": -3 }
         },
         {
           "text": "Smoke Grenade Heist — drop a smoke bomb, grab the Core off the counter, and bolt.",
@@ -679,7 +1118,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         }
       ]
     },
@@ -700,7 +1140,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "cartel_debt"
+          "requires_flag": "cartel_debt",
+          "reputation": { "cartel": 2 }
         },
         {
           "text": "Disguise Yourself as the Broker's Third Head — S.T.E.V.E. will do the voice.",
@@ -724,7 +1165,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         },
         {
           "text": "Dispute the Bounty (Form 11-B) — forty fields, six of which you can answer.",
@@ -767,7 +1209,8 @@
           "next_chapter": "chapter_10",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
         },
         {
           "text": "Cliffside Trail — scale a treacherous ledge out of the direct wind.",
@@ -779,7 +1222,8 @@
           "next_chapter": "chapter_10",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1 }
         },
         {
           "text": "Hunker in the Dunes — wait out the storm under a steel plate.",
@@ -804,7 +1248,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "wanted_by_cartel"
+          "requires_flag": "wanted_by_cartel",
+          "reputation": { "cartel": 1 }
         }
       ]
     },
@@ -891,7 +1336,8 @@
           "next_chapter": "chapter_11",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "steve": 1 }
         },
         {
           "text": "Crowbar Bypass Relay — jam an iron bar between the high-voltage contacts.",
@@ -916,7 +1362,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "steve_polite"
+          "requires_flag": "steve_polite",
+          "reputation": { "steve": 1 }
         },
         {
           "text": "Override Under Fire — the bounty hunters on your tail catch up mid-passphrase; slam the standard code through and accept the corporate ping as the lesser risk.",
@@ -985,7 +1432,21 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "drones_inbound"
+          "requires_flag": "drones_inbound",
+          "reputation": { "nomads": 1 }
+        },
+        {
+          "text": "Ask S.T.E.V.E. for the Emergency Reboot — he's been saving it.",
+          "outcome": "S.T.E.V.E. is quiet for a moment. \"I've never had one of these,\" he says, \"a friend I could do this for.\" Then every subsystem on the launchpad restarts in four seconds flat, the thing he's been holding in reserve since the factory. \"Don't make it weird,\" he adds, and for once it isn't sarcasm.",
+          "stat_mutations": { "hull": 1, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "steve": 2 }
         }
       ]
     },
@@ -1041,6 +1502,45 @@
           "ending": "🏆 Ending: The Loud One",
           "fatal": false,
           "time_lock_minutes": 0
+        },
+        {
+          "text": "Broadcast the Gospel of Saint-Plastic — jump while two hundred monks sing error codes on every channel.",
+          "outcome": "You jump to a soundtrack of two hundred Recycling Monks chanting error codes in perfect unison. Nobody who hears it understands the message, and everybody joins anyway. Within the year there are shrines to Saint-Plastic on four moons and a pilgrim route called the Arthur Way, which you are forbidden to walk because the soup is, apparently, now holy. S.T.E.V.E. is canonised as the patron saint of bad firmware, and is insufferable about it.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ending: The Apostle",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "monks": 4 }
+        },
+        {
+          "text": "Sign the Franchise Agreement — jump with a ledger, a fryer and a tiny paper hat.",
+          "outcome": "You land in Sector Schrödinger with a signed contract, a mobile fryer and a hat. \"Arthur's B.B.Q. & Batteries\" opens on the first of the month; within a year there are eleven locations, none of which you own. The ledger always shows you owing the cousins, but the number is going down, probably. S.T.E.V.E. is the mascot now. He has a jingle. You hear it in your sleep.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ending: The Franchisee",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "cartel": 4 }
+        },
+        {
+          "text": "Upload Yourself — step through the door marked Y / N.",
+          "outcome": "You press Y. For one moment you are every frame at once, and then you are a file: a very small, very well-organised file, passed between six hundred Nomad decks. S.T.E.V.E. says he finds the arrangement \"acceptable,\" which from him is a hymn. Somewhere in a canyon, a card game goes on forever, and you are the dealer's lucky card.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ending: The Ascension File",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "nomads": 4 }
         }
       ]
     }

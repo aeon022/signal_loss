@@ -16,8 +16,8 @@ func load(t *testing.T, name string) *StoryData {
 
 // mechanics is everything except prose (an ending counts as present or not; its title is prose): what must be identical across languages.
 func mechanics(c Choice) string {
-	return fmt.Sprintf("%+v|%v|%v|%v|%d|%s|%t|%t|%s", c.StatMutations, len(c.ItemsAdded), len(c.ItemsRemoved),
-		c.Flags, c.TimeLockMinutes, c.NextChapter, c.Ending != "", c.Fatal, c.RequiresFlag)
+	return fmt.Sprintf("%+v|%v|%v|%v|%d|%s|%t|%t|%s|%v|%v", c.StatMutations, len(c.ItemsAdded), len(c.ItemsRemoved),
+		c.Flags, c.TimeLockMinutes, c.NextChapter, c.Ending != "", c.Fatal, c.RequiresFlag, c.Reputation, c.RequiresRep)
 }
 
 func TestGermanMatchesEnglishMechanics(t *testing.T) {
@@ -123,6 +123,56 @@ func TestEverythingIsReachable(t *testing.T) {
 		}
 		if endings == 0 {
 			t.Errorf("%s: no ending reachable", name)
+		}
+	}
+}
+
+// Every requires_rep must be reachable by some route, or its choice (an ending, usually) is dead text. Best standing at a chapter is the max over incoming
+// routes; len(chapters) passes cover any path without repeats, and a setback loop that pays reputation would only make this bound more generous.
+func TestReputationGatesAreReachable(t *testing.T) {
+	for _, name := range []string{"story.json", "story_de.json"} {
+		s := load(t, name)
+		best := map[string]map[string]int{s.InitialState.CurrentChapter: {}}
+		for range s.Chapters {
+			for id, rep := range best {
+				for _, c := range s.Chapters[id].Choices {
+					if c.NextChapter == "" {
+						continue
+					}
+					next := map[string]int{}
+					for f, v := range rep {
+						next[f] = v
+					}
+					for f, d := range c.Reputation {
+						next[f] += d
+					}
+					if old, ok := best[c.NextChapter]; ok {
+						for f, v := range old {
+							if v > next[f] {
+								next[f] = v
+							}
+						}
+					}
+					best[c.NextChapter] = next
+				}
+			}
+		}
+		max := map[string]int{}
+		for _, rep := range best {
+			for f, v := range rep {
+				if v > max[f] {
+					max[f] = v
+				}
+			}
+		}
+		for id, ch := range s.Chapters {
+			for i, c := range ch.Choices {
+				for f, need := range c.RequiresRep {
+					if max[f] < need {
+						t.Errorf("%s: %s choice %d needs %s %d, best reachable is %d", name, id, i, f, need, max[f])
+					}
+				}
+			}
 		}
 	}
 }

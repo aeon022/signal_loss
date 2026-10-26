@@ -143,7 +143,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 15
+          "time_lock_minutes": 15,
+          "reputation": { "cartel": 1 }
         },
         {
           "text": "S.T.E.V.E.-Werbejingle — einen nervigen 1980er-Batterie-Werbespot über die Anzuglautsprecher jagen.",
@@ -179,7 +180,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         }
       ]
     },
@@ -199,7 +201,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 15
+          "time_lock_minutes": 15,
+          "reputation": { "cartel": 2 }
         },
         {
           "text": "S.T.E.V.E. verhandeln lassen — er hatte ja angeboten, dich zu vertreten.",
@@ -211,7 +214,8 @@
           "next_chapter": "chapter_3",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1, "steve": 1 }
         },
         {
           "text": "Abhauen — zum Wrack sprinten, während die Cousins über die Summe streiten.",
@@ -309,7 +313,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 20
+          "time_lock_minutes": 20,
+          "reputation": { "nomads": 1 }
         },
         {
           "text": "S.T.E.V.E.-Firewall-Opfer — einen Spam-Paketsturm durch S.T.E.V.E. leiten, während du vorbeisprintest.",
@@ -321,7 +326,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1, "steve": -2 }
         },
         {
           "text": "Der Steinzeit-Schwung — mit dem Brecheisen auf den holografischen Nomaden losgehen.",
@@ -345,7 +351,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 2 }
         }
       ]
     },
@@ -389,7 +396,8 @@
           "next_chapter": "chapter_5",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1, "steve": 1 }
         },
         {
           "text": "Den Papierkorb leeren — ein bisschen Platz schaffen.",
@@ -420,7 +428,8 @@
           "next_chapter": "chapter_6",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
         },
         {
           "text": "Schnapp-und-weg-Sprint — die Türen aufbrechen und zum Altar rennen.",
@@ -432,7 +441,8 @@
           "next_chapter": "chapter_6",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "monks": -1 }
         },
         {
           "text": "Das Solarnetz sabotieren — die Hauptleitung durchtrennen und den Tempel in Dunkelheit tauchen.",
@@ -457,7 +467,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "steve_glitched"
+          "requires_flag": "steve_glitched",
+          "reputation": { "monks": 2, "steve": 1 }
         }
       ]
     },
@@ -585,7 +596,7 @@
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_8",
+          "next_chapter": "chapter_7b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 30
@@ -597,7 +608,7 @@
           "items_added": [],
           "items_removed": [],
           "flags": {},
-          "next_chapter": "chapter_8",
+          "next_chapter": "chapter_7b",
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0
@@ -621,9 +632,435 @@
           "items_added": [],
           "items_removed": [],
           "flags": {},
+          "next_chapter": "chapter_7b",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "chapter_7b": {
+      "title": "Kapitel 7b: Die Gabelung bei Koppelnavigation",
+      "location": "Ein Wegweiser mit Meinungen",
+      "spine": "chapter_7",
+      "content": "Der Säureregen hört auf, wie ein schlechter Streit aufhört: abrupt und mit viel Ungesagtem. Dampf steigt von den Dünen. An der Kreuzung voraus steht ein Wegweiser, im Ausschuss zusammengebaut, vier Pfeile in vier Winkeln, jeder in anderer Handschrift. PILGER (SUPPE GRATIS). KONVOI (GRILLEN INKLUSIVE). DER GLITCH (KEINE RÜCKGABE). RUST-BAR (DIREKT, LANGWEILIG). „Statistisch“, sagt S.T.E.V.E., „führt jeder davon irgendwohin. Ich kann nicht sagen, wohin, und ich möchte festhalten, dass ich es versucht habe.“",
+      "choices": [
+        {
+          "text": "Dem Pilgerweg folgen — die Mönche kennen dein Gesicht, und es gibt Suppe.",
+          "outcome": "Die Prozession der Mönche windet sich aus dem Dunst, Glocken scheppern, und man macht Platz, ohne gefragt zu werden. Jemand drückt dir eine Schüssel in die Hände.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "monks_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "monks": 1 }
+        },
+        {
+          "text": "Beim Franchise-Konvoi mitfahren — du stehst im Kassenbuch; das zählt als Referenz.",
+          "outcome": "Ein Food-Truck hält zischend. Der Fahrer lehnt sich heraus: „Du bist der Kassenbuch-Typ. Steig auf. Pass auf die Fritteuse auf.“",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "cartel_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "cartel": 1 }
+        },
+        {
+          "text": "In den Glitch-Korridor schlüpfen — die Nomaden haben das Tor offen gelassen, sozusagen.",
+          "outcome": "Der dritte Pfeil zeigt auf eine Schluchtwand, die bei näherem Hinsehen eine Textur ist. Sie rollt sich wie Tapete auf. Dahinter stottert die Zeit.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "nomads_1",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "nomads": 1 }
+        },
+        {
+          "text": "Die direkte Straße zur Rust-Bar nehmen — langweilig, aber Langeweile ist eine Überlebensstrategie.",
+          "outcome": "Du gehst die direkte Straße. Stundenlang passiert nichts, genau wie angekündigt.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
           "next_chapter": "chapter_8",
           "ending": "",
           "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Dem Pfeil „ABKÜRZUNG (BESTIMMT)“ folgen.",
+          "outcome": "Es war eine Abkürzung. Aber nur für das, was am Ende davon wartet.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "monks_1": {
+      "title": "Umweg: Die Prozession des Heiligen Plastik (1/2)",
+      "location": "Pilgerweg",
+      "spine": "chapter_7",
+      "content": "Eine Kolonne Recycling-Mönche schlurft durch die Dünen, Glocken aus Festplatten, und singt die Fehlercodes längst toter Maschinen in vollkommenem Gleichklang. An der Spitze schieben vier Novizen einen Schrein in Form eines Toasters auf Rädern zur Rust-Bar, um das Geschäft zu segnen. Bruder Kilobyte reicht dir eine Schüssel Suppe unklarer Herkunft. „Iss“, sagt er. „Es ist Tradition. Es ist auch Eiweiß.“ Die Suppe schaut zurück.",
+      "choices": [
+        {
+          "text": "Den Toaster-Schrein tragen — er ist schwer; er ist heilig; hauptsächlich ist er schwer.",
+          "outcome": "Vier Novizen weinen vor Erleichterung, als du eine Ecke nimmst. Der Schrein wiegt so viel wie ein kleines Bedauern und sprüht bei jedem Ruck Funken. Bis zum Abend nennen dich die Mönche „Bruder Packesel“, was du für eine Beförderung hältst.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "monks_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
+        },
+        {
+          "text": "Die Fehlercodes singen — S.T.E.V.E. kennt sie alle, alphabetisch.",
+          "outcome": "S.T.E.V.E. hat sein ganzes Betriebsleben auf einen Chor gewartet. Er übernimmt den Diskant. Bruder Kilobyte weint offen; ein Novize bittet um den Text schriftlich. „0x80070057“, vertraut S.T.E.V.E. an, „ist mein Liebling. Es bedeutet: ‚Der Parameter ist falsch.‘ Es ist auch meine gesamte Persönlichkeit.“",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "monks_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1, "steve": 1 }
+        },
+        {
+          "text": "Den Mönchen die Taschen leeren — sie bestehen praktisch nur aus Taschen.",
+          "outcome": "In den Kutten stecken Gebetsketten, Ersatzsicherungen und erstaunlich viel scharfe Soße. Du schlüpfst an der ersten Düne von der Straße, mit Beute und dem Gefühl, das Niveau gesenkt zu haben. Hinter dir bricht eine Glocke mitten im Schlag ab.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": -2 }
+        },
+        {
+          "text": "Die Suppe aus der Schüssel „Nicht diese“ trinken.",
+          "outcome": "Die Suppe war markiert. Die Suppe hatte recht.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "monks_2": {
+      "title": "Umweg: Die Predigt auf dem Kabelberg (2/2)",
+      "location": "Kabelberg",
+      "spine": "chapter_7",
+      "content": "Bei Dämmerung hält die Prozession vor einem Hügel verhedderter Kabel, und Abt Dial-Up besteigt ihn: ein Mönch mit einem Modem als Kragen, der zwischen den Sätzen in ein Handshake-Kreischen verfällt. Er hat dich bemerkt. „Der Pilger“, sagt er, „der mit einem sprechenden Haushaltsgerät wandelt.“ Die Menge dreht sich um. Wen der Abt segnet, darf unter dem heiligen Waffenstillstand die Rust-Bar betreten, der nach Kenntnis aller seit elf Minuten hält.",
+      "choices": [
+        {
+          "text": "Eine eigene Predigt halten — „Das Gleichnis von den drei Sicherungen“ improvisieren.",
+          "outcome": "Du erfindest es im Gehen. Da ist eine Sicherung, die zu stolz war, eine, die zu demütig war, und eine dritte, die einfach durchbrannte. Die Menge verfällt in Schweigen, das sich als höchste Ehre des Abts herausstellt. Er drückt dir eine Gesegnete Sicherung in die Hand.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 0 },
+          "items_added": ["Gesegnete Sicherung"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 2 }
+        },
+        {
+          "text": "S.T.E.V.E. die Predigt halten lassen — er hat Notizen.",
+          "outcome": "S.T.E.V.E. predigt vierzig Minuten über die Göttlichkeit der Notstromversorgung, mit einem Wechselgesang, den er spontan erfindet. Die Mönche weinen. Ein Novize möchte sich das Evangelium nach S.T.E.V.E. auf die Kopfhaut tätowieren lassen. „Ich enthalte Vielheiten“, sagt S.T.E.V.E., „überwiegend Tabellenkalkulationen.“",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "steve_ego_maxed": true },
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 2, "steve": 1 }
+        },
+        {
+          "text": "Alles beichten — auch den Kondensator.",
+          "outcome": "Du erzählst dem Abt vom Tempel, vom Altar und vom Hyperkondensator, der jetzt in deiner Tasche liegt. Langes Schweigen. „Wir vergeben“, sagt er, „gegen einen Preis.“ Der Preis ist, den Toaster-Schrein einen Hügel hinaufzutragen. Es ist ein sehr großer Hügel.",
+          "stat_mutations": { "hull": -1, "bat": -6, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "monks_forgave": true },
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
+        },
+        {
+          "text": "Die heiligen Kabel berühren — nur mal sehen.",
+          "outcome": "Sie waren heilig. Sie standen auch unter Strom.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "cartel_1": {
+      "title": "Umweg: Der Franchise-Konvoi (1/2)",
+      "location": "Highway 404 (unbefestigt)",
+      "spine": "chapter_7",
+      "content": "Eine Kolonne Food-Trucks donnert in Formation über die Dünen, jeder eine andere Küche von zweifelhafter Legalität: Tacos, Tikka, etwas namens Mystery-Waffel. Aus dem Lautsprecher des ersten Wagens dröhnt ein Batterie-Jingle, den du ihnen vielleicht aufgezwungen hast. Ein Fahrer mit Schirmmütze lehnt sich aus der Kabine. „He. Kassenbuch-Typ. Spring hinten auf. In der Rust-Bar ist Quartals-Synergie, und uns fehlt ein Körper.“ Hinter ihm zischt die Fritteuse bereits, mit Absicht.",
+      "choices": [
+        {
+          "text": "Während der Fahrt an der Fritteuse arbeiten — den Platz abverdienen, Fettspritzer für Fettspritzer.",
+          "outcome": "Du verwandelst Dinge, die kein Essen sind, mit vierzig Stundenkilometern in Dinge, die fast Essen sind. In der zweiten Stunde nennt dich der Cousin des Cousins „Küchentalent“. In der dritten riechst du nach Sieg und altem Fett.",
+          "stat_mutations": { "hull": -1, "bat": 0, "scrap": 2 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "cartel_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "Eine neue Speise vorschlagen — den Strahlungs-Burger.",
+          "outcome": "Der Regionalkoch des Kartells beißt hinein, leuchtet kurz und unterschreibt deine Serviette. „Das testet sich durchs Dach“, sagt er, und er meint den Burger, und er meint das Dach. Schriftlich wirst du als „Konzeptberater“ geführt. Es ist kein Job. Aber es steht schriftlich da.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "cartel_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 2 }
+        },
+        {
+          "text": "Die Fritteuse des ersten Wagens sabotieren — im Rauch abspringen.",
+          "outcome": "Die Fritteuse geht in einer Säule öligen Applauses hoch. Im Durcheinander rutschst du mit einer Handvoll Batteriezellen und dem deutlichen Gefühl, bemerkt worden zu sein, von der Ladeklappe. Eine Stimme hinter dir sagt ganz ruhig: „Auf das Kassenbuch damit.“",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 2 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": -2 }
+        },
+        {
+          "text": "Die Mystery-Waffel bestellen.",
+          "outcome": "Es war keine Waffel. Ein Mysterium war es nicht lange.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "cartel_2": {
+      "title": "Umweg: Der Drive-Thru des Verderbens (2/2)",
+      "location": "Kartell-Kontrollpunkt",
+      "spine": "chapter_7",
+      "content": "Der Konvoi muss den Kontrollpunkt der Rust-Bar passieren: ein Mauthäuschen in Form eines riesigen Cartoon-Burgers, mit den Augen eines Steuerprüfers. Der Angestellte spricht nur in Menüs. „Willkommen. Möchten Sie Pommes zu dieser Identität?“ Jedes Fahrzeug muss richtig bestellen, um durchzukommen; falsche Bestellungen werden „eingestellt“, samt Besteller. Der Wagen vor euch wird gerade eingestellt. Es ist ein Anblick.",
+      "choices": [
+        {
+          "text": "Das Combo-Menü bestellen — es ist immer das Combo.",
+          "outcome": "„Eine weise Wahl“, sagt der Burger und meint es, auf die unheimliche Art eines Wesens, das nie eine Wahl hatte. Du bekommst einen Menügutschein, eine Serviette und das deutliche Gefühl, bearbeitet worden zu sein.",
+          "stat_mutations": { "hull": 0, "bat": -2, "scrap": 0 },
+          "items_added": ["Menügutschein"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
+        },
+        {
+          "text": "S.T.E.V.E. auf Konzern verhandeln lassen — zwölfmal „Synergie“ sagen.",
+          "outcome": "S.T.E.V.E. hebelt, er pivotiert, er kommt darauf zurück. Der Blick des Angestellten verklärt sich zu etwas wie Respekt. „Der hier“, sagt das Häuschen zu seinem Vorgesetzten, „spricht fließend.“ Die Schranke hebt sich. S.T.E.V.E. ist danach eine Stunde lang unerträglich.",
+          "stat_mutations": { "hull": 0, "bat": -4, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 2 }
+        },
+        {
+          "text": "Den Schuldschein zeigen — du gehörst ja zur Familie.",
+          "outcome": "Der Angestellte liest ihn zweimal, erstarrt und drückt einen Knopf, von dem du hoffst, dass er eine Türklingel war. „Familie“, sagt der Burger mit dem ganzen Gesicht. Die Schranke öffnet sich. Sehr weit weg aktualisiert sich ein Kassenbuch.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": { "cartel_owns_you": true },
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "cartel_debt",
+          "reputation": { "cartel": 2 }
+        },
+        {
+          "text": "Außerhalb der Karte bestellen.",
+          "outcome": "Es gibt keine Außerhalb-der-Karte. Es gibt allerdings außerhalb der Welt.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "nomads_1": {
+      "title": "Umweg: Der Glitch-Korridor (1/2)",
+      "location": "Korridor der gefrorenen Bilder",
+      "spine": "chapter_7",
+      "content": "Drinnen stottert die Zeit. Du gehst dieselben vier Schritte dreimal, vierzig Meter links erscheint eine Düne mit Ladebalken, und deine eigenen Fußspuren führen irgendwohin, wo du noch nicht warst. Die Glitch-Nomaden sitzen in einem Kreis gefrorener Bilder und spielen ein Kartenspiel, dessen Regeln sich jede Runde ändern. Eine Nomadin mit zu vielen Ellbogen hebt eine Hand, die teilweise ein Platzhalter ist. „Spieler zwei hat die Lobby betreten“, sagt sie, zu niemand Bestimmtem und auch zu dir.",
+      "choices": [
+        {
+          "text": "Am Kartenspiel teilnehmen — die Regeln ändern sich jede Runde, das Mogeln auch.",
+          "outcome": "S.T.E.V.E. bekommt Karten und blufft sofort. Er verliert vierzig Minuten und viel Würde, doch die Nomaden erklären ihn zum „Naturtalent“, was in ihrem Dialekt eine Diagnose ist. Du gewinnst drei Schrott und einen Ruf.",
+          "stat_mutations": { "hull": 0, "bat": -3, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "nomads_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1 }
+        },
+        {
+          "text": "Den glitchigen S.T.E.V.E. dolmetschen lassen — er spricht jetzt fließend korrupte Syntax.",
+          "outcome": "S.T.E.V.E. spricht in zerbrochenen Paketen und wird perfekt verstanden. Zum ersten Mal seit dem Absturz ist er unter Seinesgleichen; es ist rührend, und es ist auch sehr laut. Die Nomaden bieten ihm einen Platz im Kreis an. Er fragt, ob der Platz mit Altersvorsorge kommt.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "nomads_2",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_flag": "steve_glitched",
+          "reputation": { "nomads": 2 }
+        },
+        {
+          "text": "Das Stottern zurückspulen — rückwärts durch die Schleife gehen und hoffen.",
+          "outcome": "Du gehst rückwärts, und der Korridor kommt dir höflich entgegen. Du tauchst genau dort wieder auf, wo du angefangen hast, etwas schwindliger, vierzig Minuten älter und im falschen Socken.",
+          "stat_mutations": { "hull": -1, "bat": -3, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_7b",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0
+        },
+        {
+          "text": "Auf die Kachel „Außerhalb der Karte“ treten.",
+          "outcome": "Du bist außerhalb der Karte. Die Grenzen sind sehr weit von hier, und du jetzt auch.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
+          "time_lock_minutes": 0
+        }
+      ]
+    },
+    "nomads_2": {
+      "title": "Umweg: Die Aufstiegs-Warteschlange (2/2)",
+      "location": "Der Cache",
+      "spine": "chapter_7",
+      "content": "Die Älteste der Nomaden, Mutter Lag, steht an der Spitze einer Schlange, die vor einer schimmernden Tür endet. Auf der Tür steht: „SICH SELBST HOCHLADEN? J / N.“ Wer hindurchgeht, erklärt sie, „ist nicht tot, genau genommen. Eher… am Puffern.“ Hinter ihr hat der Himmel einen Renderfehler: Die Sonne erscheint doppelt, ein Stück auseinander, wie ein Mann, der sich nicht zwischen zwei Krawatten entscheiden kann. „Repariere unseren Himmel“, sagt sie, „und du darfst mit unserem Segen gehen. Oder drück die Tür. Uns ist das gleich. Uns stört Lag.“",
+      "choices": [
+        {
+          "text": "Den Himmel reparieren — er rendert die Sonne doppelt.",
+          "outcome": "Stundenlang jagst du die zweite Sonne vorsichtig durch vier Schichten zwischengespeicherten Tageslichts. Als sie endlich aus dem Dasein ploppt, jubeln die Nomaden in vier verschiedenen Bildraten. Mutter Lag drückt dir einen Glitch-Talisman in die Hand: ein kleines Ding, das zwischen zwei Formen flackert.",
+          "stat_mutations": { "hull": -1, "bat": -4, "scrap": 0 },
+          "items_added": ["Glitch-Talisman"],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 2 }
+        },
+        {
+          "text": "Mutter Lag nach der Tür fragen — du bist nur neugierig.",
+          "outcome": "Sie lächelt dich mit halbem Gesicht an. „Komm zurück“, sagt sie, „wenn du das Ende der Straße gesehen hast. Die Tür läuft nicht ab.“ Es ist, denkst du, das Netteste, was seit dem Absturz jemand zu dir gesagt hat.",
+          "stat_mutations": { "hull": 0, "bat": -1, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1 }
+        },
+        {
+          "text": "Beim Kartenspiel noch einmal mogeln — doppelt oder nichts.",
+          "outcome": "Du gewinnst. Du gewinnst so gründlich, dass die Nomaden, die berufsmäßig mogeln, aus Prinzip beleidigt sind. Du gehst mit einer Tasche voll Schrott und einem deutlichen Mangel an Einladungen.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 3 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_8",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": -1 }
+        },
+        {
+          "text": "Auf der Tür J drücken — nur mal sehen.",
+          "outcome": "Du wirst hochgeladen. Es ist wunderschön. Es ist auch ein Weg ohne Rückfahrkarte in die Existenz als Bildschirmschoner.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "",
+          "fatal": true,
           "time_lock_minutes": 0
         }
       ]
@@ -643,7 +1080,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         },
         {
           "text": "S.T.E.V.E.s Erinnerungen löschen — den Vermittler die Sarkasmus-Partition entfernen lassen.",
@@ -655,7 +1093,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 2, "steve": -3 }
         },
         {
           "text": "Rauchbomben-Coup — eine Rauchbombe werfen, den Kern von der Theke greifen und abhauen.",
@@ -679,7 +1118,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         }
       ]
     },
@@ -700,7 +1140,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "cartel_debt"
+          "requires_flag": "cartel_debt",
+          "reputation": { "cartel": 2 }
         },
         {
           "text": "Als dritter Kopf des Vermittlers verkleiden — S.T.E.V.E. macht die Stimme.",
@@ -724,7 +1165,8 @@
           "next_chapter": "chapter_9",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "cartel": 1 }
         },
         {
           "text": "Das Kopfgeld anfechten (Formular 11-B) — vierzig Felder, sechs davon kannst du ausfüllen.",
@@ -767,7 +1209,8 @@
           "next_chapter": "chapter_10",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "monks": 1 }
         },
         {
           "text": "Der Klippenpfad — eine tückische Felskante außerhalb des direkten Winds erklimmen.",
@@ -779,7 +1222,8 @@
           "next_chapter": "chapter_10",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "nomads": 1 }
         },
         {
           "text": "In den Dünen ausharren — den Sturm unter einer Stahlplatte abwarten.",
@@ -804,7 +1248,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "wanted_by_cartel"
+          "requires_flag": "wanted_by_cartel",
+          "reputation": { "cartel": 1 }
         }
       ]
     },
@@ -891,7 +1336,8 @@
           "next_chapter": "chapter_11",
           "ending": "",
           "fatal": false,
-          "time_lock_minutes": 0
+          "time_lock_minutes": 0,
+          "reputation": { "steve": 1 }
         },
         {
           "text": "Brecheisen-Bypass-Relais — eine Eisenstange zwischen die Hochspannungskontakte klemmen.",
@@ -916,7 +1362,8 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "steve_polite"
+          "requires_flag": "steve_polite",
+          "reputation": { "steve": 1 }
         },
         {
           "text": "Override unter Beschuss — die Kopfgeldjäger auf deiner Spur holen dich mitten in der Passphrase ein; den Standardcode durchjagen und das Firmensignal als kleineres Risiko akzeptieren.",
@@ -985,7 +1432,21 @@
           "ending": "",
           "fatal": false,
           "time_lock_minutes": 0,
-          "requires_flag": "drones_inbound"
+          "requires_flag": "drones_inbound",
+          "reputation": { "nomads": 1 }
+        },
+        {
+          "text": "S.T.E.V.E. um den Notfall-Neustart bitten — er hat ihn aufgespart.",
+          "outcome": "S.T.E.V.E. schweigt einen Moment. „So etwas hatte ich noch nie“, sagt er, „einen Freund, für den ich das tun könnte.“ Dann startet jedes Subsystem auf der Startrampe in genau vier Sekunden neu, das, was er seit der Fabrik in Reserve hielt. „Mach kein Ding draus“, fügt er hinzu, und diesmal ist es kein Sarkasmus.",
+          "stat_mutations": { "hull": 1, "bat": 5, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "chapter_12",
+          "ending": "",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "steve": 2 }
         }
       ]
     },
@@ -1041,6 +1502,45 @@
           "ending": "🏆 Ende: Der Laute",
           "fatal": false,
           "time_lock_minutes": 0
+        },
+        {
+          "text": "Das Evangelium des Heiligen Plastik senden — springen, während zweihundert Mönche auf jedem Kanal Fehlercodes singen.",
+          "outcome": "Du springst zu einem Soundtrack aus zweihundert Recycling-Mönchen, die Fehlercodes in vollkommenem Gleichklang singen. Wer es hört, versteht die Botschaft nicht, und alle schließen sich trotzdem an. Binnen eines Jahres gibt es Schreine des Heiligen Plastik auf vier Monden und einen Pilgerweg namens Arthur-Weg, den du nicht betreten darfst, weil die Suppe jetzt offenbar heilig ist. S.T.E.V.E. wird als Schutzpatron schlechter Firmware heiliggesprochen und ist unerträglich damit.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Der Apostel",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "monks": 4 }
+        },
+        {
+          "text": "Den Franchise-Vertrag unterschreiben — mit Kassenbuch, Fritteuse und winzigem Papierhut springen.",
+          "outcome": "Du landest in Sektor Schrödinger mit einem unterschriebenen Vertrag, einer fahrbaren Fritteuse und einem Hut. „Arthurs Grillen & Batterien“ eröffnet am Ersten des Monats; binnen eines Jahres gibt es elf Filialen, von denen dir keine gehört. Im Kassenbuch stehst du immer bei den Cousins in der Kreide, aber die Zahl sinkt, wahrscheinlich. S.T.E.V.E. ist jetzt das Maskottchen. Er hat einen Jingle. Du hörst ihn im Schlaf.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Der Franchisenehmer",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "cartel": 4 }
+        },
+        {
+          "text": "Sich selbst hochladen — durch die Tür mit der Aufschrift J / N treten.",
+          "outcome": "Du drückst J. Einen Augenblick lang bist du jedes Bild gleichzeitig, dann bist du eine Datei: eine sehr kleine, sehr gut sortierte Datei, die zwischen sechshundert Nomaden-Decks weitergereicht wird. S.T.E.V.E. findet die Anordnung „akzeptabel“, was von ihm einer Hymne gleichkommt. Irgendwo in einer Schlucht läuft ein Kartenspiel ewig weiter, und du bist die Glückskarte des Gebers.",
+          "stat_mutations": { "hull": 0, "bat": 0, "scrap": 0 },
+          "items_added": [],
+          "items_removed": [],
+          "flags": {},
+          "next_chapter": "",
+          "ending": "🏆 Ende: Die Aufstiegs-Datei",
+          "fatal": false,
+          "time_lock_minutes": 0,
+          "requires_rep": { "nomads": 4 }
         }
       ]
     }

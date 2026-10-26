@@ -72,6 +72,13 @@ type Choice struct {
 	// one (a callback, a shortcut, a way around a risk that choice itself
 	// created). Empty means always available. See game.AvailableChoices.
 	RequiresFlag string `json:"requires_flag"`
+
+	// Reputation is added to the run's standing with factions (negative
+	// lowers it); RequiresRep hides the choice until every named faction
+	// has at least that much. Standing is hidden from the player, which is
+	// why some options only ever appear to people who were nice earlier.
+	Reputation  map[string]int `json:"reputation"`
+	RequiresRep map[string]int `json:"requires_rep"`
 }
 
 // StatMutations are the resource deltas a choice applies.

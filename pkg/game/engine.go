@@ -36,6 +36,7 @@ func NewGameState(st *story.StoryData) *GameState {
 		CurrentChapter:  st.InitialState.CurrentChapter,
 		Inventory:       append([]string{}, st.InitialState.Inventory...),
 		Flags:           map[string]bool{},
+		Rep:             map[string]int{},
 		MaxChapterIndex: ChapterIndex(st.InitialState.CurrentChapter),
 	}
 }
@@ -52,18 +53,27 @@ func ChapterIndex(id string) int {
 
 // AvailableChoices filters a chapter's choices down to the ones this run
 // can actually see: everything with no RequiresFlag, plus anything gated
-// on a flag the player already has. Always use this instead of reading
+// on a flag or standing the player already has. Always use this instead of reading
 // Chapter.Choices directly — an earlier decision unlocking a later option
 // only works if every choice-list consumer (rendering, digit-key bounds,
 // cursor bounds, selection) agrees on the same filtered list.
 func AvailableChoices(state *GameState, ch story.Chapter) []story.Choice {
 	available := make([]story.Choice, 0, len(ch.Choices))
 	for _, c := range ch.Choices {
-		if c.RequiresFlag == "" || state.Flags[c.RequiresFlag] {
+		if (c.RequiresFlag == "" || state.Flags[c.RequiresFlag]) && hasRep(state, c.RequiresRep) {
 			available = append(available, c)
 		}
 	}
 	return available
+}
+
+func hasRep(state *GameState, need map[string]int) bool {
+	for faction, min := range need {
+		if state.Rep[faction] < min {
+			return false
+		}
+	}
+	return true
 }
 
 // Resolution is what happens after a choice's mutations are applied: the
@@ -88,6 +98,12 @@ func ResolveChoice(state *GameState, choice story.Choice, st *story.StoryData) R
 		choice.ItemsRemoved,
 		choice.Flags,
 	)
+	if state.Rep == nil { // saves from before reputation existed
+		state.Rep = map[string]int{}
+	}
+	for faction, d := range choice.Reputation {
+		state.Rep[faction] += d
+	}
 	state.LastUpdated = time.Now().Unix()
 
 	if choice.Fatal {
