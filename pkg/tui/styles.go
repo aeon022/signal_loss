@@ -1,51 +1,22 @@
 package tui
 
 import (
-	"regexp"
+	"fmt"
 	"strconv"
 	"strings"
-	"unicode/utf8"
 
 	"github.com/charmbracelet/lipgloss"
 )
 
-var ansiCode = regexp.MustCompile("\x1b\\[[0-9;]*m")
-
-// visibleWidth is the rune count once ANSI color codes are stripped — used
-// to pad an already-styled line (like the status readout) to a fixed width.
-func visibleWidth(s string) int {
-	return utf8.RuneCountInString(ansiCode.ReplaceAllString(s, ""))
-}
-
-// MaxWidth and FixedHeight are the screen's fixed columns/rows — like a
-// monitor, not a scrolling terminal: they never change with what's on
-// screen. FixedHeight (30) comfortably covers the tallest real screen
-// (chapter 1's narrative + 3 wrapped choices = 23 rows at this width);
-// content taller than that (the codex) scrolls inside the frame instead
-// of growing it.
+// The screen fills whatever terminal it runs in. Below minW×minH there is no
+// sensible layout, so the game says so instead (see View). Text never gets
+// wider than maxTextW: very long lines are hard to read on a big monitor.
 const (
-	MaxWidth    = 76
-	FixedHeight = 30
+	minW     = 60
+	minH     = 22
+	maxTextW = 104
+	sideMinW = 96 // from this width on, the instrument sidebar appears
 )
-
-// FrameWidth is the total rendered width of the inner bordered box.
-// Width(MaxWidth) already includes the 1-column padding on each side (see
-// TextWidth above); the border then adds 1 more column on each side.
-const FrameWidth = MaxWidth + 2
-
-// TextWidth is how wide text may actually get before Render()'s own
-// wrapping kicks in a second time: frameStyle's Width(MaxWidth) counts the
-// 1-column padding on each side as part of that budget, so the real text
-// budget is 2 columns narrower. Wrap everything that goes inside a frame
-// to this, not to MaxWidth directly.
-const TextWidth = MaxWidth - 2
-
-// BezelWidth is the outer bezel's total width: the inner box plus a
-// 1-space, 1-border-char margin on each side.
-const BezelWidth = FrameWidth + 4
-
-// BezelHeight is the rendered screen height: frame + border, status block, two bezel edges.
-const BezelHeight = FixedHeight + 7
 
 var (
 	colorCyan    = lipgloss.Color("14")
@@ -56,77 +27,6 @@ var (
 	colorDim     = lipgloss.Color("8")
 )
 
-// retroBorder is a single-line terminal box for the inner "screen" — kept
-// plain since the outer bezel (see chrome) now carries the decoration.
-var retroBorder = lipgloss.Border{
-	Top:         "─",
-	Bottom:      "─",
-	Left:        "│",
-	Right:       "│",
-	TopLeft:     "┌",
-	TopRight:    "┐",
-	BottomLeft:  "└",
-	BottomRight: "┘",
-}
-
-// frameStyle borders and pads a block of text to the fixed MaxWidth — every
-// screen is the same size, CRT-monitor style, regardless of how much text
-// is actually on it.
-func frameStyle(c lipgloss.Color) lipgloss.Style {
-	return lipgloss.NewStyle().
-		Border(retroBorder).
-		BorderForeground(c).
-		Padding(0, 1).
-		Width(MaxWidth).
-		Height(FixedHeight)
-}
-
-// chrome wraps a bordered box in an outer monitor bezel: corner screws,
-// a single-line housing, and the terminal's label/status plates embedded
-// directly into the top and bottom edges instead of floating above/below.
-// statusLine, if non-empty, renders as an instrument-panel readout between
-// the screen and the bottom bezel edge — a spaceship console gauge strip,
-// not part of the "screen" itself. body must already be exactly FrameWidth
-// columns per line (frameStyle guarantees this).
-func chrome(body, statusLine string) string {
-	top := dimStyle.Render(bezelEdge("S.T.E.V.E. TERMINAL — MK.IV"))
-	bottom := dimStyle.Render(bezelEdge("SIGNAL: LIVE — SECTOR SCHRÖDINGER"))
-
-	var out []string
-	out = append(out, top)
-	for _, line := range strings.Split(body, "\n") {
-		out = append(out, dimStyle.Render("│ ")+line+dimStyle.Render(" │"))
-	}
-	if statusLine != "" {
-		pad := FrameWidth - visibleWidth(statusLine)
-		if pad < 0 {
-			pad = 0
-		}
-		blank := dimStyle.Render("│ ") + strings.Repeat(" ", FrameWidth) + dimStyle.Render(" │")
-		out = append(out, blank)
-		out = append(out, dimStyle.Render("│ ")+statusLine+strings.Repeat(" ", pad)+dimStyle.Render(" │"))
-		out = append(out, blank)
-	}
-	out = append(out, bottom)
-	return strings.Join(out, "\n") + "\n"
-}
-
-// bezelEdge draws one horizontal bezel edge: ●──[ label ]──●, centered,
-// exactly BezelWidth columns wide.
-func bezelEdge(label string) string {
-	text := "[ " + label + " ]"
-	textWidth := utf8.RuneCountInString(text)
-	inner := BezelWidth - 2 // the two corner screws
-	if textWidth > inner {
-		textWidth = inner
-		text = text[:inner]
-	}
-	padTotal := inner - textWidth
-	left := padTotal / 2
-	right := padTotal - left
-	return "●" + strings.Repeat("─", left) + text + strings.Repeat("─", right) + "●"
-}
-
 var (
 	boldStyle   = lipgloss.NewStyle().Bold(true)
 	dimStyle    = lipgloss.NewStyle().Foreground(colorDim)
@@ -134,22 +34,104 @@ var (
 	cursorStyle = lipgloss.NewStyle().Foreground(colorGreen).Bold(true).Reverse(true)
 )
 
-// anchorBottom lays out top followed by bottom, padded with enough blank
-// lines to reach FixedHeight — so bottom (e.g. the choice list) sits at a
-// consistent position near the bottom of the screen instead of right after
-// however much narrative text happens to precede it.
-func anchorBottom(top, bottom []string) []string {
-	filler := FixedHeight - len(top) - len(bottom)
-	if filler < 0 {
-		filler = 0
+// layout is derived from the terminal size on every render, never stored.
+type layout struct {
+	w, h    int
+	side    bool // sidebar shown
+	sideW   int  // outer width of the sidebar, border included
+	mainW   int  // outer width of the main panel
+	bodyH   int  // rows inside the panels
+	textW   int  // widest text line inside the main panel
+	indent  string
+	sideTxt int // widest text line inside the sidebar
+	rows    int // rows a view may fill inside the main panel (the one-line status takes two without a sidebar)
+}
+
+func (m Model) layout() layout {
+	w, h := m.width, m.height
+	if w == 0 || h == 0 { // no size reported yet (or not a tty)
+		w, h = 100, 36
 	}
-	lines := make([]string, 0, FixedHeight)
-	lines = append(lines, top...)
-	for i := 0; i < filler; i++ {
+	l := layout{w: w, h: h, bodyH: h - 4} // header + footer rows, panel borders
+	l.mainW = w
+	if w >= sideMinW {
+		l.side = true
+		l.sideW = 34
+		if w >= 140 {
+			l.sideW = 42
+		}
+		l.mainW = w - l.sideW
+	}
+	l.textW = min(l.mainW-6, maxTextW)
+	l.indent = strings.Repeat(" ", (l.mainW-6-l.textW)/2)
+	l.sideTxt = l.sideW - 4
+	l.rows = l.bodyH
+	if !l.side {
+		l.rows -= 2
+	}
+	return l
+}
+
+// full is the layout for screens that use the whole width (boot, endings).
+func (l layout) full() layout {
+	l.side, l.sideW, l.mainW = false, 0, l.w
+	l.textW = min(l.mainW-6, maxTextW)
+	l.indent = strings.Repeat(" ", (l.mainW-6-l.textW)/2)
+	l.rows = l.bodyH
+	return l
+}
+
+func (l layout) tooSmall() bool { return l.w < minW || l.h < minH }
+
+// panel draws a double-line box of the given outer width and inner height.
+func panel(c lipgloss.Color, outerW, innerH, padX int, lines []string) string {
+	return lipgloss.NewStyle().
+		Border(lipgloss.DoubleBorder()).BorderForeground(c).
+		Padding(0, padX).
+		Width(outerW - 2).Height(innerH).
+		Render(strings.Join(lines, "\n"))
+}
+
+// bar fills a whole row with text on the left and right, in reverse video.
+func bar(c lipgloss.Color, w int, left, right string) string {
+	gap := w - lipgloss.Width(left) - lipgloss.Width(right)
+	if gap < 1 {
+		right, gap = "", max(w-lipgloss.Width(left), 0)
+	}
+	return lipgloss.NewStyle().Bold(true).Foreground(c).Reverse(true).Render(left + strings.Repeat(" ", gap) + right)
+}
+
+// anchorBottom pads between top and bottom so bottom sits at the foot of an
+// area height rows tall: choices stay in one spot however long the text is.
+func anchorBottom(top, bottom []string, height int) []string {
+	lines := append([]string{}, top...)
+	for i := len(top) + len(bottom); i < height; i++ {
 		lines = append(lines, "")
 	}
-	lines = append(lines, bottom...)
-	return lines
+	return append(lines, bottom...)
+}
+
+// window shows rows of lines starting at scroll, marking what is cut off.
+// With follow set it sticks to the end instead (text still being typed).
+func window(lines []string, rows, scroll int, follow bool) []string {
+	if len(lines) <= rows || rows < 3 {
+		return lines
+	}
+	maxScroll := len(lines) - rows
+	switch {
+	case follow:
+		scroll = maxScroll
+	case scroll > maxScroll:
+		scroll = maxScroll
+	}
+	out := append([]string{}, lines[scroll:scroll+rows]...)
+	if scroll > 0 {
+		out[0] = dimStyle.Render("▲ …")
+	}
+	if scroll < maxScroll {
+		out[rows-1] = dimStyle.Render("▼ …")
+	}
+	return out
 }
 
 // wrap breaks plain text into lines no wider than width. Apply color/bold
@@ -165,7 +147,7 @@ func wrap(text string, width int) []string {
 		switch {
 		case line == "":
 			line = word
-		case len(line)+1+len(word) > width:
+		case lipgloss.Width(line)+1+lipgloss.Width(word) > width:
 			lines = append(lines, line)
 			line = word
 		default:
@@ -178,15 +160,14 @@ func wrap(text string, width int) []string {
 	return lines
 }
 
-// bar renders a fixed-width block-character gauge, colored by threshold.
-func bar(pct, width int) string {
-	if pct < 0 {
-		pct = 0
-	}
-	if pct > 100 {
-		pct = 100
-	}
+// gauge renders a segmented meter, colored by how bad it is; a nearly empty
+// one blinks where the terminal supports it.
+func gauge(pct, width int) string {
+	pct = max(0, min(pct, 100))
 	filled := pct * width / 100
+	if pct > 0 && filled == 0 {
+		filled = 1
+	}
 	color := colorGreen
 	switch {
 	case pct <= 20:
@@ -194,21 +175,20 @@ func bar(pct, width int) string {
 	case pct <= 50:
 		color = colorAmber
 	}
-	style := lipgloss.NewStyle().Foreground(color)
-	return style.Render(strings.Repeat("█", filled) + strings.Repeat("░", width-filled))
+	style := lipgloss.NewStyle().Foreground(color).Blink(pct <= 10)
+	return style.Render(strings.Repeat("▰", filled)) + dimStyle.Render(strings.Repeat("▱", width-filled))
 }
 
+func pad(s string, n int) string { return lipgloss.NewStyle().Width(n).Render(s) }
+
+// statusBar is the one-line readout used when the sidebar does not fit.
 func statusBar(hull, bat, scrap, inventoryCount int) string {
-	return boldStyle.Render("HULL") + " " + bar(hull, 10) + boldStyle.Render(padPct(hull)) +
-		"   " + boldStyle.Render("BAT") + " " + bar(bat, 10) + boldStyle.Render(padPct(bat)) +
-		"   " + boldStyle.Render("SCRAP") + " " + boldStyle.Render(pad3(scrap)) +
-		"   " + boldStyle.Render("INV") + " " + boldStyle.Render(pad3(inventoryCount))
+	return boldStyle.Render("HULL") + " " + gauge(hull, 8) + " " + pad(strconv.Itoa(hull)+"%", 4) +
+		boldStyle.Render("BAT") + " " + gauge(bat, 8) + " " + pad(strconv.Itoa(bat)+"%", 4) +
+		boldStyle.Render("SCRAP") + " " + pad(strconv.Itoa(scrap), 3) +
+		boldStyle.Render("INV") + " " + strconv.Itoa(inventoryCount)
 }
 
-func padPct(n int) string {
-	return lipgloss.NewStyle().Width(4).Align(lipgloss.Right).Render(strconv.Itoa(n) + "%")
-}
-
-func pad3(n int) string {
-	return lipgloss.NewStyle().Width(3).Render(strconv.Itoa(n))
+func sideRow(label string, pct, width int) string {
+	return boldStyle.Render(pad(label, 6)) + gauge(pct, width-6-5) + " " + fmt.Sprintf("%3d%%", pct)
 }

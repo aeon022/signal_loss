@@ -49,6 +49,9 @@ func (w *bridgeWriter) Write(p []byte) (int, error) {
 	return len(p), nil
 }
 
+// prog is the running game, kept so the page can tell it when the terminal is resized.
+var prog *tea.Program
+
 func main() {
 	inputCh := make(chan []byte, 64)
 
@@ -100,7 +103,7 @@ func main() {
 		}
 
 		model := tui.New(storyData, state, save, stats, saveStats, fast, realtime, lang)
-		prog := tea.NewProgram(model,
+		prog = tea.NewProgram(model,
 			tea.WithAltScreen(),
 			tea.WithInput(&bridgeReader{ch: inputCh}),
 			tea.WithOutput(&bridgeWriter{onOutput: onOutput}),
@@ -123,6 +126,14 @@ func main() {
 		// terminalCols/terminalRows in GameTerminal.astro.
 		go prog.Send(tea.WindowSizeMsg{Width: terminalCols, Height: terminalRows})
 
+		return nil
+	}))
+
+	// slResize(cols, rows): the page fits the terminal to its box and reports the new size.
+	js.Global().Set("slResize", js.FuncOf(func(_ js.Value, args []js.Value) any {
+		if prog != nil {
+			go prog.Send(tea.WindowSizeMsg{Width: args[0].Int(), Height: args[1].Int()})
+		}
 		return nil
 	}))
 

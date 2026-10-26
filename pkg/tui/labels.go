@@ -92,12 +92,13 @@ var labelsEN = Labels{
 		"1-9          pick a choice",
 		"↑ ↓ / j k    move the cursor, Enter confirms",
 		"any key      skip the typewriter, or continue",
+		"PgUp PgDn    scroll a long text",
 		"c            codex (what S.T.E.V.E. knows)",
 		"m            map of Sector Schrödinger",
 		"?            this help",
 		"q            quit (the run is saved)",
 	},
-	TooSmallFmt: "Window too small: this terminal needs %d×%d, yours is %d×%d. Enlarge it.",
+	TooSmallFmt: "Window too small: this game needs at least %d×%d, yours is %d×%d. Enlarge it.",
 }
 
 var labelsDE = Labels{
@@ -144,12 +145,13 @@ var labelsDE = Labels{
 		"1-9          Auswahl treffen",
 		"↑ ↓ / j k    Cursor bewegen, Enter bestätigt",
 		"beliebige    Tippeffekt überspringen oder weiter",
+		"BildAuf/Ab   langen Text scrollen",
 		"c            Codex (was S.T.E.V.E. weiß)",
 		"m            Karte von Sektor Schrödinger",
 		"?            diese Hilfe",
 		"q            beenden (der Lauf ist gespeichert)",
 	},
-	TooSmallFmt: "Fenster zu klein: dieses Terminal braucht %d×%d, deines hat %d×%d. Vergrößere es.",
+	TooSmallFmt: "Fenster zu klein: das Spiel braucht mindestens %d×%d, deines hat %d×%d. Vergrößere es.",
 }
 
 // labelsFor resolves a lang code ("en", "de") to its Labels set, defaulting

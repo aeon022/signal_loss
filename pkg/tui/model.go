@@ -75,6 +75,7 @@ type Model struct {
 	resolution       game.Resolution
 	awaitingContinue bool
 	cursor           int
+	textScroll       int // lines scrolled back in a narrative taller than the panel
 	hint             string
 
 	// outcomeTitle pins the frame title to the chapter a choice was made
@@ -163,6 +164,7 @@ func (m *Model) startChapterReveal() {
 	m.cursor = 0
 	m.awaitingContinue = false
 	m.hint = ""
+	m.textScroll = 0
 	m.setReveal(ch.Content)
 }
 
@@ -268,6 +270,15 @@ func (m Model) handleChapterKey(key string) (tea.Model, tea.Cmd) {
 		return m, nil
 	}
 
+	switch key {
+	case "pgup":
+		m.textScroll = max(m.textScroll-5, 0)
+		return m, nil
+	case "pgdown":
+		m.textScroll += 5
+		return m, nil
+	}
+
 	if !m.revealDone() {
 		m.revealCount = len(m.revealText)
 		return m, nil
@@ -341,6 +352,7 @@ func (m Model) selectChoice(idx int) (tea.Model, tea.Cmd) {
 	m.step = stepOutcome
 	m.awaitingContinue = false
 	m.hint = ""
+	m.textScroll = 0
 	m.setReveal(choice.Outcome)
 
 	if m.fastMode {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
@@ -13,12 +14,14 @@ import (
 	"github.com/aeon022/signal_loss/pkg/story"
 )
 
-const glitchChars = "▓▒░#%&$"
+const glitchChars = "▓▒░█▌▐▄▀#%&$"
 
+// randomGlitchLine is a long run of noise; the glitch view cuts rows out of it.
 func randomGlitchLine() string {
-	b := make([]byte, TextWidth)
+	r := []rune(glitchChars)
+	b := make([]rune, 700)
 	for i := range b {
-		b[i] = glitchChars[rand.Intn(len(glitchChars))]
+		b[i] = r[rand.Intn(len(r))]
 	}
 	return string(b)
 }
@@ -27,79 +30,193 @@ func heading(text string, c lipgloss.Color) string {
 	return lipgloss.NewStyle().Bold(true).Foreground(c).Render(text)
 }
 
-// hudLine is the instrument-panel readout shown below the screen on every
-// in-game view. Empty before there's a meaningful run to report on.
-func (m Model) hudLine() string {
-	return statusBar(m.state.Hull, m.state.Bat, m.state.Scrap, len(m.state.Inventory))
-}
+func trunc(s string, w int) string { return lipgloss.NewStyle().MaxWidth(w).Render(s) }
 
 func (m Model) View() string {
 	if m.quitting {
 		return ""
 	}
 	if m.fatalErr != nil {
-		return chrome(frameStyle(colorRed).Render("ERROR: "+m.fatalErr.Error()), "")
+		return "ERROR: " + m.fatalErr.Error()
 	}
-
-	if m.width > 0 && (m.width < BezelWidth || m.height < BezelHeight) {
-		return fmt.Sprintf(m.labels.TooSmallFmt, BezelWidth, BezelHeight, m.width, m.height) + "\n"
+	l := m.layout()
+	if m.width > 0 && l.tooSmall() {
+		return fmt.Sprintf(m.labels.TooSmallFmt, minW, minH, m.width, m.height)
 	}
 
 	switch m.phase {
 	case phaseBoot:
-		return m.viewBoot()
+		return m.viewBoot(l.full())
 	case phaseChapter:
-		return m.viewChapter()
+		return m.viewChapter(l)
 	case phaseGlitch:
-		glitch := dimStyle.Render(m.glitchLine) + "\n" + dimStyle.Render(m.glitchLine)
-		return chrome(frameStyle(colorDim).Render(glitch), m.hudLine())
+		return m.viewGlitch(l)
 	case phaseTimelock:
-		return m.viewTimelock()
+		return m.viewTimelock(l.full())
 	case phaseRealLock:
-		return m.viewRealLock()
+		return m.viewRealLock(l.full())
 	case phaseGameOver:
-		return m.viewEnd(colorRed)
+		return m.viewEnd(l.full(), colorRed)
 	case phaseEnding:
-		return m.viewEnd(colorMagenta)
+		return m.viewEnd(l.full(), colorMagenta)
 	}
 	return ""
 }
 
-// viewBoot renders the title banner and boot log as one fixed-size panel.
-func (m Model) viewBoot() string {
-	lines := []string{
-		heading("S I G N A L   L O S S", colorCyan),
-		m.labels.BootSubtitle,
-		m.labels.BootLink,
-		"",
+// screen assembles the whole display: title bar, main panel (plus the
+// instrument sidebar when there is room) and the key bar.
+func (m Model) screen(l layout, c lipgloss.Color, body []string, footer string) string {
+	if !l.side && (m.phase == phaseChapter || m.phase == phaseGlitch) {
+		body = append([]string{statusBar(m.state.Hull, m.state.Bat, m.state.Scrap, len(m.state.Inventory)), ""}, body...)
 	}
+	for i := range body {
+		body[i] = l.indent + body[i]
+	}
+	row := panel(c, l.mainW, l.bodyH, 2, body)
+	if l.side {
+		row = lipgloss.JoinHorizontal(lipgloss.Top, row, m.sidebar(l))
+	}
+	signal := "SIGNAL: LIVE"
+	if m.phase == phaseGameOver {
+		signal = "SIGNAL: LOST"
+	}
+	right := ""
+	if idx := game.SpineIndex(m.story, m.state.CurrentChapter); idx >= 0 && m.phase != phaseBoot {
+		right = fmt.Sprintf("CH %02d/%02d ", idx+1, len(game.ChapterOrder))
+	}
+	head := bar(colorCyan, l.w, " ◢◤ S.T.E.V.E. TERMINAL // MK.IV", "SECTOR SCHRÖDINGER · "+signal+" ")
+	foot := bar(colorDim, l.w, " "+footer, right)
+	return head + "\n" + row + "\n" + foot
+}
+
+// sidebar is the instrument panel: gauges, cargo and the route so far.
+func (m Model) sidebar(l layout) string {
+	w := l.sideTxt
+	s := m.state
+	lines := []string{heading("◈ SUIT STATUS", colorCyan), "",
+		sideRow("HULL", s.Hull, w), sideRow("BAT", s.Bat, w),
+		boldStyle.Render(pad("SCRAP", 6)) + strconv.Itoa(s.Scrap), "",
+		heading("◈ CARGO", colorCyan)}
+	if len(s.Inventory) == 0 {
+		lines = append(lines, dimStyle.Render("  — empty —"))
+	}
+	for i, item := range s.Inventory {
+		if i == 5 {
+			lines = append(lines, dimStyle.Render(fmt.Sprintf("  … +%d more", len(s.Inventory)-5)))
+			break
+		}
+		lines = append(lines, trunc("  ◦ "+item, w))
+	}
+
+	cur := game.SpineIndex(m.story, s.CurrentChapter)
+	lines = append(lines, "", heading("◈ ROUTE", colorCyan))
+	if l.bodyH-len(lines) >= len(game.ChapterOrder)+1 {
+		for i, id := range game.ChapterOrder {
+			name := m.story.Chapters[id].Location
+			mark := "·"
+			switch {
+			case i == cur:
+				mark = lipgloss.NewStyle().Foreground(colorGreen).Bold(true).Render("▶")
+			case i < cur:
+				mark = dimStyle.Render("✓")
+			}
+			lines = append(lines, trunc(fmt.Sprintf(" %s %2d %s", mark, i+1, name), w))
+		}
+	} else {
+		lines = append(lines, fmt.Sprintf(" %d/%d ", cur+1, len(game.ChapterOrder))+gauge((cur+1)*100/len(game.ChapterOrder), w-8))
+	}
+	return panel(colorDim, l.sideW, l.bodyH, 1, lines)
+}
+
+var logoSignal = []string{
+	"███████╗██╗ ██████╗ ███╗   ██╗ █████╗ ██╗     ",
+	"██╔════╝██║██╔════╝ ████╗  ██║██╔══██╗██║     ",
+	"███████╗██║██║  ███╗██╔██╗ ██║███████║██║     ",
+	"╚════██║██║██║   ██║██║╚██╗██║██╔══██║██║     ",
+	"███████║██║╚██████╔╝██║ ╚████║██║  ██║███████╗",
+	"╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝",
+}
+
+var logoLoss = []string{
+	"██╗      ██████╗ ███████╗███████╗",
+	"██║     ██╔═══██╗██╔════╝██╔════╝",
+	"██║     ██║   ██║███████╗███████╗",
+	"██║     ██║   ██║╚════██║╚════██║",
+	"███████╗╚██████╔╝███████║███████║",
+	"╚══════╝ ╚═════╝ ╚══════╝╚══════╝",
+}
+
+// logo is the title in big letters where they fit, plain text where not.
+func logo(w, rows int) []string {
+	var out []string
+	switch {
+	case w >= 84 && rows >= 16:
+		for i := range logoSignal {
+			out = append(out, lipgloss.NewStyle().Foreground(colorCyan).Render(logoSignal[i])+"  "+lipgloss.NewStyle().Foreground(colorMagenta).Render(logoLoss[i]))
+		}
+	case w >= 50 && rows >= 24:
+		for _, part := range []struct {
+			art []string
+			c   lipgloss.Color
+		}{{logoSignal, colorCyan}, {logoLoss, colorMagenta}} {
+			for _, ln := range part.art {
+				out = append(out, lipgloss.NewStyle().Foreground(part.c).Render(ln))
+			}
+		}
+	default:
+		out = []string{heading("S I G N A L   L O S S", colorCyan)}
+	}
+	return out
+}
+
+func (m Model) viewBoot(l layout) string {
+	log := []string{" "}
 	for i := 0; i < m.bootIdx; i++ {
-		lines = append(lines, dimStyle.Render(m.labels.BootLines[i]))
+		log = append(log, dimStyle.Render(m.labels.BootLines[i]))
 	}
+	prompt := []string{" "}
 	if m.awaitingUplink {
-		lines = append(lines, "", dimStyle.Render(m.labels.PressUplink))
+		prompt = []string{lipgloss.NewStyle().Foreground(colorGreen).Bold(true).Render(m.labels.PressUplink)}
 	}
-	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), "")
+	return m.screen(l, colorCyan, centered(l, logo(l.textW, l.rows-12), []string{"", m.labels.BootSubtitle}, []string{m.labels.BootLink}, log, []string{""}, prompt), "")
+}
+
+// centered places a block in the middle of the main panel, line by line.
+// Each part is kept left-aligned as a unit and the units are centered, so
+// lines of different length (a boot log) don't drift apart.
+func centered(l layout, parts ...[]string) []string {
+	units := make([]string, len(parts))
+	for i, p := range parts {
+		units[i] = lipgloss.JoinVertical(lipgloss.Left, p...)
+	}
+	return strings.Split(lipgloss.Place(l.textW, l.rows, lipgloss.Center, lipgloss.Center, lipgloss.JoinVertical(lipgloss.Center, units...)), "\n")
+}
+
+func (m Model) viewGlitch(l layout) string {
+	noise := []rune(m.glitchLine)
+	body := make([]string, l.rows)
+	for i := range body {
+		off := (i * 37) % (len(noise) - l.textW)
+		body[i] = dimStyle.Render(string(noise[off : off+l.textW]))
+	}
+	return m.screen(l, colorDim, body, "")
 }
 
 // viewChapter renders the title and narrative/outcome text up top, with the
-// choices (or continue prompt) anchored near the bottom of the fixed-height
-// screen — a consistent "command line" position instead of floating right
-// after however much narrative text precedes it. HULL/BAT/SCRAP/INV lives
-// below the screen now, on the instrument panel (see hudLine).
-func (m Model) viewChapter() string {
+// choices (or continue prompt) anchored at the bottom of the panel — a
+// consistent "command line" position however much text precedes it.
+func (m Model) viewChapter(l layout) string {
 	ch, ok := m.currentChapter()
 	if !ok {
-		return chrome(frameStyle(colorRed).Render(m.labels.ErrUnknownChap), "")
+		return m.screen(l, colorRed, []string{m.labels.ErrUnknownChap}, "")
 	}
-	if m.overlay == "codex" {
-		return m.viewCodex()
-	}
-	if m.overlay == "map" {
-		return m.viewMap()
-	}
-	if m.overlay == "help" {
-		return m.viewHelp()
+	switch m.overlay {
+	case "codex":
+		return m.viewCodex(l)
+	case "map":
+		return m.viewMap(l)
+	case "help":
+		return m.viewHelp(l)
 	}
 
 	title := ch.Title
@@ -108,32 +225,31 @@ func (m Model) viewChapter() string {
 	}
 
 	top := []string{heading(title, colorCyan), ""}
-	top = append(top, wrap(string(m.revealText[:m.revealCount]), TextWidth)...)
+	top = append(top, wrap(string(m.revealText[:m.revealCount]), l.textW)...)
 
 	var bottom []string
+	footer := ""
 	switch {
 	case m.step == stepOutcome:
 		if m.awaitingContinue {
-			bottom = []string{"", dimStyle.Render(m.labels.PressContinue)}
+			bottom = []string{"", lipgloss.NewStyle().Foreground(colorGreen).Render(m.labels.PressContinue)}
 		}
 	case !m.revealDone():
 		// still typing the narrative — choices appear once it's done.
 	default:
 		choices := game.AvailableChoices(m.state, ch)
-		bottom = append(bottom, "")
-		bottom = append(bottom, renderChoices(choices, m.cursor, TextWidth)...)
+		bottom = append([]string{""}, renderChoices(choices, m.cursor, l.textW)...)
 		if m.hint != "" {
 			bottom = append(bottom, "", dimStyle.Render(m.hint))
 		}
-		footer := fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))
+		footer = fmt.Sprintf(m.labels.ChoiceFooterFmt, len(choices))
 		if n := m.unseenCodex(); n > 0 {
 			footer += fmt.Sprintf(m.labels.CodexNewFmt, n)
 		}
-		bottom = append(bottom, "", dimStyle.Render(footer))
 	}
 
-	lines := anchorBottom(top, bottom)
-	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), m.hudLine())
+	top = window(top, l.rows-len(bottom), m.textScroll, !m.revealDone())
+	return m.screen(l, colorCyan, anchorBottom(top, bottom, l.rows), footer)
 }
 
 // renderChoices word-wraps each choice under a hanging indent and
@@ -148,11 +264,7 @@ func renderChoices(choices []story.Choice, cursor, width int) []string {
 		}
 		prefix := fmt.Sprintf("[%d] ", i+1)
 		indent := strings.Repeat(" ", len(prefix)+2)
-		avail := width - len(indent)
-		if avail < 10 {
-			avail = 10
-		}
-		wrapped := wrap(c.Text, avail)
+		wrapped := wrap(c.Text, max(width-len(indent), 10))
 		block := make([]string, len(wrapped))
 		for j, ln := range wrapped {
 			if j == 0 {
@@ -161,15 +273,10 @@ func renderChoices(choices []story.Choice, cursor, width int) []string {
 				block[j] = indent + ln
 			}
 		}
-		styled := style.Render(strings.Join(block, "\n"))
-		rows = append(rows, strings.Split(styled, "\n")...)
+		rows = append(rows, strings.Split(style.Render(strings.Join(block, "\n")), "\n")...)
 	}
 	return rows
 }
-
-// codexOverhead is the heading, its blank line, and the footer row —
-// everything in the codex frame that isn't part of the scrollable body.
-const codexOverhead = 3
 
 // knownCodexTerms are the entries the story has introduced so far, sorted.
 func (m Model) knownCodexTerms() []string {
@@ -193,16 +300,19 @@ func (m Model) unseenCodex() int {
 	return n
 }
 
-func (m Model) viewHelp() string {
+func (m Model) viewHelp(l layout) string {
 	lines := append([]string{heading(m.labels.HelpHeading, colorCyan), ""}, m.labels.HelpLines...)
-	lines = append(lines, "", dimStyle.Render(m.labels.MapFooter))
-	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), m.hudLine())
+	return m.screen(l, colorCyan, lines, m.labels.MapFooter)
 }
+
+// codexOverhead is the heading, its blank line and the footer row — everything
+// in the codex that isn't part of the scrollable body.
+const codexOverhead = 3
 
 // viewCodex shows only the lexicon entries the story has actually
 // introduced so far (by furthest chapter reached), not the full database —
 // S.T.E.V.E. hasn't got intel on Vex before you've met him.
-func (m Model) viewCodex() string {
+func (m Model) viewCodex(l layout) string {
 	terms := m.knownCodexTerms()
 
 	var body []string
@@ -212,27 +322,17 @@ func (m Model) viewCodex() string {
 			title += " " + lipgloss.NewStyle().Foreground(colorGreen).Bold(true).Render(m.labels.CodexNewTag)
 		}
 		body = append(body, title)
-		body = append(body, wrap(m.story.Codex[term].Text, TextWidth)...)
+		body = append(body, wrap(m.story.Codex[term].Text, l.textW)...)
 		body = append(body, "")
 	}
 	if len(terms) == 0 {
 		body = []string{dimStyle.Render(m.labels.CodexEmpty)}
 	}
 
-	visibleRows := FixedHeight - codexOverhead
-	maxScroll := len(body) - visibleRows
-	if maxScroll < 0 {
-		maxScroll = 0
-	}
-	scroll := m.codexScroll
-	if scroll > maxScroll {
-		scroll = maxScroll
-	}
-
-	end := scroll + visibleRows
-	if end > len(body) {
-		end = len(body)
-	}
+	visibleRows := l.rows - codexOverhead
+	maxScroll := max(len(body)-visibleRows, 0)
+	scroll := min(m.codexScroll, maxScroll)
+	end := min(scroll+visibleRows, len(body))
 	visible := append([]string{}, body[scroll:end]...)
 	for len(visible) < visibleRows {
 		visible = append(visible, "")
@@ -242,13 +342,12 @@ func (m Model) viewCodex() string {
 	if maxScroll > 0 {
 		footer = fmt.Sprintf(m.labels.CodexScrollFmt, scroll+1, maxScroll+1, footer)
 	}
-
 	lines := append([]string{heading(m.labels.CodexHeading, colorAmber), ""}, visible...)
 	lines = append(lines, dimStyle.Render(footer))
-	return chrome(frameStyle(colorAmber).Render(strings.Join(lines, "\n")), m.hudLine())
+	return m.screen(l, colorAmber, lines, "")
 }
 
-func (m Model) viewMap() string {
+func (m Model) viewMap(l layout) string {
 	currentIdx := game.SpineIndex(m.story, m.state.CurrentChapter)
 
 	lines := []string{heading(m.labels.MapHeading, colorCyan), ""}
@@ -276,39 +375,31 @@ func (m Model) viewMap() string {
 			lines = append(lines, dimStyle.Render("       ↳ "+cur.Location))
 		}
 	}
+	lines = window(lines, l.rows-2, 0, false)
 	lines = append(lines, "", dimStyle.Render(m.labels.MapFooter))
-	return chrome(frameStyle(colorCyan).Render(strings.Join(lines, "\n")), m.hudLine())
+	return m.screen(l, colorCyan, lines, "")
 }
 
-func (m Model) viewTimelock() string {
+func (m Model) viewTimelock(l layout) string {
 	pct := 0
 	if m.timelockTotal > 0 {
 		pct = 100 - int(m.timelockRemaining*100/m.timelockTotal)
 	}
-	lines := []string{
-		dimStyle.Render(m.labels.TimelockStandby),
-		"",
-		bar(pct, TextWidth-8),
-		"",
-		dimStyle.Render(m.labels.TimelockSkip),
-	}
-	return chrome(frameStyle(colorDim).Render(strings.Join(lines, "\n")), m.hudLine())
+	block := []string{dimStyle.Render(m.labels.TimelockStandby), "", gauge(pct, min(l.textW-8, 60)), "", dimStyle.Render(m.labels.TimelockSkip)}
+	return m.screen(l, colorDim, centered(l, block), "")
 }
 
 // viewRealLock shows a genuine real-time wait (-realtime): the run is
 // saved and it's safe to close the terminal — S.T.E.V.E. will still be
 // there when the clock catches up, whether that's from a fresh launch or
 // this same session left running.
-func (m Model) viewRealLock() string {
-	remaining := time.Until(time.Unix(m.state.TimeLockUntil, 0))
-	if remaining < 0 {
-		remaining = 0
-	}
+func (m Model) viewRealLock(l layout) string {
+	remaining := max(time.Until(time.Unix(m.state.TimeLockUntil, 0)), 0)
 	unlockAt := time.Unix(m.state.TimeLockUntil, 0).Local().Format("Mon 15:04")
 
-	lines := []string{heading(m.labels.RealLockHeading, colorDim), ""}
-	lines = append(lines, wrap(m.labels.RealLockBodyPre+formatDuration(remaining)+".", TextWidth)...)
-	lines = append(lines,
+	block := []string{heading(m.labels.RealLockHeading, colorDim), ""}
+	block = append(block, wrap(m.labels.RealLockBodyPre+formatDuration(remaining)+".", min(l.textW, 70))...)
+	block = append(block,
 		"",
 		dimStyle.Render(m.labels.RealLockBackOnlinePre+unlockAt),
 		"",
@@ -316,7 +407,7 @@ func (m Model) viewRealLock() string {
 		"",
 		dimStyle.Render(m.labels.RealLockQuit),
 	)
-	return chrome(frameStyle(colorDim).Render(strings.Join(lines, "\n")), m.hudLine())
+	return m.screen(l, colorDim, centered(l, block), "")
 }
 
 func formatDuration(d time.Duration) string {
@@ -333,15 +424,14 @@ func formatDuration(d time.Duration) string {
 	}
 }
 
-func (m Model) viewEnd(c lipgloss.Color) string {
-	var lines []string
+func (m Model) viewEnd(l layout, c lipgloss.Color) string {
+	var block []string
 	if m.endTitle != "" {
-		lines = append(lines, heading(m.endTitle, c), "")
+		block = append(block, heading(m.endTitle, c), "")
 	}
-	lines = append(lines, wrap(m.endMessage, TextWidth)...)
-	lines = append(lines, "", dimStyle.Render(fmt.Sprintf(m.labels.EndStatsFmt, m.stats.Runs, m.stats.Deaths, len(m.stats.Endings), m.endingTotal())))
-	lines = append(lines, "", dimStyle.Render(m.labels.EndQuit))
-	return chrome(frameStyle(c).Render(strings.Join(lines, "\n")), m.hudLine())
+	block = append(block, wrap(m.endMessage, min(l.textW, 78))...)
+	block = append(block, "", dimStyle.Render(fmt.Sprintf(m.labels.EndStatsFmt, m.stats.Runs, m.stats.Deaths, len(m.stats.Endings), m.endingTotal())), "", dimStyle.Render(m.labels.EndQuit))
+	return m.screen(l, c, centered(l, block), "")
 }
 
 func (m Model) endingTotal() int {
