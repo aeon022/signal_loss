@@ -188,8 +188,8 @@ const otherHref = lang === "de" ? base : `${base}de/`;
 
     <section id="endings" class="relative mx-auto max-w-4xl px-6 pb-20 text-sm">
       <div class="tui-panel p-5 text-cyan">
-        <h2 class="glow-cyan mb-1 text-xs font-bold tracking-widest">◈ {T.game.endingsTitle} · <span id="endings-count">0/8</span> {T.game.endingsFound}</h2>
-        <p class="mb-4 text-xs text-dim">{T.game.endingsNote}</p>
+        <h2 class="glow-cyan mb-1 text-xs font-bold tracking-widest">◈ {T.endingsTitle} · <span id="endings-count">0/8</span> {T.endingsFound}</h2>
+        <p class="mb-4 text-xs text-dim">{T.endingsNote}</p>
         <ul class="grid gap-2 sm:grid-cols-2" id="endings-list" data-t={JSON.stringify(T.game.endings)}>
           {Object.keys(T.game.endings).map((id) => (
             <li data-id={id} class="border border-white/10 px-3 py-2 text-slate-500"><span class="mr-2">▢</span><span class="name">???</span></li>
