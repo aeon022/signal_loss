@@ -74,6 +74,22 @@ const otherHref = lang === "de" ? base : `${base}de/`;
   </script>
 
   <script>
+    // fill in the endings this browser has seen (the game keeps them in localStorage, keyed by id)
+    const list = document.getElementById("endings-list")!;
+    const names = JSON.parse(list.dataset.t!);
+    let found: Record<string, number> = {};
+    try { found = JSON.parse(localStorage.getItem("signal_loss_stats") || "{}").endings || {}; } catch {}
+    let n = 0;
+    list.querySelectorAll<HTMLElement>("li").forEach((li) => {
+      if (!found[li.dataset.id!]) return;
+      n++;
+      li.classList.replace("text-slate-500", "text-cyan-bright");
+      li.firstElementChild!.textContent = "▣";
+      li.querySelector(".name")!.textContent = names[li.dataset.id!];
+    });
+    document.getElementById("endings-count")!.textContent = `${n}/8`;
+  </script>
+  <script>
     // Shrinks the sticky header once you've scrolled past it, so it reads
     // as a compact floating bar instead of taking full hero-height space
     // for the whole page.
@@ -167,6 +183,18 @@ const otherHref = lang === "de" ? base : `${base}de/`;
           <p class="text-slate-300">{T.cards[2][1]}</p>
           <pre class="tui-snippet" set:html={snippet(T.cards[2][2])} />
         </div>
+      </div>
+    </section>
+
+    <section id="endings" class="relative mx-auto max-w-4xl px-6 pb-20 text-sm">
+      <div class="tui-panel p-5 text-cyan">
+        <h2 class="glow-cyan mb-1 text-xs font-bold tracking-widest">◈ {T.game.endingsTitle} · <span id="endings-count">0/8</span> {T.game.endingsFound}</h2>
+        <p class="mb-4 text-xs text-dim">{T.game.endingsNote}</p>
+        <ul class="grid gap-2 sm:grid-cols-2" id="endings-list" data-t={JSON.stringify(T.game.endings)}>
+          {Object.keys(T.game.endings).map((id) => (
+            <li data-id={id} class="border border-white/10 px-3 py-2 text-slate-500"><span class="mr-2">▢</span><span class="name">???</span></li>
+          ))}
+        </ul>
       </div>
     </section>
 
