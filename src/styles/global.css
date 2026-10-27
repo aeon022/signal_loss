@@ -243,7 +243,28 @@ body {
 /* The terminal as a CRT: glow, rounded glass, scanlines and a vignette over the top. */
 .crt-screen {
   border: 4px double var(--color-cyan);
+  border-radius: 14px;
   box-shadow: 0 0 60px rgba(34, 211, 238, 0.16), inset 0 0 40px rgba(34, 211, 238, 0.08);
+}
+/* bright corner brackets, like a viewfinder */
+.crt-screen::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 5px;
+  z-index: 2;
+  --c: var(--color-cyan-bright);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 22px 2px,
+    linear-gradient(var(--c), var(--c)) top left / 2px 22px,
+    linear-gradient(var(--c), var(--c)) top right / 22px 2px,
+    linear-gradient(var(--c), var(--c)) top right / 2px 22px,
+    linear-gradient(var(--c), var(--c)) bottom left / 22px 2px,
+    linear-gradient(var(--c), var(--c)) bottom left / 2px 22px,
+    linear-gradient(var(--c), var(--c)) bottom right / 22px 2px,
+    linear-gradient(var(--c), var(--c)) bottom right / 2px 22px;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 4px var(--color-cyan));
 }
 .crt-screen::after {
   content: "";
@@ -263,27 +284,28 @@ body {
 }
 
 /* While playing, the page is held in place; the terminal section snaps into view when scrolling near it. */
-html { scroll-snap-type: y proximity; }
+@media (pointer: fine) { html { scroll-snap-type: y proximity; } }
 #play { scroll-snap-align: center; }
-html.play-lock { overflow: hidden; }
+html.play-lock { overflow: hidden; overscroll-behavior: none; }
 /* Locked: header, ticker and the rest of the page are covered; the terminal gets the whole window. */
 html.play-lock #game-widget {
   position: fixed;
   inset: 0;
   z-index: 60;
   max-width: none;
-  overflow: auto;
+  overflow: hidden;
+  overscroll-behavior: none;
   padding: 0.75rem;
   background: var(--color-void);
 }
 html.play-lock #terminal { height: calc(100dvh - 7.5rem) !important; }
 
 /* Locked on a phone/tablet: the bar with the buttons pins to the top, the key pad sits at the bottom
-   and folds away down to a handle (html.pad-closed), so nothing is ever covered. */
+   and folds away down to a handle. --pad-h is measured from the real pad; svh (not dvh) keeps the
+   height still while the browser toolbars slide. The terminal ends exactly above the pad. */
 @media (pointer: coarse) {
-  html.play-lock #terminal { height: calc(100dvh - 16.5rem) !important; }
-  html.play-lock.pad-closed #terminal { height: calc(100dvh - 8rem) !important; }
-  html.play-lock #game-widget { padding-top: 3.25rem; }
+  html.play-lock #game-widget { padding-top: 3.25rem; padding-bottom: calc(var(--pad-h, 0px) + 0.75rem); }
+  html.play-lock #terminal { height: calc(100svh - 3.25rem - var(--pad-h, 0px) - 0.75rem - 2rem - 0.75rem) !important; }
   html.play-lock #keybar {
     position: fixed; inset: 0 0 auto 0; z-index: 70; margin: 0;
     flex-wrap: nowrap; justify-content: flex-end; padding: 0.4rem 0.5rem;

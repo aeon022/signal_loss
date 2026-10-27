@@ -166,14 +166,11 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
       border-top: 2px solid var(--color-cyan);
     }
     /* the page needs room under it, and the terminal must end above it */
-    #game-widget { padding-bottom: 10rem; }
-    #terminal { height: calc(100dvh - 15.5rem) !important; }
+    #game-widget { padding-bottom: calc(var(--pad-h, 0px) + 1rem); }
   }
   .pad-body { display: flex; flex-direction: column; gap: 0.4rem; }
   .pad-fold { padding-block: 0.3rem; font-size: 0.7rem; }
   :global(html.pad-closed) .pad-body { display: none; }
-  :global(html.pad-closed) #game-widget { padding-bottom: 4rem; }
-  :global(html.pad-closed) #terminal { height: calc(100dvh - 8rem) !important; }
   .tp-row { display: flex; gap: 0.4rem; }
   .tp-row > * { flex: 1 1 0; padding-inline: 0.2rem; }
   .touch-btn { min-height: 2.3rem; font-size: 0.9rem; }
@@ -409,8 +406,10 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
     const closed = document.documentElement.classList.toggle("pad-closed");
     fold.setAttribute("aria-expanded", String(!closed));
     fold.textContent = (closed ? "▲ " : "▼ ") + fold.textContent!.slice(2);
-    window.dispatchEvent(new Event("resize")); // terminal refits to its new height
   });
+  // the terminal's height follows the real height of the pad (see global.css)
+  const pad = document.getElementById("touchpad")!;
+  new ResizeObserver(() => document.documentElement.style.setProperty("--pad-h", pad.offsetHeight + "px")).observe(pad);
 
   document.querySelectorAll<HTMLButtonElement>("#touchpad [data-send]").forEach((b) =>
     b.addEventListener("click", () => window.slInput?.(b.dataset.send!)),
