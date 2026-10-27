@@ -74,6 +74,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
       >
         {G.establish}
       </button>
+      <button id="demo-btn" type="button" class="-mt-2 text-[11px] tracking-widest text-dim underline decoration-dotted hover:text-cyan">{G.demo}</button>
 
       <div class="text-[11px] tracking-widest text-dim">
         <label class="cursor-pointer underline decoration-dotted hover:text-cyan">
@@ -349,13 +350,36 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
     });
   });
 
-  launchBtn.addEventListener("click", () => {
+  // Demo: the real game plays a few scripted keys (play dead, barter, map, codex) on a throwaway run.
+  // Nothing is saved while it runs; any key from the player ends the script and hands over the run.
+  let demoTimer = 0;
+  const demoKeys = ["2", " ", "1", " ", "m", "\x1b", "c", "\x1b"];
+  function stopDemo() { clearTimeout(demoTimer); demoTimer = 0; demoing = false; statusEl.textContent = T.status.live; }
+  let demoing = false;
+  function playDemo(i = 0) {
+    if (!demoing || i >= demoKeys.length) { if (demoing) stopDemo(); return; }
+    window.slInput(demoKeys[i]);
+    demoTimer = window.setTimeout(() => playDemo(i + 1), 3200);
+  }
+  document.getElementById("demo-btn")!.addEventListener("click", () => {
+    demoing = true;
+    launch();
+    const wait = setInterval(() => { // the game is up once boot() has set the status to live
+      if (statusEl.textContent !== T.status.live) return;
+      clearInterval(wait);
+      statusEl.textContent = T.demoNote;
+      demoTimer = window.setTimeout(() => playDemo(), 3500);
+    }, 200);
+  });
+
+  launchBtn.addEventListener("click", launch);
+  function launch() {
     launchPanel.remove();
     document.getElementById("cookie-notice")?.classList.add("hidden"); // it would sit over the key bar
     term.options.screenReaderMode = selection.reader === "on"; // xterm then mirrors the screen as readable text
     if (matchMedia("(pointer: fine)").matches) setLock(true); // playing with a mouse: hold the page still (the button lets go); on touch the keys below must stay reachable
-    boot(selection.lang, selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
-  });
+    boot(selection.lang, demoing || selection.speed === "fast", selection.mode === "realtime").catch(onBootError);
+  }
 
   // Save import (from the terminal version, or another browser) and export.
   // Saves are per language — item names differ — so a save lands in the language chosen above.
@@ -412,7 +436,7 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
   new ResizeObserver(() => document.documentElement.style.setProperty("--pad-h", pad.offsetHeight + "px")).observe(pad);
 
   document.querySelectorAll<HTMLButtonElement>("#touchpad [data-send]").forEach((b) =>
-    b.addEventListener("click", () => window.slInput?.(b.dataset.send!)),
+    b.addEventListener("click", () => { if (demoing) stopDemo(); window.slInput?.(b.dataset.send!); }),
   );
 
   // --- sound (off until asked for; nothing is downloaded, it is all synthesized) ---
@@ -493,9 +517,10 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
     // wouldn't match English story data's items_removed lookups ("Hyper-Capacitor"),
     // so switching languages starts a fresh run instead of corrupting inventory state.
     const saveKey = `${SAVE_KEY}_${lang}`;
-    const saved = store.get(saveKey);
+    const saved = demoing ? null : store.get(saveKey);
 
     term.onData((data) => {
+      if (demoing) stopDemo();
       window.slInput(data);
       if (data.length === 1 || data.startsWith("\x1b")) beep(1200, 0.02, "square", 0.015);
     });
@@ -507,10 +532,10 @@ const kbd = "rounded border border-white/10 bg-white/10 px-1 text-slate-300";
       realtime,
       lang,
       (out) => term.write(out),
-      (json) => store.set(saveKey, json),
+      (json) => { if (!demoing) store.set(saveKey, json); },
       onExit,
-      JSON.stringify(stats),
-      onStats,
+      demoing ? "{}" : JSON.stringify(stats),
+      (json) => { if (!demoing) onStats(json); },
     );
 
     refit(); // the game starts with a default size; give it the real one
