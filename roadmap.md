@@ -410,6 +410,16 @@ chapters.
 - [x] Release binaries + install.sh / install.ps1
 - [ ] Open: test install.ps1 on a real Windows machine; Homebrew tap if wanted
 
+## v0.5.1+ — small terminals, landing page (2026-10-27)
+
+- [x] TUI works down to 40×16 (compact status line, short choices, lines cut instead of wrapped, choice list scrolls with the cursor)
+- [x] Landing page redesigned after the TUI: double-line panels, game snippets in the cards, centered CRT terminal with viewfinder corners
+- [x] Scroll lock ("fixieren") while playing: header and page hidden, terminal fills the window; `svh` and a measured pad height keep it steady on phones
+- [x] Touch pad (arrows, Enter, digits, c/m/e/?, PgUp/PgDn) docked at the bottom, folds away to a handle; button bar pins to the top while locked; ⌨ brings the phone keyboard back
+- [x] Endings log on the page (found endings from this browser, the rest "???")
+- [x] "Watch a demo": scripted keys (`demoKeys` in `GameTerminal.astro`) on a throwaway run, nothing saved until the player takes over. Breaks if chapters 1-3 change.
+- [ ] Not done: terminal mode without frame for screen readers (kitty/VoiceOver unverified), Safari/iPhone keyboard toggle only checked by hand, codex search, devlog
+
 ## Later (idea, user request 2026-10-26)
 
 - [ ] Foldable layout (e.g. a folding iPhone): when half-folded, terminal on the upper half and the on-screen keys on the lower half. Use the viewport-segments / `env(fold-*)` media features where the browser exposes them; the terminal already refits (`slResize`), the touch keys (`#touchpad`) are the lower half. Not testable without a device; check real support first.

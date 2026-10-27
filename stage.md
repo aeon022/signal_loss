@@ -17,7 +17,7 @@ The game has a day/night cycle that affects visibility, energy levels, and enemy
 
 ## Current Implementation Status
 
-_Last updated 2026-09-09 — see `roadmap.md` for the full phase-by-phase build log._
+_Last updated 2026-10-27 — see `roadmap.md` for the full phase-by-phase build log._
 
 - ✅ State Management: JSON serialization, save/resume, `max_chapter_index` tracking for the
   codex gate (pkg/game/state.go)
@@ -54,6 +54,8 @@ _Last updated 2026-09-09 — see `roadmap.md` for the full phase-by-phase build 
 - ✅ Browser (branch `deploy/landing`): bilingual page (`/`, `/de/`, hreflang, redirect for German browsers),
   terminal fits its box (`slResize`, @xterm/addon-fit), share text after a run, sound toggle, touch keys,
   save import/export, 404, `go test` + puppeteer smoke test before every deploy. No analytics.
+  Later (2026-10-27): page redesigned after the TUI, scroll lock, docked touch pad that folds away, endings log
+  (from this browser), "watch a demo" button (scripted keys, nothing saved). TUI runs down to 40×16.
 - ✅ Items and luck (v0.5.0): `requires_item` (shortcuts: Deprecated Map, Forged Release Form, Nav-Core,
   Spare Fuse), `saved_by_item` (Blessed Fuse, Glitch Charm, Combo Voucher turn a fatal choice into a
   survivable one, item used up), `luck` (seeded per run: `GameState.Seed`, negative = off, used by tests),
@@ -98,10 +100,8 @@ Engine, content, UI, browser port, deployment, and localization are all feature-
 current scope. Open backlog — see `roadmap.md`'s **What's Next** section for the full list with
 rationale; condensed here:
 
-**Site:** localize the marketing page itself (game speaks German now, the page around it
-doesn't yet), a custom 404, a devlog page adapted from `roadmap.md`'s war stories, privacy-
-respecting analytics (currently zero visibility into whether anyone's playing), an itch.io
-listing, a custom domain under abteilung83.at.
+**Site:** a devlog page adapted from `roadmap.md`'s war stories, an itch.io listing, a custom
+domain under abteilung83.at (page is localized, 404 exists; analytics deliberately none).
 
 **Game:** terminal SFX (browser-only, via Web Audio), cross-run stats beyond the current
 per-save codex gate (endings seen, causes of death), more languages if there's real demand
